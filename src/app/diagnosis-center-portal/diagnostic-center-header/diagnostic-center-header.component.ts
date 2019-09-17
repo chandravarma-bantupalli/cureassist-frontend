@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-diagnostic-center-header',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiagnosticCenterHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  goToHome() {
+    this.router.navigate(['/diagnosisCenter/home']);
+  }
+
+  goToProfile() {
+    this.router.navigate(['/diagnosisCenter/profile']);
+  }
+
+  manageTimeSlots() {
+    this.router.navigate(['/diagnosisCenter/manage/timeslots']);
   }
 
 }

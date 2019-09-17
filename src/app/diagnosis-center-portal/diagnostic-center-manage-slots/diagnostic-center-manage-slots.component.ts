@@ -2,15 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { TimeSlot } from 'src/app/models/time-slot';
 
 @Component({
-  selector: 'app-diagnostic-center-home',
-  templateUrl: './diagnostic-center-home.component.html',
-  styleUrls: ['./diagnostic-center-home.component.css']
+  selector: 'app-diagnostic-center-manage-slots',
+  templateUrl: './diagnostic-center-manage-slots.component.html',
+  styleUrls: ['./diagnostic-center-manage-slots.component.css']
 })
-export class DiagnosticCenterHomeComponent implements OnInit {
+export class DiagnosticCenterManageSlotsComponent implements OnInit {
 
-  appointments: any[];
   timeSlots: TimeSlot[];
-
   constructor() { }
 
   ngOnInit() {
@@ -19,8 +17,6 @@ export class DiagnosticCenterHomeComponent implements OnInit {
       {slotId: '1112', slotDate: '17/09/2019', slotStartTime: '11:00 AM', slotEndTime: '12:30 PM', slotCapacity: 7},
       {slotId: '1113', slotDate: '17/09/2019', slotStartTime: '02:30 PM', slotEndTime: '04:30 PM', slotCapacity: 10},
       {slotId: '1114', slotDate: '17/09/2019', slotStartTime: '05:30 AM', slotEndTime: '08:00 PM', slotCapacity: 12}
-    ];
-    this.appointments = [
     ];
   }
 

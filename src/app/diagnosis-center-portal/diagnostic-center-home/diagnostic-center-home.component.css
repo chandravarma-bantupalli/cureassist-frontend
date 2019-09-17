@@ -1,0 +1,12 @@
+.current-appointments{
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.time-slot{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}

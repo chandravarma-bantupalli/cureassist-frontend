@@ -1,16 +1,16 @@
 <mat-toolbar>
   <mat-toolbar-row class="navbar">
     <div class="navbar-options">
-      <button class="logo" mat-flat-button color="primary"> Cure Assist </button>
+      <button class="logo" mat-flat-button color="primary" (click)="goToHome()"> Cure Assist </button>
 
       <div class="options">
         <button mat-stroked-button color="primary"> View Appointments </button>
-        <button mat-stroked-button color="primary"> Manage Time Slots </button>
+        <button mat-stroked-button color="primary" (click)="manageTimeSlots()"> Manage Time Slots </button>
       </div>
     </div>
 
     <div class="profile">
-      <button mat-flat-button color="primary"> Profile </button>
+      <button mat-flat-button color="primary" (click)="goToProfile()"> Profile </button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
