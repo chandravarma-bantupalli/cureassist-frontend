@@ -6,6 +6,10 @@ import { DiagnosticCenterProfileComponent } from './diagnosis-center-portal/diag
 import { DiagnosticCenterUpdateProfileComponent } from './diagnosis-center-portal/diagnostic-center-update-profile/diagnostic-center-update-profile.component';
 // tslint:disable-next-line: max-line-length
 import { DiagnosticCenterManageSlotsComponent } from './diagnosis-center-portal/diagnostic-center-manage-slots/diagnostic-center-manage-slots.component';
+import { DoctorHomeComponent } from './doctor-portal/doctor-home/doctor-home.component';
+import { DoctorProfileComponent } from './doctor-portal/doctor-profile/doctor-profile.component';
+import { DoctorUpdateProfileComponent } from './doctor-portal/doctor-update-profile/doctor-update-profile.component';
+import { DoctorManageSlotsComponent } from './doctor-portal/doctor-manage-slots/doctor-manage-slots.component';
 
 
 const routes: Routes = [
@@ -17,7 +21,15 @@ const routes: Routes = [
       {path: 'timeslots', component: DiagnosticCenterManageSlotsComponent}
     ]}
   ]},
-  {path: '', redirectTo: '/diagnosisCenter/home', pathMatch: 'prefix'}
+  {path: 'doctor', children: [
+    {path: 'home', component: DoctorHomeComponent},
+    {path: 'profile', component: DoctorProfileComponent, children: []},
+    {path: 'update', component: DoctorUpdateProfileComponent},
+    {path: 'manage', children: [
+      {path: 'timeslots', component: DoctorManageSlotsComponent}
+    ]}
+  ]},
+  {path: '', redirectTo: '/doctor/home', pathMatch: 'prefix'},
 ];
 
 @NgModule({
