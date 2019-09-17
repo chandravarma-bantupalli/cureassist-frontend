@@ -16,17 +16,15 @@ export class DiagnosticCenterHttpService {
   ) { }
 
   getDiagnosticCenterById(): Observable<DiagnosticCenter> {
-    return this.http.get<DiagnosticCenter>((this.URL + '5d808d6a1a63b8706ce22c11'));
+    return this.http.get<DiagnosticCenter>((this.URL + '5d80cf458739fd6124a15d15'));
   }
 
   updateDiagnosticCenter(dc: DiagnosticCenter): Observable<DiagnosticCenter> {
-    console.clear();
-    console.log(dc);
-    return this.http.put<DiagnosticCenter>((this.URL + '5d808d6a1a63b8706ce22c11'), dc);
+    return this.http.put<DiagnosticCenter>((this.URL + '5d80cf458739fd6124a15d15'), dc);
   }
 
   getTimeSlotsOfDiagnosisCenter(): Observable<TimeSlot[]> {
-    return this.http.get<TimeSlot[]>((this.URL + '5d808d6a1a63b8706ce22c11/timeslots'));
+    return this.http.get<TimeSlot[]>((this.URL + '5d80cf458739fd6124a15d15/timeslots'));
   }
 
 }
