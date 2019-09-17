@@ -1,3 +1,80 @@
 <app-diagnostic-center-header></app-diagnostic-center-header>
 
-<p>diagnostic-center-update-profile works!</p>
+<!-- <p>diagnostic-center-update-profile works!</p> -->
+
+<div class="profile-details">
+  <mat-card>
+    <mat-card-subtitle style="margin: auto;">
+      <h4> Basic Details </h4>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="dcProfile">
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Diagnosis Center Name</label>
+          <mat-form-field>
+            <input matInput formControlName="diagnosticCenterName">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Diagnosis Center Email</label>
+          <mat-form-field>
+            <input matInput formControlName="diagnosticCenterEmail">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Diagnosis Center Phone</label>
+          <mat-form-field>
+            <input matInput formControlName="diagnosticCenterPhone">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Diagnosis Center City</label>
+          <mat-form-field>
+            <input matInput formControlName="diagnosticCenterCity">
+          </mat-form-field>
+        </div>
+      </form>    
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-subtitle>
+      <h4> Complete Address </h4>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="dcProfile">
+          <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+            <label>Address</label>
+            <mat-form-field>
+              <input matInput formControlName="diagnosticCenterAddress">
+            </mat-form-field>
+          </div>
+          <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+            <label> Pincode </label>
+            <mat-form-field>
+              <input matInput formControlName="pincode">
+            </mat-form-field>
+          </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+      <mat-card-subtitle>
+        <h4> Advanced Details </h4>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <form [formGroup]="dcProfile">
+            <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+              <label>Registration Number</label>
+              <mat-form-field>
+                <input matInput formControlName="diagnosticCenterRegNum">
+              </mat-form-field>
+            </div>
+        </form>
+      </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="profile-options">
+  <button mat-stroked-button color="primary" (click)="goToManageSlots()"> Update Time Slots </button>
+  <button mat-stroked-button color="primary" (click)="saveProfile()"> Save Profile </button>
+</div>

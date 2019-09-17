@@ -20,6 +20,11 @@
   margin: auto;
 }
 
+.tests{
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .app-header{
   position: relative;
 }

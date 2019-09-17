@@ -29,7 +29,7 @@
     </mat-card-title>
     <mat-card-content>
       <h5> Registration Number: {{ diagnosticCenter.diagnosticCenterRegNum }} </h5>
-      <h5> Tests Conducted: <mat-chip *ngFor="let test of testsConducted" color="primary"> {{ test }} </mat-chip> </h5>
+      <h5> Tests Conducted: <mat-chip-list *ngFor="let test of testsConducted" class="tests"> <mat-chip> {{ test }} </mat-chip> </mat-chip-list> </h5>
     </mat-card-content>
   </mat-card>
 </div>
