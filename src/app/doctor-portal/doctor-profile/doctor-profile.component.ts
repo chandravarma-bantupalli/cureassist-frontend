@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Doctor } from 'src/app/Models/doctor';
+import { TimeSlot } from 'src/app/models/time-slot';
+import { DoctorHttpService } from 'src/app/services/doctor-http.service';
 
 @Component({
   selector: 'app-doctor-profile',
@@ -8,11 +11,21 @@ import { Router } from '@angular/router';
 })
 export class DoctorProfileComponent implements OnInit {
 
+  doctor: Doctor;
+  timeslots: TimeSlot[];
   constructor(
-    private router: Router
+    private router: Router,
+    private doctorService: DoctorHttpService
   ) { }
 
   ngOnInit() {
+    this.getDoctorProfile();
+  }
+  getDoctorProfile() {
+    this.doctor = new Doctor();
+    this.doctorService.getDoctorById().subscribe( (data) => {
+      this.doctor = data;
+    });
   }
   goToUpdateProfile() {
     this.router.navigate(['/doctor/update']);
