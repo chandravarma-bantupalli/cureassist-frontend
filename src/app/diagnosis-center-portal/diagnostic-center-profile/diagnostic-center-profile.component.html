@@ -4,14 +4,14 @@
 
 <div class="profile-details">
   <mat-card>
-    <mat-card-title>
+    <mat-card-title style="margin: auto;">
       <h3> Basic Details </h3>
     </mat-card-title>
     <mat-card-content>
-      <h5> Name: </h5>
-      <h5> Email: </h5>
-      <h5> Phone: </h5>
-      <h5> City: </h5>
+      <h4> Name: {{ diagnosticCenter.diagnosticCenterName }}</h4>
+      <h5> Email: {{ diagnosticCenter.diagnosticCenterEmail }} </h5>
+      <h5> Phone: {{ diagnosticCenter.diagnosticCenterPhone }} </h5>
+      <h5> City: {{ diagnosticCenter.diagnosticCenterCity }} </h5>
     </mat-card-content>
   </mat-card>
   <mat-card>
@@ -19,8 +19,8 @@
       <h4> Complete Address </h4>
     </mat-card-title>
     <mat-card-content>
-      <h5> Address: </h5>
-      <h5> Pincode: </h5>
+      <h5> Address: {{ diagnosticCenter.diagnosticCenterAddress }} </h5>
+      <h5> Pincode: {{ diagnosticCenter.pincode }} </h5>
     </mat-card-content>
   </mat-card>
   <mat-card>
@@ -28,8 +28,8 @@
       <h4> Advanced Details </h4>
     </mat-card-title>
     <mat-card-content>
-      <h5> Registration Number: </h5>
-      <h5> Tests Conducted: </h5>
+      <h5> Registration Number: {{ diagnosticCenter.diagnosticCenterRegNum }} </h5>
+      <h5> Tests Conducted: <mat-chip *ngFor="let test of testsConducted" color="primary"> {{ test }} </mat-chip> </h5>
     </mat-card-content>
   </mat-card>
 </div>
