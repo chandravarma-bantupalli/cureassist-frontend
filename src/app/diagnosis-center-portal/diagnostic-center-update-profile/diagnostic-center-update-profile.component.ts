@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DiagnosticCenterHttpService } from 'src/app/services/diagnostic-center-http.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DiagnosticCenter } from 'src/app/models/diagnostic-center';
+import { TimeSlot } from 'src/app/models/time-slot';
 
 @Component({
   selector: 'app-diagnostic-center-update-profile',
@@ -13,6 +14,7 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
 
   dcProfile: FormGroup;
   diagCen: DiagnosticCenter;
+  timeSlots: TimeSlot[];
 
   constructor(
     private router: Router,
@@ -45,14 +47,13 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
     this.dcService.getDiagnosticCenterById().subscribe( (data) => {
       this.dcProfile.setValue(data);
       this.diagCen = data;
+      this.timeSlots = data.diagnosticCenterSlots;
     });
   }
 
   saveProfile() {
     const dc: DiagnosticCenter = this.dcProfile.value;
     console.log(dc);
-    dc.testsConducted = this.diagCen.testsConducted;
-    dc.diagnosticCenterSlots = this.diagCen.diagnosticCenterSlots;
     // setting the above values to previous because, these are updated only during the CRUD operations on Time Slots.
     this.dcService.updateDiagnosticCenter(dc).subscribe( (res) => {
       console.log(res);

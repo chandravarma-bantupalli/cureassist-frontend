@@ -22,8 +22,4 @@ export class DoctorHttpService {
     console.log(doctor);
     return this.http.put<Doctor>((this.URL + '5d80c13d97a6e00b188dc87b'), doctor);
   }
-
-  getTimeSlotsOfDoctor(): Observable<TimeSlot[]> {
-    return this.http.get<TimeSlot[]>((this.URL + '5d80c13d97a6e00b188dc87b/timeslots'));
-  }
 }

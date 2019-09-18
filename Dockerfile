@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+RUN npm run build --prod
 
 FROM nginx:1.16.1-alpine as prod-stage
 COPY --from=build-stage /app/dist/cure-assist-front-end /usr/share/nginx/html

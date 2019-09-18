@@ -10,6 +10,7 @@ import { DoctorHomeComponent } from './doctor-portal/doctor-home/doctor-home.com
 import { DoctorProfileComponent } from './doctor-portal/doctor-profile/doctor-profile.component';
 import { DoctorUpdateProfileComponent } from './doctor-portal/doctor-update-profile/doctor-update-profile.component';
 import { DoctorManageSlotsComponent } from './doctor-portal/doctor-manage-slots/doctor-manage-slots.component';
+import { PrefixNot } from '@angular/compiler';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
       {path: 'timeslots', component: DoctorManageSlotsComponent}
     ]}
   ]},
-  {path: '', redirectTo: '/doctor/home', pathMatch: 'prefix'},
+  {path: '', redirectTo: '/doctor/home', pathMatch: 'prefix'}
 ];
 
 @NgModule({

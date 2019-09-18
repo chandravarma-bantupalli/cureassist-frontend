@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatExpansionModule, MatChipsModule } from '@angular/material';
-import { MatListModule, MatGridListModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatListModule, MatGridListModule, MatCardModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
 
 import { DiagnosticCenterHeaderComponent } from './diagnostic-center-header/diagnostic-center-header.component';
 import { DiagnosticCenterHomeComponent } from './diagnostic-center-home/diagnostic-center-home.component';
@@ -11,7 +11,8 @@ import { DiagnosticCenterProfileComponent } from './diagnostic-center-profile/di
 import { DiagnosticCenterUpdateProfileComponent } from './diagnostic-center-update-profile/diagnostic-center-update-profile.component';
 import { DiagnosticCenterManageSlotsComponent } from './diagnostic-center-manage-slots/diagnostic-center-manage-slots.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { TimeSlotComponent } from './time-slot/time-slot.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DiagnosticCenterHomeComponent,
     DiagnosticCenterProfileComponent,
     DiagnosticCenterUpdateProfileComponent,
-    DiagnosticCenterManageSlotsComponent
+    DiagnosticCenterManageSlotsComponent,
+    TimeSlotComponent
   ],
   imports: [
     CommonModule,
@@ -36,8 +38,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   exports: [
     DiagnosticCenterHeaderComponent,
@@ -45,6 +50,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DiagnosticCenterProfileComponent,
     DiagnosticCenterUpdateProfileComponent,
     DiagnosticCenterManageSlotsComponent
-  ]
+  ],
+  entryComponents: [TimeSlotComponent]
 })
 export class DiagnosisCenterPortalModule { }

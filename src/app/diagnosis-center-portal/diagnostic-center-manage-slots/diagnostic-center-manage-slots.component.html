@@ -1,3 +1,29 @@
 <app-diagnostic-center-header></app-diagnostic-center-header>
 
-<p>diagnostic-center-manage-slots works!</p>
+<!-- <p>diagnostic-center-manage-slots works!</p> -->
+
+<div *ngIf="!timeSlotsExist">
+  <div>
+    <h5> Please Add Time Slots to get your Appointments Booked </h5>
+  </div>
+</div>
+
+<div *ngIf="timeSlotsExist">
+  <div *ngFor="let slot of timeSlots">
+    <mat-card>
+      <mat-card-content>
+        {{ slot.slotStartTime }} -- {{ slot.slotEndTime }}
+      </mat-card-content>
+      <mat-card-footer>
+          <button mat-stroked-button (click)="getSpecificTimeSlot(slot.diagnosticCenterId,slot.slotId)" color="primary"> Update Time Slot </button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+
+<div>
+  <button mat-stroked-button (click)="getSpecificTimeSlot(diagCenId,'')" color="primary"> Add New Slot </button>
+</div>
+<!-- 
+<input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
+<owl-date-time #dt1></owl-date-time> -->
