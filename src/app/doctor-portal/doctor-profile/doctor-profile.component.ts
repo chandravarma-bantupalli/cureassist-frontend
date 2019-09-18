@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Doctor } from 'src/app/Models/doctor';
+import { Doctor } from '../../models/doctor';
 import { TimeSlot } from 'src/app/models/time-slot';
 import { DoctorHttpService } from 'src/app/services/doctor-http.service';
 

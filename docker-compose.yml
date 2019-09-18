@@ -1,0 +1,7 @@
+version: '3.5'
+services:
+ app:
+   image: 'cure-assist-front-end'
+   build: .
+   ports:
+     - "4600:80"

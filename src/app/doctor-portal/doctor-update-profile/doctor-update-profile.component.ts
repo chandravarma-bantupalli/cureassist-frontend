@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Doctor } from 'src/app/Models/doctor';
+import { Doctor } from '../../models/doctor';
 import { Router } from '@angular/router';
 import { DoctorHttpService } from 'src/app/services/doctor-http.service';
 
