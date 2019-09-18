@@ -45,6 +45,9 @@ export class DoctorUpdateProfileComponent implements OnInit {
     });
   }
 
+  goToManageSlots() {
+  }
+
   saveProfile() {
     const doctor: Doctor = this.doctorProfile.value;
     console.log(doctor);

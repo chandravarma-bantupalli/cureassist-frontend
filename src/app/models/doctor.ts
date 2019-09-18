@@ -4,7 +4,7 @@ export class Doctor {
   doctorFirstName: string;
   doctorLastName: string;
   doctorEmail: string;
-  doctorPhone: string;
+  doctorPhoneNumber: string;
   doctorCity: string;
   doctorRegNum: string;
   doctorAddress: string;

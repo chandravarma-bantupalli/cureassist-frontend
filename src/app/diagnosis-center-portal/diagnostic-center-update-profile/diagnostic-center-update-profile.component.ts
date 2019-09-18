@@ -51,6 +51,10 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
     });
   }
 
+  goToManageSlots() {
+    this.router.navigate(['/diagnosisCenter/manage/timeslots']);
+  }
+
   saveProfile() {
     const dc: DiagnosticCenter = this.dcProfile.value;
     console.log(dc);
