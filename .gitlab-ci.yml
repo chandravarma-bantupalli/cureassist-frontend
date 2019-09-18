@@ -2,6 +2,7 @@ stages:
   - install
   - lint
   - build
+  - dockerize
 
 install:
   stage: install
@@ -36,3 +37,12 @@ build:
   tags:
     - immersive-cgi-w7-dotnet
 
+dockerize-stage:
+  stage: dockerize
+  image: docker
+  script:
+  - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+  - docker build -t teamcureassist/cure-assist-front-end .
+  - docker push teamcureassist/cure-assist-front-end
+  tags:
+  - immersive-cgi-w7-dotnet
