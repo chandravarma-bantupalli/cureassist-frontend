@@ -1,0 +1,19 @@
+<!-- <p>doctor-timeslot works!</p> -->
+<!-- <p>time-slot works!</p> -->
+
+<form [formGroup]="tsForm">
+  <div>
+    <label>Slot Start Time (HH:MM)</label>
+    <input formControlName="slotStartTime">
+    <label>Slot End Time (HH:MM)</label>
+    <input formControlName="slotEndTime">
+    <label>Slot Capacity</label>
+    <input formControlName="slotCapacity">
+    <label>Slot Date DD/MM/YYYY</label>
+    <input formControlName="slotDate">
+  </div>
+</form>
+
+<button mat-stroked-button *ngIf="timeSlotValueNotNull" (click)="updateTimeSlot()"> Confirm </button>
+<button mat-stroked-button *ngIf="!timeSlotValueNotNull" (click)="addNewTimeSlot()"> Add </button>
+

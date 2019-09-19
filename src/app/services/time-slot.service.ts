@@ -13,6 +13,7 @@ export class TimeSlotService {
   singleTimeSlot: TimeSlot;
   timeSlotId: string;
   dcId: string;
+  doctorId: string;
 
   constructor(
     private http: HttpClient
@@ -32,5 +33,21 @@ export class TimeSlotService {
 
   addNewTimeSlotToDiagnosticCenter(dcId: string, ts: TimeSlot) {
     return this.http.post<TimeSlot>((this.DC_TS_URL + `${dcId}/` + 'timeslots'), ts);
+  }
+  // This is for doctor//
+  getDoctorTimeSlots(id: string): Observable<TimeSlot[]> {
+    return this.http.get<TimeSlot[]>((this.DOCTOR_TS_URL + `${id}/` + 'timeslots'));
+  }
+
+  updateDoctorTimeSlot(id: string, tsId: string, timeSlot: TimeSlot): Observable<TimeSlot> {
+    return this.http.put<TimeSlot>((this.DOCTOR_TS_URL + `${id}/` + 'timeslots/' + `${tsId}`), timeSlot);
+  }
+
+  getSingleTimeSlotOfDoctor(id: string, tsId: string): Observable<TimeSlot> {
+    return this.http.get<TimeSlot>((this.DOCTOR_TS_URL + `${id}/` + 'timeslots/' + `${tsId}`));
+  }
+
+  addNewTimeSlotToDoctor(doctorId: string, ts: TimeSlot) {
+    return this.http.post<TimeSlot>((this.DOCTOR_TS_URL + `${doctorId}/` + 'timeslots'), ts);
   }
 }

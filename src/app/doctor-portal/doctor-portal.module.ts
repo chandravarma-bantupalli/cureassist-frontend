@@ -9,12 +9,13 @@ import { DoctorUpdateProfileComponent } from './doctor-update-profile/doctor-upd
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatGridListModule, MatCardModule, MatExpansionModule, MatChipsModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DoctorTimeslotComponent } from './doctor-timeslot/doctor-timeslot.component';
 
 
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [DoctorHeaderComponent, DoctorHomeComponent, DoctorManageSlotsComponent, DoctorProfileComponent, DoctorUpdateProfileComponent],
+  declarations: [DoctorHeaderComponent, DoctorHomeComponent, DoctorManageSlotsComponent, DoctorProfileComponent, DoctorUpdateProfileComponent, DoctorTimeslotComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -38,6 +39,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
    DoctorProfileComponent,
    DoctorUpdateProfileComponent,
    DoctorManageSlotsComponent
+  ],
+  entryComponents: [
+    DoctorTimeslotComponent
   ]
 })
 export class DoctorPortalModule { }

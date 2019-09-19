@@ -1,1 +1,23 @@
-<p>doctor-manage-slots works!</p>
+<app-doctor-header></app-doctor-header>
+<div *ngIf="!timeSlotsExist">
+    <div>
+      <h5> Please Add Time Slots to get your Appointments Booked </h5>
+    </div>
+  </div>
+  
+  <div *ngIf="timeSlotsExist">
+    <div *ngFor="let slot of timeSlots">
+      <mat-card>
+        <mat-card-content>
+          {{ slot.slotStartTime }} -- {{ slot.slotEndTime }}
+        </mat-card-content>
+        <mat-card-footer>
+            <button mat-stroked-button (click)="getSpecificTimeSlot(slot.doctorId,slot.slotId)" color="primary"> Update Time Slot </button>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+  
+  <div>
+    <button mat-stroked-button (click)="getSpecificTimeSlot(doctorId,'')" color="primary"> Add New Slot </button>
+  </div>
