@@ -11,9 +11,42 @@ import { DoctorProfileComponent } from './doctor-portal/doctor-profile/doctor-pr
 import { DoctorUpdateProfileComponent } from './doctor-portal/doctor-update-profile/doctor-update-profile.component';
 import { DoctorManageSlotsComponent } from './doctor-portal/doctor-manage-slots/doctor-manage-slots.component';
 import { PrefixNot } from '@angular/compiler';
+import { DoctorViewAppointmentsComponent } from './doctor-portal/doctor-view-appointments/doctor-view-appointments.component';
+import { LoginComponent } from './onboarding/login/login.component';
+import { RegisterComponent } from './onboarding/register/register.component';
+import { SetpasswordComponent } from './onboarding/setpassword/setpassword.component';
+import { ResetpasswordComponent } from './onboarding/resetpassword/resetpassword.component';
+import { OnboardingHomepageComponent } from './onboarding/onboarding-homepage/onboarding-homepage.component';
+import { HomePageComponent } from './patient-portal/home-page/home-page.component';
+import { EditprofilePageComponent } from './patient-portal/editprofile-page/editprofile-page.component';
+import { ViewEditComponent } from './patient-portal/view-edit/view-edit.component';
+import { SearchComponent } from './patient-portal/search/search.component';
+import { CardComponent } from './patient-portal/card/card.component';
+import { DiagnosticsprofileCardComponent } from './patient-portal/diagnosticsprofile-card/diagnosticsprofile-card.component';
+import { ViewPrescriptionComponent } from './medical-records/view-prescription/view-prescription.component';
+import { ViewTestreportsComponent } from './medical-records/view-testreports/view-testreports.component';
 
 
 const routes: Routes = [
+  { path: 'onboarding', children: [
+    {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent},
+    {path: 'setpassword/:UserId', component: SetpasswordComponent},
+    {path: 'resetpassword', component: ResetpasswordComponent},
+    {path: '', component: OnboardingHomepageComponent}
+  ]},
+  {path: 'patient', children: [
+    {path: 'home', component: HomePageComponent},
+    {path: 'profile/post', component: EditprofilePageComponent},
+    {path: 'view-edit/:emailid', component: ViewEditComponent },
+    {path: 'search', component: SearchComponent},
+    {path: 'viewprofile', component: CardComponent},
+    {path: 'viewdcprofile', component: DiagnosticsprofileCardComponent}
+  ]},
+  {path: 'medicalrecords', children: [
+    {path: 'viewprescription', component: ViewPrescriptionComponent},
+    {path: 'viewtestreport', component: ViewTestreportsComponent}
+  ]},
   {path: 'diagnosisCenter', children: [
     {path: 'home', component: DiagnosticCenterHomeComponent},
     {path: 'profile', component: DiagnosticCenterProfileComponent, children: []},
@@ -28,9 +61,13 @@ const routes: Routes = [
     {path: 'update', component: DoctorUpdateProfileComponent},
     {path: 'manage', children: [
       {path: 'timeslots', component: DoctorManageSlotsComponent}
-    ]}
+    ]},
+    {path: 'view', component: DoctorViewAppointmentsComponent},
   ]},
-  {path: '', redirectTo: '/doctor/home', pathMatch: 'prefix'}
+  {path: '', pathMatch: 'full', component: OnboardingHomepageComponent},
+  {path: 'patient', pathMatch: 'full', component: HomePageComponent},
+  {path: 'doctor', pathMatch: 'full', component: DoctorHomeComponent},
+  {path: 'diagnosisCenter', pathMatch: 'full', component: DiagnosticCenterHomeComponent}
 ];
 
 @NgModule({

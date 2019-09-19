@@ -1,0 +1,6 @@
+.current-appointments{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-flow: column wrap;
+  }

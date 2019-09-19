@@ -10,12 +10,14 @@ import { MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatSid
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DoctorTimeslotComponent } from './doctor-timeslot/doctor-timeslot.component';
+import { DoctorViewAppointmentsComponent } from './doctor-view-appointments/doctor-view-appointments.component';
+
 
 
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [DoctorHeaderComponent, DoctorHomeComponent, DoctorManageSlotsComponent, DoctorProfileComponent, DoctorUpdateProfileComponent, DoctorTimeslotComponent],
+  declarations: [DoctorHeaderComponent, DoctorHomeComponent, DoctorManageSlotsComponent, DoctorProfileComponent, DoctorUpdateProfileComponent, DoctorTimeslotComponent, DoctorViewAppointmentsComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -38,7 +40,8 @@ import { DoctorTimeslotComponent } from './doctor-timeslot/doctor-timeslot.compo
    DoctorHomeComponent,
    DoctorProfileComponent,
    DoctorUpdateProfileComponent,
-   DoctorManageSlotsComponent
+   DoctorManageSlotsComponent,
+   DoctorViewAppointmentsComponent
   ],
   entryComponents: [
     DoctorTimeslotComponent

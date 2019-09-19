@@ -23,4 +23,7 @@ export class DoctorHeaderComponent implements OnInit {
   manageTimeSlots() {
     this.router.navigate(['/doctor/manage/timeslots']);
   }
+  viewappointments() {
+    this.router.navigate(['/doctor/view']);
+  }
 }

@@ -9,10 +9,11 @@ import { DoctorPortalModule } from './doctor-portal/doctor-portal.module';
 import { DiagnosisCenterPortalModule } from './diagnosis-center-portal/diagnosis-center-portal.module';
 import { PatientPortalModule } from './patient-portal/patient-portal.module';
 import { PharmacyPortalModule } from './pharmacy-portal/pharmacy-portal.module';
-import { OnboardingPortalModule } from './onboarding-portal/onboarding-portal.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { OnboardingModule } from './onboarding/onboarding.module';
+import { MedicalRecordsModule } from './medical-records/medical-records.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DiagnosisCenterPortalModule,
     PatientPortalModule,
     PharmacyPortalModule,
-    OnboardingPortalModule,
+    OnboardingModule,
+    MedicalRecordsModule,
     BrowserAnimationsModule,
     FlexLayoutModule
   ],
