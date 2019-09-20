@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Doctor } from '../../models/doctor';
-import { TimeSlot } from 'src/app/models/time-slot';
-import { DoctorHttpService } from 'src/app/services/doctor-http.service';
+import { TimeSlot } from '../../models/time-slot';
+import { DoctorHttpService } from '../../services/doctor-http.service';
 
 @Component({
   selector: 'app-doctor-profile',

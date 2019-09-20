@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { IDiagnostics } from 'src/app/models/diagnostics';
-import { PatientService } from 'src/app/services/patient.service';
+import { PatientService } from '../../services/patient.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { IAppointments } from 'src/app/models/appointment';
-import { OnboardingService } from 'src/app/services/onboarding.service';
-import { DiagnosticCenter } from 'src/app/models/diagnostic-center';
+import { IAppointments } from '../../models/appointment';
+import { OnboardingService } from '../../services/onboarding.service';
+import { DiagnosticCenter } from '../../models/diagnostic-center';
 
 @Component({
   selector: 'app-diagnosticsprofile-card',

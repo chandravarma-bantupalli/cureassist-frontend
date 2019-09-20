@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { TimeSlot } from 'src/app/models/time-slot';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TimeSlotService } from 'src/app/services/time-slot.service';
-import { OnboardingService } from 'src/app/services/onboarding.service';
+import { TimeSlotService } from '../../services/time-slot.service';
+import { OnboardingService } from '../../services/onboarding.service';
 
 
 @Component({

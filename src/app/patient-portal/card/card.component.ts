@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Doctor } from 'src/app/models/doctor';
-import { IAppointments } from 'src/app/models/appointment';
-import { PatientService } from 'src/app/services/patient.service';
-import { OnboardingService } from 'src/app/services/onboarding.service';
+import { Doctor } from '../../models/doctor';
+import { IAppointments } from '../../models/appointment';
+import { PatientService } from '../../services/patient.service';
+import { OnboardingService } from '../../services/onboarding.service';
 
 @Component({
   selector: 'app-card',
@@ -19,8 +19,12 @@ export class CardComponent implements OnInit {
   slotStartTime: Date;
   slotEndTime: Date;
   // tslint:disable-next-line:variable-name
-  constructor(private _service: PatientService, private dialog: MatDialog, private service: OnboardingService) {
-    this.viewprofiledata = this._service.viewprofiledata;
+  constructor(
+    private patientService: PatientService,
+    private dialog: MatDialog,
+    private service: OnboardingService
+  ) {
+    this.viewprofiledata = this.patientService.viewprofiledata;
   }
   ngOnInit() {
   }

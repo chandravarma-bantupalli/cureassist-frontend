@@ -6,10 +6,10 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from '@angular/material';
-import { Prescriptions } from 'src/app/models/prescriptions';
-import { HealthrecordsService } from 'src/app/services/healthrecords.service';
+import { Prescriptions } from '../../models/prescriptions';
+import { HealthrecordsService } from '../../services/healthrecords.service';
 import { ActivatedRoute } from '@angular/router';
-import { OnboardingService } from 'src/app/services/onboarding.service';
+import { OnboardingService } from '../../services/onboarding.service';
 
 
 // import { QueryValueType } from '@angular/compiler/src/core';

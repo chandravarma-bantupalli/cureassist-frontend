@@ -6,13 +6,12 @@ import { DoctorManageSlotsComponent } from './doctor-manage-slots/doctor-manage-
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { DoctorUpdateProfileComponent } from './doctor-update-profile/doctor-update-profile.component';
 // tslint:disable-next-line: max-line-length
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatGridListModule, MatCardModule, MatExpansionModule, MatChipsModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatListModule, MatSidenavModule, MatGridListModule, MatCardModule, MatExpansionModule, MatChipsModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DoctorTimeslotComponent } from './doctor-timeslot/doctor-timeslot.component';
 import { DoctorViewAppointmentsComponent } from './doctor-view-appointments/doctor-view-appointments.component';
-
-
 
 
 @NgModule({

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DiagnosticCenterHttpService } from 'src/app/services/diagnostic-center-http.service';
+import { DiagnosticCenterHttpService } from '../../services/diagnostic-center-http.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DiagnosticCenter } from 'src/app/models/diagnostic-center';
-import { TimeSlot } from 'src/app/models/time-slot';
+import { DiagnosticCenter } from '../../models/diagnostic-center';
+import { TimeSlot } from '../../models/time-slot';
 
 @Component({
   selector: 'app-diagnostic-center-update-profile',
