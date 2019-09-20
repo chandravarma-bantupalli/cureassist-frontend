@@ -1,0 +1,17 @@
+<mat-dialog-content>
+    <h3>medicinename:</h3><b>{{data.name}}</b>
+    <div *ngFor="let item of data.prescription.selectedMeds">
+        {{item.medicineName}}
+        <mat-form-field>
+            <input [(ngModel)]="quantity" (keyup)="addquantity(quantity, item.medicineName)" matInput
+                placeholder="Enter Quantity">
+        </mat-form-field>
+    </div>
+    <mat-form-field>
+        <input [(ngModel)]="location" (keyup)="addlocation(location)" matInput placeholder="Enter Address">
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

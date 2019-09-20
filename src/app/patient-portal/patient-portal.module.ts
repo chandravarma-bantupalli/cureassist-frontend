@@ -1,12 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardComponent } from './card/card.component';
-import { DiagnosticsprofileCardComponent } from './diagnosticsprofile-card/diagnosticsprofile-card.component';
+import { CardComponent, ConfirmBooking } from './card/card.component';
+import { DiagnosticsprofileCardComponent, DCConfirmBooking } from './diagnosticsprofile-card/diagnosticsprofile-card.component';
 import { EditprofilePageComponent } from './editprofile-page/editprofile-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchComponent } from './search/search.component';
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 import { ViewEditComponent } from './view-edit/view-edit.component';
+import {
+  MatCardModule,
+  MatIconModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatTableModule,
+  MatToolbarModule,
+  MatButtonToggleModule,
+  MatButtonModule,
+  MatMenuModule,
+  MatRadioModule,
+  MatExpansionModule,
+  MatListModule
+ } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -18,10 +35,21 @@ import { ViewEditComponent } from './view-edit/view-edit.component';
     HomePageComponent,
     SearchComponent,
     ViewAppointmentComponent,
-    ViewEditComponent
+    ViewEditComponent,
+    ConfirmBooking,
+    DCConfirmBooking
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatIconModule,
+    MatFormFieldModule, MatDatepickerModule, MatInputModule, MatTableModule, MatToolbarModule,
+    MatButtonToggleModule,
+    FormsModule, MatButtonModule, MatMenuModule, MatRadioModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatListModule,
+    AppRoutingModule
   ],
   exports: [
     CardComponent,

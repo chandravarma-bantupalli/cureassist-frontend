@@ -1,1 +1,50 @@
-<p>diagnosticsprofile-card works!</p>
+<app-home-page></app-home-page>
+<div class="profile-view">
+    <mat-card class="profile-card">
+        <div class="imagecontainer">
+            <img src="../../../assets/icon.jpg" alt="dc image">
+        </div>
+        <div class="details-container">
+            <mat-card-header>
+                <mat-card-title>Diagnosis center Name:{{viewdcprofiledata.diagnosticCenterName}}</mat-card-title>
+                <mat-card-subtitle>
+                    <h3>Address:</h3>
+                    {{viewdcprofiledata.diagnosticCenterAddress}}
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                    <h3>City:</h3>
+                    {{viewdcprofiledata.diagnsoticCenterCity}}
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                    <h3>Tests Conducted</h3>
+                    {{viewdcprofiledata.testsConducted}}
+                </mat-card-subtitle>
+            </mat-card-header>
+        </div>
+        <hr>
+        <mat-accordion>
+            <mat-expansion-panel [class.mat-expansion-panel]="false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <button mat-raised-button color="primary">Book Appointment</button>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="bookdate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <br>
+                    <div *ngFor="let time of viewdcprofiledata.diagnosticCenterSlots">
+                        <button mat-raised-button color="primary"
+                            (click)="openDialog(time.slotStartTime,time.slotEndTime)">{{time.slotStartTime}}-{{time.slotEndTime}}</button>&nbsp;
+                        &nbsp;
+                    </div>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card>
+</div>

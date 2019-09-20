@@ -3,6 +3,7 @@ import { TimeSlot } from 'src/app/models/time-slot';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TimeSlotService } from 'src/app/services/time-slot.service';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 
 @Component({
@@ -17,17 +18,20 @@ export class DoctorTimeslotComponent implements OnInit {
   tsId: string;
   timeSlotValueNotNull: boolean;
   doctorId: string;
-  constructor( public dialogRef: MatDialogRef<DoctorTimeslotComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: TimeSlot,
-               private timeSlotService: TimeSlotService,
-               private formBuilder: FormBuilder) { }
+  constructor(
+    public dialogRef: MatDialogRef<DoctorTimeslotComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: TimeSlot,
+    private timeSlotService: TimeSlotService,
+    private formBuilder: FormBuilder,
+    private onboardingService: OnboardingService
+  ) { }
 
-               onNoClick(): void {
-                this.dialogRef.close();
-              }
+  onNoClick(): void {
+  this.dialogRef.close();
+}
 
   ngOnInit() {
-    this.doctorId = this.timeSlotService.doctorId;
+    this.doctorId = this.onboardingService.userid;
     this.tsId = this.timeSlotService.timeSlotId;
     this.initiateTimeSlotForm();
     this.getTimeSlotValue();

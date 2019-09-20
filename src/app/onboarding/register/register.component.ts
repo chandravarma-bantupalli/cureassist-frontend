@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private service: OnboardingService) { }
+  emailId: any = '';
+  // password: any = '';
+  // confirmpassword: any = '';
+  usertype: string;
+  errorStatus: any;
   ngOnInit() {
+    this.usertype = window.location.href;
+    this.usertype = this.usertype.split('.')[0];
+    this.usertype = this.usertype.split('//')[1];
+    if (this.usertype === 'cureassist') {
+      this.usertype = 'patient';
+    }
   }
-
+  CreateUser() {
+    this.service.CreateUser(this.emailId, this.usertype)
+      .subscribe(data => this.errorStatus = data, error => { this.errorStatus = error.status; });
+  }
 }

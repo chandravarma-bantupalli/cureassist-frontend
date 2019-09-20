@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Doctor } from '../models/doctor';
 import { TimeSlot } from '../models/time-slot';
+import { OnboardingService } from './onboarding.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +12,18 @@ export class DoctorHttpService {
 
   URL = 'http://localhost:5002/api/doctor/';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private onboardingService: OnboardingService
+  ) { }
 
   getDoctorById(): Observable<Doctor> {
-    return this.http.get<Doctor>((this.URL + '5d80c13d97a6e00b188dc87b'));
+    return this.http.get<Doctor>((this.URL + this.onboardingService.userid));
   }
 
   updateDoctor(doctor: Doctor): Observable<Doctor> {
     console.clear();
     console.log(doctor);
-    return this.http.put<Doctor>((this.URL + '5d80c13d97a6e00b188dc87b'), doctor);
+    return this.http.put<Doctor>((this.URL + this.onboardingService.userid), doctor);
   }
 }

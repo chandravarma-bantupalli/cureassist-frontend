@@ -1,1 +1,36 @@
-<p>search works!</p>
+<app-home-page></app-home-page>
+<div class="search-container">
+    <div class="city-field">
+        <mat-form-field>
+            <select placeholder="ENTER CITY" [(ngModel)]="city" required matNativeControl>
+                <option *ngFor="let city of City">{{city}}</option>
+            </select>
+        </mat-form-field>
+    </div>
+    <div class="search">
+        <input class="search-field" matInput name="search" placeholder="Search by doctors,diagnostic and tests..."
+            [(ngModel)]="searchbar" (keyup)="searchDoctorsByName($event.target.value)"
+            (keyup)="searchDoctorBySpecialization($event.target.value)" (keyup)="searchDCByName($event.target.value)"
+            (keyup)="searchDCByTest($event.target.value)">
+        <!-- <button mat-raised-button color="primary" (click)="searchDoctorBySpecialization(searchbar)">search</button> -->
+    </div>
+</div>
+<mat-list>
+    <mat-list-item class="searchList" *ngFor="let doctor of doctorByName">
+        <h4 mat-line>Dr. &nbsp; {{doctor.doctorFirstName}}&nbsp;{{doctor.doctorLastName}}</h4>
+        <p mat-line> {{doctor.doctorSpecialization}} </p>
+        <hr>
+        <button mat-raised-button (click)="Viewdoctorprofile(doctor)" (click)=viewdoctorprofilecard()
+            color="primary">View details</button>
+    </mat-list-item>
+</mat-list>
+<mat-list>
+    <mat-list-item class="searchList" *ngFor="let diagnostic of diagnosticsByName">
+        <h4 mat-line>{{diagnostic.diagnosticCenterName}}</h4>
+        <p mat-line> {{diagnostic.diagnsoticCenterCity}} </p>
+        <hr>
+        <button mat-raised-button (click)="Viewdcprofile(diagnostic)" (click)=viewdcprofilecard() color="primary">View
+            details</button>
+    </mat-list-item>
+</mat-list>
+<app-view-appointment></app-view-appointment>

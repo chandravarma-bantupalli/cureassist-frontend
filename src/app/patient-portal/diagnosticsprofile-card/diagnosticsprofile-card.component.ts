@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { IDiagnostics } from 'src/app/models/diagnostics';
+import { PatientService } from 'src/app/services/patient.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { IAppointments } from 'src/app/models/appointment';
+import { OnboardingService } from 'src/app/services/onboarding.service';
+import { DiagnosticCenter } from 'src/app/models/diagnostic-center';
 
 @Component({
   selector: 'app-diagnosticsprofile-card',
@@ -6,10 +12,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diagnosticsprofile-card.component.css']
 })
 export class DiagnosticsprofileCardComponent implements OnInit {
-
-  constructor() { }
-
+  viewdcprofiledata: DiagnosticCenter[];
+  bookdate: Date;
+  constructor(private service: PatientService,  private dialog: MatDialog) {
+    this.viewdcprofiledata = this.service.viewdcprofiledata;
+  }
   ngOnInit() {
   }
+  confirmAppointment(): string {
+    return this.viewdcprofiledata.diagnosticCenterId;
+    }
+ openDialog(slotStartTime: Date, slotEndTime: Date) {
+   // tslint:disable-next-line: no-use-before-declare
+   const dialogRef = this.dialog.open(DCConfirmBooking, {
+     width: '250px',
+     data: { bookdate: this.bookdate, startTime: slotStartTime, endTime: slotEndTime }
+   });
 
+ }
+}
+@Component({
+  selector: 'app-dcconfirm-booking',
+  templateUrl: 'dcconfirm-booking.html',
+  providers: [DiagnosticsprofileCardComponent]
+})
+// tslint:disable-next-line:component-class-suffix
+export class DCConfirmBooking {
+  card: any;
+  diagnosticcenterId: string;
+  constructor(
+    public dialogRef: MatDialogRef<DCConfirmBooking>,
+    // tslint:disable-next-line:max-line-length
+    @Inject(MAT_DIALOG_DATA) public data: IAppointments, private service: PatientService, private services: OnboardingService, mycard: DiagnosticsprofileCardComponent) {
+      this.card = mycard;
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+
+  }
+  confirmAppointment(date: Date, startTime: Date, endTime: Date) {
+     this.diagnosticcenterId = this.card.confirmAppointment();
+     this.service.bookAppointment(this.diagnosticcenterId, this.services.userid, date, startTime, endTime).subscribe();
+  }
 }

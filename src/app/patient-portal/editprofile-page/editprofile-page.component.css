@@ -1,0 +1,43 @@
+.patient-profile-container {
+    display: flex;
+    flex-direction: row;
+    height: 120vh;
+  }
+  
+  .patient-profile-illustration {
+    flex: 1;
+    height: 115vh;
+    overflow: hidden;
+    background: url("../../../assets/images/illustration.jpg");
+    background-size: contain;
+   
+  }
+  
+  .patient-profile-form-container {
+    flex: 1;
+    height: 120vh;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; 
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .firstandlastContainer{
+    display: flex;
+    flex-direction: row;
+  }
+  .firstnamecontainer{
+    flex: 1;
+  }
+  .lastnamecontainer{
+    flex: 1;
+  }

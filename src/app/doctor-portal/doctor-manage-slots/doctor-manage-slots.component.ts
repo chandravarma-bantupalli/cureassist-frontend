@@ -3,6 +3,7 @@ import { TimeSlot } from 'src/app/models/time-slot';
 import { MatDialog } from '@angular/material';
 import { DoctorTimeslotComponent } from '../doctor-timeslot/doctor-timeslot.component';
 import { TimeSlotService } from 'src/app/services/time-slot.service';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
   selector: 'app-doctor-manage-slots',
@@ -13,13 +14,13 @@ export class DoctorManageSlotsComponent implements OnInit {
   timeSlots: TimeSlot[];
   timeSlotsExist: boolean;
   addSlotButtonClicked = false;
-  doctorId = '5d80c13d97a6e00b188dc87b';
   constructor(
     private dialog: MatDialog,
-    private timeSlotService: TimeSlotService
+    private timeSlotService: TimeSlotService,
+    private onboardingService: OnboardingService
   ) { }
   ngOnInit() {
-    this.getAllDoctorTimeSlots(this.doctorId);
+    this.getAllDoctorTimeSlots(this.onboardingService.userid);
   }
 
 
@@ -35,7 +36,7 @@ export class DoctorManageSlotsComponent implements OnInit {
 
 
   getSpecificTimeSlot(doctorId: string, id: string) {
-    this.timeSlotService.getSingleTimeSlotOfDoctor(this.doctorId, id).subscribe( (data) => {
+    this.timeSlotService.getSingleTimeSlotOfDoctor(this.onboardingService.userid, id).subscribe( (data) => {
       console.log(data);
     });
     this.timeSlotService.doctorId = doctorId;

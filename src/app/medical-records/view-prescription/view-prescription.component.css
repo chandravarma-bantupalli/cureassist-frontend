@@ -1,0 +1,52 @@
+.maincontainer{
+    display: flex;
+  }
+  .firstcontainer{
+    flex: 1;
+  }
+  .lastcontainer{
+    flex:1;
+  }
+  
+  .pagebody{
+    position: absolute;
+  }
+  .prescription-accordion {
+    position: relative;
+    top: 55px;
+    width: 100% !important;
+  }
+  .test { 
+    width: 180vh !important;
+    padding-left:20vh;
+  }
+  .flexcontent{
+    display:flex;
+  }
+  .first{
+    flex:1;
+  }
+  .second,.afternoon{
+    flex:1;
+  }
+  .third{
+    flex:1;
+  }
+  .fourth{
+    flex:1;
+  }
+  .buy {
+   margin-left:180vh;
+  }
+  .prescribedTimings-container
+  {
+    display:flex;
+    flex-direction: column;
+  }
+  .morning{
+    flex:1;
+    padding: 5px;
+  }
+  
+  
+  

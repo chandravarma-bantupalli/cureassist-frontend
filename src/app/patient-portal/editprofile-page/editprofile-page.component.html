@@ -1,1 +1,97 @@
-<p>editprofile-page works!</p>
+<app-home-page></app-home-page>
+<div class="patient-profile-container">
+    <div class="patient-profile-illustration"></div>
+    <form class="patient-profile-form-container" [formGroup]="formModel" (submit)="onsubmit()">
+        <h2>Profile</h2>
+        <div class="firstandlastContainer">
+            <div class="firstnamecontainer">
+                <mat-form-field appearance="outline" class="form-group" class="full-width">
+                    <mat-label>First Name</mat-label>
+                    <input matInput class="form-control" formControlName="FirstName" name="FirstName" required>
+                    <mat-error *ngIf="firstname.errors?.required">Please enter firstname</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="lastnamecontainer">
+                <mat-form-field appearance="outline" class="form-group" class="full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput class="form-control" formControlName="LastName" name="LastName" required>
+                    <mat-error *ngIf="lastname.errors?.required">Please enter lastname</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="firstandlastContainer">
+            <div class="firstnamecontainer">
+                <mat-form-field appearance="outline" class="form-group" class="full-width">
+                    <input matInput class="form-control" formControlName="DateOfBirth" name="DateOfBirth"
+                        [matDatepicker]="picker" placeholder="Date of Birth">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="lastnamecontainer">
+                <mat-form-field appearance="outline" class="form-group" class="full-width">
+                    <mat-label>Blood Group</mat-label>
+                    <select class="form-control" formControlName="BloodGroup" name="BloodGroup" matNativeControl>
+                        <option value="O+ve">O+ve</option>
+                        <option value="O-ve">O-ve</option>
+                        <option value="AB+ve">AB+ve</option>
+                        <option value="AB-ve">AB-ve</option>
+                        <option value="A+ve">A+ve</option>
+                        <option value="A-ve">A-ve</option>
+                        <option value="B+ve">B+ve</option>
+                        <option value="B-ve">B-ve</option>
+                    </select>
+                </mat-form-field>
+            </div>
+        </div>
+        <mat-form-field appearance="outline" class="form-group" class="full-width">
+            <mat-label>UAID</mat-label>
+            <input matInput class="form-control" formControlName="UAID" name="UAID" required>
+            <mat-error *ngIf="uaid.errors?.required">Please enter uaid number</mat-error>
+            <mat-error *ngIf="uaid.errors?.pattern && uaid.errors?.maxlength">Please enter 12 digit number</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-group" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput class="form-control" formControlName="Email" name="email">
+            <mat-error *ngIf="email.touched && email.errors?.email">Please valid email only</mat-error>
+        </mat-form-field>
+        <div class="firstandlastContainer">
+            <div class="firstnamecontainer">
+                <mat-form-field appearance="outline" class="form-group" class="full-width">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput class="form-control" formControlName="PhoneNumber" name="PhoneNumber" required>
+                    <!-- <label class="text-danger" *ngIf="service.formModel.get("PhoneNumber").touched && service.formModel.get("PhoneNumber").errors?.minlength"></label> -->
+                    <mat-error *ngIf="Phone.errors?.required">Please enter phone number</mat-error>
+                    <mat-error *ngIf="Phone.errors?.pattern && Phone.errors?.maxlength">Please 10 digits only
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <div class="lastnamecontainer">
+                <mat-form-field appearance="outline" class="form-group" class="full-width">
+                    <mat-label>Emergency Contact Number</mat-label>
+                    <input matInput class="form-control" formControlName="EmergencyContactNumber"
+                        name="EmergencyContactNumber">
+                    <mat-error *ngIf="PhoneEmergency.errors?.pattern && PhoneEmergency.errors?.maxlength">Please 10
+                        digits only
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <mat-radio-group class="form-control" formControlName="Gender" aria-label="Select an option">
+            <mat-radio-button value="Male"><img src="../../../assets/img_avatar.png" alt="Avatar" class="avatar">
+            </mat-radio-button>
+            <mat-radio-button value="Female"><img src="../../../assets/img_avatar2.png" alt="Avatar" class="avatar">
+            </mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field appearance="outline" class="form-group" class="full-width">
+            <mat-label>City</mat-label>
+            <input matInput class="form-control" formControlName="city" name="City" required>
+            <mat-error *ngIf="city.errors?.required">Please enter city</mat-error>
+        </mat-form-field>
+        <!--REGISTER BUTTON HERE-->
+
+        <button mat-raised-button color="primary">Save</button>
+        <button mat-raised-button color="primary" (click)="update()">Savebyemail</button>
+    </form>
+</div>

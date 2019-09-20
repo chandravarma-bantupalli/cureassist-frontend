@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimeSlot } from 'src/app/models/time-slot';
 import { TimeSlotService } from 'src/app/services/time-slot.service';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
   selector: 'app-doctor-home',
@@ -10,10 +11,14 @@ import { TimeSlotService } from 'src/app/services/time-slot.service';
 export class DoctorHomeComponent implements OnInit {
   appointments: any[];
   timeSlots: TimeSlot[];
-  doctorId = '5d80c13d97a6e00b188dc87b';
-  constructor(private timeSlotService: TimeSlotService) { }
+  doctorId: string; // = this.onboardingService.userid;
+  constructor(
+    private onboardingService: OnboardingService,
+    private timeSlotService: TimeSlotService
+  ) { }
 
   ngOnInit() {
+    this.doctorId = this.onboardingService.userid;
     this.getAllDoctorTimeSlots(this.doctorId);
     this.appointments = [
     ];

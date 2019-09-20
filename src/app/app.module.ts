@@ -14,11 +14,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { OnboardingModule } from './onboarding/onboarding.module';
 import { MedicalRecordsModule } from './medical-records/medical-records.module';
+import { ConfirmBooking } from './patient-portal/card/card.component';
+import { DCConfirmBooking } from './patient-portal/diagnosticsprofile-card/diagnosticsprofile-card.component';
+import { BuyNow } from './medical-records/view-prescription/view-prescription.component';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
+  entryComponents: [ConfirmBooking, DCConfirmBooking, BuyNow],
   imports: [
     BrowserModule,
     AppRoutingModule,

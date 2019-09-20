@@ -1,1 +1,14 @@
-<p>home-page works!</p>
+<mat-toolbar class="patient-header" color="primary" style="margin-top: -10px">
+    <button mat-button (click)="homebutton()">CureAssist</button>
+    <button mat-button>BuyMedicines</button>
+    <button mat-button (click)="viewprescription()">ViewPrescription</button>
+    <button mat-button (click)="viewtestreport()">ViewTestReports</button>
+    <button class="Profile" mat-button [matMenuTriggerFor]="profile">Profile</button>
+    <mat-menu #profile="matMenu">
+        <button class="Profile" mat-menu-item (click)="viewProfile()">View Profile</button>
+        <button class="Profile" mat-menu-item (click)=editProfile()>Edit profile</button>
+        <button class="Profile" mat-menu-item (click)=resetpassword()>Change Password</button>
+        <button class="Profile" mat-menu-item (click)=service.Logout()>Logout</button>
+    </mat-menu>
+</mat-toolbar>
+<router-outlet></router-outlet>

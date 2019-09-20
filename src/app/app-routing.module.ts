@@ -10,7 +10,6 @@ import { DoctorHomeComponent } from './doctor-portal/doctor-home/doctor-home.com
 import { DoctorProfileComponent } from './doctor-portal/doctor-profile/doctor-profile.component';
 import { DoctorUpdateProfileComponent } from './doctor-portal/doctor-update-profile/doctor-update-profile.component';
 import { DoctorManageSlotsComponent } from './doctor-portal/doctor-manage-slots/doctor-manage-slots.component';
-import { PrefixNot } from '@angular/compiler';
 import { DoctorViewAppointmentsComponent } from './doctor-portal/doctor-view-appointments/doctor-view-appointments.component';
 import { LoginComponent } from './onboarding/login/login.component';
 import { RegisterComponent } from './onboarding/register/register.component';

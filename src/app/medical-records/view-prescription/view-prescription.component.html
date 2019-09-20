@@ -1,1 +1,77 @@
-<p>view-prescription works!</p>
+<div class="pagebody">
+    <mat-accordion class="prescription-accordion" *ngFor="let prescribed of prescription">
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header class="test">
+                <mat-panel-title>
+                    <h4 mat-line>Prescription Date: {{prescribed.prescriptionDate | date: 'dd/MM/yyyy'}}</h4>
+                </mat-panel-title>
+                <mat-panel-title>
+                    <h4 mat-line>Symptoms: {{prescribed.symptoms}}</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="mat-listcontainer">
+                <div class="maincontainer">
+                    <div class="firstcontainer">
+                        <h3>Patient Name:</h3> {{prescribed.patientName}}
+                    </div>
+                    <div class="lastcontainer">
+                        <h3>Doctor Name:</h3> {{prescribed.doctorName}}
+                    </div>
+                </div>
+                <div class="maincontainer">
+                    <div class="firstcontainer">
+                        <h3>Symptoms: </h3>{{prescribed.symptoms}}
+                    </div>
+                    <div class="lastcontainer">
+                        <h3>Remarks: </h3>{{prescribed.remarks}}
+                    </div>
+                </div>
+                <div class="list-container">
+                    <mat-list role="list" *ngFor="let medicine of prescribed.prescribedMedicines">
+                        <mat-list-item role="listitem" class="flexcontent">
+                            <div class="first">
+                                <mat-checkbox #checkbox="matCheckbox"
+                                    (change)="pushMeds(medicine); prescribed.selectedMeds.push(medicine)"
+                                    [checked]="medicine.medicineName.selected">
+                                    <h4> Medicine Name:</h4> {{medicine.medicineName}}
+                                </mat-checkbox>
+                            </div>
+                            <div class="second">
+                                <h4>Prescribed Dosage: </h4>{{medicine.prescribedDosage}}
+                            </div>
+                            <div class="third">
+                                <h4> Prescribed Days:</h4> {{medicine.prescribedDays}}
+                            </div>
+                            <div class="fourth">
+                                <h4> Prescribed Timings : </h4> <b>{{medicine.prescribedTimings}}</b>
+                                <!-- <div *ngFor="let item of medicine.prescribedTimings">
+                                         <div  class="prescribedTimings-container" >  
+                                        <div class="morning" *ngIf="item == 'Morning'">
+                                            <h3>Morning</h3>
+                                        </div>
+                                        <div class="morning" *ngIf="item == 'afternoon'">
+                                            <h3>Afternoon</h3>
+                                        </div>
+                                        <div class="morning" *ngIf="item == 'evening'">
+                                            <h3>Evening</h3>
+                                        </div>
+                                         </div>
+                                    </div> -->
+
+                            </div>
+                        </mat-list-item>
+                        <br>
+                    </mat-list>
+                    <button mat-raised-button color="primary" (click)="openDialog(prescribed, medicine)">Buy
+                        Now</button>
+
+                </div>
+                <!-- <button mat-raised-button color="primary" (click)="openDialog(prescribed)">Buy Now</button> -->
+            </div>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

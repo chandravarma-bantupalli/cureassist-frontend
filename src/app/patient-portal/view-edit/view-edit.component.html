@@ -1,1 +1,63 @@
-<p>view-edit works!</p>
+<app-home-page></app-home-page>
+<div class="patient-profile-container">
+    <form class="patient-profile-form-container" [formGroup]="formModel" (submit)="onsubmit()">
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput class="form-control" formControlName="firstName" name="firstName" required>
+        </mat-form-field>
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput class="form-control" formControlName="lastName" name="lastName" required>
+        </mat-form-field>
+        <mat-form-field class="form-group" class="full-width">
+            <input matInput class="form-control" formControlName="dateOfBirth" [matDatepicker]="picker"
+                name="dateOfBirth" placeholder="Date of Birth">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Blood Group</mat-label>
+            <select class="form-control" formControlName="bloodGroup" name="bloodGroup" matNativeControl>
+                <option value="O+ve">O+ve</option>
+                <option value="O-ve">O-ve</option>
+                <option value="AB+ve">AB+ve</option>
+                <option value="AB-ve">AB-ve</option>
+                <option value="A+ve">A+ve</option>
+                <option value="A-ve">A-ve</option>
+                <option value="B+ve">B+ve</option>
+                <option value="B-ve">B-ve</option>
+            </select>
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>UAID</mat-label>
+            <input matInput class="form-control" formControlName="uaid" name="uaid" required>
+
+        </mat-form-field>
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput class="form-control" formControlName="email" name="email">
+
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput class="form-control" formControlName="phoneNumber" name="phoneNumber" required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Emergency Contact Number</mat-label>
+            <input matInput class="form-control" formControlName="emergencyContactNumber" name="emergencyContactNumber">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Gender</mat-label>
+            <input matInput placeholder="Gender" class="form-control" formControlName="gender" name="gender" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-group" class="full-width">
+            <mat-label>City</mat-label>
+            <input matInput class="form-control" formControlName="city" name="city" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary">update</button>
+    </form>
+</div>
