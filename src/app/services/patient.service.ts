@@ -112,10 +112,10 @@ export class PatientService {
   // viewAppointmentByDate(): Observable<IAppointments> {
   //   return this.http.get<IAppointments>(this.urlForBookAppointments + '/dayappointment?UserId=' + this.service.userid + '&date='  );
   // }
-  GetDoctorById(doctorId: string): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>('http://localhost:5002/api/doctor/' + doctorId);
+  GetDoctorById(doctorId: string): Observable<Doctor> {
+    return this.http.get<Doctor>('http://localhost:5002/api/doctor/' + doctorId);
   }
-  GetDiagnosticsById(diagnosticId: string): Observable<IDiagnostics[]> {
-    return this.http.get<IDiagnostics[]>('http://localhost:5002/api/diagnosiscenter/' + diagnosticId);
+  GetDiagnosticsById(diagnosticId: string): Observable<IDiagnostics> {
+    return this.http.get<IDiagnostics>('http://localhost:5002/api/diagnosiscenter/' + diagnosticId);
   }
 }

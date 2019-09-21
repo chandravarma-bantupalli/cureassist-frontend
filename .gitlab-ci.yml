@@ -3,6 +3,7 @@ stages:
   - lint
   - build
   - dockerize
+  - deploy
 
 install:
   stage: install
@@ -12,14 +13,14 @@ install:
   tags:
     - immersive-cgi-w7-dotnet
 
-lint:
-  stage: lint
-  image: node:12.9.0
-  script:
-    - npm install
-    - npm run lint
-  tags:
-    - immersive-cgi-w7-dotnet
+# lint:
+#   stage: lint
+#   image: node:12.9.0
+#   script:
+#     - npm install
+#     - npm run lint
+#   tags:
+#     - immersive-cgi-w7-dotnet
 
 variables:
   CLI_VERSION: 8.0.3
@@ -42,7 +43,23 @@ dockerize-stage:
   image: docker
   script:
   - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-  - docker build -t teamcureassist/cure-assist-front-end .
-  - docker push teamcureassist/cure-assist-front-end
+  - docker build -t teamcureassist/cureassist-frontend:${CI_COMMIT_SHORT_SHA} .
+  - docker tag teamcureassist/cureassist-frontend:${CI_COMMIT_SHORT_SHA} teamcureassist/cureassist-frontend:latest
+  - docker push teamcureassist/cureassist-frontend:latest
+  - docker push teamcureassist/cureassist-frontend:${CI_COMMIT_SHORT_SHA}
   tags:
   - immersive-cgi-w7-dotnet
+
+deploy:
+  stage: deploy
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config set-cluster k8s --server="${SERVER}"
+    - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+    - kubectl config set-context default --cluster=k8s --user=gitlab
+    - kubectl config use-context default
+    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" kube-manifest.yaml
+    - kubectl -n ${NAMESPACE} apply -f kube-manifest.yaml
+  tags:
+    - immersive-cgi-w7-dotnet

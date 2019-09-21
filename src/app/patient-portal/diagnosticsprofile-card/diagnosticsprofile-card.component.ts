@@ -13,22 +13,22 @@ import { DiagnosticCenter } from '../../models/diagnostic-center';
 export class DiagnosticsprofileCardComponent implements OnInit {
   viewdcprofiledata: DiagnosticCenter[];
   bookdate: Date;
-  constructor(private service: PatientService,  private dialog: MatDialog) {
+  constructor(private service: PatientService, private dialog: MatDialog) {
     this.viewdcprofiledata = this.service.viewdcprofiledata;
   }
   ngOnInit() {
   }
-  confirmAppointment(): string {
-    return this.viewdcprofiledata.diagnosticCenterId;
-    }
- openDialog(slotStartTime: Date, slotEndTime: Date) {
-   // tslint:disable-next-line: no-use-before-declare
-   const dialogRef = this.dialog.open(DCConfirmBooking, {
-     width: '250px',
-     data: { bookdate: this.bookdate, startTime: slotStartTime, endTime: slotEndTime }
-   });
+  confirmAppointment(dc: DiagnosticCenter): string {
+    return dc.diagnosticCenterId;
+  }
+  openDialog(slotStartTime: Date, slotEndTime: Date) {
+    // tslint:disable-next-line: no-use-before-declare
+    const dialogRef = this.dialog.open(DCConfirmBooking, {
+      width: '250px',
+      data: { bookdate: this.bookdate, startTime: slotStartTime, endTime: slotEndTime }
+    });
 
- }
+  }
 }
 @Component({
   selector: 'app-dcconfirm-booking',
@@ -43,14 +43,14 @@ export class DCConfirmBooking {
     public dialogRef: MatDialogRef<DCConfirmBooking>,
     // tslint:disable-next-line:max-line-length
     @Inject(MAT_DIALOG_DATA) public data: IAppointments, private service: PatientService, private services: OnboardingService, mycard: DiagnosticsprofileCardComponent) {
-      this.card = mycard;
+    this.card = mycard;
   }
   onNoClick(): void {
     this.dialogRef.close();
 
   }
   confirmAppointment(date: Date, startTime: Date, endTime: Date) {
-     this.diagnosticcenterId = this.card.confirmAppointment();
-     this.service.bookAppointment(this.diagnosticcenterId, this.services.userid, date, startTime, endTime).subscribe();
+    this.diagnosticcenterId = this.card.confirmAppointment();
+    this.service.bookAppointment(this.diagnosticcenterId, this.services.userid, date, startTime, endTime).subscribe();
   }
 }

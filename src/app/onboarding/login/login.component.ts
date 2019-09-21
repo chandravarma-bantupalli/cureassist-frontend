@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private service: OnboardingService, private route: Router) { }
   LoginUser() {
     // tslint:disable-next-line:max-line-length
-    this.service.LoginUser(this.emailId, this.password, this.usertype).subscribe( (data) => {
+    this.service.LoginUser(this.emailId, this.password, this.usertype).subscribe( (data: any) => {
       this.service.isAuthenticate(data.userAccessToken);
     } , (error) => {
       this.errorStatus = error.status;

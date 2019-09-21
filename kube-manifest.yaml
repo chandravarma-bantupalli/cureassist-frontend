@@ -1,0 +1,67 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      app: cureassist-frontend
+      kompose.cmd: kompose convert -f docker-compose.yml -o kube-manifest.yaml
+      kompose.version: 1.18.0 (06a2e56)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: cureassist-frontend
+    name: cureassist-frontend
+  spec:
+    type: NodePort
+    ports:
+    - name: "4600"
+      port: 4600
+      targetPort: 80
+    selector:
+      io.kompose.service: cureassist-frontend
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      app: cureassist-frontend
+      kompose.cmd: kompose convert -f docker-compose.yml -o kube-manifest.yaml
+      kompose.version: 1.18.0 (06a2e56)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: cureassist-frontend
+    name: cureassist-frontend
+  spec:
+    replicas: 1
+    strategy: {}
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          io.kompose.service: cureassist-frontend
+      spec:
+        containers:
+        - image: teamcureassist/cureassist-frontend:<VERSION>
+          name: cureassist-frontend
+          ports:
+          - containerPort: 80
+          resources: {}
+        restartPolicy: Always
+  status: {}
+- apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    name: cureassist-frontend-ingress
+    # annotations:
+    #   nginx.ingress.kubernetes.io/rewrite-target: /
+  spec:
+    rules:
+    - host: onboarding.cureassist.cgi-wave7.stackroute.io
+      http:
+        paths:
+        - path: /onboarding/
+          backend:
+            serviceName: cureassist-frontend
+            servicePort: 80
+kind: List
+metadata: {}
+

@@ -26,11 +26,13 @@ export class CardComponent implements OnInit {
   ) {
     this.viewprofiledata = this.patientService.viewprofiledata;
   }
-  ngOnInit() {
+
+  ngOnInit() {}
+
+  confirmAppointment(doctor: Doctor): string {
+    return doctor.doctorId;
   }
-  confirmAppointment(): string {
-    return this.viewprofiledata.doctorId;
-  }
+
   openDialog(slotStartTime: Date, slotEndTime: Date) {
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(ConfirmBooking, {
