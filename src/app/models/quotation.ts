@@ -1,8 +1,8 @@
 import { PrescribedMedicine } from './prescribed-medicine';
 
 export class Quotation {
+  pharmacyId: string;
   prescriptionId: string;
   prescribedMedicines: PrescribedMedicine[];
-  // tslint:disable-next-line:ban-types
-  totalPrice: Number;
+  totalCost: number;
 }

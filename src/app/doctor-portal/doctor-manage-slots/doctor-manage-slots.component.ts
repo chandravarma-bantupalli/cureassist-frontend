@@ -11,6 +11,7 @@ import { OnboardingService } from '../../services/onboarding.service';
   styleUrls: ['./doctor-manage-slots.component.css']
 })
 export class DoctorManageSlotsComponent implements OnInit {
+  doctorId: any;
   timeSlots: TimeSlot[];
   timeSlotsExist: boolean;
   addSlotButtonClicked = false;

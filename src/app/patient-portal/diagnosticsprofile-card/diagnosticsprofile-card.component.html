@@ -1,23 +1,23 @@
 <app-home-page></app-home-page>
 <div class="profile-view">
-    <mat-card class="profile-card">
+    <mat-card class="profile-card" *ngFor="let diagnostic of viewdcprofiledata">
         <div class="imagecontainer">
             <img src="../../../assets/icon.jpg" alt="dc image">
         </div>
         <div class="details-container">
             <mat-card-header>
-                <mat-card-title>Diagnosis center Name:{{viewdcprofiledata.diagnosticCenterName}}</mat-card-title>
+                <mat-card-title>Diagnosis center Name:{{diagnostic.diagnosticCenterName}}</mat-card-title>
                 <mat-card-subtitle>
                     <h3>Address:</h3>
-                    {{viewdcprofiledata.diagnosticCenterAddress}}
+                    {{diagnostic.diagnosticCenterAddress}}
                 </mat-card-subtitle>
                 <mat-card-subtitle>
                     <h3>City:</h3>
-                    {{viewdcprofiledata.diagnsoticCenterCity}}
+                    {{diagnostic.diagnsoticCenterCity}}
                 </mat-card-subtitle>
                 <mat-card-subtitle>
                     <h3>Tests Conducted</h3>
-                    {{viewdcprofiledata.testsConducted}}
+                    {{diagnostic.testsConducted}}
                 </mat-card-subtitle>
             </mat-card-header>
         </div>
@@ -36,7 +36,7 @@
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                     <br>
-                    <div *ngFor="let time of viewdcprofiledata.diagnosticCenterSlots">
+                    <div *ngFor="let time of diagnostic.diagnosticCenterSlots">
                         <button mat-raised-button color="primary"
                             (click)="openDialog(time.slotStartTime,time.slotEndTime)">{{time.slotStartTime}}-{{time.slotEndTime}}</button>&nbsp;
                         &nbsp;
