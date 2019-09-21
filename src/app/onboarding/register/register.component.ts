@@ -20,6 +20,12 @@ export class RegisterComponent implements OnInit {
     this.usertype = this.usertype.split('//')[1];
     if (this.usertype === 'cureassist') {
       this.usertype = 'patient';
+    } else if (this.usertype === 'doctor') {
+      this.usertype = 'doctor';
+    } else if (this.usertype === 'dc') {
+      this.usertype = 'dc';
+    } else if (this.usertype === 'pharmacy') {
+      this.usertype = 'pharmacy';
     }
   }
   CreateUser() {

@@ -5,16 +5,27 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import { User } from '../models/user';
+import { DoctorHttpService } from './doctor-http.service';
+import { Doctor } from '../models/doctor';
 @Injectable({
   providedIn: 'root'
 })
 export class OnboardingService {
+
   url = 'http://localhost:5000/api/user';
   emailId: string;
   userid: string;
   usertype: string;
   doctorId: string;
-  constructor(private http: HttpClient, private cookieService: CookieService, private route: Router) { this.http = http; }
+
+  doc: Doctor;
+
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private doctorService: DoctorHttpService,
+    private route: Router
+  ) { this.http = http; }
 
   getAlluser(): Observable<User[]> {
     return this.http.get<User[]>(this.url + '/users');
@@ -28,6 +39,19 @@ export class OnboardingService {
   }
   SetPassword(Password: string, UserId: string) {
     console.log(Password, UserId);
+
+    if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
+      this.route.navigate(['/patient/search']);
+    } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
+      this.doc = new Doctor();
+      this.doctorService.addNewDoctor(this.doc).subscribe( (data) => {
+        console.log(data);
+      });
+    } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
+      this.route.navigate(['diagnosisCenter/home']);
+    } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {
+      this.route.navigate(['pharmacy/home']);
+    }
 
     return this.http.post(this.url + '/setpassword', { password: Password, userid: UserId });
   }

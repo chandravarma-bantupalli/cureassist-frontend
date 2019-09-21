@@ -1,5 +1,6 @@
 import { TimeSlot } from './time-slot';
 export class Doctor {
+  userid: string;
   doctorId: string;
   doctorFirstName: string;
   doctorLastName: string;
