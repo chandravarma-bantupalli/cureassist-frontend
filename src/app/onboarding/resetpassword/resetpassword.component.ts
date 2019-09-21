@@ -10,6 +10,7 @@ export class ResetpasswordComponent implements OnInit {
   oldpassword: string;
   newpassword: string;
   confirmnewpassword: any;
+  errorStatus: number;
   constructor(private service: OnboardingService) { }
 
   ngOnInit() {

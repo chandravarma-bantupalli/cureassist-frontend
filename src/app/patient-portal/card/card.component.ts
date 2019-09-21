@@ -44,7 +44,7 @@ export class CardComponent implements OnInit {
 }
 @Component({
   selector: 'app-confirm-booking',
-  templateUrl: 'confirm-booking.html',
+  templateUrl: './confirm-booking.html',
   providers: [CardComponent]
 })
 
@@ -55,7 +55,11 @@ export class ConfirmBooking {
   constructor(
     public dialogRef: MatDialogRef<ConfirmBooking>,
     // tslint:disable-next-line:max-line-length
-    @Inject(MAT_DIALOG_DATA) public data: IAppointments, private service: PatientService, private services: OnboardingService, mycard: CardComponent) {
+    @Inject(MAT_DIALOG_DATA) public data: IAppointments,
+    private service: PatientService,
+    private services: OnboardingService,
+    mycard: CardComponent
+  ) {
     this.card = mycard;
   }
   onNoClick(): void {

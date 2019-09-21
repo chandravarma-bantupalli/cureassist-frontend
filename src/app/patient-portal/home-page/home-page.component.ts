@@ -9,12 +9,17 @@ import { OnboardingService } from '../../services/onboarding.service';
 })
 export class HomePageComponent implements OnInit {
   patientid: any;
-  constructor(private router: Router, private route: ActivatedRoute, private service: OnboardingService) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private service: OnboardingService
+  ) {
     this.route.params.subscribe(params => this.patientid = params.patientid);
   }
 
   ngOnInit() {
   }
+
   viewProfile() {
     this.router.navigate(['patient/view-edit']);
   }
@@ -33,4 +38,9 @@ export class HomePageComponent implements OnInit {
   viewtestreport() {
     this.router.navigate(['medicalrecords/viewtestreport/' + this.service.emailId]);
   }
+
+  logout() {
+    return this.service.Logout();
+  }
+
 }

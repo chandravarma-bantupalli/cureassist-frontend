@@ -14,6 +14,8 @@ export class PharmacyOrdersPageComponent implements OnInit {
   quotationRequests: Quotation[];
   singleQuotation: Quotation;
   prescribedMedicines: PrescribedMedicine[];
+  MedicinePrice: any;
+  totalCost: any;
 
   constructor(private quotationService: QuotationService) {
     this.quotationRequests = [];

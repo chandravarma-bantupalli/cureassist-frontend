@@ -12,8 +12,13 @@ import { HttpClient } from '@angular/common/http';
 export class PharmacyCurrentOrderComponent implements OnInit {
 
   quotationRequests: Quotation[];
+  orderRequests: any[];
 
-  constructor(private service: PharmacyService, private http: HttpClient, private fb: FormBuilder) {
+  constructor(
+    private service: PharmacyService,
+    private http: HttpClient,
+    private fb: FormBuilder
+  ) {
     this.quotationRequests = [];
   }
 

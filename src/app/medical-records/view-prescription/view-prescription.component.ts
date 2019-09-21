@@ -27,6 +27,7 @@ export class ViewPrescriptionComponent implements OnInit {
   medicinename: any;
   quantity: any;
   location: any;
+  medicine: any;
   constructor(
     private dialog: MatDialog,
     private healthrecord: HealthrecordsService,
@@ -37,7 +38,7 @@ export class ViewPrescriptionComponent implements OnInit {
   ngOnInit() {
     this.healthrecord
       .getPatientPrescriptions(this.onboardservice.userid)
-      .subscribe(data => {
+      .subscribe((data) => {
         this.prescription = data;
         this.prescription = this.prescription.map(e => {
           e.selectedMeds = [];
@@ -50,7 +51,7 @@ export class ViewPrescriptionComponent implements OnInit {
     const dialogRef = this.dialog.open(BuyNow, {
       width: '250px',
       // tslint:disable-next-line: whitespace
-      data: { prescription, meds }
+      data: { prescription, meds, name }
     });
     this.healthrecord.prescription = prescription;
   }
@@ -60,7 +61,7 @@ export class ViewPrescriptionComponent implements OnInit {
 }
 @Component({
   selector: 'app-buy-now',
-  templateUrl: 'buy-now.html',
+  templateUrl: './buy-now.html',
   providers: [ViewPrescriptionComponent]
 })
 // tslint:disable-next-line:component-class-suffix

@@ -6,9 +6,9 @@
     <button class="Profile" mat-button [matMenuTriggerFor]="profile">Profile</button>
     <mat-menu #profile="matMenu">
         <button class="Profile" mat-menu-item (click)="viewProfile()">View Profile</button>
-        <button class="Profile" mat-menu-item (click)=editProfile()>Edit profile</button>
-        <button class="Profile" mat-menu-item (click)=resetpassword()>Change Password</button>
-        <button class="Profile" mat-menu-item (click)=service.Logout()>Logout</button>
+        <button class="Profile" mat-menu-item (click)="editProfile()">Edit profile</button>
+        <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
+        <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>

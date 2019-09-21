@@ -35,16 +35,13 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field><br>
           <!-- <button mat-raised-button color="primary" *ngFor="let time of viewprofiledata.timeSlots" (click)="openDialog()">{{time.slotStartTime}}-{{time.slotEndTime}}</button>&nbsp; &nbsp;-->
-          <div *ngFor="let time of viewprofiledata.doctorSlots">
+          <div *ngFor="let time of doctor.doctorSlots">
             <button mat-raised-button color="primary"
               (click)="openDialog(time.slotStartTime,time.slotEndTime)">From :
               {{time.slotStartTime}} To : {{time.slotEndTime}}</button>&nbsp;
             &nbsp;
           </div>
         </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelOpenState= true"
-        (closed)="panelOpenState= false">
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card>

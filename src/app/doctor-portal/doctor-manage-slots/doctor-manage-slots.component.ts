@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { DoctorTimeslotComponent } from '../doctor-timeslot/doctor-timeslot.component';
 import { TimeSlotService } from '../../services/time-slot.service';
 import { OnboardingService } from '../../services/onboarding.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-doctor-manage-slots',
@@ -14,13 +15,23 @@ export class DoctorManageSlotsComponent implements OnInit {
   timeSlots: TimeSlot[];
   timeSlotsExist: boolean;
   addSlotButtonClicked = false;
+  timeSlotForm: FormGroup;
+  docId: string;
   constructor(
     private dialog: MatDialog,
     private timeSlotService: TimeSlotService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    private formBuilder: FormBuilder
   ) { }
   ngOnInit() {
+    this.docId = this.timeSlotService.doctorId;
     this.getAllDoctorTimeSlots(this.onboardingService.userid);
+  }
+
+  initiateTimeSlotForm() {
+    this.timeSlotForm = this.formBuilder.group({
+      slotId: '',
+    });
   }
 
 
@@ -41,9 +52,10 @@ export class DoctorManageSlotsComponent implements OnInit {
     });
     this.timeSlotService.doctorId = doctorId;
     this.timeSlotService.timeSlotId = id;
-    if (id === '') {
-      this.timeSlotService.timeSlotId = '';
-    }
+    this.openDialog();
+  }
+
+  addNewTimeSlot(docId: string) {
     this.openDialog();
   }
 

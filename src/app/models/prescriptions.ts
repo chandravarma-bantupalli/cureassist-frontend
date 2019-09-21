@@ -1,4 +1,5 @@
 export class Prescriptions {
+    name?: any;
     prescriptionId: string;
     prescriptionDate: Date;
     patientId: string;

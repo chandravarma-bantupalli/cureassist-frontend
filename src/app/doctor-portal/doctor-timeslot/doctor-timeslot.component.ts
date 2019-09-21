@@ -69,7 +69,7 @@ export class DoctorTimeslotComponent implements OnInit {
   addNewTimeSlot() {
     console.log('add new time slot method called');
     const doctorSlot: TimeSlot = this.tsForm.value;
-    this.timeSlotService.addNewTimeSlotToDoctor(doctorSlot).subscribe( (data) => {
+    this.timeSlotService.addNewTimeSlotToDoctor(this.timeSlotService.doctorId, doctorSlot).subscribe( (data) => {
       console.log(data);
     });
     this.onNoClick();
