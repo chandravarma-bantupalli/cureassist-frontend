@@ -16,7 +16,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
   }
   viewProfile() {
-    this.router.navigate(['patient/view-edit/' + this.service.emailId]);
+    this.router.navigate(['patient/view-edit']);
   }
   homebutton() {
     this.router.navigate(['patient/search']);

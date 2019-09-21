@@ -20,7 +20,8 @@ import {
   MatMenuModule,
   MatRadioModule,
   MatExpansionModule,
-  MatListModule
+  MatListModule,
+  MatNativeDateModule,
  } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
@@ -49,7 +50,7 @@ import { AppRoutingModule } from '../app-routing.module';
     ReactiveFormsModule,
     MatExpansionModule,
     MatListModule,
-    AppRoutingModule
+    AppRoutingModule,MatNativeDateModule
   ],
   exports: [
     CardComponent,

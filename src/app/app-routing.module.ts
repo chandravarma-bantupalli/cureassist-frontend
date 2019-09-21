@@ -37,7 +37,7 @@ const routes: Routes = [
   {path: 'patient', children: [
     {path: 'home', component: HomePageComponent},
     {path: 'profile/post', component: EditprofilePageComponent},
-    {path: 'view-edit/:emailid', component: ViewEditComponent },
+    {path: 'view-edit', component: ViewEditComponent },
     {path: 'search', component: SearchComponent},
     {path: 'viewprofile', component: CardComponent},
     {path: 'viewdcprofile', component: DiagnosticsprofileCardComponent}

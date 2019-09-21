@@ -24,12 +24,12 @@ export class PatientService {
     return this.http.post(this.urlForPatient, body);
   }
 
-  getprofile(email: string): Observable<Patient> {
-    return this.http.get<Patient>(this.urlForPatient + '/' + email);
+  getprofile(): Observable<Patient> {
+    return this.http.get<Patient>(this.urlForPatient + '/viewprofile');
   }
 
-  updateProfile(emailId: string, body) {
-    return this.http.put(this.urlForPatient + '/' + emailId, body);
+  updateProfile(body) {
+    return this.http.put(this.urlForPatient + '/updateprofile', body);
   }
   searchDoctorsByName(searchbar: string, City: string): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(
@@ -114,5 +114,8 @@ export class PatientService {
   // }
   GetDoctorById(doctorId: string): Observable<Doctor[]> {
     return this.http.get<Doctor[]>('http://localhost:5002/api/doctor/' + doctorId);
+  }
+  GetDiagnosticsById(diagnosticId: string): Observable<IDiagnostics[]> {
+    return this.http.get<IDiagnostics[]>('http://localhost:5002/api/diagnosiscenter/' + diagnosticId);
   }
 }

@@ -10,7 +10,7 @@ import { OnboardingService } from './onboarding.service';
 })
 export class DoctorHttpService {
 
-  URL = 'http://localhost:5002/api/doctor/';
+  URL = 'http://localhost:5002/api/doctor/doctorId';
 
   constructor(
     private http: HttpClient,
@@ -18,12 +18,12 @@ export class DoctorHttpService {
   ) { }
 
   getDoctorById(): Observable<Doctor> {
-    return this.http.get<Doctor>((this.URL + this.onboardingService.userid));
+    return this.http.get<Doctor>((this.URL));
   }
 
   updateDoctor(doctor: Doctor): Observable<Doctor> {
     console.clear();
     console.log(doctor);
-    return this.http.put<Doctor>((this.URL + this.onboardingService.userid), doctor);
+    return this.http.put<Doctor>(this.URL, doctor);
   }
 }

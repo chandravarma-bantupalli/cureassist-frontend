@@ -24,7 +24,7 @@ export class DoctorHomeComponent implements OnInit {
     ];
   }
   getAllDoctorTimeSlots(id: string) {
-    this.timeSlotService.getDoctorTimeSlots(id).subscribe( (data) => {
+    this.timeSlotService.getDoctorTimeSlots().subscribe( (data) => {
       console.log(data);
       this.timeSlots = data;
     });

@@ -13,8 +13,7 @@ export class ViewEditComponent implements OnInit {
   sub: any;
   emailid: any;
   patient: Patient;
-  constructor(private fb: FormBuilder, public service: PatientService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.emailid = params.emailid);
+  constructor(private fb: FormBuilder, public service: PatientService) {
    }
    formModel = this.fb.group({
     patientId: [''],
@@ -31,7 +30,7 @@ export class ViewEditComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.service.getprofile(this.emailid)
+    this.service.getprofile()
     .subscribe(data => {
       console.log(data);
       this.formModel.setValue(data);
@@ -40,6 +39,6 @@ export class ViewEditComponent implements OnInit {
     });
   }
   onsubmit() {
-    this.service.updateProfile(this.emailid, this.formModel.value).subscribe(data => console.log(data));
+    this.service.updateProfile(this.formModel.value).subscribe(data => console.log(data));
   }
 }

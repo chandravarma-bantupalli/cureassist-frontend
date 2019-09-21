@@ -25,7 +25,7 @@ export class DoctorManageSlotsComponent implements OnInit {
 
 
   getAllDoctorTimeSlots(id: string) {
-    this.timeSlotService.getDoctorTimeSlots(id).subscribe( (data) => {
+    this.timeSlotService.getDoctorTimeSlots().subscribe( (data) => {
       console.log(data);
       this.timeSlots = data;
       if (this.timeSlots.length > 0) {
@@ -36,7 +36,7 @@ export class DoctorManageSlotsComponent implements OnInit {
 
 
   getSpecificTimeSlot(doctorId: string, id: string) {
-    this.timeSlotService.getSingleTimeSlotOfDoctor(this.onboardingService.userid, id).subscribe( (data) => {
+    this.timeSlotService.getSingleTimeSlotOfDoctor(this.onboardingService.userid).subscribe( (data) => {
       console.log(data);
     });
     this.timeSlotService.doctorId = doctorId;

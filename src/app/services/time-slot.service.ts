@@ -35,19 +35,19 @@ export class TimeSlotService {
     return this.http.post<TimeSlot>((this.DC_TS_URL + `${dcId}/` + 'timeslots'), ts);
   }
   // This is for doctor//
-  getDoctorTimeSlots(id: string): Observable<TimeSlot[]> {
-    return this.http.get<TimeSlot[]>((this.DOCTOR_TS_URL + `${id}/` + 'timeslots'));
+  getDoctorTimeSlots(): Observable<TimeSlot[]> {
+    return this.http.get<TimeSlot[]>((this.DOCTOR_TS_URL + '/timeslots'));
   }
 
-  updateDoctorTimeSlot(id: string, tsId: string, timeSlot: TimeSlot): Observable<TimeSlot> {
-    return this.http.put<TimeSlot>((this.DOCTOR_TS_URL + `${id}/` + 'timeslots/' + `${tsId}`), timeSlot);
+  updateDoctorTimeSlot(tsId: string, timeSlot: TimeSlot): Observable<TimeSlot> {
+    return this.http.put<TimeSlot>((this.DOCTOR_TS_URL + '/timeslots/' + `${tsId}`), timeSlot);
   }
 
-  getSingleTimeSlotOfDoctor(id: string, tsId: string): Observable<TimeSlot> {
-    return this.http.get<TimeSlot>((this.DOCTOR_TS_URL + `${id}/` + 'timeslots/' + `${tsId}`));
+  getSingleTimeSlotOfDoctor(tsId: string): Observable<TimeSlot> {
+    return this.http.get<TimeSlot>((this.DOCTOR_TS_URL + '/timeslots/' + `${tsId}`));
   }
 
-  addNewTimeSlotToDoctor(doctorId: string, ts: TimeSlot) {
-    return this.http.post<TimeSlot>((this.DOCTOR_TS_URL + `${doctorId}/` + 'timeslots'), ts);
+  addNewTimeSlotToDoctor(ts: TimeSlot) {
+    return this.http.post<TimeSlot>((this.DOCTOR_TS_URL + '/timeslots'), ts);
   }
 }
