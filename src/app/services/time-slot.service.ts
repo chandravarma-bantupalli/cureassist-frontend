@@ -47,7 +47,7 @@ export class TimeSlotService {
     return this.http.get<TimeSlot>((this.DOCTOR_TS_URL + '/timeslots/' + `${tsId}`));
   }
 
-  addNewTimeSlotToDoctor(ts: TimeSlot) {
-    return this.http.post<TimeSlot>((this.DOCTOR_TS_URL + '/timeslots'), ts);
+  addNewTimeSlotToDoctor(docId: string, ts: TimeSlot) {
+    return this.http.post<TimeSlot>((this.DOCTOR_TS_URL + `${docId}` + '/timeslots'), ts);
   }
 }

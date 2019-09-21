@@ -27,8 +27,8 @@ export class DoctorTimeslotComponent implements OnInit {
   ) { }
 
   onNoClick(): void {
-  this.dialogRef.close();
-}
+    this.dialogRef.close();
+  }
 
   ngOnInit() {
     this.doctorId = this.onboardingService.userid;
@@ -47,7 +47,7 @@ export class DoctorTimeslotComponent implements OnInit {
     });
   }
   getTimeSlotValue() {
-    this.timeSlotService.getSingleTimeSlotOfDoctor(this.tsId).subscribe( (data) => {
+    this.timeSlotService.getSingleTimeSlotOfDoctor(this.tsId).subscribe((data) => {
       this.timeSlot = data;
       this.tsForm.setValue(data);
       this.timeSlotValueNotNull = true;
@@ -60,7 +60,7 @@ export class DoctorTimeslotComponent implements OnInit {
   updateTimeSlot() {
     console.log('update method call');
     // tslint:disable-next-line: max-line-length
-    this.timeSlotService.updateDoctorTimeSlot(this.timeSlot.slotId, this.tsForm.value).subscribe( (data) => {
+    this.timeSlotService.updateDoctorTimeSlot(this.timeSlot.slotId, this.tsForm.value).subscribe((data) => {
       console.log(data);
     });
     this.onNoClick();
@@ -69,7 +69,7 @@ export class DoctorTimeslotComponent implements OnInit {
   addNewTimeSlot() {
     console.log('add new time slot method called');
     const doctorSlot: TimeSlot = this.tsForm.value;
-    this.timeSlotService.addNewTimeSlotToDoctor(doctorSlot).subscribe( (data) => {
+    this.timeSlotService.addNewTimeSlotToDoctor(this.timeSlotService.doctorId, doctorSlot).subscribe((data) => {
       console.log(data);
     });
     this.onNoClick();

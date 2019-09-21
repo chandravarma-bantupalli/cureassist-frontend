@@ -1,95 +1,95 @@
 <app-doctor-header></app-doctor-header>
 <div class="profile-details">
-        <mat-card>
-          <mat-card-subtitle style="margin: auto;">
-            <h4> Basic Details </h4>
-          </mat-card-subtitle>
-          <mat-card-content>
-            <form [formGroup]="doctorProfile">
-              <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                <label>Doctor FirstName</label>
-                <mat-form-field>
-                  <input matInput formControlName="doctorFirstName">
-                </mat-form-field>
-              </div>
-              <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                    <label>Doctor LastName</label>
-                    <mat-form-field>
-                      <input matInput formControlName="doctorLastName">
-                    </mat-form-field>
-                  </div>
-              <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                <label>Doctor Email</label>
-                <mat-form-field>
-                  <input matInput formControlName="doctorEmail">
-                </mat-form-field>
-              </div>
-              <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                <label>Doctor Phone</label>
-                <mat-form-field>
-                  <input matInput formControlName="doctorPhoneNumber">
-                </mat-form-field>
-              </div>
-              <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                <label>Doctor City</label>
-                <mat-form-field>
-                  <input matInput formControlName="doctorCity">
-                </mat-form-field>
-              </div>
-            </form>    
-          </mat-card-content>
-        </mat-card>
-        <mat-card>
-          <mat-card-subtitle>
-            <h4> Complete Address </h4>
-          </mat-card-subtitle>
-          <mat-card-content>
-            <form [formGroup]="doctorProfile">
-                <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                  <label>Address</label>
-                  <mat-form-field>
-                    <input matInput formControlName="doctorAddress">
-                  </mat-form-field>
-                </div>
-                <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                  <label> Pincode </label>
-                  <mat-form-field>
-                    <input matInput formControlName="pincode">
-                  </mat-form-field>
-                </div>
-            </form>
-          </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <mat-card-subtitle>
-              <h4> Advanced Details </h4>
-            </mat-card-subtitle>
-            <mat-card-content>
-              <form [formGroup]="doctorProfile">
-                  <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                    <label>Registration Number</label>
-                    <mat-form-field>
-                      <input matInput formControlName="doctorRegNum">
-                    </mat-form-field>
-                  </div>
-                  <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                        <label>Speciaization</label>
-                        <mat-form-field>
-                          <input matInput formControlName="doctorSpecialization">
-                        </mat-form-field>
-                      </div>
-                      <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-                            <label>Experience</label>
-                            <mat-form-field>
-                              <input matInput formControlName="doctorExperience">
-                            </mat-form-field>
-                          </div>   
-              </form>
-            </mat-card-content>
-        </mat-card>
-      </div>
-      
-      <div class="profile-options">
-        <button mat-stroked-button color="primary" (click)="goToManageSlots()"> Update Time Slots </button>
-        <button mat-stroked-button color="primary" (click)="saveProfile()"> Save Profile </button>
-      </div>
+  <mat-card>
+    <mat-card-subtitle style="margin: auto;">
+      <h4> Basic Details </h4>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="doctorProfile">
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Doctor FirstName</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorFirstName">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Doctor LastName</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorLastName">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Doctor Email</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorEmail">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Doctor Phone</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorPhoneNumber">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Doctor City</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorCity">
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-subtitle>
+      <h4> Complete Address </h4>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="doctorProfile">
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Address</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorAddress">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label> Pincode </label>
+          <mat-form-field>
+            <input matInput formControlName="pincode">
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-subtitle>
+      <h4> Advanced Details </h4>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="doctorProfile">
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Registration Number</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorRegNum">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Speciaization</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorSpecialization">
+          </mat-form-field>
+        </div>
+        <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+          <label>Experience</label>
+          <mat-form-field>
+            <input matInput formControlName="doctorExperience">
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="profile-options">
+  <button mat-stroked-button color="primary" (click)="goToManageSlots()"> Update Time Slots </button>
+  <button mat-stroked-button color="primary" (click)="saveProfile()"> Save Profile </button>
+</div>

@@ -44,7 +44,7 @@ export class CardComponent implements OnInit {
 }
 @Component({
   selector: 'app-confirm-booking',
-  templateUrl: 'confirm-booking.html',
+  templateUrl: './confirm-booking.html',
   providers: [CardComponent]
 })
 

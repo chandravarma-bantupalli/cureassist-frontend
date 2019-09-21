@@ -15,6 +15,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
   }
+
   viewProfile() {
     this.router.navigate(['patient/view-edit']);
   }
@@ -33,4 +34,9 @@ export class HomePageComponent implements OnInit {
   viewtestreport() {
     this.router.navigate(['medicalrecords/viewtestreport/' + this.service.emailId]);
   }
+
+  logout() {
+    return this.service.Logout();
+  }
+
 }

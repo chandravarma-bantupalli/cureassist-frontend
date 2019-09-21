@@ -51,14 +51,14 @@ items:
   kind: Ingress
   metadata:
     name: cureassist-frontend-ingress
-    # annotations:
-    #   nginx.ingress.kubernetes.io/rewrite-target: /
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /$2
   spec:
     rules:
     - host: onboarding.cureassist.cgi-wave7.stackroute.io
       http:
         paths:
-        - path: /onboarding/
+        - path: /onboarding(/|$)(.*)
           backend:
             serviceName: cureassist-frontend
             servicePort: 80

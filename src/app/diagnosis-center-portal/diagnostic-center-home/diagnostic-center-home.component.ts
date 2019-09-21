@@ -24,7 +24,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   }
 
   getAllDiagCenTimeSlots(id: string) {
-    this.timeSlotService.getDiagnosticCenterTimeSlots(id).subscribe( (data) => {
+    this.timeSlotService.getDiagnosticCenterTimeSlots(id).subscribe((data) => {
       console.log(data);
       this.timeSlots = data;
     });

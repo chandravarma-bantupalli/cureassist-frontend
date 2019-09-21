@@ -68,4 +68,8 @@ get city() {
   return this.formModel.get('city');
 }
 
+update() {
+  console.log('update method called');
+}
+
 }
