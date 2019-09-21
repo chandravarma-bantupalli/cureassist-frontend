@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OnboardingService } from 'src/app/services/onboarding.service';
+import { OnboardingService } from '../../services/onboarding.service';
 
 @Component({
   selector: 'app-resetpassword',

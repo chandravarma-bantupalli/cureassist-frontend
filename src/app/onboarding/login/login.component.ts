@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OnboardingModule } from '../onboarding.module';
 import { Router } from '@angular/router';
-import { OnboardingService } from 'src/app/services/onboarding.service';
+import { OnboardingService } from '../../services/onboarding.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +23,11 @@ export class LoginComponent implements OnInit {
   constructor(private service: OnboardingService, private route: Router) { }
   LoginUser() {
     // tslint:disable-next-line:max-line-length
-    this.service.LoginUser(this.emailId, this.password, this.usertype).subscribe(data => this.service.isAuthenticate(data.userAccessToken), error => { this.errorStatus = error.status; });
+    this.service.LoginUser(this.emailId, this.password, this.usertype).subscribe( (data) => {
+      this.service.isAuthenticate(data.userAccessToken);
+    } , (error) => {
+      this.errorStatus = error.status;
+    });
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TimeSlot } from 'src/app/models/time-slot';
-import { TimeSlotService } from 'src/app/services/time-slot.service';
+import { TimeSlot } from '../../models/time-slot';
+import { TimeSlotService } from '../../services/time-slot.service';
 
 @Component({
   selector: 'app-diagnostic-center-home',

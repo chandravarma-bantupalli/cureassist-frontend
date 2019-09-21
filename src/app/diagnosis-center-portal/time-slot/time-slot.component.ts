@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TimeSlot } from 'src/app/models/time-slot';
-import { TimeSlotService } from 'src/app/services/time-slot.service';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { TimeSlot } from '../../models/time-slot';
+import { TimeSlotService } from '../../services/time-slot.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-time-slot',

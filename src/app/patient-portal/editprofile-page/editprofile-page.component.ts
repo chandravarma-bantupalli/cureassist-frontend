@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PatientService } from 'src/app/services/patient.service';
+import { PatientService } from '../../services/patient.service';
 
 @Component({
   selector: 'app-editprofile-page',
@@ -10,7 +10,12 @@ import { PatientService } from 'src/app/services/patient.service';
 })
 export class EditprofilePageComponent implements OnInit {
 
-constructor(private fb: FormBuilder, private route: Router, private service: PatientService){ }
+constructor(
+  private fb: FormBuilder,
+  private route: Router,
+  private service: PatientService
+) { }
+
 formModel = this.fb.group({
   FirstName: ['', Validators.required],
   LastName: ['', Validators.required],
@@ -23,12 +28,17 @@ formModel = this.fb.group({
   Gender: ['', Validators.required],
   city: ['', Validators.required]
 });
+
 ngOnInit() {
     this.formModel.reset();
-  }
+}
+
 onsubmit() {
  this.service.CreateProfile(this.formModel.value).subscribe(
-  data => { console.log( data ), alert('Data added successfully !!')});
+  (data) => {
+    console.log( data );
+    alert('Data added successfully !!');
+   });
 }
 // update() {
 //   this.route.navigate(['patient/View'])
@@ -57,4 +67,5 @@ get lastname() {
 get city() {
   return this.formModel.get('city');
 }
+
 }

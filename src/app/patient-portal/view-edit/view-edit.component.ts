@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
-import { Patient } from 'src/app/models/patient';
-import { PatientService } from 'src/app/services/patient.service';
+import { Patient } from '../../models/patient';
+import { PatientService } from '../../services/patient.service';
 
 @Component({
   selector: 'app-view-edit',

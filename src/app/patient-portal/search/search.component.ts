@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Doctor } from 'src/app/models/doctor';
+import { Doctor } from '../../models/doctor';
 import { DiagnosticCenter } from '../../models/diagnostic-center';
-import { PatientService } from 'src/app/services/patient.service';
+import { PatientService } from '../../services/patient.service';
 
 @Component({
   selector: 'app-search',

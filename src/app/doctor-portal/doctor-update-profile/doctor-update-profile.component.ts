@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Doctor } from '../../models/doctor';
 import { Router } from '@angular/router';
-import { DoctorHttpService } from 'src/app/services/doctor-http.service';
+import { DoctorHttpService } from '../../services/doctor-http.service';
 
 @Component({
   selector: 'app-doctor-update-profile',

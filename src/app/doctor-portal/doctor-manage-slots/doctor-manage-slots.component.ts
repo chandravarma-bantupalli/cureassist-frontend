@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TimeSlot } from 'src/app/models/time-slot';
+import { TimeSlot } from '../../models/time-slot';
 import { MatDialog } from '@angular/material';
 import { DoctorTimeslotComponent } from '../doctor-timeslot/doctor-timeslot.component';
-import { TimeSlotService } from 'src/app/services/time-slot.service';
-import { OnboardingService } from 'src/app/services/onboarding.service';
+import { TimeSlotService } from '../../services/time-slot.service';
+import { OnboardingService } from '../../services/onboarding.service';
 
 @Component({
   selector: 'app-doctor-manage-slots',
