@@ -51,7 +51,15 @@ export class OnboardingService {
     } else {
       this.cookieService.set('loginToken', userAccessToken);
       console.log(this.cookieService.get('loginToken'));
-      this.route.navigate(['/patient/search']);
+      if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
+        this.route.navigate(['/patient/search']);
+      } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
+        this.route.navigate(['doctor/home']);
+      } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
+        this.route.navigate(['diagnosisCenter/home']);
+      } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {
+        this.route.navigate(['pharmacy/home']);
+      }
     }
   }
   Logout() {

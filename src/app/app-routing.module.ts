@@ -24,6 +24,10 @@ import { CardComponent } from './patient-portal/card/card.component';
 import { DiagnosticsprofileCardComponent } from './patient-portal/diagnosticsprofile-card/diagnosticsprofile-card.component';
 import { ViewPrescriptionComponent } from './medical-records/view-prescription/view-prescription.component';
 import { ViewTestreportsComponent } from './medical-records/view-testreports/view-testreports.component';
+import { PharmacyHomeComponent } from './pharmacy-portal/pharmacy-home/pharmacy-home.component';
+import { PharmacyProfileComponent } from './pharmacy-portal/pharmacy-profile/pharmacy-profile.component';
+import { PharmacyViewProfileComponent } from './pharmacy-portal/pharmacy-view-profile/pharmacy-view-profile.component';
+import { PharmacyOrdersPageComponent } from './pharmacy-portal/pharmacy-orders-page/pharmacy-orders-page.component';
 
 
 const routes: Routes = [
@@ -62,6 +66,12 @@ const routes: Routes = [
       {path: 'timeslots', component: DoctorManageSlotsComponent}
     ]},
     {path: 'view', component: DoctorViewAppointmentsComponent},
+  ]},
+  {path: 'pharmacy', children: [
+    {path: 'home', component: PharmacyHomeComponent},
+    {path: 'pharmacy/createprofile', component: PharmacyProfileComponent},
+    { path: 'pharmacy/view/:emailid', component: PharmacyViewProfileComponent },
+    { path: 'pharmacy/orders', component: PharmacyOrdersPageComponent }
   ]},
   {path: '', pathMatch: 'full', component: OnboardingHomepageComponent},
   {path: 'patient', pathMatch: 'full', component: HomePageComponent},
