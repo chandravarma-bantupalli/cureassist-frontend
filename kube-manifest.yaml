@@ -40,7 +40,7 @@ items:
           io.kompose.service: cureassist-frontend
       spec:
         containers:
-        - image: teamcureassist/cureassist-frontend:<VERSION>
+        - image: teamcureassist/cureassist-frontend:389ab2f
           name: cureassist-frontend
           ports:
           - containerPort: 80
@@ -64,4 +64,3 @@ items:
             servicePort: 80
 kind: List
 metadata: {}
-
