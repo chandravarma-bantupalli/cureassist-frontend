@@ -26,7 +26,7 @@ export class DiagnosticCenterProfileComponent implements OnInit {
 
   getDiagnosticCenterProfile() {
     this.diagnosticCenter = new DiagnosticCenter();
-    this.dcService.getDiagnosticCenterById().subscribe( (data) => {
+    this.dcService.getDiagnosticCenterById().subscribe((data) => {
       this.diagnosticCenter = data;
       this.testsConducted = data.testsConducted.split(',');
       console.log(this.diagnosticCenter);

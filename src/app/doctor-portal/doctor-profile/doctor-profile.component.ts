@@ -23,7 +23,7 @@ export class DoctorProfileComponent implements OnInit {
   }
   getDoctorProfile() {
     this.doctor = new Doctor();
-    this.doctorService.getDoctorById().subscribe( (data) => {
+    this.doctorService.getDoctorById().subscribe((data) => {
       this.doctor = data;
     });
   }

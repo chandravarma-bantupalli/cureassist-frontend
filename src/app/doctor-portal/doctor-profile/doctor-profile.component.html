@@ -1,40 +1,40 @@
 <app-doctor-header class="app-header sticky"></app-doctor-header>
 
 <div class="profile-details">
-        <mat-card>
-          <mat-card-title>
-            <h3> Basic Details </h3>
-          </mat-card-title>
-          <mat-card-content>
-            <h5> FirstName: {{ doctor.doctorFirstName }}</h5>
-            <h5> LastName: {{ doctor.doctorLastName }} </h5>
-            <h5> Email: {{ doctor.doctorEmail }} </h5>
-            <h5> Phone:{{ doctor.doctorPhoneNumber }}</h5>
-            <h5> City: {{ doctor.doctorCity }} </h5>
-          </mat-card-content>
-        </mat-card>
-        <mat-card>
-          <mat-card-title>
-            <h4> Complete Address </h4>
-          </mat-card-title>
-          <mat-card-content>
-            <h5> Address: {{ doctor.doctorAddress }}</h5>
-            <h5> Pincode: {{ doctor.pincode }} </h5>
-          </mat-card-content>
-        </mat-card>
-        <mat-card>
-          <mat-card-title>
-            <h4> Advanced Details </h4>
-          </mat-card-title>
-          <mat-card-content>
-            <h5> Registration Number: {{ doctor.doctorRegNum }} </h5>
-            <h5> Experience: {{ doctor.doctorExperience }} </h5>
-            <h5> Specialization: {{ doctor.doctorSpecialization }}</h5>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      
-      <div class="profile-options">
-        <button mat-stroked-button color="primary" (click)="goToManageSlots()"> View Time Slots </button>
-        <button mat-stroked-button color="primary" (click)="goToUpdateProfile()"> Update Profile </button>
-      </div>
+  <mat-card>
+    <mat-card-title>
+      <h3> Basic Details </h3>
+    </mat-card-title>
+    <mat-card-content>
+      <h5> FirstName: {{ doctor.doctorFirstName }}</h5>
+      <h5> LastName: {{ doctor.doctorLastName }} </h5>
+      <h5> Email: {{ doctor.doctorEmail }} </h5>
+      <h5> Phone:{{ doctor.doctorPhoneNumber }}</h5>
+      <h5> City: {{ doctor.doctorCity }} </h5>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      <h4> Complete Address </h4>
+    </mat-card-title>
+    <mat-card-content>
+      <h5> Address: {{ doctor.doctorAddress }}</h5>
+      <h5> Pincode: {{ doctor.pincode }} </h5>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      <h4> Advanced Details </h4>
+    </mat-card-title>
+    <mat-card-content>
+      <h5> Registration Number: {{ doctor.doctorRegNum }} </h5>
+      <h5> Experience: {{ doctor.doctorExperience }} </h5>
+      <h5> Specialization: {{ doctor.doctorSpecialization }}</h5>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="profile-options">
+  <button mat-stroked-button color="primary" (click)="goToManageSlots()"> View Time Slots </button>
+  <button mat-stroked-button color="primary" (click)="goToUpdateProfile()"> Update Profile </button>
+</div>

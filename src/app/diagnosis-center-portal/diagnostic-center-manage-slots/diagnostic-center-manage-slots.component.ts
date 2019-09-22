@@ -25,7 +25,7 @@ export class DiagnosticCenterManageSlotsComponent implements OnInit {
   }
 
   getAllDiagCenTimeSlots(id: string) {
-    this.timeSlotService.getDiagnosticCenterTimeSlots(id).subscribe( (data) => {
+    this.timeSlotService.getDiagnosticCenterTimeSlots(id).subscribe((data) => {
       console.log(data);
       this.timeSlots = data;
       if (this.timeSlots.length > 0) {
@@ -35,7 +35,7 @@ export class DiagnosticCenterManageSlotsComponent implements OnInit {
   }
 
   getSpecificTimeSlot(dcId: string, id: string) {
-    this.timeSlotService.getSingleTimeSlotOfDiagnosticCenter(this.diagCenId, id).subscribe( (data) => {
+    this.timeSlotService.getSingleTimeSlotOfDiagnosticCenter(this.diagCenId, id).subscribe((data) => {
       console.log(data);
     });
     this.timeSlotService.dcId = dcId;

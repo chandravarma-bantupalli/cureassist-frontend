@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { QuotationService } from 'src/app/services/quotation.service';
 import { Quotation } from 'src/app/models/quotation';
 import { PrescribedMedicine } from 'src/app/models/prescribed-medicine';
-import { QuotationService } from 'src/app/services/quotation.service';
 
 @Component({
   selector: 'app-pharmacy-orders-page',
@@ -14,8 +14,9 @@ export class PharmacyOrdersPageComponent implements OnInit {
   quotationRequests: Quotation[];
   singleQuotation: Quotation;
   prescribedMedicines: PrescribedMedicine[];
-  MedicinePrice: any;
-  totalCost: any;
+  pharmacyResponse: Quotation;
+  MedicinePrice = 0;
+  totalCost = 0;
 
   constructor(private quotationService: QuotationService) {
     this.quotationRequests = [];
@@ -38,8 +39,52 @@ export class PharmacyOrdersPageComponent implements OnInit {
     });
   }
   sendResponse(totalCost) {
-    this.selectedQuotationObject.totalPrice = totalCost;
+    // console.log(totalCost);
+    this.selectedQuotationObject.totalCost = totalCost;
     this.quotationService.sendQuotation(this.selectedQuotationObject);
+  }
+  totalMedicineCost(medicineName, medicinePrice) {
+    // tslint:disable-next-line:radix
+    this.totalCost = this.totalCost + parseInt(medicinePrice.target.value);
+    console.log(medicineName, this.singleQuotation.prescribedMedicines);
+    this.singleQuotation.prescribedMedicines = this.singleQuotation.prescribedMedicines.map(
+      e => {
+        if (e.medicineName === medicineName) {
+          // tslint:disable-next-line:radix
+          e.medicinePrice = parseInt(medicinePrice.target.value);
+        }
+        console.log(this.singleQuotation.prescribedMedicines);
+        return e;
+      }
+    );
+
+    console.log(this.totalCost);
+  }
+  finalMedicineCost(medicineName, medicinePrice) {
+    if (this.totalCost !== 0) {
+      // tslint:disable-next-line:radix
+      this.totalCost = this.totalCost +
+        // tslint:disable-next-line:radix
+        parseInt((parseInt(medicinePrice.target.value) / 10).toFixed()) - parseInt(medicinePrice.target.value);
+      this.singleQuotation.prescribedMedicines = this.singleQuotation.prescribedMedicines.map(
+        e => {
+          if (e.medicineName === medicineName) {
+            // tslint:disable-next-line:radix
+            e.medicinePrice = parseInt(medicinePrice.target.value);
+          }
+          console.log(this.singleQuotation.prescribedMedicines);
+          return e;
+        }
+      );
+    }
+    console.log(this.totalCost);
+  }
+  pharmacyResponseMethod(totalCost) {
+    console.log(this.singleQuotation.prescriptionId);
+    this.singleQuotation.totalCost = totalCost;
+    console.log(this.singleQuotation);
+    this.quotationService.sendQuotation(this.singleQuotation);
+
   }
 
 }

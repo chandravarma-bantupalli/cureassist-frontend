@@ -11,7 +11,7 @@ import { IDiagnostics } from 'src/app/models/diagnostics';
   styleUrls: ['./view-appointment.component.css']
 })
 export class ViewAppointmentComponent implements OnInit {
-
+  panelOpenState = false;
   appointments: IAppointments[];
   doctorDetails: Doctor[];
   userId: 'karan';

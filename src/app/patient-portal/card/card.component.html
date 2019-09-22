@@ -34,7 +34,6 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field><br>
-          <!-- <button mat-raised-button color="primary" *ngFor="let time of viewprofiledata.timeSlots" (click)="openDialog()">{{time.slotStartTime}}-{{time.slotEndTime}}</button>&nbsp; &nbsp;-->
           <div *ngFor="let time of doctor.doctorSlots">
             <button mat-raised-button color="primary"
               (click)="openDialog(time.slotStartTime,time.slotEndTime)">From :

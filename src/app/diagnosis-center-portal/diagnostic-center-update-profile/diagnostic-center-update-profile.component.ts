@@ -44,7 +44,7 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
   }
 
   getDiagnosticCenterProfile() {
-    this.dcService.getDiagnosticCenterById().subscribe( (data) => {
+    this.dcService.getDiagnosticCenterById().subscribe((data) => {
       this.dcProfile.setValue(data);
       this.diagCen = data;
       this.timeSlots = data.diagnosticCenterSlots;
@@ -59,7 +59,7 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
     const dc: DiagnosticCenter = this.dcProfile.value;
     console.log(dc);
     // setting the above values to previous because, these are updated only during the CRUD operations on Time Slots.
-    this.dcService.updateDiagnosticCenter(dc).subscribe( (res) => {
+    this.dcService.updateDiagnosticCenter(dc).subscribe((res) => {
       console.log(res);
     });
     this.router.navigate(['/diagnosisCenter/profile']);

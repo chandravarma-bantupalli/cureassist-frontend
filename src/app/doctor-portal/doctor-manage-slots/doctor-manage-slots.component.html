@@ -12,14 +12,12 @@
         {{ slot.slotStartTime }} -- {{ slot.slotEndTime }}
       </mat-card-content>
       <mat-card-footer>
-        <button mat-stroked-button
-          (click)="getSpecificTimeSlot(slot.doctorId,slot.slotId)"
-          color="primary"> Update Time Slot </button>
+        <button mat-stroked-button (click)="getSpecificTimeSlot(slot.doctorId,slot.slotId)" color="primary"> Update Time
+          Slot </button>
       </mat-card-footer>
     </mat-card>
   </div>
 </div>
 <div>
-  <button mat-stroked-button (click)="addNewTimeSlot(docId)"
-    color="primary"> Add New Slot </button>
+  <button mat-stroked-button (click)="addNewTimeSlot(docId)" color="primary"> Add New Slot </button>
 </div>

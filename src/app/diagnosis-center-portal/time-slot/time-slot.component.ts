@@ -22,7 +22,7 @@ export class TimeSlotComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: TimeSlot,
     private timeSlotService: TimeSlotService,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -36,7 +36,7 @@ export class TimeSlotComponent implements OnInit {
   }
 
   getTimeSlotValue() {
-    this.timeSlotService.getSingleTimeSlotOfDiagnosticCenter(this.dcId, this.tsId).subscribe( (data) => {
+    this.timeSlotService.getSingleTimeSlotOfDiagnosticCenter(this.dcId, this.tsId).subscribe((data) => {
       this.timeSlot = data;
       this.tsForm.setValue(data);
       this.timeSlotValueNotNull = true;
@@ -61,7 +61,7 @@ export class TimeSlotComponent implements OnInit {
   updateTimeSlot() {
     console.log('update method call');
     // tslint:disable-next-line: max-line-length
-    this.timeSlotService.updateDiagnosticCenterTimeSlot(this.timeSlot.diagnosticCenterId, this.timeSlot.slotId, this.tsForm.value).subscribe( (data) => {
+    this.timeSlotService.updateDiagnosticCenterTimeSlot(this.timeSlot.diagnosticCenterId, this.timeSlot.slotId, this.tsForm.value).subscribe((data) => {
       console.log(data);
     });
     this.onNoClick();
@@ -70,7 +70,7 @@ export class TimeSlotComponent implements OnInit {
   addNewTimeSlot() {
     console.log('add new time slot method called');
     const diagCenSlot: TimeSlot = this.tsForm.value;
-    this.timeSlotService.addNewTimeSlotToDiagnosticCenter(this.timeSlotService.dcId, diagCenSlot).subscribe( (data) => {
+    this.timeSlotService.addNewTimeSlotToDiagnosticCenter(this.timeSlotService.dcId, diagCenSlot).subscribe((data) => {
       console.log(data);
     });
     this.onNoClick();

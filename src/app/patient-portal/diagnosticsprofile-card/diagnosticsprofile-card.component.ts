@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { PatientService } from '../../services/patient.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { IAppointments } from '../../models/appointment';
 import { OnboardingService } from '../../services/onboarding.service';
 import { DiagnosticCenter } from '../../models/diagnostic-center';
+import { AppointmentTimeSlot } from 'src/app/models/appointment';
 
 @Component({
   selector: 'app-diagnosticsprofile-card',
@@ -13,6 +13,7 @@ import { DiagnosticCenter } from '../../models/diagnostic-center';
 export class DiagnosticsprofileCardComponent implements OnInit {
   viewdcprofiledata: DiagnosticCenter[];
   bookdate: Date;
+  panelOpenState = false;
   constructor(private service: PatientService, private dialog: MatDialog) {
     this.viewdcprofiledata = this.service.viewdcprofiledata;
   }
@@ -25,7 +26,7 @@ export class DiagnosticsprofileCardComponent implements OnInit {
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(DCConfirmBooking, {
       width: '250px',
-      data: { bookdate: this.bookdate, startTime: slotStartTime, endTime: slotEndTime }
+      data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime }
     });
 
   }
@@ -42,7 +43,7 @@ export class DCConfirmBooking {
   constructor(
     public dialogRef: MatDialogRef<DCConfirmBooking>,
     // tslint:disable-next-line:max-line-length
-    @Inject(MAT_DIALOG_DATA) public data: IAppointments, private service: PatientService, private services: OnboardingService, mycard: DiagnosticsprofileCardComponent) {
+    @Inject(MAT_DIALOG_DATA) public data: AppointmentTimeSlot, private service: PatientService, private services: OnboardingService, mycard: DiagnosticsprofileCardComponent) {
     this.card = mycard;
   }
   onNoClick(): void {

@@ -1,11 +1,11 @@
 <h1>Appointment Confirmation</h1>
-<h2 mat-dialog-title>Appointment Date : {{ data.bookdate | date }}</h2>
-<h2 mat-dialog-title>Appointment start time : {{ data.startTime }}</h2>
-<h2 mat-dialog-title>Appointment end time : {{ data.endTime }}</h2>
+<h2 mat-dialog-title>Appointment Date : {{data.Date | date}}</h2>
+<h2 mat-dialog-title>Appointment start time : {{data.StartTime}}</h2>
+<h2 mat-dialog-title>Appointment end time : {{data.EndTime}}</h2>
 <div mat-dialog-content>
     <p>Do you want to confim your booking</p>
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Not Now</button>
-    <button mat-button (click)="confirmAppointment(data.bookdate,data.startTime,data.endTime)">Ok</button>
+    <button mat-button (click)="confirmAppointment(data.Date,data.StartTime,data.EndTime)">Ok</button>
 </div>

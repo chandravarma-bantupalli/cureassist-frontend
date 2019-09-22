@@ -13,8 +13,8 @@ export class DoctorUpdateProfileComponent implements OnInit {
   doctorProfile: FormGroup;
   doctor: Doctor;
   constructor(private router: Router,
-              private doctorService: DoctorHttpService,
-              private formBuilder: FormBuilder) { }
+    private doctorService: DoctorHttpService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.initializeDoctorProfileForm();
@@ -39,7 +39,7 @@ export class DoctorUpdateProfileComponent implements OnInit {
   }
 
   getDoctorProfile() {
-    this.doctorService.getDoctorById().subscribe( (data) => {
+    this.doctorService.getDoctorById().subscribe((data) => {
       this.doctorProfile.setValue(data);
       this.doctor = data;
     });
@@ -53,7 +53,7 @@ export class DoctorUpdateProfileComponent implements OnInit {
     console.log(doctor);
     doctor.doctorSlots = this.doctor.doctorSlots;
     // setting the above values to previous because, these are updated only during the CRUD operations on Time Slots.
-    this.doctorService.updateDoctor(doctor).subscribe( (res) => {
+    this.doctorService.updateDoctor(doctor).subscribe((res) => {
       console.log(res);
     });
     this.router.navigate(['/doctor/profile']);

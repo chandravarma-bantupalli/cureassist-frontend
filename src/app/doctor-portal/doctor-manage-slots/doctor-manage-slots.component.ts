@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./doctor-manage-slots.component.css']
 })
 export class DoctorManageSlotsComponent implements OnInit {
+  doctorId: any;
   timeSlots: TimeSlot[];
   timeSlotsExist: boolean;
   addSlotButtonClicked = false;
@@ -36,7 +37,7 @@ export class DoctorManageSlotsComponent implements OnInit {
 
 
   getAllDoctorTimeSlots(id: string) {
-    this.timeSlotService.getDoctorTimeSlots().subscribe( (data) => {
+    this.timeSlotService.getDoctorTimeSlots().subscribe((data) => {
       console.log(data);
       this.timeSlots = data;
       if (this.timeSlots.length > 0) {
@@ -47,7 +48,7 @@ export class DoctorManageSlotsComponent implements OnInit {
 
 
   getSpecificTimeSlot(doctorId: string, id: string) {
-    this.timeSlotService.getSingleTimeSlotOfDoctor(this.onboardingService.userid).subscribe( (data) => {
+    this.timeSlotService.getSingleTimeSlotOfDoctor(this.onboardingService.userid).subscribe((data) => {
       console.log(data);
     });
     this.timeSlotService.doctorId = doctorId;

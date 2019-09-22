@@ -36,7 +36,7 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
     this.diagnosticsByTest = [];
     this.service.searchDCByName(searchbar, this.city).subscribe(data => this.diagnosticsByName = data);
   }
-  searchDCByTest(searchbar, city = this.city) {
+  searchDCByTest(searchbar) {
     this.diagnosticsByTest = [];
     this.service.searchDCByTest(searchbar, this.city).subscribe(data => this.diagnosticsByName = data);
   }

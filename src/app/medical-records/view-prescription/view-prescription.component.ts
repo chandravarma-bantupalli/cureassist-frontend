@@ -20,6 +20,7 @@ import { OnboardingService } from '../../services/onboarding.service';
   styleUrls: ['./view-prescription.component.css']
 })
 export class ViewPrescriptionComponent implements OnInit {
+  panelOpenState = false;
   patientid: string;
   prescription: any;
   selectedPrescription: Prescriptions;
@@ -46,12 +47,12 @@ export class ViewPrescriptionComponent implements OnInit {
         });
       });
   }
-  openDialog(prescription, meds) {
+  openDialog(prescription) {
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(BuyNow, {
       width: '250px',
       // tslint:disable-next-line: whitespace
-      data: { prescription, meds, name }
+      data: { prescription }
     });
     this.healthrecord.prescription = prescription;
   }

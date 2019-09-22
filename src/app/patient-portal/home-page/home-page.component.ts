@@ -9,11 +9,7 @@ import { OnboardingService } from '../../services/onboarding.service';
 })
 export class HomePageComponent implements OnInit {
   patientid: any;
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private service: OnboardingService
-  ) {
+  constructor(private router: Router, private route: ActivatedRoute, public service: OnboardingService) {
     this.route.params.subscribe(params => this.patientid = params.patientid);
   }
 
