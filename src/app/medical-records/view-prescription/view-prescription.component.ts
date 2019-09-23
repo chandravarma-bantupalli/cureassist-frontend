@@ -1,8 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {
-  MatDialogConfig,
   MatDialog,
-  MatCheckbox,
   MatDialogRef,
   MAT_DIALOG_DATA
 } from '@angular/material';
@@ -10,6 +8,7 @@ import { Prescriptions } from '../../models/prescriptions';
 import { HealthrecordsService } from '../../services/healthrecords.service';
 import { ActivatedRoute } from '@angular/router';
 import { OnboardingService } from '../../services/onboarding.service';
+import { QuotationService } from 'src/app/services/quotation.service';
 
 
 // import { QueryValueType } from '@angular/compiler/src/core';
@@ -72,6 +71,7 @@ export class BuyNow {
   location: any;
   completeData: any;
   constructor(
+    private quotationService: QuotationService,
     private service: HealthrecordsService,
     public dialogRef: MatDialogRef<BuyNow>,
     @Inject(MAT_DIALOG_DATA) public data: Prescriptions,
@@ -81,6 +81,11 @@ export class BuyNow {
     console.log(this.service.prescription);
     console.log(data);
     this.completeData = data;
+  }
+
+  orderResponse(prescriptionId) {
+    prescriptionId = this.completeData.prescriptionId;
+    this.quotationService.requestOrderResponse(prescriptionId);
   }
 
   save() {

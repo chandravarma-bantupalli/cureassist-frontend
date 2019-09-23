@@ -38,4 +38,12 @@ export class QuotationService {
     console.log(quotation);
     this.hubConnection.invoke('ReceiveQuotation', quotation.prescriptionId, quotation);
   }
+
+  requestOrderResponse(prescriptionId: string) {
+    if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
+      this.hubConnection.start();
+    }
+    console.log(prescriptionId);
+    this.hubConnection.invoke('GetQuotation', prescriptionId);
+  }
 }
