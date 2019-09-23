@@ -13,10 +13,10 @@ import { DiagnosticCenter } from '../models/diagnostic-center';
 export class PatientService {
   urlForPatient = 'http://localhost:5001/api/patient';
   urlForAppointments = 'http://localhost:5006/appointments';
-  viewprofiledata: Doctor[];
+  viewprofiledata: Doctor;
   bookappointment: IAppointments;
   // appointment: IAppointments;
-  viewdcprofiledata: DiagnosticCenter[];
+  viewdcprofiledata: DiagnosticCenter;
   UserId: string;
   constructor(private http: HttpClient, private service: OnboardingService) { }
 
@@ -67,10 +67,10 @@ export class PatientService {
     );
   }
   // data from searched component
-  viewdoctorprofile(doctor: Doctor[]) {
+  viewdoctorprofile(doctor: Doctor) {
     this.viewprofiledata = doctor;
   }
-  viewdcprofile(diagnostic: DiagnosticCenter[]) {
+  viewdcprofile(diagnostic: DiagnosticCenter) {
     this.viewdcprofiledata = diagnostic;
   }
   bookAppointment(

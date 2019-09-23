@@ -1,1 +1,30 @@
-<p>view-testreports works!</p>
+<app-home-page></app-home-page>
+<div class="pagebody">
+    <mat-accordion class="prescription-accordion" *ngFor="let reports of testreports"> 
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header class="test">
+                <mat-panel-title>
+                    <h4 mat-line>Prescription Date: {{reports.dateOfConductedTest | date: 'dd/MM/yyyy'}}</h4>
+                </mat-panel-title>
+                <mat-panel-title>
+                    <h4 mat-line>nameOfConductedTest: {{reports.nameOfConductedTest}}</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="mat-listcontainer">
+            <div class="maincontainer">
+        <div class="firstcontainer"><h3>Patient Name:</h3> {{reports.patientName}}</div>
+        <div  class="lastcontainer"><h3>DiagnosticCenter Name:</h3> {{reports.diagnosticCenterName}}</div>
+        </div>
+        <div class="maincontainer">
+        <div class="firstcontainer"><h3>DiagnosticCenter Phonenumber: </h3>{{reports.diagnosticCenterPhone}}</div>
+        <div class="lastcontainer"><h3>TestReport: </h3>{{reports.fileUrl}}</div>
+        </div>
+        </div>
+        </mat-expansion-panel>
+        <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+        </mat-expansion-panel> -->
+    </mat-accordion>
+</div>
+
+ 

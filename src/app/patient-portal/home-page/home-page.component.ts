@@ -32,7 +32,7 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['patient/profile/post']);
   }
   viewtestreport() {
-    this.router.navigate(['medicalrecords/viewtestreport/' + this.service.emailId]);
+    this.router.navigate(['medicalrecords/viewtestreport/' + this.service.userid]);
   }
 
   logout() {

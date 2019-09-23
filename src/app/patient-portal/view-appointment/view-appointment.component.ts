@@ -25,6 +25,7 @@ export class ViewAppointmentComponent implements OnInit {
   constructor(public service: PatientService) { }
   ngOnInit() {
     this.service.viewAllAppointment().subscribe(data => this.appointments = data);
+    console.log(this.appointments);
     // tslint:disable-next-line:no-shadowed-variable
     // tslint:disable-next-line:max-line-length
     // tslint:disable-next-line:no-shadowed-variable
@@ -39,11 +40,13 @@ export class ViewAppointmentComponent implements OnInit {
     // this.service.GetDoctorById(this.doctorId).subscribe(data => this.doctordetails = data);
     // tslint:disable-next-line:no-shadowed-variable
     this.attendees.forEach(element => {
+      // tslint:disable-next-line: no-shadowed-variable
       element.forEach(element => this.doctorId.push(element));
     });
     // tslint:disable-next-line:no-shadowed-variable
     this.doctorId.forEach(element => {
       this.service.GetDoctorById(element)
+        // tslint:disable-next-line:max-line-length
         .subscribe((data: Doctor) => this.doctorFirstName.push(data.doctorFirstName + ' ' + data.doctorLastName + ' ' + data.doctorAddress));
     });
   }
@@ -54,6 +57,7 @@ export class ViewAppointmentComponent implements OnInit {
     this.diagnosticName = [];
     // tslint:disable-next-line:no-shadowed-variable
     this.attendees.forEach(element => {
+      // tslint:disable-next-line: no-shadowed-variable
       element.forEach(element => this.doctorId.push(element));
     });
     // tslint:disable-next-line:no-shadowed-variable

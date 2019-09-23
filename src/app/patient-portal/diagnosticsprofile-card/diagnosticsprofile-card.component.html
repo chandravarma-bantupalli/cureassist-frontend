@@ -1,23 +1,23 @@
 <app-home-page></app-home-page>
 <div class="profile-view">
-    <mat-card class="profile-card" *ngFor="let diagnostic of viewdcprofiledata">
+    <mat-card class="profile-card">
         <div class="imagecontainer">
             <img src="../../../assets/icon.jpg" alt="dc image">
         </div>
         <div class="details-container">
             <mat-card-header>
-                <mat-card-title>Diagnosis center Name:{{diagnostic.diagnosticCenterName}}</mat-card-title>
+                <mat-card-title>Diagnosis center Name:{{viewdcprofiledata.diagnosticCenterName}}</mat-card-title>
                 <mat-card-subtitle>
                     <h3>Address:</h3>
-                    {{diagnostic.diagnosticCenterAddress}}
+                    {{viewdcprofiledata.diagnosticCenterAddress}}
                 </mat-card-subtitle>
                 <mat-card-subtitle>
                     <h3>City:</h3>
-                    {{diagnostic.diagnsoticCenterCity}}
+                    {{viewdcprofiledata.diagnosticCenterCity}}
                 </mat-card-subtitle>
                 <mat-card-subtitle>
                     <h3>Tests Conducted</h3>
-                    {{diagnostic.testsConducted}}
+                    {{viewdcprofiledata.testsConducted}}
                 </mat-card-subtitle>
             </mat-card-header>
         </div>
@@ -36,9 +36,9 @@
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                     <br>
-                    <div *ngFor="let time of diagnostic.diagnosticCenterSlots">
+                    <div *ngFor="let time of viewdcprofiledata.diagnosticCenterSlots">
                         <button mat-raised-button color="primary"
-                            (click)="openDialog(time.slotStartTime,time.slotEndTime)">{{time.slotStartTime}}-{{time.slotEndTime}}</button>&nbsp;
+                            (click)="openDialog(time.slotStartTime,time.slotEndTime,viewdcprofiledata.diagnosticCenterId)">{{time.slotStartTime}}-{{time.slotEndTime}}</button>&nbsp;
                         &nbsp;
                     </div>
                 </div>

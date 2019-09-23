@@ -10,6 +10,8 @@ export class AppointmentTimeSlot {
     Date: Date;
     StartTime: Date;
     EndTime: Date;
+    DoctorId?: string;
+    DiagnosticCenterId?: string;
 }
 export class Daycalendar {
     UserId: string;

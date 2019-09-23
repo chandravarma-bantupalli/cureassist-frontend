@@ -12,7 +12,7 @@ import { OnboardingService } from '../../services/onboarding.service';
 })
 export class CardComponent implements OnInit {
   panelOpenState = false;
-  viewprofiledata: Doctor[];
+  viewprofiledata: Doctor;
   attendees: string[];
   appointment: IAppointments;
   bookdate: Date;
@@ -25,19 +25,21 @@ export class CardComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.viewprofiledata = this.patientService.viewprofiledata;
+    console.log(this.viewprofiledata);
   }
 
   ngOnInit() {}
 
-  confirmAppointment(doctor: Doctor): string {
-    return doctor.doctorId;
+  confirmAppointment(doctorId: string): string {
+    console.log(doctorId);
+    return doctorId;
   }
 
-  openDialog(slotStartTime: Date, slotEndTime: Date) {
+  openDialog(slotStartTime: Date, slotEndTime: Date, doctorId: string) {
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(ConfirmBooking, {
       width: '250px',
-      data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime }
+      data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime, DoctorId: doctorId }
     });
 
   }
@@ -62,8 +64,8 @@ export class ConfirmBooking {
     this.dialogRef.close();
 
   }
-  confirmAppointment(date: Date, startTime: Date, endTime: Date) {
-    this.doctorId = this.card.confirmAppointment();
+  confirmAppointment(date: Date, startTime: Date, endTime: Date, doctorId: string) {
+    this.doctorId = this.card.confirmAppointment(doctorId);
     this.service.bookAppointment(this.doctorId, this.services.userid, date, startTime, endTime).subscribe();
   }
 }

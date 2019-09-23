@@ -47,8 +47,8 @@ const routes: Routes = [
     {path: 'viewdcprofile', component: DiagnosticsprofileCardComponent}
   ]},
   {path: 'medicalrecords', children: [
-    {path: 'viewprescription', component: ViewPrescriptionComponent},
-    {path: 'viewtestreport', component: ViewTestreportsComponent}
+    {path: 'viewprescription/:userid', component: ViewPrescriptionComponent},
+    {path: 'viewtestreport/:userid', component: ViewTestreportsComponent}
   ]},
   {path: 'diagnosisCenter', children: [
     {path: 'home', component: DiagnosticCenterHomeComponent},
@@ -69,14 +69,15 @@ const routes: Routes = [
   ]},
   {path: 'pharmacy', children: [
     {path: 'home', component: PharmacyHomeComponent},
-    {path: 'pharmacy/createprofile', component: PharmacyProfileComponent},
-    { path: 'pharmacy/view/:emailid', component: PharmacyViewProfileComponent },
-    { path: 'pharmacy/orders', component: PharmacyOrdersPageComponent }
+    {path: 'createprofile', component: PharmacyProfileComponent},
+    { path: 'view/:emailid', component: PharmacyViewProfileComponent },
+    { path: 'orders', component: PharmacyOrdersPageComponent }
   ]},
   {path: '', pathMatch: 'full', component: OnboardingHomepageComponent},
   {path: 'patient', pathMatch: 'full', component: HomePageComponent},
   {path: 'doctor', pathMatch: 'full', component: DoctorHomeComponent},
-  {path: 'diagnosisCenter', pathMatch: 'full', component: DiagnosticCenterHomeComponent}
+  {path: 'diagnosisCenter', pathMatch: 'full', component: DiagnosticCenterHomeComponent},
+  {path: 'pharmacy', pathMatch: 'full', component: PharmacyHomeComponent}
 ];
 
 @NgModule({

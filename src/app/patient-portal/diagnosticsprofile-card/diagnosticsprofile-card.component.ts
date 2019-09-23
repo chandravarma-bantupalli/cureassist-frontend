@@ -11,22 +11,23 @@ import { AppointmentTimeSlot } from 'src/app/models/appointment';
   styleUrls: ['./diagnosticsprofile-card.component.css']
 })
 export class DiagnosticsprofileCardComponent implements OnInit {
-  viewdcprofiledata: DiagnosticCenter[];
+  viewdcprofiledata: DiagnosticCenter;
   bookdate: Date;
   panelOpenState = false;
   constructor(private service: PatientService, private dialog: MatDialog) {
     this.viewdcprofiledata = this.service.viewdcprofiledata;
+    console.log(this.viewdcprofiledata);
   }
   ngOnInit() {
   }
-  confirmAppointment(dc: DiagnosticCenter): string {
-    return dc.diagnosticCenterId;
+  confirmAppointment(diagnosticCenterId: string): string {
+    return diagnosticCenterId;
   }
-  openDialog(slotStartTime: Date, slotEndTime: Date) {
+  openDialog(slotStartTime: Date, slotEndTime: Date, diagnosticCenterId: string) {
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(DCConfirmBooking, {
       width: '250px',
-      data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime }
+      data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime, DiagnosticCenterId: diagnosticCenterId }
     });
 
   }
@@ -50,8 +51,8 @@ export class DCConfirmBooking {
     this.dialogRef.close();
 
   }
-  confirmAppointment(date: Date, startTime: Date, endTime: Date) {
-    this.diagnosticcenterId = this.card.confirmAppointment();
+  confirmAppointment(date: Date, startTime: Date, endTime: Date, diagnosticCenterId: string) {
+    this.diagnosticcenterId = this.card.confirmAppointment(diagnosticCenterId);
     this.service.bookAppointment(this.diagnosticcenterId, this.services.userid, date, startTime, endTime).subscribe();
   }
 }
