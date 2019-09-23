@@ -70,6 +70,9 @@ export class BuyNow {
   quantity: any;
   location: any;
   completeData: any;
+  timeLeft: number = 60;
+  prescriptionId: string;
+  interval;
   constructor(
     private quotationService: QuotationService,
     private service: HealthrecordsService,
@@ -83,9 +86,9 @@ export class BuyNow {
     this.completeData = data;
   }
 
-  orderResponse(prescriptionId) {
-    prescriptionId = this.completeData.prescriptionId;
-    this.quotationService.requestOrderResponse(prescriptionId);
+  orderResponse() {
+    this.prescriptionId = this.completeData.prescriptionId;
+    this.quotationService.requestOrderResponse(this.prescriptionId);
   }
 
   save() {
@@ -114,4 +117,18 @@ export class BuyNow {
     //     e.location = location
     this.completeData.prescription.location = location;
   }
+  setTimer() {
+    this.interval = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+        // tslint:disable-next-line:radix
+        // this.minutes = parseInt((this.timeLeft / 60).toFixed());
+        // this.seconds = this.timeLeft - ((this.minutes - 1) * 60);
+      } else if (this.timeLeft === 0 ) {
+        this.orderResponse();
+      } else {
+        this.timeLeft = 60;
+      }
+    }, 1000);
+}
 }
