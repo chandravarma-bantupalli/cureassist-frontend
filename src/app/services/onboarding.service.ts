@@ -5,8 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import { User } from '../models/user';
-import { DoctorHttpService } from './doctor-http.service';
-import { Doctor } from '../models/doctor';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,12 +16,19 @@ export class OnboardingService {
   userid: string;
   usertype: string;
   doctorId: string;
+  user: any;
 
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
     private route: Router
-  ) {  }
+  ) {
+    const token = this.cookieService.get('loginToken');
+    this.user = jwt_decode(token);
+    console.log(this.user);
+    this.userid = this.user.userid;
+    this.emailId = this.user.email;
+  }
 
   getAlluser(): Observable<User[]> {
     return this.http.get<User[]>(this.url + '/users');
@@ -50,6 +56,7 @@ export class OnboardingService {
 
     return this.http.post(this.url + '/setpassword', { password: Password, userid: UserId });
   }
+
   isAuthenticate(userAccessToken: string) {
     const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
     this.emailId = tokenInfo.email;
@@ -81,6 +88,7 @@ export class OnboardingService {
       }
     }
   }
+
   Logout() {
     this.cookieService.delete('loginToken');
     this.route.navigate(['onboarding/login']);

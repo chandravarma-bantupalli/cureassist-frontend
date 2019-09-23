@@ -34,12 +34,12 @@ export class DoctorProfileComponent implements OnInit {
   }
 
   goToUpdateProfile() {
-    this.onboardingService.userid = this.userid;
+    // this.onboardingService.userid = this.userid;
     this.router.navigate(['/doctor/update']);
   }
 
   goToManageSlots() {
-    this.onboardingService.userid = this.userid;
+    // this.onboardingService.userid = this.userid;
     this.router.navigate(['/doctor/manage/timeslots']);
   }
 }

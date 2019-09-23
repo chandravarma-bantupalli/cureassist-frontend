@@ -38,7 +38,7 @@ export class DoctorHomeComponent implements OnInit {
   }
 
   goToProfile() {
-    this.onboardingService.userid = this.userid;
+    // this.onboardingService.userid = this.userid;
     this.router.navigate(['/doctor/update']);
   }
 }

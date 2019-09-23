@@ -33,6 +33,7 @@ export class DoctorUpdateProfileComponent implements OnInit {
     this.doctorProfile = this.formBuilder.group({
       ts: '',
       doctorId: '',
+      userid: '',
       doctorFirstName: '',
       doctorLastName: '',
       doctorEmail: '',
@@ -72,7 +73,7 @@ export class DoctorUpdateProfileComponent implements OnInit {
       this.doctorService.updateDoctor(this.userid, doctor).subscribe((res) => {
         console.log(res);
       });
-      this.onboardingService.userid = this.userid;
+      // this.onboardingService.userid = this.userid;
       this.router.navigate(['/doctor/profile']);
     } else {
       const doctor: Doctor = this.doctorProfile.value;
@@ -83,7 +84,7 @@ export class DoctorUpdateProfileComponent implements OnInit {
         console.log(doctor);
         console.log(res);
       });
-      this.onboardingService.userid = this.userid;
+      // this.onboardingService.userid = this.userid;
       this.router.navigate(['/doctor/manage/timeslots']);
     }
   }

@@ -3,6 +3,7 @@ import { TimeSlot } from '../../models/time-slot';
 import { MatDialog } from '@angular/material';
 import { TimeSlotComponent } from '../time-slot/time-slot.component';
 import { TimeSlotService } from '../../services/time-slot.service';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
   selector: 'app-diagnostic-center-manage-slots',
@@ -14,14 +15,17 @@ export class DiagnosticCenterManageSlotsComponent implements OnInit {
   timeSlots: TimeSlot[];
   timeSlotsExist: boolean;
   addSlotButtonClicked = false;
-  diagCenId = '5d824189b35f127a3fb1916b';
+  userid: string;
+
   constructor(
     private dialog: MatDialog,
-    private timeSlotService: TimeSlotService
+    private timeSlotService: TimeSlotService,
+    private onboardingService: OnboardingService
   ) { }
 
   ngOnInit() {
-    this.getAllDiagCenTimeSlots(this.diagCenId);
+    this.userid = this.onboardingService.userid;
+    this.getAllDiagCenTimeSlots(this.userid);
   }
 
   getAllDiagCenTimeSlots(id: string) {
@@ -35,14 +39,17 @@ export class DiagnosticCenterManageSlotsComponent implements OnInit {
   }
 
   getSpecificTimeSlot(dcId: string, id: string) {
-    this.timeSlotService.getSingleTimeSlotOfDiagnosticCenter(this.diagCenId, id).subscribe((data) => {
+    this.timeSlotService.getSingleTimeSlotOfDiagnosticCenter(this.userid, id).subscribe((data) => {
       console.log(data);
     });
     this.timeSlotService.dcId = dcId;
     this.timeSlotService.timeSlotId = id;
-    if (id === '') {
-      this.timeSlotService.timeSlotId = '';
-    }
+    this.openDialog();
+  }
+
+  addNewSlot(userid: string) {
+    this.timeSlotService.dcId = this.userid;
+    this.timeSlotService.timeSlotId = '';
     this.openDialog();
   }
 

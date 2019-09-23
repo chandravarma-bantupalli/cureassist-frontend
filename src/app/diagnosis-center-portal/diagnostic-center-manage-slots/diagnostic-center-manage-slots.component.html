@@ -15,7 +15,7 @@
         {{ slot.slotStartTime }} -- {{ slot.slotEndTime }}
       </mat-card-content>
       <mat-card-footer>
-        <button mat-stroked-button (click)="getSpecificTimeSlot(slot.diagnosticCenterId,slot.slotId)" color="primary">
+        <button mat-stroked-button (click)="getSpecificTimeSlot(userid,slot.slotId)" color="primary">
           Update Time Slot </button>
       </mat-card-footer>
     </mat-card>
@@ -23,7 +23,7 @@
 </div>
 
 <div>
-  <button mat-stroked-button (click)="getSpecificTimeSlot(diagCenId,'')" color="primary"> Add New Slot </button>
+  <button mat-stroked-button (click)="addNewSlot(userid)" color="primary"> Add New Slot </button>
 </div>
 <!-- 
 <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">

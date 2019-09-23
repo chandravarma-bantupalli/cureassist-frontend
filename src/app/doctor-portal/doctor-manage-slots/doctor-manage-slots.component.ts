@@ -68,7 +68,7 @@ export class DoctorManageSlotsComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.onboardingService.userid = this.userid;
+    // this.onboardingService.userid = this.userid;
     const dialogRef = this.dialog.open(DoctorTimeslotComponent, {
       width: '250px'
     });
