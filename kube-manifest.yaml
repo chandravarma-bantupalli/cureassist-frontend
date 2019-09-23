@@ -40,7 +40,7 @@ items:
           io.kompose.service: cureassist-frontend
       spec:
         containers:
-        - image: teamcureassist/cureassist-frontend:df05055d
+        - image: teamcureassist/cureassist-frontend:<VERSION>
           name: cureassist-frontend
           ports:
           - containerPort: 80
