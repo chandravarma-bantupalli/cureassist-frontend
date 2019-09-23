@@ -18,14 +18,11 @@ export class OnboardingService {
   usertype: string;
   doctorId: string;
 
-  doc: Doctor;
-
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
-    private doctorService: DoctorHttpService,
     private route: Router
-  ) { this.http = http; }
+  ) {  }
 
   getAlluser(): Observable<User[]> {
     return this.http.get<User[]>(this.url + '/users');
@@ -39,14 +36,12 @@ export class OnboardingService {
   }
   SetPassword(Password: string, UserId: string) {
     console.log(Password, UserId);
+    this.userid = UserId;
 
     if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
-      this.route.navigate(['/patient/search']);
+      this.route.navigate(['/patient/profile/post']);
     } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
-      this.doc = new Doctor();
-      this.doctorService.addNewDoctor(this.doc).subscribe( (data) => {
-        console.log(data);
-      });
+      this.route.navigate(['/doctor/home']);
     } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
       this.route.navigate(['diagnosisCenter/home']);
     } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TimeSlot } from '../../models/time-slot';
 import { TimeSlotService } from '../../services/time-slot.service';
 import { OnboardingService } from '../../services/onboarding.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-home',
@@ -11,22 +12,33 @@ import { OnboardingService } from '../../services/onboarding.service';
 export class DoctorHomeComponent implements OnInit {
   appointments: any[];
   timeSlots: TimeSlot[];
-  doctorId: string; // = this.onboardingService.userid;
+  userid: string; // = this.onboardingService.userid;
+  doctorProfileExists: boolean;
+
   constructor(
     private onboardingService: OnboardingService,
-    private timeSlotService: TimeSlotService
+    private timeSlotService: TimeSlotService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.doctorId = this.onboardingService.userid;
-    this.getAllDoctorTimeSlots(this.doctorId);
-    this.appointments = [
-    ];
+    this.userid = this.onboardingService.userid;
+    this.getAllDoctorTimeSlots(this.userid);
   }
+
   getAllDoctorTimeSlots(id: string) {
-    this.timeSlotService.getDoctorTimeSlots().subscribe((data) => {
+    this.timeSlotService.getDoctorTimeSlots(id).subscribe((data) => {
       console.log(data);
       this.timeSlots = data;
+      this.doctorProfileExists = true;
+    }, (err) => {
+      console.log(err);
+      this.doctorProfileExists = false;
     });
+  }
+
+  goToProfile() {
+    this.onboardingService.userid = this.userid;
+    this.router.navigate(['/doctor/update']);
   }
 }

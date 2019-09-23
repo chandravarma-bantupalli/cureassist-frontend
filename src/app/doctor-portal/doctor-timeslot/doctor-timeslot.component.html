@@ -9,10 +9,7 @@
     <input formControlName="slotEndTime">
     <label>Slot Capacity</label>
     <input formControlName="slotCapacity">
-    <label>Slot Date DD/MM/YYYY</label>
-    <input formControlName="slotDate">
   </div>
+  <button mat-stroked-button *ngIf="timeSlotValueNotNull" (click)="updateTimeSlot()"> Confirm </button>
+  <button mat-stroked-button *ngIf="!timeSlotValueNotNull" (click)="addNewTimeSlot()"> Add Slot </button>
 </form>
-
-<button mat-stroked-button *ngIf="timeSlotValueNotNull" (click)="updateTimeSlot()"> Confirm </button>
-<button mat-stroked-button *ngIf="!timeSlotValueNotNull" (click)="addNewTimeSlot()"> Add </button>
