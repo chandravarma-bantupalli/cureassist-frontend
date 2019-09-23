@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuotationService } from 'src/app/services/quotation.service';
 import { Quotation } from 'src/app/models/quotation';
 import { PrescribedMedicine } from 'src/app/models/prescribed-medicine';
+import { Prescriptions } from 'src/app/models/prescriptions';
 
 @Component({
   selector: 'app-pharmacy-orders-page',
@@ -13,6 +14,7 @@ export class PharmacyOrdersPageComponent implements OnInit {
   selectedQuotationObject: Quotation;
   quotationRequests: Quotation[];
   singleQuotation: Quotation;
+  patientDetail: Prescriptions;
   prescribedMedicines: PrescribedMedicine[];
   pharmacyResponse: Quotation;
   MedicinePrice = 0;
@@ -37,12 +39,20 @@ export class PharmacyOrdersPageComponent implements OnInit {
         this.quotationRequests.push(quotation);
       }
     });
+    this.quotationService.patientDetails.subscribe((details: any) => {
+      if (details === '') {
+        console.log('no details');
+      } else {
+        console.log(details);
+        this.patientDetail = details;
+      }
+    });
   }
-  sendResponse(totalCost) {
-    // console.log(totalCost);
-    this.selectedQuotationObject.totalCost = totalCost;
-    this.quotationService.sendQuotation(this.selectedQuotationObject);
-  }
+  // sendResponse(totalCost) {
+  //   // console.log(totalCost);
+  //   this.selectedQuotationObject.totalCost = totalCost;
+  //   this.quotationService.sendQuotation(this.selectedQuotationObject);
+  // }
   totalMedicineCost(medicineName, medicinePrice) {
     // tslint:disable-next-line:radix
     this.totalCost = this.totalCost + parseInt(medicinePrice.target.value);

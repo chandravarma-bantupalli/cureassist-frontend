@@ -9,6 +9,7 @@ import { HealthrecordsService } from '../../services/healthrecords.service';
 import { ActivatedRoute } from '@angular/router';
 import { OnboardingService } from '../../services/onboarding.service';
 import { QuotationService } from 'src/app/services/quotation.service';
+import { Quotation } from 'src/app/models/quotation';
 
 
 // import { QueryValueType } from '@angular/compiler/src/core';
@@ -65,10 +66,11 @@ export class ViewPrescriptionComponent implements OnInit {
   providers: [ViewPrescriptionComponent]
 })
 // tslint:disable-next-line:component-class-suffix
-export class BuyNow {
+export class BuyNow implements OnInit {
   healthRecord: Prescriptions;
   quantity: any;
   location: any;
+  orderQuotation: Quotation;
   completeData: any;
   // tslint:disable-next-line:no-inferrable-types
   timeLeft: number = 60;
@@ -87,6 +89,16 @@ export class BuyNow {
     this.completeData = data;
   }
 
+  ngOnInit() {
+    this.quotationService.finalQuotation.subscribe((quotation: any) => {
+      if (quotation === '') {
+        console.log('incoming quotation is null');
+      } else {
+        console.log(quotation);
+        this.orderQuotation = quotation;
+      }
+    });
+  }
   orderResponse() {
     this.prescriptionId = this.completeData.prescriptionId;
     this.quotationService.requestOrderResponse(this.prescriptionId);
