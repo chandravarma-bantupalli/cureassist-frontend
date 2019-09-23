@@ -70,6 +70,7 @@ export class BuyNow {
   quantity: any;
   location: any;
   completeData: any;
+  // tslint:disable-next-line:no-inferrable-types
   timeLeft: number = 60;
   prescriptionId: string;
   interval;
