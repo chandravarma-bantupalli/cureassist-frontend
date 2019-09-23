@@ -19,13 +19,12 @@ export class DoctorHttpService {
     return this.http.post<Doctor>(this.URL, doc);
   }
 
-  getDoctorById(): Observable<Doctor> {
-    return this.http.get<Doctor>((this.URL + 'viewprofile'));
+  getDoctorById(userid: string): Observable<Doctor> {
+    return this.http.get<Doctor>((this.URL + `${userid}`));
   }
 
-  updateDoctor(doctor: Doctor): Observable<Doctor> {
-    console.clear();
+  updateDoctor(userid: string, doctor: Doctor): Observable<Doctor> {
     console.log(doctor);
-    return this.http.put<Doctor>(this.URL, doctor);
+    return this.http.put<Doctor>((this.URL + `${userid}`), doctor);
   }
 }

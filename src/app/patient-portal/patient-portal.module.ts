@@ -50,7 +50,8 @@ import { AppRoutingModule } from '../app-routing.module';
     ReactiveFormsModule,
     MatExpansionModule,
     MatListModule,
-    AppRoutingModule,MatNativeDateModule
+    AppRoutingModule,
+    MatNativeDateModule
   ],
   exports: [
     CardComponent,

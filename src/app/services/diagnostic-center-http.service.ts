@@ -13,19 +13,18 @@ export class DiagnosticCenterHttpService {
 
   constructor(
     private http: HttpClient,
-    private onboardingService: OnboardingService
   ) { }
 
   addNewDiagnsoticCenter(dc: DiagnosticCenter): Observable<DiagnosticCenter> {
     return this.http.post<DiagnosticCenter>(this.URL, dc);
   }
 
-  getDiagnosticCenterById(): Observable<DiagnosticCenter> {
-    return this.http.get<DiagnosticCenter>((this.URL + this.onboardingService.userid));
+  getDiagnosticCenterById(userid: string): Observable<DiagnosticCenter> {
+    return this.http.get<DiagnosticCenter>((this.URL + `${userid}`));
   }
 
-  updateDiagnosticCenter(dc: DiagnosticCenter): Observable<DiagnosticCenter> {
-    return this.http.put<DiagnosticCenter>((this.URL + this.onboardingService.userid), dc);
+  updateDiagnosticCenter(userid: string, dc: DiagnosticCenter): Observable<DiagnosticCenter> {
+    return this.http.put<DiagnosticCenter>((this.URL + `${userid}`), dc);
   }
 
 }

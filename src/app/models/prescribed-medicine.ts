@@ -2,7 +2,7 @@ export class PrescribedMedicine {
   medicineName: string;
   prescribedDosage: string;
   prescribedTimings: string[];
-  quantity: string;
+  medicineQuantity: string;
   prescribedDays: number;
   medicinePrice?: number;
 }
