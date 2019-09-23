@@ -7,7 +7,6 @@ import { MatButtonModule, MatListModule, MatExpansionModule } from '@angular/mat
 import { MatDatepickerModule, MatIconModule, MatCardModule, MatInputModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { PatientPortalModule } from '../patient-portal/patient-portal.module';
-import { SimpleTimer } from 'ng2-simple-timer';
 
 
 
@@ -33,7 +32,6 @@ import { SimpleTimer } from 'ng2-simple-timer';
   exports: [
     ViewPrescriptionComponent,
     ViewTestreportsComponent
-  ],
-  providers: [SimpleTimer]
+  ]
 })
 export class MedicalRecordsModule { }
