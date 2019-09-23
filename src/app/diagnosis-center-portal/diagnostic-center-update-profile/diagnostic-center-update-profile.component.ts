@@ -4,6 +4,7 @@ import { DiagnosticCenterHttpService } from '../../services/diagnostic-center-ht
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DiagnosticCenter } from '../../models/diagnostic-center';
 import { TimeSlot } from '../../models/time-slot';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
   selector: 'app-diagnostic-center-update-profile',
@@ -15,14 +16,18 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
   dcProfile: FormGroup;
   diagCen: DiagnosticCenter;
   timeSlots: TimeSlot[];
+  userId: string;
+  dcProfileExists: boolean;
 
   constructor(
     private router: Router,
     private dcService: DiagnosticCenterHttpService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private onboardingService: OnboardingService
   ) { }
 
   ngOnInit() {
+    this.userId = this.onboardingService.userid;
     this.initializeDcProfileForm();
     this.getDiagnosticCenterProfile();
   }
@@ -31,6 +36,7 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
     this.dcProfile = this.formBuilder.group({
       ts: '',
       diagnosticCenterId: '',
+      userid: this.userId,
       diagnosticCenterName: '',
       diagnosticCenterEmail: '',
       diagnosticCenterPhone: '',
@@ -44,10 +50,14 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
   }
 
   getDiagnosticCenterProfile() {
-    this.dcService.getDiagnosticCenterById().subscribe((data) => {
+    this.dcService.getDiagnosticCenterById(this.userId).subscribe((data) => {
       this.dcProfile.setValue(data);
       this.diagCen = data;
       this.timeSlots = data.diagnosticCenterSlots;
+      this.dcProfileExists = true;
+    }, (err) => {
+      console.log(err);
+      this.dcProfileExists = false;
     });
   }
 
@@ -56,13 +66,27 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
   }
 
   saveProfile() {
-    const dc: DiagnosticCenter = this.dcProfile.value;
-    console.log(dc);
-    // setting the above values to previous because, these are updated only during the CRUD operations on Time Slots.
-    this.dcService.updateDiagnosticCenter(dc).subscribe((res) => {
-      console.log(res);
-    });
-    this.router.navigate(['/diagnosisCenter/profile']);
+    if (this.dcProfileExists) {
+      const dc: DiagnosticCenter = this.dcProfile.value;
+      console.log(dc);
+      // setting the above values to previous because, these are updated only during the CRUD operations on Time Slots.
+      this.dcService.updateDiagnosticCenter(this.userId, dc).subscribe((res) => {
+        console.log(res);
+      }, (err) => {
+        console.log(err);
+      });
+      this.router.navigate(['/diagnosisCenter/profile']);
+    } else {
+      const dc: DiagnosticCenter = this.dcProfile.value;
+      dc.userid = this.userId;
+      dc.diagnosticCenterSlots = [];
+
+      this.dcService.addNewDiagnsoticCenter(dc).subscribe( (res) => {
+        console.log(res);
+      });
+
+      this.router.navigate(['/diagnosisCenter/manage/timeslots']);
+    }
   }
 
 }

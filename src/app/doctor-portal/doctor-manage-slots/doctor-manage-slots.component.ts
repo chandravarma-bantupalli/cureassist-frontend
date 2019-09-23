@@ -12,12 +12,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./doctor-manage-slots.component.css']
 })
 export class DoctorManageSlotsComponent implements OnInit {
-  doctorId: any;
+
   timeSlots: TimeSlot[];
   timeSlotsExist: boolean;
   addSlotButtonClicked = false;
   timeSlotForm: FormGroup;
-  docId: string;
+  userid: string;
+
   constructor(
     private dialog: MatDialog,
     private timeSlotService: TimeSlotService,
@@ -25,19 +26,23 @@ export class DoctorManageSlotsComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
   ngOnInit() {
-    this.docId = this.timeSlotService.doctorId;
-    this.getAllDoctorTimeSlots(this.onboardingService.userid);
+    this.userid = this.onboardingService.userid;
+    this.getAllDoctorTimeSlots(this.userid);
   }
 
   initiateTimeSlotForm() {
     this.timeSlotForm = this.formBuilder.group({
       slotId: '',
+      slotStartTime: '',
+      slotEndTime: '',
+      doctorId: '',
+      slotCapacity: ''
     });
   }
 
 
   getAllDoctorTimeSlots(id: string) {
-    this.timeSlotService.getDoctorTimeSlots().subscribe((data) => {
+    this.timeSlotService.getDoctorTimeSlots(id).subscribe((data) => {
       console.log(data);
       this.timeSlots = data;
       if (this.timeSlots.length > 0) {
@@ -47,20 +52,23 @@ export class DoctorManageSlotsComponent implements OnInit {
   }
 
 
-  getSpecificTimeSlot(doctorId: string, id: string) {
-    this.timeSlotService.getSingleTimeSlotOfDoctor(this.onboardingService.userid).subscribe((data) => {
+  getSpecificTimeSlot(userid: string, id: string) {
+    this.timeSlotService.getSingleTimeSlotOfDoctor(userid, id).subscribe((data) => {
       console.log(data);
     });
-    this.timeSlotService.doctorId = doctorId;
+    this.timeSlotService.doctorId = userid;
     this.timeSlotService.timeSlotId = id;
     this.openDialog();
   }
 
-  addNewTimeSlot(docId: string) {
+  addNewTimeSlot() {
+    this.timeSlotService.doctorId = this.userid;
+    this.timeSlotService.timeSlotId = '';
     this.openDialog();
   }
 
   openDialog(): void {
+    // this.onboardingService.userid = this.userid;
     const dialogRef = this.dialog.open(DoctorTimeslotComponent, {
       width: '250px'
     });
