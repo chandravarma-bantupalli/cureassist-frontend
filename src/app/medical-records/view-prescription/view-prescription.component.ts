@@ -10,7 +10,7 @@ import { Prescriptions } from '../../models/prescriptions';
 import { HealthrecordsService } from '../../services/healthrecords.service';
 import { ActivatedRoute } from '@angular/router';
 import { OnboardingService } from '../../services/onboarding.service';
-
+import {SimpleTimer} from 'ng2-simple-timer';
 
 // import { QueryValueType } from '@angular/compiler/src/core';
 
@@ -75,7 +75,8 @@ export class BuyNow {
     private service: HealthrecordsService,
     public dialogRef: MatDialogRef<BuyNow>,
     @Inject(MAT_DIALOG_DATA) public data: Prescriptions,
-    myhealthrecord: ViewPrescriptionComponent
+    myhealthrecord: ViewPrescriptionComponent,
+    private timer: SimpleTimer
   ) {
     // this.healthRecord = myhealthrecord.returnHealthRecord();
     console.log(this.service.prescription);
@@ -108,5 +109,8 @@ export class BuyNow {
     // this.completeData.prescription = this.completeData.prescription.map(e => {
     //     e.location = location
     this.completeData.prescription.location = location;
+  }
+  setTimer() {
+    console.log(this.timer.newTimer('5sec', 5));
   }
 }
