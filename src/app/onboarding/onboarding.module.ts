@@ -10,10 +10,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../models/token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatCardModule, MatIconModule } from '@angular/material';
 import { PatientPortalModule } from '../patient-portal/patient-portal.module';
+<<<<<<< HEAD
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
+=======
+import { PatientLandingPageComponent } from './patient-landing-page/patient-landing-page.component';
+>>>>>>> 76ced42ebadaed3e4ec55f1f5c3a480b83b44f99
 
 
 @NgModule({
@@ -22,7 +26,12 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     OnboardingHomepageComponent,
     RegisterComponent,
     ResetpasswordComponent,
+<<<<<<< HEAD
     SetpasswordComponent,BottomSheet
+=======
+    SetpasswordComponent,
+    PatientLandingPageComponent
+>>>>>>> 76ced42ebadaed3e4ec55f1f5c3a480b83b44f99
   ],
   imports: [
     CommonModule,
@@ -33,14 +42,20 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
+<<<<<<< HEAD
     MatBottomSheetModule
+=======
+    MatCardModule,
+    MatIconModule
+>>>>>>> 76ced42ebadaed3e4ec55f1f5c3a480b83b44f99
   ],
   exports: [
     LoginComponent,
     OnboardingHomepageComponent,
     RegisterComponent,
     ResetpasswordComponent,
-    SetpasswordComponent
+    SetpasswordComponent,
+    PatientLandingPageComponent
   ],
   providers: [OnboardingService,
     CookieService,

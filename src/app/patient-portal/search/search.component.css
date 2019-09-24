@@ -1,55 +1,57 @@
-
-.city-field{
-    padding-bottom: 40vh;
-    padding-left: 10vh;
-    border-radius: 50vh;
-    padding-bottom: 40vh;
-    padding-left: 10vh;
-}
-/* .city-field{
-    border-radius: 108vh;
-    box-shadow: 10px 5px 5px grey;
-} */
 .search-container{
-    padding-top: 15vh;
+    padding-top: 4vh;
     padding-left: 40vh;
+    display: flex;
+    background-color: aliceblue;
+}
+.city-field{
+    flex: 1;
+}
+.search{
+    margin-right: 35vh;
+    flex: 1;
 }
 .search-card {
     width: 90vh;
-    margin-left: 50vh;
+    margin-left: 0vh;
 }
 .search-field{
     width:80vh;
     height: 5vh;   
     box-shadow: 10px 5px 5px grey;
-    border-radius: 108vh;
+    /* border-radius: 108vh; */
 }
 .searchList{
     background-color: aliceblue;
 }
 @media only screen and (max-width: 557px)
 {
+    .search-container{
+        padding-top: 1vh;
+        padding-left: 40vh;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: rgb(243, 222, 139);
+    }
     .city-field{
-        border-radius: 150vh;
-    }
-    /* .search-container{ 
-        padding-top: 15vh;
-        padding-left: 6vh;
-    } */
-    .search-card {
-        width: 90vh;
-        margin-left: 50vh;
-    }
-    .search-field{
-        background: white;
-        width:50vh;
-        height: 5vh;
-        padding-top: 40vh;
-        border-radius: 108vh;
+        flex: 1;
     }
     .search{
-        padding: 300vh;
-        margin: 100vh;
+        margin-right: 35vh;
+        flex: 1;
+    }
+    .search-card {
+        width: 90vh;
+        margin-left: 0vh;
+    }
+    .search-field{
+        width:80vh;
+        height: 5vh;   
+        box-shadow: 10px 5px 5px grey;
+        /* border-radius: 108vh; */
+    }
+    .searchList{
+        background-color: aliceblue;
     }
 }
 @media only screen and (max-width: 768px)

@@ -13,6 +13,9 @@ export class PharmacyHomeComponent implements OnInit {
 
   ngOnInit() {
   }
+  editprofile() {
+    this.route.navigate(['/pharmacy/createprofile']);
+  }
   viewprofile() {
     this.route.navigate(['/pharmacy/viewprofile']);
   }

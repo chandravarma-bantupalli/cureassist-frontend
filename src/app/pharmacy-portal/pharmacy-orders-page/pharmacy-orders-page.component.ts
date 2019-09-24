@@ -43,8 +43,9 @@ export class PharmacyOrdersPageComponent implements OnInit {
       if (details === '') {
         console.log('no details');
       } else {
-        console.log(details);
+        // console.log(details);
         this.patientDetail = details;
+        console.log(this.patientDetail, 'got details');
       }
     });
   }

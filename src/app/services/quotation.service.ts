@@ -38,6 +38,7 @@ export class QuotationService {
 
   private onQuotationReceived(quotation) {
     this.finalQuotation.next(quotation);
+    console.log(quotation);
   }
 
   private onPatientDetailsReceived(patientDetail) {
@@ -56,9 +57,11 @@ export class QuotationService {
 
   requestOrderResponse(prescriptionId: string) {
     if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
-      this.hubConnection.start();
+      this.hubConnection.start().then(() => {
+        this.hubConnection.invoke('GetQuotation', prescriptionId);
+      });
+    } else {
+      this.hubConnection.invoke('GetQuotation', prescriptionId);
     }
-    console.log(prescriptionId);
-    this.hubConnection.invoke('GetQuotation', prescriptionId);
   }
 }
