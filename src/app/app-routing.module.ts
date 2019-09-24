@@ -28,7 +28,7 @@ import { PharmacyHomeComponent } from './pharmacy-portal/pharmacy-home/pharmacy-
 import { PharmacyProfileComponent } from './pharmacy-portal/pharmacy-profile/pharmacy-profile.component';
 import { PharmacyViewProfileComponent } from './pharmacy-portal/pharmacy-view-profile/pharmacy-view-profile.component';
 import { PharmacyOrdersPageComponent } from './pharmacy-portal/pharmacy-orders-page/pharmacy-orders-page.component';
-
+import { PatientLandingPageComponent } from './onboarding/patient-landing-page/patient-landing-page.component';
 
 const routes: Routes = [
   { path: 'onboarding', children: [
@@ -36,7 +36,7 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'setpassword/:UserId', component: SetpasswordComponent},
     {path: 'resetpassword', component: ResetpasswordComponent},
-    {path: '', component: OnboardingHomepageComponent}
+    {path: '', component: PatientLandingPageComponent}
   ]},
   {path: 'patient', children: [
     {path: 'home', component: HomePageComponent},
@@ -73,7 +73,7 @@ const routes: Routes = [
     { path: 'view/:emailid', component: PharmacyViewProfileComponent },
     { path: 'orders', component: PharmacyOrdersPageComponent }
   ]},
-  {path: '', pathMatch: 'full', component: OnboardingHomepageComponent},
+  {path: '', pathMatch: 'full', component: PatientLandingPageComponent},
   {path: 'patient', pathMatch: 'full', component: HomePageComponent},
   {path: 'doctor', pathMatch: 'full', component: DoctorHomeComponent},
   {path: 'diagnosisCenter', pathMatch: 'full', component: DiagnosticCenterHomeComponent},

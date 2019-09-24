@@ -8,6 +8,7 @@
     background: url("../../../assets/images/O4YIN80.jpg");
     background-size: cover;
     height: 100%;
+    padding-top: 50vh;
   }
   
   .register-form-container {
@@ -16,6 +17,7 @@
     flex-direction: column;
     padding: 15px;
     font-size: 1.5em;
+    padding-top: 30vh;
     background-color: whitesmoke;
   }
   

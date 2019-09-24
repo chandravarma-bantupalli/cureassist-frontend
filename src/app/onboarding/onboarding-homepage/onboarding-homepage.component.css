@@ -1,15 +1,87 @@
 .app-toolbar {
   display: flex;
   justify-content: space-between;
-  background-color: aliceblue;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 button {
   margin: 20px;
-  font-size: 1.5em;
+  font-size: 4vh;
   text-decoration-style: double;
   justify-content: space-between;
+  color: white;
+  font-family: serif;
 }
 a {
   text-decoration: none;
-  color:black;
+  color: white;
+  font-family: serif;
+  font-size: 5vh;
+}
+.flex-container{
+  display: flex;
+  justify-content: center;
+  padding-top: 20vh;
+}
+.doctorappointment-image-container{
+  flex: 1;
+  max-width: 400px;
+}
+.buymedicine-image-container{
+  flex: 1;
+  max-width: 400px;
+}
+.diagnosisappointment-image-container{
+  flex: 1;
+  max-width: 400px;
+}
+
+.card-image{
+  height: 50vh;
+}
+.doctorappointment-header-image
+{
+  background-image: url('../../../assets/images/doctoricon.jpg');
+  background-size: cover;
+}
+.buymedicine-header-image
+{
+  background-image: url('../../../assets/images/tabs.jpg');
+  background-size: cover;
+}
+.diagnosisappointment-header-image
+{
+  background-image: url('../../../assets/images/surgical-services.jpg');
+  background-size: cover;
+}
+.image-container{
+  width: 2400vh;
+  transition: left 2s;
+}
+/* Footer CSS */
+.Footer-container{
+ display: flex;
+ height: 30vh;
+}
+.patient-container{
+  flex: 1;
+}
+.doctor-container{
+  flex: 1;
+}
+.pharmacy-container{
+  flex: 1;
+}
+.diagnostics-container{
+  flex: 1;
+}
+li{
+  font-size: 2vh;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.name-flex-container h1{
+  font-family: serif;
+  display: flex;
+  justify-content: center;
 }

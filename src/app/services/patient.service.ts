@@ -33,7 +33,7 @@ export class PatientService {
   }
   searchDoctorsByName(searchbar: string, City: string): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(
-      'http://localhost:5002/api/doctor/search/?city=' +
+      'http://localhost:5002/api/doctor/search?city=' +
       City +
       '&name=' +
       searchbar

@@ -10,9 +10,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../models/token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatCardModule, MatIconModule } from '@angular/material';
 import { PatientPortalModule } from '../patient-portal/patient-portal.module';
-
+import { PatientLandingPageComponent } from './patient-landing-page/patient-landing-page.component';
 
 
 @NgModule({
@@ -21,7 +21,8 @@ import { PatientPortalModule } from '../patient-portal/patient-portal.module';
     OnboardingHomepageComponent,
     RegisterComponent,
     ResetpasswordComponent,
-    SetpasswordComponent
+    SetpasswordComponent,
+    PatientLandingPageComponent
   ],
   imports: [
     CommonModule,
@@ -31,14 +32,17 @@ import { PatientPortalModule } from '../patient-portal/patient-portal.module';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule,
+    MatIconModule
   ],
   exports: [
     LoginComponent,
     OnboardingHomepageComponent,
     RegisterComponent,
     ResetpasswordComponent,
-    SetpasswordComponent
+    SetpasswordComponent,
+    PatientLandingPageComponent
   ],
   providers: [OnboardingService,
     CookieService,

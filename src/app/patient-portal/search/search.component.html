@@ -8,7 +8,7 @@
         </mat-form-field>
     </div>
     <div class="search">
-        <input class="search-field" matInput name="search" placeholder="Search by doctors,diagnostic and tests..."
+        <input class="search-field" name="search" placeholder="Search by doctors,diagnostic and tests..."
             [(ngModel)]="searchbar" (keyup)="searchDoctorsByName($event.target.value)"
             (keyup)="searchDoctorBySpecialization($event.target.value)" (keyup)="searchDCByName($event.target.value)"
             (keyup)="searchDCByTest($event.target.value)">

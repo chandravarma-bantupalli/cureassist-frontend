@@ -26,8 +26,6 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 
-
-
 @NgModule({
   declarations: [
     CardComponent,
@@ -50,7 +48,7 @@ import { AppRoutingModule } from '../app-routing.module';
     ReactiveFormsModule,
     MatExpansionModule,
     MatListModule,
-    AppRoutingModule,MatNativeDateModule
+    AppRoutingModule, MatNativeDateModule
   ],
   exports: [
     CardComponent,
