@@ -12,12 +12,9 @@ import { TokenInterceptor } from '../models/token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatCardModule, MatIconModule } from '@angular/material';
 import { PatientPortalModule } from '../patient-portal/patient-portal.module';
-<<<<<<< HEAD
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
-=======
 import { PatientLandingPageComponent } from './patient-landing-page/patient-landing-page.component';
->>>>>>> 76ced42ebadaed3e4ec55f1f5c3a480b83b44f99
 
 
 @NgModule({
@@ -26,12 +23,9 @@ import { PatientLandingPageComponent } from './patient-landing-page/patient-land
     OnboardingHomepageComponent,
     RegisterComponent,
     ResetpasswordComponent,
-<<<<<<< HEAD
-    SetpasswordComponent,BottomSheet
-=======
+    BottomSheet,
     SetpasswordComponent,
     PatientLandingPageComponent
->>>>>>> 76ced42ebadaed3e4ec55f1f5c3a480b83b44f99
   ],
   imports: [
     CommonModule,
@@ -42,12 +36,9 @@ import { PatientLandingPageComponent } from './patient-landing-page/patient-land
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
-<<<<<<< HEAD
-    MatBottomSheetModule
-=======
+    MatBottomSheetModule,
     MatCardModule,
     MatIconModule
->>>>>>> 76ced42ebadaed3e4ec55f1f5c3a480b83b44f99
   ],
   exports: [
     LoginComponent,
