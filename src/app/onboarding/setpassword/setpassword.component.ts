@@ -38,7 +38,7 @@ export class SetpasswordComponent implements OnInit {
       if (this.errorStatus === 403) {
         this.errorStatus = 403;
       } else {
-        if ((window.location.href).includes('http://cureassist.com:4200/onboarding/setpassword')) {
+        if ((window.location.href).includes('patient')) {
           this.routes.navigate(['patient/profile/post']);
         } else if ((window.location.href).includes('doctor')) {
           this.routes.navigate(['doctor/home']);
