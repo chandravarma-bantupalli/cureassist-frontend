@@ -239,6 +239,9 @@ items:
       http:
         paths:
         - path: /(onboarding.*)
+          backend:
+            serviceName: cureassist-frontend
+            servicePort: 80
         - path: /(doctor)/(.*)
           backend:
             serviceName: cureassist-frontend
