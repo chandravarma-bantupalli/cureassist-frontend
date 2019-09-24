@@ -18,6 +18,8 @@ export class DoctorTimeslotComponent implements OnInit {
   tsId: string;
   timeSlotValueNotNull: boolean;
   doctorId: string;
+
+
   constructor(
     public dialogRef: MatDialogRef<DoctorTimeslotComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TimeSlot,
@@ -36,18 +38,20 @@ export class DoctorTimeslotComponent implements OnInit {
     this.initiateTimeSlotForm();
     this.getTimeSlotValue();
   }
+
   initiateTimeSlotForm() {
     this.tsForm = this.formBuilder.group({
       slotId: '',
       doctorId: this.timeSlotService.doctorId,
-      slotDate: '',
       slotStartTime: '',
       slotEndTime: '',
       slotCapacity: 0
     });
   }
+
+
   getTimeSlotValue() {
-    this.timeSlotService.getSingleTimeSlotOfDoctor(this.tsId).subscribe((data) => {
+    this.timeSlotService.getSingleTimeSlotOfDoctor(this.doctorId, this.tsId).subscribe((data) => {
       this.timeSlot = data;
       this.tsForm.setValue(data);
       this.timeSlotValueNotNull = true;
@@ -60,7 +64,7 @@ export class DoctorTimeslotComponent implements OnInit {
   updateTimeSlot() {
     console.log('update method call');
     // tslint:disable-next-line: max-line-length
-    this.timeSlotService.updateDoctorTimeSlot(this.timeSlot.slotId, this.tsForm.value).subscribe((data) => {
+    this.timeSlotService.updateDoctorTimeSlot(this.doctorId, this.tsId, this.tsForm.value).subscribe((data) => {
       console.log(data);
     });
     this.onNoClick();
@@ -69,10 +73,12 @@ export class DoctorTimeslotComponent implements OnInit {
   addNewTimeSlot() {
     console.log('add new time slot method called');
     const doctorSlot: TimeSlot = this.tsForm.value;
+    console.log(doctorSlot);
     this.timeSlotService.addNewTimeSlotToDoctor(this.timeSlotService.doctorId, doctorSlot).subscribe((data) => {
       console.log(data);
     });
     this.onNoClick();
+    this.onboardingService.userid = this.doctorId;
   }
 
 }

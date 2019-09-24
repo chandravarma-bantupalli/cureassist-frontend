@@ -1,5 +1,5 @@
 export class Prescriptions {
-    name?: any;
+    orderId: any;
     prescriptionId: string;
     prescriptionDate: Date;
     patientId: string;
@@ -11,6 +11,7 @@ export class Prescriptions {
     remarks: string;
     prescribedMedicines: Array<PrescribedMedicines>;
     prescription: any;
+    currentLocation: string;
 }
 export class PrescribedMedicines {
     MedicineName: string;

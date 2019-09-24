@@ -68,7 +68,7 @@ const routes: Routes = [
     {path: 'view', component: DoctorViewAppointmentsComponent},
   ]},
   {path: 'pharmacy', children: [
-    {path: 'home', component: PharmacyHomeComponent},
+    {path: 'home', component: PharmacyOrdersPageComponent},
     {path: 'createprofile', component: PharmacyProfileComponent},
     { path: 'view/:emailid', component: PharmacyViewProfileComponent },
     { path: 'orders', component: PharmacyOrdersPageComponent }

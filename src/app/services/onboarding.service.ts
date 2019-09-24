@@ -5,8 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import { User } from '../models/user';
-import { DoctorHttpService } from './doctor-http.service';
-import { Doctor } from '../models/doctor';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,15 +16,19 @@ export class OnboardingService {
   userid: string;
   usertype: string;
   doctorId: string;
-
-  doc: Doctor;
+  user: any;
 
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
-    private doctorService: DoctorHttpService,
     private route: Router
-  ) { this.http = http; }
+  ) {
+    const token = this.cookieService.get('loginToken');
+    this.user = this.getDecodedAccessToken(token);
+    console.log(this.user);
+    // this.userid = this.user.userid;
+    // this.emailId = this.user.email;
+  }
 
   getAlluser(): Observable<User[]> {
     return this.http.get<User[]>(this.url + '/users');
@@ -39,14 +42,12 @@ export class OnboardingService {
   }
   SetPassword(Password: string, UserId: string) {
     console.log(Password, UserId);
+    this.userid = UserId;
 
     if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
-      this.route.navigate(['/patient/search']);
+      this.route.navigate(['/patient/profile/post']);
     } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
-      this.doc = new Doctor();
-      this.doctorService.addNewDoctor(this.doc).subscribe( (data) => {
-        console.log(data);
-      });
+      this.route.navigate(['/doctor/home']);
     } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
       this.route.navigate(['diagnosisCenter/home']);
     } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {
@@ -55,6 +56,7 @@ export class OnboardingService {
 
     return this.http.post(this.url + '/setpassword', { password: Password, userid: UserId });
   }
+
   isAuthenticate(userAccessToken: string) {
     const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
     this.emailId = tokenInfo.email;
@@ -86,12 +88,14 @@ export class OnboardingService {
       }
     }
   }
+
   Logout() {
     this.cookieService.delete('loginToken');
     this.route.navigate(['onboarding/login']);
     this.emailId = '';
   }
   ResetPassword(oldpassword: string, newpassword: string) {
+
     return this.http.post(this.url + '/resetpassword', { email: this.emailId, password: oldpassword, newpassword });
   }
   getDecodedAccessToken(token: string): any {

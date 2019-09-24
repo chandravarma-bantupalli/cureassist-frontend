@@ -9,6 +9,7 @@ import { HealthrecordsService } from '../../services/healthrecords.service';
 import { ActivatedRoute } from '@angular/router';
 import { OnboardingService } from '../../services/onboarding.service';
 import { QuotationService } from 'src/app/services/quotation.service';
+import { Quotation } from 'src/app/models/quotation';
 
 
 // import { QueryValueType } from '@angular/compiler/src/core';
@@ -65,11 +66,16 @@ export class ViewPrescriptionComponent implements OnInit {
   providers: [ViewPrescriptionComponent]
 })
 // tslint:disable-next-line:component-class-suffix
-export class BuyNow {
+export class BuyNow implements OnInit {
   healthRecord: Prescriptions;
   quantity: any;
   location: any;
+  orderQuotation: Quotation;
   completeData: any;
+  // tslint:disable-next-line:no-inferrable-types
+  timeLeft: number = 60;
+  prescriptionId: string;
+  interval;
   constructor(
     private quotationService: QuotationService,
     private service: HealthrecordsService,
@@ -83,9 +89,22 @@ export class BuyNow {
     this.completeData = data;
   }
 
-  orderResponse(prescriptionId) {
-    prescriptionId = this.completeData.prescriptionId;
-    this.quotationService.requestOrderResponse(prescriptionId);
+  ngOnInit() {
+    this.quotationService.finalQuotation.subscribe((quotation: any) => {
+      if (quotation === '') {
+        console.log('incoming quotation is null');
+      } else {
+        // console.log(quotation);
+        this.orderQuotation = quotation;
+        console.log(this.orderQuotation, 'got slip');
+      }
+    });
+  }
+  orderResponse() {
+    this.prescriptionId = this.completeData.prescription.prescriptionId;
+    this.quotationService.requestOrderResponse(this.prescriptionId);
+    console.log(this.prescriptionId);
+    // this.quotationService.finalQuotation.subscribe(data => console.log(data));
   }
 
   save() {
@@ -114,4 +133,18 @@ export class BuyNow {
     //     e.location = location
     this.completeData.prescription.location = location;
   }
+  setTimer() {
+    this.interval = setTimeout(() => {
+      this.orderResponse.bind(this)();
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+        // tslint:disable-next-line:radix
+        // this.minutes = parseInt((this.timeLeft / 60).toFixed());
+        // this.seconds = this.timeLeft - ((this.minutes - 1) * 60);
+      } else if (this.timeLeft === 0 ) {
+      } else {
+        this.timeLeft = 60;
+      }
+    }, 40000);
+}
 }
