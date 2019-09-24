@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { OnboardingService } from '../../services/onboarding.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class LoginComponent implements OnInit {
       this.usertype = 'patient';
     }
   }
-  constructor(private service: OnboardingService, private route: Router) { }
+  constructor(private service: OnboardingService) { }
   LoginUser() {
     // tslint:disable-next-line:max-line-length
     this.service.LoginUser(this.emailId, this.password, this.usertype).subscribe((data: any) => {

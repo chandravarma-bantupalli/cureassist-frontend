@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
   selector: 'app-pharmacy-home',
@@ -8,11 +9,17 @@ import {Router} from '@angular/router';
 })
 export class PharmacyHomeComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private service: OnboardingService) { }
 
   ngOnInit() {
   }
   viewprofile() {
     this.route.navigate(['/pharmacy/viewprofile']);
+  }
+  resetPassword() {
+    this.route.navigate(['onboarding/resetpassword']);
+  }
+  logout() {
+    this.service.Logout();
   }
 }

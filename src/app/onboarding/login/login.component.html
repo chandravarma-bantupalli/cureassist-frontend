@@ -12,6 +12,9 @@
     <p class="error-status" *ngIf="errorStatus==403">
       Please Enter Correct Email and Password
     </p>
+    <p class="error-status" *ngIf="errorStatus==500">
+      Please Login from your respective site
+    </p>
     <button mat-raised-button color="primary" (click)="LoginUser()">LogIn</button>
   </form>
 </div>

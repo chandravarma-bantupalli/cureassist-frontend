@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OnboardingService } from '../../services/onboarding.service';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,7 @@ import { OnboardingService } from '../../services/onboarding.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private service: OnboardingService) { }
+  constructor(private service: OnboardingService, private bottomSheet: MatBottomSheet) { }
   emailId: any = '';
   // password: any = '';
   // confirmpassword: any = '';
@@ -30,6 +31,23 @@ export class RegisterComponent implements OnInit {
   }
   CreateUser() {
     this.service.CreateUser(this.emailId, this.usertype)
-      .subscribe(data => this.errorStatus = data, error => { this.errorStatus = error.status; });
+      .subscribe(data => this.errorStatus = data, error => { if (error.status == 409 || error.status==500) {
+        this.errorStatus = error.status;
+      } else {
+        console.log('a');
+        this.bottomSheet.open(BottomSheet);
+      }  });
+  }
+}
+@Component({
+  selector: 'app-bottomsheet',
+  templateUrl: 'bottomsheet.html',
+})
+export class BottomSheet {
+  constructor(private bottomSheet: MatBottomSheetRef<BottomSheet>) { }
+
+  openLink(): void {
+    this.bottomSheet.dismiss();
+    event.preventDefault();
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OnboardingService } from '../../services/onboarding.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resetpassword',
@@ -11,13 +12,14 @@ export class ResetpasswordComponent implements OnInit {
   newpassword: string;
   confirmnewpassword: any;
   errorStatus: number;
-  constructor(private service: OnboardingService) { }
+  constructor(private service: OnboardingService, private route: Router) { }
 
   ngOnInit() {
   }
-  ResetPassword() {
+  resetPassword() {
     // tslint:disable-next-line:max-line-length
     if (this.newpassword === this.confirmnewpassword) {
+      this.route.navigate(['onboarding/login']);
       this.service.ResetPassword(this.oldpassword, this.newpassword).subscribe();
     }
   }
