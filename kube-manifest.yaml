@@ -58,7 +58,7 @@ items:
     - host: onboarding.cureassist.cgi-wave7.stackroute.io
       http:
         paths:
-        - path: /(onboarding/.*)
+        - path: /(onboarding.*)
           backend:
             serviceName: cureassist-frontend
             servicePort: 80
@@ -101,6 +101,10 @@ items:
     - host: patient.cureassist.cgi-wave7.stackroute.io
       http:
         paths:
+        - path: /(onboarding/.*)
+          backend:
+            serviceName: cureassist-frontend
+            servicePort: 80
         - path: /(patient)/(.*)
           backend:
             serviceName: cureassist-frontend
@@ -184,9 +188,13 @@ items:
           backend:
             serviceName: cureassist-frontend
             servicePort: 80
-    - host: diagnosis-center.cureassist.cgi-wave7.stackroute.io
+    - host: dc.cureassist.cgi-wave7.stackroute.io
       http:
         paths:
+        - path: /(onboarding.*)
+          backend: 
+            serviceName: cureassist-frontend
+            servicePort: 80
         - path: /(diagnosisCenter)/(.*)
           backend:
             serviceName: cureassist-frontend
@@ -230,6 +238,7 @@ items:
     - host: doctor.cureassist.cgi-wave7.stackroute.io
       http:
         paths:
+        - path: /(onboarding.*)
         - path: /(doctor)/(.*)
           backend:
             serviceName: cureassist-frontend
@@ -273,6 +282,10 @@ items:
     - host: pharmacy.cureassist.cgi-wave7.stackroute.io
       http:
         paths:
+        - path: /(onboarding.*)
+          backend: 
+            serviceName: cureassist-frontend
+            servicePort: 80
         - path: /(pharmacy)/(.*)
           backend:
             serviceName: cureassist-frontend
