@@ -71,7 +71,7 @@ const routes: Routes = [
   {path: 'pharmacy', children: [
     {path: 'home', component: PharmacyOrdersPageComponent},
     {path: 'createprofile', component: PharmacyProfileComponent},
-    { path: 'view/:emailid', component: PharmacyViewProfileComponent },
+    { path: 'view', component: PharmacyViewProfileComponent },
     { path: 'orders', component: PharmacyOrdersPageComponent },
     {path: 'myorders', component: PharmacyConfirmOrdersComponent}
   ]},
