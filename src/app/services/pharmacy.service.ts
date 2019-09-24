@@ -28,7 +28,7 @@ export class PharmacyService {
   getPharmacy(): Observable<Pharmacy> {
     return this.http.get<Pharmacy>(this.urlpost + '/viewprofile');
   }
-   updateprofile(email) {
-     return this.http.put(this.urlpost + '/' + email, this.formModel.value);
+   updateprofile(body) {
+     return this.http.put(this.urlpost, body);
    }
 }

@@ -17,12 +17,13 @@ import { MedicalRecordsModule } from './medical-records/medical-records.module';
 import { ConfirmBooking } from './patient-portal/card/card.component';
 import { DCConfirmBooking } from './patient-portal/diagnosticsprofile-card/diagnosticsprofile-card.component';
 import { BuyNow } from './medical-records/view-prescription/view-prescription.component';
+import { BottomSheet } from './onboarding/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  entryComponents: [ConfirmBooking, DCConfirmBooking, BuyNow],
+  entryComponents: [ConfirmBooking, DCConfirmBooking, BuyNow, BottomSheet],
   imports: [
     BrowserModule,
     AppRoutingModule,

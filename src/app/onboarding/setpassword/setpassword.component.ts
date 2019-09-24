@@ -39,7 +39,7 @@ export class SetpasswordComponent implements OnInit {
         this.errorStatus = 403;
       } else {
         if ((window.location.href).includes('http://cureassist.com:4200/onboarding/setpassword')) {
-          this.routes.navigate(['/patient/search']);
+          this.routes.navigate(['profile/post']);
         } else if ((window.location.href).includes('doctor')) {
           this.routes.navigate(['doctor/home']);
         } else if ((window.location.href).includes('dc')) {

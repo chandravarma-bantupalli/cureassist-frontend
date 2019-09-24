@@ -14,7 +14,6 @@ export class ViewAppointmentComponent implements OnInit {
   panelOpenState = false;
   appointments: IAppointments[];
   doctorDetails: Doctor[];
-  userId: 'karan';
   date: string;
   doctorFirstName: Array<string> = [];
   diagnosticName: Array<string> = [];

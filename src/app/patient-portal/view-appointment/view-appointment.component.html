@@ -1,22 +1,6 @@
-<!-- <h1>Your Appointments</h1>
-<mat-accordion>
-    <mat-expansion-panel *ngFor="let appointment of appointments" (click)=click()>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <h4>Appointment Date: {{appointment.date | date}}</h4>
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div>{{doctorFirstName}}</div>
-        <div *ngFor="let item of appointment.slots">
-            <h3>At: </h3> {{item.timeSlot.startTime | date:'HH:mm'}}{{item.attendees}}
-        </div>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    </mat-expansion-panel>
-</mat-accordion> -->
 
-<h1>Your Appointments</h1>
-<mat-accordion >
+<h1>Your Appointments</h1><hr>
+<!-- <mat-accordion >
        <mat-expansion-panel *ngFor="let appointment of appointments" (click)=click()>
          <mat-expansion-panel-header>
            <mat-panel-title>
@@ -26,7 +10,7 @@
          <div *ngFor="let item of doctorFirstName">{{item}}</div>
          <div *ngFor="let item of appointment.slots" ><h3>At: </h3> {{item.timeSlot.startTime | date:'HH:mm'}}{{item.attendees}} With:<h3 *ngFor="let item of doctorFirstName">{{item}}</h3></div>
        </mat-expansion-panel>
-</mat-accordion>
+</mat-accordion> -->
 <mat-accordion>
        <mat-expansion-panel *ngFor="let appointment of appointments" (click)=click2()>
          <mat-expansion-panel-header>

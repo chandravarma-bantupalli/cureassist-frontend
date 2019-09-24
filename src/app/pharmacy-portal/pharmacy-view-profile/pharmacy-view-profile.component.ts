@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pharmacy } from 'src/app/models/pharmacy';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PharmacyService } from 'src/app/services/pharmacy.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pharmacy-view-profile',
@@ -13,10 +14,17 @@ export class PharmacyViewProfileComponent implements OnInit {
   sub: any;
   Email: any;
 
-  constructor(private route: ActivatedRoute, public service: PharmacyService, private router: Router) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, public service: PharmacyService, private router: Router) {
     this.route.params.subscribe(params => this.Email = params.emailid);
   }
-
+  formModel = this.fb.group({
+    pharmacyId: [''],
+    pharmacyName: ['', Validators.required],
+    pharmacyRegisterNumber: ['', Validators.required],
+    pharmacyLocation: ['', Validators.required],
+    emailId: ['', Validators.required],
+    phoneNumber: ['', Validators.maxLength(10)]
+   });
   ngOnInit() {
     this.service.getPharmacy()
       .subscribe(data => {
@@ -27,7 +35,7 @@ export class PharmacyViewProfileComponent implements OnInit {
       });
   }
   onsubmit(): void {
-    this.service.updateprofile(this.Email).subscribe();
+    this.service.updateprofile(this.formModel.value).subscribe();
   }
 
 }

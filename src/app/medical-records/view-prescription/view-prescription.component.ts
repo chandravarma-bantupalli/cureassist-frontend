@@ -94,14 +94,17 @@ export class BuyNow implements OnInit {
       if (quotation === '') {
         console.log('incoming quotation is null');
       } else {
-        console.log(quotation);
+        // console.log(quotation);
         this.orderQuotation = quotation;
+        console.log(this.orderQuotation, 'got slip');
       }
     });
   }
   orderResponse() {
-    this.prescriptionId = this.completeData.prescriptionId;
+    this.prescriptionId = this.completeData.prescription.prescriptionId;
     this.quotationService.requestOrderResponse(this.prescriptionId);
+    console.log(this.prescriptionId);
+    // this.quotationService.finalQuotation.subscribe(data => console.log(data));
   }
 
   save() {
@@ -131,17 +134,17 @@ export class BuyNow implements OnInit {
     this.completeData.prescription.location = location;
   }
   setTimer() {
-    this.interval = setInterval(() => {
+    this.interval = setTimeout(() => {
+      this.orderResponse.bind(this)();
       if (this.timeLeft > 0) {
         this.timeLeft--;
         // tslint:disable-next-line:radix
         // this.minutes = parseInt((this.timeLeft / 60).toFixed());
         // this.seconds = this.timeLeft - ((this.minutes - 1) * 60);
       } else if (this.timeLeft === 0 ) {
-        this.orderResponse();
       } else {
         this.timeLeft = 60;
       }
-    }, 1000);
+    }, 40000);
 }
 }

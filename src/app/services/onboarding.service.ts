@@ -23,9 +23,9 @@ export class OnboardingService {
     private cookieService: CookieService,
     private route: Router
   ) {
-    const token = this.cookieService.get('loginToken');
-    this.user = this.getDecodedAccessToken(token);
-    console.log(this.user);
+    // const token = this.cookieService.get('loginToken');
+    // this.user = this.getDecodedAccessToken(token);
+    // console.log(this.user);
     // this.userid = this.user.userid;
     // this.emailId = this.user.email;
   }
@@ -44,13 +44,13 @@ export class OnboardingService {
     console.log(Password, UserId);
     this.userid = UserId;
 
-    if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
+    if ((window.location.href).includes('http://cureassist.com:4200/onboarding/login')) {
       this.route.navigate(['/patient/profile/post']);
-    } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
+    } else if ((window.location.href).includes('doctor')) {
       this.route.navigate(['/doctor/home']);
-    } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
+    } else if ((window.location.href).includes('dc')) {
       this.route.navigate(['diagnosisCenter/home']);
-    } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {
+    } else if ((window.location.href).includes('pharmacy')) {
       this.route.navigate(['pharmacy/home']);
     }
 
@@ -58,41 +58,63 @@ export class OnboardingService {
   }
 
   isAuthenticate(userAccessToken: string) {
+    // const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
+    // const savedtokenInfo = this.getDecodedAccessToken(this.cookieService.get('loginToken'))
+    // this.emailId = tokenInfo.email;
+    // this.userid = tokenInfo.userid;
+    // this.usertype = tokenInfo.usertype;
+    // if (this.cookieService.check('loginToken')) {
+    //   // this.route.navigate(['/homepage']);
+    //   console.log(this.cookieService.get('loginToken'));
+    //   if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
+    //     this.route.navigate(['/patient/search']);
+    //   } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
+    //     this.route.navigate(['doctor/home']);
+    //   } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
+    //     this.route.navigate(['diagnosisCenter/home']);
+    //   } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {
+    //     this.route.navigate(['pharmacy/home']);
+    //   }
+    // } else {
+    //   this.cookieService.set('loginToken', userAccessToken);
+    //   console.log(this.cookieService.get('loginToken'));
+    //   if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
+    //     this.route.navigate(['/patient/search']);
+    //   } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
+    //     this.route.navigate(['doctor/home']);
+    //   } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
+    //     this.route.navigate(['diagnosisCenter/home']);
+    //   } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {
+    //     this.route.navigate(['pharmacy/home']);
+    //   }
+    // }
+    const savedtokenInfo = this.cookieService.get('loginToken');
+    if (!(userAccessToken === savedtokenInfo)) {
+      this.cookieService.delete('loginToken');
+      this.cookieService.set('loginToken', userAccessToken);
+    }
     const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
     this.emailId = tokenInfo.email;
     this.userid = tokenInfo.userid;
     this.usertype = tokenInfo.usertype;
-    if (this.cookieService.check('loginToken')) {
-      // this.route.navigate(['/homepage']);
-      console.log(this.cookieService.get('loginToken'));
-      if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
-        this.route.navigate(['/patient/search']);
-      } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
-        this.route.navigate(['doctor/home']);
-      } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
-        this.route.navigate(['diagnosisCenter/home']);
-      } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {
-        this.route.navigate(['pharmacy/home']);
-      }
-    } else {
-      this.cookieService.set('loginToken', userAccessToken);
-      console.log(this.cookieService.get('loginToken'));
-      if (window.location.href === 'http://cureassist.com:4200/onboarding/login') {
-        this.route.navigate(['/patient/search']);
-      } else if (window.location.href === 'http://doctor.cureassist.com:4200/onboarding/login') {
-        this.route.navigate(['doctor/home']);
-      } else if (window.location.href === 'http://dc.cureassist.com:4200/onboarding/login') {
-        this.route.navigate(['diagnosisCenter/home']);
-      } else if (window.location.href === 'http://pharmacy.cureassist.com:4200/onboarding/login') {
-        this.route.navigate(['pharmacy/home']);
-      }
+    if ((window.location.href).includes('http://cureassist.com:4200/onboarding/login')) {
+      this.route.navigate(['/patient/search']);
+    } else if ((window.location.href).includes('doctor')) {
+      this.route.navigate(['doctor/home']);
+    } else if ((window.location.href).includes('dc')) {
+      this.route.navigate(['diagnosisCenter/home']);
+    } else if ((window.location.href).includes('pharmacy')) {
+      this.route.navigate(['pharmacy/home']);
     }
+
   }
 
   Logout() {
     this.cookieService.delete('loginToken');
-    this.route.navigate(['onboarding/login']);
     this.emailId = '';
+    this.userid = '';
+    this.usertype = '';
+    this.route.navigate(['onboarding/login']);
   }
   ResetPassword(oldpassword: string, newpassword: string) {
     return this.http.post(this.url + '/resetpassword', { email: this.emailId, password: oldpassword, newpassword });

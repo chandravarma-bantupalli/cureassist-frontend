@@ -3,10 +3,10 @@
   <button mat-button>OrderHistory</button>
   <button class="Profile" mat-button [matMenuTriggerFor]="profile">Profile</button>
   <mat-menu #profile="matMenu">
-    <button mat-menu-item routerLink="pharmacy/createprofile" routerLinkActive="active">editProfile</button>
+    <button mat-menu-item (click)="editprofile()">editProfile</button>
     <button mat-menu-item (click)="viewprofile()">ViewProfile</button>
-    <button mat-menu-item>Change Password</button>
-    <button mat-menu-item>Logout</button>
+    <button mat-menu-item (click)=  resetPassword()>Change Password</button>
+    <button mat-menu-item (click)=logout()>Logout</button>
   </mat-menu>
 </mat-toolbar>
 <p></p>

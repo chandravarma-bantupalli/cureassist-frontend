@@ -38,7 +38,7 @@ export class CardComponent implements OnInit {
   openDialog(slotStartTime: Date, slotEndTime: Date, doctorId: string) {
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(ConfirmBooking, {
-      width: '250px',
+      width: '500px',
       data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime, DoctorId: doctorId }
     });
 
