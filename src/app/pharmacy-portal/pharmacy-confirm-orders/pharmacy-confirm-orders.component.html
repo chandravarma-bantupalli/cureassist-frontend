@@ -1,0 +1,21 @@
+<h2>My Orders</h2>
+<div *ngFor="let orderdetail of confirmOrdersDetails">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let orderdetail of confirmOrdersDetails">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h4>Patient Prescription ID: {{orderdetail.prescriptionId}}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Patient Name: {{orderdetail.patientName}}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Cost: {{orderdetail.totalCost}}</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <h4>Address: {{orderdetail.currentLocation}}</h4>
+            <h4>Patient Phone Number: {{orderdetail.patientPhoneNumber}}</h4>
+            <div *ngFor="let prescribedMedicine of orderdetail">
+                <h4>Medicine Name: {{prescribedMedicine.medicineName}}</h4>
+                <h4>Prescription Dose: {{prescribedMedicine.prescribedDosage}}</h4>
+                <h4>Medicine Cost: {{prescribedMedicine.medicinePrice}}</h4>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
