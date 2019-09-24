@@ -24,10 +24,10 @@ export class OnboardingService {
     private route: Router
   ) {
     const token = this.cookieService.get('loginToken');
-    this.user = jwt_decode(token);
+    this.user = this.getDecodedAccessToken(token);
     console.log(this.user);
-    this.userid = this.user.userid;
-    this.emailId = this.user.email;
+    // this.userid = this.user.userid;
+    // this.emailId = this.user.email;
   }
 
   getAlluser(): Observable<User[]> {
