@@ -60,7 +60,6 @@ export class OnboardingService {
   isAuthenticate(userAccessToken: string) {
     // const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
     // const savedtokenInfo = this.getDecodedAccessToken(this.cookieService.get('loginToken'))
-    
     // this.emailId = tokenInfo.email;
     // this.userid = tokenInfo.userid;
     // this.usertype = tokenInfo.usertype;
@@ -118,7 +117,6 @@ export class OnboardingService {
     this.route.navigate(['onboarding/login']);
   }
   ResetPassword(oldpassword: string, newpassword: string) {
-
     return this.http.post(this.url + '/resetpassword', { email: this.emailId, password: oldpassword, newpassword });
   }
   getDecodedAccessToken(token: string): any {
