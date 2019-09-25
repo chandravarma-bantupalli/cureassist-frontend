@@ -1,6 +1,6 @@
 export interface IAppointments {
     slots: any;
-    attendees: Array<string>;
+    attendees: string[];
     slot: AppointmentTimeSlot;
     startTime?: any;
     endTime?: any;
@@ -16,4 +16,16 @@ export class AppointmentTimeSlot {
 export class Daycalendar {
     UserId: string;
     Date: any;
+}
+
+export class AppointmentDayCalendar {
+    dayCalenderId: string;
+    date: Date;
+    userId: string;
+    slots: AppointmentSlot[];
+}
+
+export class AppointmentSlot {
+    attendees: string[];
+    timeSlot: AppointmentTimeSlot;
 }

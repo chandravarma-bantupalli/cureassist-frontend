@@ -1,14 +1,14 @@
 <app-doctor-header></app-doctor-header>
-<div *ngIf="doctorProfileExists" class="current-appointments">
-  <div *ngFor="let slot of timeSlots">
+<div class="current-appointments">
+  <div *ngFor="let slot of todaySlots">
     <mat-card>
       <mat-card-subtitle class="time-slot">
         <div>
-          <h4> {{ slot.slotStartTime }} </h4>
-          <h4> {{ slot.slotEndTime }} </h4>
+          <h4> {{ slot.timeSlot.startTime | date: 'shortTime' }} </h4>
+          <h4> {{ slot.timeSlot.endTime | date: 'shortTime' }} </h4>
         </div>
         <div>
-          <h3> {{ slot.slotCapacity }} has occupied this slot. </h3>
+          <h3> {{ slot.attendees.length }} has booked appointment with you in this slot. </h3>
         </div>
       </mat-card-subtitle>
       <mat-card-content>
@@ -19,6 +19,11 @@
                 Patients Details
               </mat-panel-title>
             </mat-expansion-panel-header>
+            <div *ngFor="let attendee of slot.attendees">
+                <mat-card>
+                  {{ attendee }}
+                </mat-card>
+            </div>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>

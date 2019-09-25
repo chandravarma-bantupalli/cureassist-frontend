@@ -1,4 +1,5 @@
 export class Patient {
+    userId: string;
     FirstName: string;
     LastName: string;
     DateOfBirth: Date;

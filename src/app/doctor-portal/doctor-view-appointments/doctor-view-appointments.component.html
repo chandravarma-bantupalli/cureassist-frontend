@@ -1,14 +1,17 @@
 <app-doctor-header></app-doctor-header>
 
-<div class="current-appointments">
-  <!-- <div *ngFor="let patient of patients"> -->
+<div *ngFor="let patient of patients">
   <mat-card>
-    <mat-card-subtitle class="patient-details">
-      <div>
-        <h4>PatientName:</h4>
-        <h4>patientPhoneNumber:</h4>
-      </div>
+    <mat-card-subtitle>
+      Patient Details
     </mat-card-subtitle>
+    <mat-card-content>
+      <h4> Patient Name: {{ patient.FirstName }} {{ patient.LastName }} </h4>
+      <h5> Patient Phone Number: {{ patient.PhoneNumber }} </h5>
+      <h5> </h5>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary"> Add Prescription </button>
+    </mat-card-actions>
   </mat-card>
-  <!-- </div>  -->
 </div>
