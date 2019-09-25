@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Prescriptions, PrescribedMedicines } from '../models/prescriptions';
 import { TestReports } from '../models/testreports';
+import { environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class HealthrecordsService {
   constructor(private http: HttpClient) { }
   getPatientPrescriptions(patientid: string): Observable<Prescriptions[]> {
     // tslint:disable-next-line:max-line-length
-    return this.http.get<Prescriptions[]>('http://prescription-api.cureassist.cgi-wave7.stackroute.io/api/prescription/prescription/' + patientid);
+    return this.http.get<Prescriptions[]>(environment.prescriptionAPI + '/api/prescription/prescription/' + patientid);
   }
   sendprescriptiontopharmacy(body) {
     this.currentPrescription = body;
@@ -36,7 +37,7 @@ export class HealthrecordsService {
     console.log(this.PrescribedMedicines);
     this.CurrentLocation = this.currentPrescription.prescription.location;
     // tslint:disable-next-line:max-line-length
-    return this.http.post('http://prescription-api.cureassist.cgi-wave7.stackroute.io/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation});
+    return this.http.post(environment.prescriptionAPI + '/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation});
   }
   somethingClick(medicine: string) {
     if (this.orderMedicines.includes(medicine)) {
@@ -52,7 +53,7 @@ export class HealthrecordsService {
     }
     getPatientTestReport(patientid: string): Observable<TestReports[]> {
       // tslint:disable-next-line:max-line-length
-      return this.http.get<TestReports[]>('http://test-reports-api.cureassist.cgi-wave7.stackroute.io/api/testreports/patient/' + patientid);
+      return this.http.get<TestReports[]>(environment.testreportAPI + '/api/testreports/patient/' + patientid);
     }
 
 }

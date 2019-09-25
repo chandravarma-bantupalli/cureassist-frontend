@@ -5,13 +5,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import { User } from '../models/user';
+import { environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OnboardingService {
 
-  url = 'http://onboarding-api.cureassist.cgi-wave7.stackroute.io/api/user';
+  url = environment.onboardingAPI + '/api/user';
   emailId: string;
   userid: string;
   usertype: string;

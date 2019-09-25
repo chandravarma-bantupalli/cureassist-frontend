@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentHttpService {
 
-  url = 'http://appointment-api.cureassist.cgi-wave7.stackroute.io/appointments/';
-  patientApiUrl = 'http://patient-api.cureassist.cgi-wave7.stackroute.io/api/patient/';
+  url = environment.appointmentAPI + '/appointments/';
+  patientApiUrl = environment.patientAPI + '/api/patient/';
 
   constructor(
     private http: HttpClient

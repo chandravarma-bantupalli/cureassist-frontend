@@ -3,13 +3,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pharmacy } from '../models/pharmacy';
+import { environment} from '../../environments/environment.prod';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PharmacyService {
-  urlpost = 'http://pharmacy-api.cureassist.cgi-wave7.stackroute.io/api/pharmacy';
+  urlpost = environment.pharmacyAPI + '/api/pharmacy';
   constructor(private fb: FormBuilder, private http: HttpClient) { }
   formModel = this.fb.group({
     pharmacyName: ['', Validators.required],

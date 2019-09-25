@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Quotation } from '../models/quotation';
 import { OnboardingService } from './onboarding.service';
 import { Prescriptions } from '../models/prescriptions';
+import { environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class QuotationService {
     this.finalQuotation = new BehaviorSubject<Quotation>(new Quotation());
     this.patientDetails = new BehaviorSubject<Prescriptions>(new Prescriptions());
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://pharmacy-api.cureassist.cgi-wave7.stackroute.io/notifications')
+      .withUrl(environment.pharmacyAPI + '/notifications')
       .build();
     this.hubConnection.on('ReceiveQuotationRequest', this.onQuotationRequestReceived.bind(this));
     this.hubConnection.on('SelectedQuotation', this.onQuotationReceived.bind(this));

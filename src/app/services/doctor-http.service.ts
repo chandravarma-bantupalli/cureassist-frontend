@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Doctor } from '../models/doctor';
 import { TimeSlot } from '../models/time-slot';
+import { environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorHttpService {
 
-  URL = 'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/doctor/';
+  URL = environment.doctorsdcAPI + '/api/doctor/';
 
   constructor(
     private http: HttpClient

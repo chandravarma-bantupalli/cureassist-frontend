@@ -2,21 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TimeSlot } from '../models/time-slot';
 import { Observable } from 'rxjs';
+import { environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeSlotService {
 
-  DOCTOR_TS_URL = 'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/doctor/';
-  DC_TS_URL = 'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/diagnosiscenter/';
+  DOCTOR_TS_URL = environment.doctorsdcAPI + '/api/doctor/';
+  DC_TS_URL = environment.doctorsdcAPI + '/api/diagnosiscenter/';
   singleTimeSlot: TimeSlot;
   timeSlotId: string;
   dcId: string;
   doctorId: string;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) { }
 
   getDiagnosticCenterTimeSlots(id: string): Observable<TimeSlot[]> {
