@@ -46,8 +46,8 @@ export class DoctorHomeComponent implements OnInit {
 
   getDayCalendarOfDoctor() {
     const date = new Date();
-    this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
-      console.log(this.userid);
+    this.appointmentService.getDayCalendarOfUser(this.onboardingService.userid, date.toLocaleDateString()).subscribe( (data) => {
+      console.log(this.onboardingService.userid);
       console.log(data.toLocaleDateString());
       console.log(data);
       this.appointmentDayCalendar = data;
