@@ -34,9 +34,13 @@
 <div *ngIf="!appointmentExist">
   <mat-card>
     <mat-card-content>
-      <h4> You don't have appointments for this day..! </h4>
+      <h4> You don't have any appointments so far, for this day..! </h4>
+      <h5> Update your time slots.</h5>
     </mat-card-content>
   </mat-card>
+  <button mat-stroked-button (click)="manageTimeSlots()">
+      Update
+  </button>
 </div>
 
 <div *ngIf="!doctorProfileExists">

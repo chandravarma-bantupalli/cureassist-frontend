@@ -29,6 +29,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   ngOnInit() {
     this.doctorId = this.onboardingService.userid;
     this.getAllAppointments();
+    this.getPatientDetails();
   }
 
   getAllAppointments() {
@@ -53,12 +54,12 @@ export class DoctorViewAppointmentsComponent implements OnInit {
       }
     }
     console.log(this.attendees);
-    this.getPatientDetails();
   }
 
   getPatientDetails() {
     this.patients = [];
     this.patients.length = this.attendees.length;
+    console.log(this.patients.length);
     for (const attendee of this.attendees) {
       this.appointmentService.getDetailsOfAttendee(attendee).subscribe( (data) => {
         console.log(data);
@@ -68,15 +69,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   }
 
   openPrescriptionDialog() {
-    console.log('dialog opened');
-    const dialogRef = this.dialog.open(PrescriptionFormComponent, {
-      width: 'auto'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-    this.onNoClick();
+    console.log('opened prescription dialog');
   }
 
   onNoClick(): void {

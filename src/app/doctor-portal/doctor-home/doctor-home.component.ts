@@ -51,13 +51,17 @@ export class DoctorHomeComponent implements OnInit {
       console.log(this.onboardingService.userid);
       console.log(data);
       this.appointmentDayCalendar = data;
-
       this.todaySlots = data.slots;
       console.log(this.todaySlots);
       this.appointmentsExist = true;
     }, (err) => {
       this.appointmentsExist = false;
+      this.doctorProfileExists = true;
     });
+  }
+
+  manageTimeSlots() {
+    this.router.navigate(['/doctor/manage/timeslots']);
   }
 
   goToProfile() {
