@@ -12,13 +12,14 @@
        </mat-expansion-panel>
 </mat-accordion> -->
 <mat-accordion>
-       <mat-expansion-panel *ngFor="let appointment of appointments" (click)=click2()>
+       <mat-expansion-panel *ngFor="let appointment of appointments" (click)=click2() (click)=click()>
          <mat-expansion-panel-header>
            <mat-panel-title>
                    <h4>Appointment Date: {{appointment.date | date}}</h4>
            </mat-panel-title>
          </mat-expansion-panel-header>
          <div *ngFor="let item of diagnosticName">{{item}}</div>
+         <div *ngFor="let item of doctorFirstName">{{item}}</div>
          <div *ngFor="let item of appointment.slots" >
            At:{{item.timeSlot.startTime | date:'HH:mm'}}
          </div>
