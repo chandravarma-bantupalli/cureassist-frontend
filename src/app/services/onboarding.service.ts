@@ -94,7 +94,6 @@ export class OnboardingService {
     //   this.cookieService.set('loginToken', userAccessToken);
     // }
     this.cookieService.deleteAll();
-    // this.cookieService.set(userAccessToken, 'loginToken');
     this.cookieService.set('loginToken', userAccessToken, 2147483647, '/', '.cureassist.cgi-wave7.stackroute.io');
     const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
     this.emailId = tokenInfo.EmailId;

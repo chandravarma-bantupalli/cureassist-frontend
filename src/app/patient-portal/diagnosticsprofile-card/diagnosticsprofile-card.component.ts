@@ -52,7 +52,7 @@ export class DCConfirmBooking {
 
   }
   confirmAppointment(date: Date, startTime: Date, endTime: Date, diagnosticCenterId: string) {
-    this.diagnosticcenterId = this.card.confirmAppointment(diagnosticCenterId);
-    this.service.bookAppointment(this.diagnosticcenterId, this.services.userid, date, startTime, endTime).subscribe();
+    //this.diagnosticcenterId = this.card.confirmAppointment(diagnosticCenterId);
+    this.service.dcbookAppointment(this.services.userid, diagnosticCenterId, date, startTime, endTime).subscribe();
   }
 }

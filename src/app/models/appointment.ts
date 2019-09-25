@@ -5,6 +5,8 @@ export interface IAppointments {
     startTime?: any;
     endTime?: any;
     bookdate?: any;
+    doctorDetail?: any;
+    diagnosticDetail?: any;
 }
 export class AppointmentTimeSlot {
     Date: Date;
