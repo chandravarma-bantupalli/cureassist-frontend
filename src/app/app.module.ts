@@ -18,6 +18,7 @@ import { ConfirmBooking } from './patient-portal/card/card.component';
 import { DCConfirmBooking } from './patient-portal/diagnosticsprofile-card/diagnosticsprofile-card.component';
 import { BuyNow } from './medical-records/view-prescription/view-prescription.component';
 import { BottomSheet } from './onboarding/register/register.component';
+import { PrescriptionModule } from './prescription/prescription.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BottomSheet } from './onboarding/register/register.component';
     OnboardingModule,
     MedicalRecordsModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    PrescriptionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

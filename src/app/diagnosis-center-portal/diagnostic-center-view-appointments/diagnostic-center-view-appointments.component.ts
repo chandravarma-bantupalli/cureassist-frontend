@@ -24,7 +24,7 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
     this.getAllAppointments();
   }
   getAllAppointments() {
-    this.appointmentService.getAllAppointmentsOfUser('diagnosticCenterId').subscribe( (data) => {
+    this.appointmentService.getAllAppointmentsOfUser(this.diagnosticCenterId).subscribe( (data) => {
       console.log(data);
       this.appointments = data;
       console.log(this.appointments);

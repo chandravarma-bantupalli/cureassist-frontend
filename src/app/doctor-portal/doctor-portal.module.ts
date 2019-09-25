@@ -12,11 +12,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DoctorTimeslotComponent } from './doctor-timeslot/doctor-timeslot.component';
 import { DoctorViewAppointmentsComponent } from './doctor-view-appointments/doctor-view-appointments.component';
+import { PrescriptionFormComponent } from '../prescription/prescription-form/prescription-form.component';
+import { PrescriptionModule } from '../prescription/prescription.module';
 
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [DoctorHeaderComponent, DoctorHomeComponent, DoctorManageSlotsComponent, DoctorProfileComponent, DoctorUpdateProfileComponent, DoctorTimeslotComponent, DoctorViewAppointmentsComponent],
+  declarations: [
+    DoctorHeaderComponent,
+    DoctorHomeComponent,
+    DoctorManageSlotsComponent,
+    DoctorProfileComponent,
+    DoctorUpdateProfileComponent,
+    DoctorTimeslotComponent,
+    DoctorViewAppointmentsComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -32,7 +42,8 @@ import { DoctorViewAppointmentsComponent } from './doctor-view-appointments/doct
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PrescriptionModule
   ],
   exports: [
    DoctorHeaderComponent,
@@ -43,7 +54,8 @@ import { DoctorViewAppointmentsComponent } from './doctor-view-appointments/doct
    DoctorViewAppointmentsComponent
   ],
   entryComponents: [
-    DoctorTimeslotComponent
+    DoctorTimeslotComponent,
+    PrescriptionFormComponent
   ]
 })
 export class DoctorPortalModule { }
