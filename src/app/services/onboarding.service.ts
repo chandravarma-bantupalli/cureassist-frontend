@@ -34,10 +34,10 @@ export class OnboardingService {
   }
 
   CreateUser(EmailId: string, Usertype: string) {
-    return this.http.post(this.url + '/register', { email: EmailId, userType: Usertype });
+    return this.http.post(this.url + '/register', { EmailId, UserType: Usertype });
   }
   LoginUser(EmailId: string, Password: string, Usertype: string) {
-    return this.http.post(this.url + '/login', { email: EmailId, password: Password, userType: Usertype });
+    return this.http.post(this.url + '/login', { EmailId, Password, UserType: Usertype });
   }
   SetPassword(Password: string, UserId: string) {
     console.log(Password, UserId);

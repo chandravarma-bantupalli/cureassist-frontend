@@ -1,3 +1,7 @@
+
+// cloud Urls
 export const environment = {
-  production: true
+  production: true,
+  patientAPI: '',
+  doctorsAPI: '',
 };
