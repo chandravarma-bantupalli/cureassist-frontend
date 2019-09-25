@@ -31,7 +31,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   ngOnInit() {
     this.doctorId = this.onboardingService.userid;
     this.getAllAppointments();
-    this.getPatients();
+    this.getPatientDetails();
   }
 
   getAllAppointments() {
@@ -67,11 +67,11 @@ export class DoctorViewAppointmentsComponent implements OnInit {
         console.log(data);
       });
     }
-    this.getPatientDetails();
   }
 
   getPatientDetails() {
-    this.patients = [];
+    console.log('--Getting Patient Details--');
+    this.getPatients();
     for (const attendee of this.attendees) {
       this.patientService.getPatientByUserId(attendee).subscribe( (data) => {
         console.log(data);
