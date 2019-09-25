@@ -51,6 +51,7 @@ export class DoctorHomeComponent implements OnInit {
       console.log(this.onboardingService.userid);
       console.log(data);
       this.appointmentDayCalendar = data;
+
       this.todaySlots = data.slots;
       console.log(this.todaySlots);
       this.appointmentsExist = true;
