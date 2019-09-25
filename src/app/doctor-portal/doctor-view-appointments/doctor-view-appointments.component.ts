@@ -32,7 +32,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   }
 
   getAllAppointments() {
-    this.appointmentService.getAllAppointmentsOfUser('user123456').subscribe( (data) => {
+    this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe( (data) => {
       console.log(data);
       this.appointments = data;
       console.log(this.appointments);
