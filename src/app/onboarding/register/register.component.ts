@@ -17,21 +17,21 @@ export class RegisterComponent implements OnInit {
   errorStatus: any;
   ngOnInit() {
     this.usertype = window.location.href;
-    this.usertype = this.usertype.split('.')[0];
     this.usertype = this.usertype.split('//')[1];
-    if (this.usertype === 'patient') {
-      this.usertype = 'patient';
-    } else if (this.usertype === 'doctor') {
-      this.usertype = 'doctor';
-    } else if (this.usertype === 'dc') {
-      this.usertype = 'dc';
-    } else if (this.usertype === 'pharmacy') {
-      this.usertype = 'pharmacy';
-    }
+    this.usertype = this.usertype.split('.')[0];
+    // if (this.usertype === 'patient') {
+    //   this.usertype = 'patient';
+    // } else if (this.usertype === 'doctor') {
+    //   this.usertype = 'doctor';
+    // } else if (this.usertype === 'dc') {
+    //   this.usertype = 'dc';
+    // } else if (this.usertype === 'pharmacy') {
+    //   this.usertype = 'pharmacy';
+    // }
   }
   CreateUser() {
     this.service.CreateUser(this.emailId, this.usertype)
-      .subscribe(data => this.errorStatus = data, error => { if (error.status == 409 || error.status==500) {
+      .subscribe(data => this.errorStatus = data, error => { if (error.status == 409 || error.status == 500) {
         this.errorStatus = error.status;
       } else {
         console.log('a');
