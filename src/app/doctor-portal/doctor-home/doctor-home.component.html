@@ -1,5 +1,5 @@
 <app-doctor-header></app-doctor-header>
-<div class="current-appointments">
+<div *ngIf="appointmentExist" class="current-appointments">
   <div *ngFor="let slot of todaySlots">
     <mat-card>
       <mat-card-subtitle class="time-slot">
@@ -31,6 +31,14 @@
   </div>
 </div>
 
+<div *ngIf="!appointmentExist">
+  <mat-card>
+    <mat-card-content>
+      <h4> You don't have appointments for this day..! </h4>
+    </mat-card-content>
+  </mat-card>
+</div>
+
 <div *ngIf="!doctorProfileExists">
   <mat-card>
     <mat-card-content>
@@ -41,3 +49,4 @@
     Update Your Profile
   </button>
 </div>
+

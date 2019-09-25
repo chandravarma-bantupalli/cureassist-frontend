@@ -19,6 +19,7 @@ export class DoctorHomeComponent implements OnInit {
   doctorProfileExists: boolean;
   appointmentDayCalendar: AppointmentDayCalendar;
   todaySlots: AppointmentSlot[];
+  appointmentsExist: boolean;
 
   constructor(
     private onboardingService: OnboardingService,
@@ -40,22 +41,21 @@ export class DoctorHomeComponent implements OnInit {
       this.doctorProfileExists = true;
     }, (err) => {
       console.log(err);
-      this.doctorProfileExists = false;
     });
   }
 
   getDayCalendarOfDoctor() {
     const date: Date = new Date();
+    console.log(date + 'Todays Date');
     this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
       console.log(this.onboardingService.userid);
-      console.log(data.toLocaleDateString());
       console.log(data);
       this.appointmentDayCalendar = data;
       this.todaySlots = data.slots;
       console.log(this.todaySlots);
-      this.doctorProfileExists = true;
+      this.appointmentsExist = true;
     }, (err) => {
-      this.doctorProfileExists = false;
+      this.appointmentsExist = false;
     });
   }
 
