@@ -14,10 +14,10 @@ export class PharmacyHomeComponent implements OnInit {
   ngOnInit() {
   }
   editprofile() {
-    this.route.navigate(['/pharmacy/createprofile']);
+    this.route.navigate(['pharmacy/createprofile']);
   }
   viewprofile() {
-    this.route.navigate(['/pharmacy/viewprofile']);
+    this.route.navigate(['pharmacy/view']);
   }
   resetPassword() {
     this.route.navigate(['onboarding/resetpassword']);
