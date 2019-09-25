@@ -27,4 +27,8 @@ export class DiagnosticCenterHeaderComponent implements OnInit {
     this.router.navigate(['/diagnosisCenter/manage/timeslots']);
   }
 
+  goToAppointments() {
+    this.router.navigate(['/diagnosisCenter/view']);
+  }
+
 }
