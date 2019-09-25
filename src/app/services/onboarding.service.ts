@@ -88,11 +88,14 @@ export class OnboardingService {
     //     this.route.navigate(['pharmacy/home']);
     //   }
     // }
-    const savedtokenInfo = this.cookieService.get('loginToken');
-    if (!(userAccessToken === savedtokenInfo)) {
-      this.cookieService.delete('loginToken');
-      this.cookieService.set('loginToken', userAccessToken);
-    }
+    // const savedtokenInfo = this.cookieService.get('loginToken');
+    // if (!(userAccessToken === savedtokenInfo)) {
+    //   this.cookieService.delete('loginToken');
+    //   this.cookieService.set('loginToken', userAccessToken);
+    // }
+    this.cookieService.deleteAll();
+    this.cookieService.set(userAccessToken, 'loginToken');
+
     const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
     this.emailId = tokenInfo.email;
     this.userid = tokenInfo.userid;
