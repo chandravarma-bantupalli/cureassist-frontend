@@ -47,7 +47,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
 
   getDayCalendarOfDiagnosticCenter() {
     const date = new Date();
-    this.appointmentService.getDayCalendarOfUser('diagnosticCenterId', date.toLocaleDateString()).subscribe( (data) => {
+    this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
       this.appointmentDayCalendar = data;
       this.todaySlots = this.appointmentDayCalendar.slots;
       console.log(this.todaySlots);
