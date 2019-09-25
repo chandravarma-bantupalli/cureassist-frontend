@@ -65,7 +65,7 @@ export class ConfirmBooking {
 
   }
   confirmAppointment(date: Date, startTime: Date, endTime: Date, doctorId: string) {
-    this.doctorId = this.card.confirmAppointment(doctorId);
-    this.service.bookAppointment(this.doctorId, this.services.userid, date, startTime, endTime).subscribe();
+    // this.doctorId = this.card.confirmAppointment(doctorId);
+    this.service.bookAppointment(this.services.userid, doctorId, date, startTime, endTime).subscribe();
   }
 }

@@ -19,6 +19,6 @@
            </mat-panel-title>
          </mat-expansion-panel-header>
          <div *ngFor="let item of diagnosticName">{{item}}</div>
-         <div *ngFor="let item of appointment.slots" ><h3>At: </h3> {{item.timeSlot.startTime | date:'HH:mm'}}</div>
+         <div *ngFor="let item of appointment.slot" ><h3>At: </h3> {{item.timeSlot.startTime | date:'HH:mm'}}</div>
        </mat-expansion-panel>
 </mat-accordion>
