@@ -49,7 +49,7 @@ export class DoctorHomeComponent implements OnInit {
     this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
       console.log(data);
       this.appointmentDayCalendar = data;
-      this.todaySlots = this.appointmentDayCalendar.slots;
+      this.todaySlots = data.Slots;
       console.log(this.todaySlots);
       this.doctorProfileExists = true;
     }, (err) => {
