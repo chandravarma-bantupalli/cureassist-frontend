@@ -17,7 +17,8 @@ export class HealthrecordsService {
 
   constructor(private http: HttpClient) { }
   getPatientPrescriptions(patientid: string): Observable<Prescriptions[]> {
-    return this.http.get<Prescriptions[]>('http://localhost:5003/api/prescription/prescription/' + patientid);
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<Prescriptions[]>('http://prescription-api.cureassist.cgi-wave7.stackroute.io/api/prescription/prescription/' + patientid);
   }
   sendprescriptiontopharmacy(body) {
     this.currentPrescription = body;
@@ -35,7 +36,7 @@ export class HealthrecordsService {
     console.log(this.PrescribedMedicines);
     this.CurrentLocation = this.currentPrescription.prescription.location;
     // tslint:disable-next-line:max-line-length
-    return this.http.post('http://localhost:5005/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation});
+    return this.http.post('http://prescription-api.cureassist.cgi-wave7.stackroute.io/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation});
   }
   somethingClick(medicine: string) {
     if (this.orderMedicines.includes(medicine)) {
@@ -50,7 +51,8 @@ export class HealthrecordsService {
       console.log(this.prescription);
     }
     getPatientTestReport(patientid: string): Observable<TestReports[]> {
-      return this.http.get<TestReports[]>('http://localhost:5004/api/testreports/patient/' + patientid);
+      // tslint:disable-next-line:max-line-length
+      return this.http.get<TestReports[]>('http://test-reports-api.cureassist.cgi-wave7.stackroute.io/api/testreports/patient/' + patientid);
     }
 
 }

@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class TimeSlotService {
 
-  DOCTOR_TS_URL = 'http://localhost:5002/api/doctor/';
-  DC_TS_URL = 'http://localhost:5002/api/diagnosiscenter/';
+  DOCTOR_TS_URL = 'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/doctor/';
+  DC_TS_URL = 'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/diagnosiscenter/';
   singleTimeSlot: TimeSlot;
   timeSlotId: string;
   dcId: string;

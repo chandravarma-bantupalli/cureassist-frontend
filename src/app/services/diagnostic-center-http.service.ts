@@ -9,7 +9,7 @@ import { OnboardingService } from './onboarding.service';
 })
 export class DiagnosticCenterHttpService {
 
-  URL = 'http://localhost:5002/api/diagnosiscenter/';
+  URL = 'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/diagnosiscenter/';
 
   constructor(
     private http: HttpClient,

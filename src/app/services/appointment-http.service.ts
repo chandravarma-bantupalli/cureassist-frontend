@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppointmentHttpService {
 
-  url = 'http://localhost:5006/appointments/';
-  patientApiUrl = 'http://localhost:5001/api/patient/';
+  url = 'http://appointment-api.cureassist.cgi-wave7.stackroute.io/appointments/';
+  patientApiUrl = 'http://patient-api.cureassist.cgi-wave7.stackroute.io/api/patient/';
 
   constructor(
     private http: HttpClient

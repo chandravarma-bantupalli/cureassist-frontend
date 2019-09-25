@@ -21,7 +21,7 @@ export class QuotationService {
     this.finalQuotation = new BehaviorSubject<Quotation>(new Quotation());
     this.patientDetails = new BehaviorSubject<Prescriptions>(new Prescriptions());
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5005/notifications')
+      .withUrl('http://pharmacy-api.cureassist.cgi-wave7.stackroute.io/notifications')
       .build();
     this.hubConnection.on('ReceiveQuotationRequest', this.onQuotationRequestReceived.bind(this));
     this.hubConnection.on('SelectedQuotation', this.onQuotationReceived.bind(this));

@@ -9,7 +9,7 @@ import { TimeSlot } from '../models/time-slot';
 })
 export class DoctorHttpService {
 
-  URL = 'http://localhost:5002/api/doctor/';
+  URL = 'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/doctor/';
 
   constructor(
     private http: HttpClient

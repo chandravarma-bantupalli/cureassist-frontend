@@ -9,7 +9,7 @@ import { Pharmacy } from '../models/pharmacy';
   providedIn: 'root'
 })
 export class PharmacyService {
-  urlpost = 'http://localhost:5005/api/pharmacy';
+  urlpost = 'http://pharmacy-api.cureassist.cgi-wave7.stackroute.io/api/pharmacy';
   constructor(private fb: FormBuilder, private http: HttpClient) { }
   formModel = this.fb.group({
     pharmacyName: ['', Validators.required],
