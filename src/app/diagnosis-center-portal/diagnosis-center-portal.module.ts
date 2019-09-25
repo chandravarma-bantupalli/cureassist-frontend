@@ -13,6 +13,7 @@ import { DiagnosticCenterManageSlotsComponent } from './diagnostic-center-manage
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { TimeSlotComponent } from './time-slot/time-slot.component';
+// tslint:disable-next-line: max-line-length
 import { DiagnosticCenterViewAppointmentsComponent } from './diagnostic-center-view-appointments/diagnostic-center-view-appointments.component';
 
 
@@ -51,7 +52,8 @@ import { DiagnosticCenterViewAppointmentsComponent } from './diagnostic-center-v
     DiagnosticCenterHomeComponent,
     DiagnosticCenterProfileComponent,
     DiagnosticCenterUpdateProfileComponent,
-    DiagnosticCenterManageSlotsComponent
+    DiagnosticCenterManageSlotsComponent,
+    DiagnosticCenterViewAppointmentsComponent
   ],
   entryComponents: [TimeSlotComponent]
 })
