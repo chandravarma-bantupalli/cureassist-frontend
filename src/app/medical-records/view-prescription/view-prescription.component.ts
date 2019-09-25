@@ -72,6 +72,7 @@ export class BuyNow implements OnInit {
   location: any;
   orderQuotation: Quotation;
   completeData: any;
+  reply: string;
   // tslint:disable-next-line:no-inferrable-types
   timeLeft: number = 60;
   prescriptionId: string;

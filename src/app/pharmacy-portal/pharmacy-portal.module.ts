@@ -9,12 +9,13 @@ import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatCardModule, M
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { PharmacyConfirmOrdersComponent } from './pharmacy-confirm-orders/pharmacy-confirm-orders.component';
 
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [PharmacyHomeComponent, PharmacyOrdersPageComponent, PharmacyProfileComponent, PharmacyViewProfileComponent],
+  declarations: [PharmacyHomeComponent, PharmacyOrdersPageComponent, PharmacyProfileComponent, PharmacyViewProfileComponent, PharmacyConfirmOrdersComponent],
   imports: [
     CommonModule,
     MatToolbarModule,

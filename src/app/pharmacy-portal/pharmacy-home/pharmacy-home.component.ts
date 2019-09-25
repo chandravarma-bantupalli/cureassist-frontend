@@ -25,4 +25,7 @@ export class PharmacyHomeComponent implements OnInit {
   logout() {
     this.service.Logout();
   }
+  getMyOrders() {
+    this.route.navigate(['pharmacy/myorders']);
+  }
 }
