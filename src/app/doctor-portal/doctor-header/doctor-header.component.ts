@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
   selector: 'app-doctor-header',
@@ -8,7 +9,10 @@ import { Router } from '@angular/router';
 })
 export class DoctorHeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private onboardingService: OnboardingService
+  ) { }
 
   ngOnInit() {
   }
@@ -26,4 +30,13 @@ export class DoctorHeaderComponent implements OnInit {
   viewappointments() {
     this.router.navigate(['/doctor/view']);
   }
+
+  logout() {
+    this.onboardingService.Logout();
+  }
+
+  resetpassword() {
+    this.router.navigate(['onboarding/resetpassword']);
+  }
+
 }

@@ -9,8 +9,15 @@
       </div>
     </div>
 
-    <div class="profile">
-      <button mat-flat-button color="primary" (click)="goToProfile()"> Profile </button>
+    <div class="Profile">
+      <button mat-flat-button color="primary" [matMenuTriggerFor]="profile"> 
+          <i class="material-icons">person</i>
+      </button>
+      <mat-menu #profile="matMenu">
+          <button class="Profile" mat-menu-item (click)="goToProfile()">View Profile</button>
+          <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
+          <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

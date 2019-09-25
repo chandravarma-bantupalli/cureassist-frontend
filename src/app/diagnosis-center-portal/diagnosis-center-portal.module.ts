@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatExpansionModule, MatChipsModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatExpansionModule, MatChipsModule,
+  MatMenuModule } from '@angular/material';
 import { MatListModule, MatGridListModule, MatCardModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
 
 import { DiagnosticCenterHeaderComponent } from './diagnostic-center-header/diagnostic-center-header.component';
@@ -42,6 +43,7 @@ import { DiagnosticCenterViewAppointmentsComponent } from './diagnostic-center-v
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
     OwlDateTimeModule,
