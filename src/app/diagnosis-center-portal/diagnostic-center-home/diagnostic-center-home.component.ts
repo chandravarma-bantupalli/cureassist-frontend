@@ -32,8 +32,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   ngOnInit() {
     this.userid = this.onboardingService.userid;
     this.getAllDiagCenTimeSlots(this.userid);
-    this.appointments = [
-    ];
+    this.appointments = [];
   }
 
   getAllDiagCenTimeSlots(id: string) {
