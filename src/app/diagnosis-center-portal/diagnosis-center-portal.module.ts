@@ -13,6 +13,7 @@ import { DiagnosticCenterManageSlotsComponent } from './diagnostic-center-manage
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { TimeSlotComponent } from './time-slot/time-slot.component';
+import { DiagnosticCenterViewAppointmentsComponent } from './diagnostic-center-view-appointments/diagnostic-center-view-appointments.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TimeSlotComponent } from './time-slot/time-slot.component';
     DiagnosticCenterProfileComponent,
     DiagnosticCenterUpdateProfileComponent,
     DiagnosticCenterManageSlotsComponent,
-    TimeSlotComponent
+    TimeSlotComponent,
+    DiagnosticCenterViewAppointmentsComponent
   ],
   imports: [
     CommonModule,
