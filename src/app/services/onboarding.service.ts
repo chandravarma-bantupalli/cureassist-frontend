@@ -44,7 +44,7 @@ export class OnboardingService {
     console.log(Password, UserId);
     this.userid = UserId;
 
-    if ((window.location.href).includes('http://cureassist.com:4200/onboarding/login')) {
+    if ((window.location.href).includes('patient')) {
       this.route.navigate(['/patient/profile/post']);
     } else if ((window.location.href).includes('doctor')) {
       this.route.navigate(['/doctor/home']);
