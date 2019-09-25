@@ -97,9 +97,9 @@ export class OnboardingService {
     this.cookieService.set(userAccessToken, 'loginToken');
 
     const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
-    this.emailId = tokenInfo.email;
-    this.userid = tokenInfo.userid;
-    this.usertype = tokenInfo.usertype;
+    this.emailId = tokenInfo.EmailId;
+    this.userid = tokenInfo.UserId;
+    this.usertype = tokenInfo.UserType;
     if ((window.location.href).includes('patient')) {
       this.route.navigate(['/patient/search']);
     } else if ((window.location.href).includes('doctor')) {
