@@ -30,7 +30,7 @@ export class DoctorHomeComponent implements OnInit {
 
   ngOnInit() {
     this.userid = this.onboardingService.userid;
-    // this.getAllDoctorTimeSlots(this.userid);
+    this.getAllDoctorTimeSlots(this.userid);
     this.getDayCalendarOfDoctor();
   }
 
@@ -54,6 +54,7 @@ export class DoctorHomeComponent implements OnInit {
       this.todaySlots = data.slots;
       console.log(this.todaySlots);
       this.appointmentsExist = true;
+      this.doctorProfileExists = true;
     }, (err) => {
       this.appointmentsExist = false;
       this.doctorProfileExists = true;
