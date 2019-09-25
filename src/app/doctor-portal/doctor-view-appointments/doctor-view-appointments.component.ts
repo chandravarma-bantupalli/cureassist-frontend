@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AppointmentHttpService } from 'src/app/services/appointment-http.service';
 import { IAppointments, AppointmentDayCalendar, AppointmentTimeSlot } from 'src/app/models/appointment';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 import { Patient } from 'src/app/models/patient';
+import { MatDialog } from '@angular/material';
+import { PrescriptionFormComponent } from 'src/app/prescription/prescription-form/prescription-form.component';
 
 @Component({
   selector: 'app-doctor-view-appointments',
@@ -19,9 +21,11 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   patients: Patient[];
 
   constructor(
+    private dialog: MatDialog,
     private appointmentService: AppointmentHttpService,
     private onboardingService: OnboardingService
   ) { }
+
   ngOnInit() {
     this.doctorId = this.onboardingService.userid;
     this.getAllAppointments();
@@ -62,4 +66,21 @@ export class DoctorViewAppointmentsComponent implements OnInit {
       });
     }
   }
+
+  openPrescriptionDialog() {
+    console.log('dialog opened');
+    const dialogRef = this.dialog.open(PrescriptionFormComponent, {
+      width: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    this.onNoClick();
+  }
+
+  onNoClick(): void {
+    const dialogRef = this.dialog.closeAll();
+  }
+
 }
