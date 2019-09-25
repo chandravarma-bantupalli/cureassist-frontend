@@ -19,6 +19,7 @@ export class PatientService {
   // appointment: IAppointments;
   viewdcprofiledata: DiagnosticCenter;
   UserId: string;
+  doctorUserId: string;
   constructor(private http: HttpClient, private service: OnboardingService) { }
 
   CreateProfile(body) {
@@ -69,22 +70,25 @@ export class PatientService {
   }
   // data from searched component
   viewdoctorprofile(doctor: Doctor) {
+    this.doctorUserId = doctor.userid;
+    console.log(this.doctorUserId);
     this.viewprofiledata = doctor;
   }
   viewdcprofile(diagnostic: DiagnosticCenter) {
     this.viewdcprofiledata = diagnostic;
   }
   bookAppointment(
-    userId: string,
-    doctorId: string,
+    userId: string,  // userId for the patient
+    userid: string, // userid for the doctor
     date: Date,
     slotStartTime: Date,
     slotEndTime: Date
   ) {
-    console.log(userId, doctorId, date, slotStartTime, slotEndTime);
+    userid = this.doctorUserId;
+    console.log(userId, userid, date, slotStartTime, slotEndTime);
     // tslint:disable-next-line:max-line-length
     return this.http.post(this.urlForAppointments, {
-      attendees: [userId, doctorId],
+      attendees: [userId, userid],
       Date: date,
       slot: { Date: date, StartTime: slotStartTime, EndTime: slotEndTime }
     });
