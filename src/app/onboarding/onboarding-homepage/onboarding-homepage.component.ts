@@ -10,7 +10,6 @@ export class OnboardingHomepageComponent implements OnInit {
 
   constructor(private route: Router) { }
   login() {
-    console.log("a");
     this.route.navigate(['onboarding/login']);
   }
   register() {

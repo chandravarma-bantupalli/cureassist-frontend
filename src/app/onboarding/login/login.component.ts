@@ -15,9 +15,7 @@ export class LoginComponent implements OnInit {
     this.usertype = window.location.href;
     this.usertype = this.usertype.split('.')[0];
     this.usertype = this.usertype.split('//')[1];
-    if (this.usertype === 'cureassist') {
-      this.usertype = 'patient';
-    }
+    console.log(this.usertype);
   }
   constructor(private service: OnboardingService) { }
   LoginUser() {

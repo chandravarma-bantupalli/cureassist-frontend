@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     this.usertype = window.location.href;
     this.usertype = this.usertype.split('.')[0];
     this.usertype = this.usertype.split('//')[1];
-    if (this.usertype === 'cureassist') {
+    if (this.usertype === 'patient') {
       this.usertype = 'patient';
     } else if (this.usertype === 'doctor') {
       this.usertype = 'doctor';
