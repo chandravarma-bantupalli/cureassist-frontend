@@ -29,7 +29,7 @@ export class DoctorHomeComponent implements OnInit {
 
   ngOnInit() {
     this.userid = this.onboardingService.userid;
-    this.getAllDoctorTimeSlots(this.userid);
+    // this.getAllDoctorTimeSlots(this.userid);
     this.getDayCalendarOfDoctor();
   }
 
@@ -47,6 +47,7 @@ export class DoctorHomeComponent implements OnInit {
   getDayCalendarOfDoctor() {
     const date = new Date();
     this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
+      console.log(data);
       this.appointmentDayCalendar = data;
       this.todaySlots = this.appointmentDayCalendar.slots;
       console.log(this.todaySlots);
