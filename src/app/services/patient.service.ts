@@ -20,6 +20,7 @@ export class PatientService {
   viewdcprofiledata: DiagnosticCenter;
   UserId: string;
   doctorUserId: string;
+  dcuserid: string;
   constructor(private http: HttpClient, private service: OnboardingService) { }
 
   CreateProfile(body) {
@@ -75,6 +76,7 @@ export class PatientService {
     this.viewprofiledata = doctor;
   }
   viewdcprofile(diagnostic: DiagnosticCenter) {
+    this.dcuserid = diagnostic.userid;
     this.viewdcprofiledata = diagnostic;
   }
   bookAppointment(
@@ -98,14 +100,15 @@ export class PatientService {
   // }
   dcbookAppointment(
     userId: string,
-    diagnosticid: string,
+    userid: string,
     date: Date,
     slotStartTime: Date,
     slotEndTime: Date
   ) {
+    userid = this.dcuserid; 
     // tslint:disable-next-line:max-line-length
     return this.http.post(this.urlForAppointments, {
-      attendees: [userId, diagnosticid],
+      attendees: [userId, userid],
       Date: date,
       slot: { Date: date, StartTime: slotStartTime, EndTime: slotEndTime }
     });
@@ -117,8 +120,8 @@ export class PatientService {
   // viewAppointmentByDate(): Observable<IAppointments> {
   //   return this.http.get<IAppointments>(this.urlForBookAppointments + '/dayappointment?UserId=' + this.service.userid + '&date='  );
   // }
-  GetDoctorById(doctorId: string): Observable<Doctor> {
-    return this.http.get<Doctor>(environment.doctorsdcAPI + '/api/doctor/' + doctorId);
+  GetDoctorById(userid: string): Observable<Doctor> {
+    return this.http.get<Doctor>(environment.doctorsdcAPI + '/api/doctor/' + userid);
   }
   GetDiagnosticsById(diagnosticId: string): Observable<IDiagnostics> {
     return this.http.get<IDiagnostics>(environment.doctorsdcAPI + '/api/diagnosiscenter/' + diagnosticId);
