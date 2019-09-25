@@ -105,7 +105,7 @@ export class PatientService {
     slotStartTime: Date,
     slotEndTime: Date
   ) {
-    userid = this.dcuserid; 
+    userid = this.dcuserid;
     // tslint:disable-next-line:max-line-length
     return this.http.post(this.urlForAppointments, {
       attendees: [userId, userid],
