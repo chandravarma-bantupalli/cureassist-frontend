@@ -15,7 +15,6 @@ export class OnboardingService {
   emailId: string;
   userid: string;
   usertype: string;
-  doctorId: string;
   user: any;
 
   constructor(
