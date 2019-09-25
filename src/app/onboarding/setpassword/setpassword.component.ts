@@ -38,14 +38,14 @@ export class SetpasswordComponent implements OnInit {
       if (this.errorStatus === 403) {
         this.errorStatus = 403;
       } else {
-        if ((window.location.href).includes('http://cureassist.com:4200/onboarding/setpassword')) {
-          this.routes.navigate(['profile/post']);
+        if ((window.location.href).includes('patient')) {
+          this.routes.navigate(['patient/profile/post']);
         } else if ((window.location.href).includes('doctor')) {
           this.routes.navigate(['doctor/home']);
         } else if ((window.location.href).includes('dc')) {
           this.routes.navigate(['diagnosisCenter/home']);
         } else if ((window.location.href).includes('pharmacy')) {
-          this.routes.navigate(['pharmacy/home']);
+          this.routes.navigate(['pharmacy/createprofile']);
         }
       }
     }

@@ -14,7 +14,7 @@ export class PharmacyOrdersPageComponent implements OnInit {
   selectedQuotationObject: Quotation;
   quotationRequests: Quotation[];
   singleQuotation: Quotation;
-  patientDetail: Prescriptions;
+  // patientDetail: Prescriptions;
   prescribedMedicines: PrescribedMedicine[];
   pharmacyResponse: Quotation;
   MedicinePrice = 0;
@@ -39,15 +39,15 @@ export class PharmacyOrdersPageComponent implements OnInit {
         this.quotationRequests.push(quotation);
       }
     });
-    this.quotationService.patientDetails.subscribe((details: any) => {
-      if (details === '') {
-        console.log('no details');
-      } else {
-        // console.log(details);
-        this.patientDetail = details;
-        console.log(this.patientDetail, 'got details');
-      }
-    });
+    // this.quotationService.patientDetails.subscribe((details: any) => {
+    //   if (details === '') {
+    //     console.log('no details');
+    //   } else {
+    //     // console.log(details);
+    //     this.patientDetail = details;
+    //     console.log(this.patientDetail, 'got details');
+    //   }
+    // });
   }
   // sendResponse(totalCost) {
   //   // console.log(totalCost);
@@ -93,7 +93,7 @@ export class PharmacyOrdersPageComponent implements OnInit {
   pharmacyResponseMethod(totalCost) {
     console.log(this.singleQuotation.prescriptionId);
     this.singleQuotation.totalCost = totalCost;
-    console.log(this.singleQuotation);
+    console.log(this.singleQuotation.totalCost);
     this.quotationService.sendQuotation(this.singleQuotation);
 
   }

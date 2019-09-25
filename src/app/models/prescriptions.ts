@@ -15,6 +15,7 @@ export class Prescriptions {
 }
 export class PrescribedMedicines {
     MedicineName: string;
+    MedicinePrice?: number;
     MedicineQuantity: string;
     PrescribedDays: string;
     PrescribedDosage: string;

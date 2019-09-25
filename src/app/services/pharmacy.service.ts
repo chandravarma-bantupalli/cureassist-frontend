@@ -12,7 +12,6 @@ export class PharmacyService {
   urlpost = 'http://localhost:5005/api/pharmacy';
   constructor(private fb: FormBuilder, private http: HttpClient) { }
   formModel = this.fb.group({
-    pharmacyId: [''],
     pharmacyName: ['', Validators.required],
     pharmacyRegisterNumber: ['', Validators.required],
     pharmacyLocation: ['', Validators.required],
@@ -29,6 +28,6 @@ export class PharmacyService {
     return this.http.get<Pharmacy>(this.urlpost + '/viewprofile');
   }
    updateprofile(body) {
-     return this.http.put(this.urlpost, body);
+     return this.http.put(this.urlpost + '/editprofile', body);
    }
 }

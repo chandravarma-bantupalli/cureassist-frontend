@@ -23,8 +23,8 @@ import { PatientLandingPageComponent } from './patient-landing-page/patient-land
     OnboardingHomepageComponent,
     RegisterComponent,
     ResetpasswordComponent,
-    BottomSheet,
     SetpasswordComponent,
+    BottomSheet,
     PatientLandingPageComponent
   ],
   imports: [

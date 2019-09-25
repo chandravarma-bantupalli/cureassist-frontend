@@ -12,8 +12,8 @@
     </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <div ng *ngIf="timeLeft < 300">
-        <p>Please wait for {{timeLeft}} seconds while we confirm your order</p>
+    <div *ngIf="orderQuotation.totalCost">
+        Your Order is Confirmed. Please Pay Rs. {{orderQuotation?.totalCost}}
     </div>
     <button class="mat-raised-button" (click)="close()">Close</button>
     <button class="mat-raised-button mat-primary" (click)="save()" (click)= setTimer()>Save</button>

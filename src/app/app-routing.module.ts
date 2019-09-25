@@ -29,6 +29,7 @@ import { PharmacyProfileComponent } from './pharmacy-portal/pharmacy-profile/pha
 import { PharmacyViewProfileComponent } from './pharmacy-portal/pharmacy-view-profile/pharmacy-view-profile.component';
 import { PharmacyOrdersPageComponent } from './pharmacy-portal/pharmacy-orders-page/pharmacy-orders-page.component';
 import { PatientLandingPageComponent } from './onboarding/patient-landing-page/patient-landing-page.component';
+import { PharmacyConfirmOrdersComponent } from './pharmacy-portal/pharmacy-confirm-orders/pharmacy-confirm-orders.component';
 
 const routes: Routes = [
   { path: 'onboarding', children: [
@@ -70,8 +71,9 @@ const routes: Routes = [
   {path: 'pharmacy', children: [
     {path: 'home', component: PharmacyOrdersPageComponent},
     {path: 'createprofile', component: PharmacyProfileComponent},
-    { path: 'view/:emailid', component: PharmacyViewProfileComponent },
-    { path: 'orders', component: PharmacyOrdersPageComponent }
+    { path: 'view', component: PharmacyViewProfileComponent },
+    { path: 'orders', component: PharmacyOrdersPageComponent },
+    {path: 'myorders', component: PharmacyConfirmOrdersComponent}
   ]},
   {path: '', pathMatch: 'full', component: PatientLandingPageComponent},
   {path: 'patient', pathMatch: 'full', component: HomePageComponent},

@@ -11,7 +11,7 @@ import { User } from '../models/user';
 })
 export class OnboardingService {
 
-  url = 'http://localhost:5000/api/user';
+  url = 'http://onboarding-api.cureassist.cgi-wave7.stackroute.io/api/user';
   emailId: string;
   userid: string;
   usertype: string;
@@ -25,8 +25,8 @@ export class OnboardingService {
     // const token = this.cookieService.get('loginToken');
     // this.user = this.getDecodedAccessToken(token);
     // console.log(this.user);
-    // this.userid = this.user.userid;
-    // this.emailId = this.user.email;
+    // // this.userid = this.user.userid;
+    // // this.emailId = this.user.email;
   }
 
   getAlluser(): Observable<User[]> {
@@ -43,7 +43,7 @@ export class OnboardingService {
     console.log(Password, UserId);
     this.userid = UserId;
 
-    if ((window.location.href).includes('http://cureassist.com:4200/onboarding/login')) {
+    if ((window.location.href).includes('patient')) {
       this.route.navigate(['/patient/profile/post']);
     } else if ((window.location.href).includes('doctor')) {
       this.route.navigate(['/doctor/home']);
@@ -96,7 +96,7 @@ export class OnboardingService {
     this.emailId = tokenInfo.email;
     this.userid = tokenInfo.userid;
     this.usertype = tokenInfo.usertype;
-    if ((window.location.href).includes('http://cureassist.com:4200/onboarding/login')) {
+    if ((window.location.href).includes('patient')) {
       this.route.navigate(['/patient/search']);
     } else if ((window.location.href).includes('doctor')) {
       this.route.navigate(['doctor/home']);

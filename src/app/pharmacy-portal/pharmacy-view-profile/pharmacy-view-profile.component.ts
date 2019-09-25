@@ -14,23 +14,21 @@ export class PharmacyViewProfileComponent implements OnInit {
   sub: any;
   Email: any;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, public service: PharmacyService, private router: Router) {
-    this.route.params.subscribe(params => this.Email = params.emailid);
+  constructor(private fb: FormBuilder, public service: PharmacyService) {
   }
   formModel = this.fb.group({
     pharmacyId: [''],
-    pharmacyName: ['', Validators.required],
-    pharmacyRegisterNumber: ['', Validators.required],
-    pharmacyLocation: ['', Validators.required],
-    emailId: ['', Validators.required],
-    phoneNumber: ['', Validators.maxLength(10)]
+    pharmacyName: [''],
+    pharmacyRegisterNumber: [''],
+    pharmacyLocation: [''],
+    emailId: [''],
+    phoneNumber: ['']
    });
   ngOnInit() {
     this.service.getPharmacy()
       .subscribe(data => {
         // console.log(data);
-        this.service.formModel.setValue(data);
-        // console.log(this.service.formModel);
+        this.formModel.setValue(data); console.log(this.formModel.value);
         // console.log(this.pharmacy);
       });
   }
