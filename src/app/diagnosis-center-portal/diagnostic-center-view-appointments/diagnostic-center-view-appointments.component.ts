@@ -16,8 +16,10 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
   appointmentSlots: AppointmentTimeSlot[];
   attendees: string[];
   patients: Patient[];
-  constructor( private appointmentService: AppointmentHttpService,
-               private onboardingService: OnboardingService) { }
+  constructor(
+    private appointmentService: AppointmentHttpService,
+    private onboardingService: OnboardingService
+  ) { }
 
   ngOnInit() {
     this.diagnosticCenterId = this.onboardingService.userid;
