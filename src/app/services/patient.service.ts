@@ -11,8 +11,8 @@ import { DiagnosticCenter } from '../models/diagnostic-center';
   providedIn: 'root'
 })
 export class PatientService {
-  urlForPatient = 'http://localhost:5001/api/patient';
-  urlForAppointments = 'http://localhost:5006/appointments';
+  urlForPatient = 'http://patient-api.cureassist.cgi-wave7.stackroute.io/api/patient';
+  urlForAppointments = 'http://appointment-api.cureassist.cgi-wave7.stackroute.io/appointments';
   viewprofiledata: Doctor;
   bookappointment: IAppointments;
   // appointment: IAppointments;
@@ -33,7 +33,7 @@ export class PatientService {
   }
   searchDoctorsByName(searchbar: string, City: string): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(
-      'http://localhost:5002/api/doctor/search?city=' +
+      'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/doctor/search?city=' +
       City +
       '&name=' +
       searchbar
@@ -44,7 +44,7 @@ export class PatientService {
     City: string
   ): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(
-      'http://localhost:5002/api/doctor/search?city=' +
+      'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/doctor/search?city=' +
       City +
       '&specialization=' +
       searchbar
@@ -52,7 +52,7 @@ export class PatientService {
   }
   searchDCByName(searchbar: string, City: string): Observable<DiagnosticCenter[]> {
     return this.http.get<DiagnosticCenter[]>(
-      'http://localhost:5002/api/diagnosiscenter/search?city=' +
+      'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/diagnosiscenter/search?city=' +
       City +
       '&dcname=' +
       searchbar
@@ -60,7 +60,7 @@ export class PatientService {
   }
   searchDCByTest(searchbar: string, City: string): Observable<DiagnosticCenter[]> {
     return this.http.get<DiagnosticCenter[]>(
-      'http://localhost:5002/api/diagnosiscenter/search?city=' +
+      'http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/diagnosiscenter/search?city=' +
       City +
       '&testsConducted=' +
       searchbar
@@ -113,9 +113,9 @@ export class PatientService {
   //   return this.http.get<IAppointments>(this.urlForBookAppointments + '/dayappointment?UserId=' + this.service.userid + '&date='  );
   // }
   GetDoctorById(doctorId: string): Observable<Doctor> {
-    return this.http.get<Doctor>('http://localhost:5002/api/doctor/' + doctorId);
+    return this.http.get<Doctor>('http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/doctor/' + doctorId);
   }
   GetDiagnosticsById(diagnosticId: string): Observable<IDiagnostics> {
-    return this.http.get<IDiagnostics>('http://localhost:5002/api/diagnosiscenter/' + diagnosticId);
+    return this.http.get<IDiagnostics>('http://doctor-dc-api.cureassist.cgi-wave7.stackroute.io/api/diagnosiscenter/' + diagnosticId);
   }
 }
