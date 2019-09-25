@@ -1,17 +1,17 @@
 stages:
-  - install
-  - lint
-  - build
+  # - install
+  # - lint
+  # - build
   - dockerize
   - deploy
 
-install:
-  stage: install
-  image: node:12.9.0
-  script:
-    - npm install
-  tags:
-    - immersive-cgi-w7-dotnet
+# install:
+#   stage: install
+#   image: node:12.9.0
+#   script:
+#     - npm install
+#   tags:
+#     - immersive-cgi-w7-dotnet
 
 # lint:
 #   stage: lint
@@ -26,17 +26,17 @@ variables:
   CLI_VERSION: 8.0.3
   DOCKER_DRIVER: overlay
 
-build:
-  stage: build
-  image: trion/ng-cli
-  script:
-    - npm install
-    - ng build --prod
-  artifacts:
-    paths:
-      - dist/
-  tags:
-    - immersive-cgi-w7-dotnet
+# build:
+#   stage: build
+#   image: trion/ng-cli
+#   script:
+#     - npm install
+#     - ng build --prod
+#   artifacts:
+#     paths:
+#       - dist/
+#   tags:
+#     - immersive-cgi-w7-dotnet
 
 dockerize-stage:
   stage: dockerize
