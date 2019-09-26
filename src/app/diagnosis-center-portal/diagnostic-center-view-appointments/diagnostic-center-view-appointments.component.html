@@ -1,13 +1,16 @@
 <app-diagnostic-center-header></app-diagnostic-center-header>
-<div *ngFor="let patient of patients">
+<div *ngFor="let p of patients">
     <mat-card>
       <mat-card-subtitle>
         Patient Details
       </mat-card-subtitle>
       <mat-card-content>
-        <h4> Patient Name: {{ patient.FirstName }} {{ patient.LastName }} </h4>
-        <h5> Patient Phone Number: {{ patient.PhoneNumber }} </h5>
+        <h4> Patient Name: {{ p.firstName }} {{ p.lastName }} </h4>
+        <h5> Patient Phone Number: {{ p.phoneNumber }} </h5>
         <h5> </h5>
       </mat-card-content>
+      <mat-card-actions>
+          <button mat-stroked-button color="primary"> Upload Test Report </button>
+      </mat-card-actions>
     </mat-card>
-  </div>
+</div>

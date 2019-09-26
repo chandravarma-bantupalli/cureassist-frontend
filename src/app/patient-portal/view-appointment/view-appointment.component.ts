@@ -46,7 +46,9 @@ export class ViewAppointmentComponent implements OnInit {
     this.doctorId.forEach(element => {
       this.service.GetDoctorById(element)
         // tslint:disable-next-line:max-line-length
-        .subscribe((data: Doctor) => this.doctorFirstName.push(data.doctorFirstName + ' ' + data.doctorLastName + ' ' + data.doctorAddress));
+        .subscribe((data: Doctor) =>
+        // tslint:disable-next-line: max-line-length
+        this.appointments.map( e =>  e.doctorDetail = ('Doctor Name:  ' + data.doctorFirstName + ' ' + data.doctorLastName + '  Doctor Address:   ' + data.doctorAddress)));
     });
   }
   click2() {
@@ -63,8 +65,8 @@ export class ViewAppointmentComponent implements OnInit {
     this.doctorId.forEach(element => {
       this.service.GetDiagnosticsById((element))
         .subscribe((data: IDiagnostics) => {
-          const diagnosticName = data.diagnosticCenterName + ' ' + data.diagnosticCenterAddress;
-          this.diagnosticName.push(diagnosticName);
+          // tslint:disable-next-line: max-line-length
+          this.appointments.map( e =>  e.diagnosticDetail = 'Diagnostic Name=' + data.diagnosticCenterName + ' Diagnostic Center Address=' + data.diagnosticCenterAddress);
         });
     });
   }

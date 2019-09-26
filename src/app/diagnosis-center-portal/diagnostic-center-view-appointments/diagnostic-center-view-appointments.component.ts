@@ -3,6 +3,7 @@ import { AppointmentHttpService } from 'src/app/services/appointment-http.servic
 import { IAppointments, AppointmentDayCalendar, AppointmentTimeSlot } from 'src/app/models/appointment';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 import { Patient } from 'src/app/models/patient';
+import { PatientService } from '../../services/patient.service';
 @Component({
   selector: 'app-diagnostic-center-view-appointments',
   templateUrl: './diagnostic-center-view-appointments.component.html',
@@ -15,10 +16,13 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
   appointments: AppointmentDayCalendar[];
   appointmentSlots: AppointmentTimeSlot[];
   attendees: string[];
-  patients: Patient[];
+  patients: Patient[] = [];
+
+
   constructor(
     private appointmentService: AppointmentHttpService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    private patientService: PatientService
   ) { }
 
   ngOnInit() {
@@ -43,21 +47,12 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
         // tslint:disable-next-line: prefer-for-of
         for (let k = 0; k < this.appointments[i].slots[j].attendees.length; k++) {
           this.attendees.push(this.appointments[i].slots[j].attendees[k]);
+          this.patientService.getPatientByUserId(this.appointments[i].slots[j].attendees[k]).subscribe( (data) => {
+            console.log(data);
+            this.patients.push(data);
+          });
         }
       }
-    }
-    console.log(this.attendees);
-    this.getPatientDetails();
-  }
-
-  getPatientDetails() {
-    this.patients = [];
-    this.patients.length = this.attendees.length;
-    for (const attendee of this.attendees) {
-      this.appointmentService.getDetailsOfAttendee(attendee).subscribe( (data) => {
-        console.log(data);
-        this.patients.push(data);
-      });
     }
   }
 }

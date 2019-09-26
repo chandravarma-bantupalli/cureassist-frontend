@@ -11,11 +11,14 @@ export class PrescriptionHttpService {
 
   url = environment.prescriptionAPI + '/api/prescription/';
 
+  patientId: string;
+  doctorId: string;
+
   constructor(
     private http: HttpClient
   ) { }
 
-  addNewPrescription( prescription: Prescription): Observable<Prescription> {
+  addNewPrescription(prescription: Prescription): Observable<Prescription> {
     return this.http.post<Prescription>(this.url, prescription);
   }
 

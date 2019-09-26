@@ -19,6 +19,7 @@ export class DoctorHomeComponent implements OnInit {
   doctorProfileExists: boolean;
   appointmentDayCalendar: AppointmentDayCalendar;
   todaySlots: AppointmentSlot[];
+  appointmentsExist: boolean;
 
   constructor(
     private onboardingService: OnboardingService,
@@ -29,7 +30,7 @@ export class DoctorHomeComponent implements OnInit {
 
   ngOnInit() {
     this.userid = this.onboardingService.userid;
-    // this.getAllDoctorTimeSlots(this.userid);
+    this.getAllDoctorTimeSlots(this.userid);
     this.getDayCalendarOfDoctor();
   }
 
@@ -40,21 +41,29 @@ export class DoctorHomeComponent implements OnInit {
       this.doctorProfileExists = true;
     }, (err) => {
       console.log(err);
-      this.doctorProfileExists = false;
+      this.appointmentsExist = true;
     });
   }
 
   getDayCalendarOfDoctor() {
-    const date = new Date();
+    const date: Date = new Date();
+    console.log(date + 'Todays Date');
     this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
+      console.log(this.onboardingService.userid);
       console.log(data);
       this.appointmentDayCalendar = data;
-      this.todaySlots = data.Slots;
+      this.todaySlots = data.slots;
       console.log(this.todaySlots);
+      this.appointmentsExist = true;
       this.doctorProfileExists = true;
     }, (err) => {
-      this.doctorProfileExists = false;
+      this.appointmentsExist = false;
+      this.doctorProfileExists = true;
     });
+  }
+
+  manageTimeSlots() {
+    this.router.navigate(['/doctor/manage/timeslots']);
   }
 
   goToProfile() {

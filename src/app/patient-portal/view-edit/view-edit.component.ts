@@ -17,6 +17,7 @@ export class ViewEditComponent implements OnInit {
    }
    formModel = this.fb.group({
     patientId: [''],
+    userId: [''],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     dateOfBirth: [''],

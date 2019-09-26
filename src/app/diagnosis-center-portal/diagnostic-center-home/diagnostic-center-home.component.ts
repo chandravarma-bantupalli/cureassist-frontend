@@ -21,6 +21,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   dcProfileExists: boolean;
   appointmentDayCalendar: AppointmentDayCalendar;
   todaySlots: AppointmentSlot[];
+  appointmentsExist: boolean;
 
   constructor(
     private timeSlotService: TimeSlotService,
@@ -32,7 +33,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   ngOnInit() {
     this.userid = this.onboardingService.userid;
     this.getAllDiagCenTimeSlots(this.userid);
-    this.appointments = [];
+    this.getDayCalendarOfDiagnosticCenter();
   }
 
   getAllDiagCenTimeSlots(id: string) {
@@ -41,25 +42,32 @@ export class DiagnosticCenterHomeComponent implements OnInit {
       this.timeSlots = data;
       this.dcProfileExists = true;
     }, (err) => {
-      this.dcProfileExists = false;
+      console.log(err);
+      this.appointmentsExist = true;
     });
   }
 
   getDayCalendarOfDiagnosticCenter() {
     const date = new Date();
-    this.appointmentService.getDayCalendarOfUser('diagnosticCenterId', date.toLocaleDateString()).subscribe( (data) => {
+    this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
       this.appointmentDayCalendar = data;
       this.todaySlots = this.appointmentDayCalendar.slots;
       console.log(this.todaySlots);
       this.dcProfileExists = true;
+      this.appointmentsExist = true;
     }, (err) => {
-      this.dcProfileExists = false;
+      this.dcProfileExists = true;
+      this.appointmentsExist = false;
     });
   }
 
   goToSetProfile() {
     this.onboardingService.userid = this.userid;
     this.router.navigate(['/diagnosisCenter/update']);
+  }
+
+  manageTimeSlots() {
+    this.router.navigate(['/diagnosisCenter/manage/timeslots']);
   }
 
 }

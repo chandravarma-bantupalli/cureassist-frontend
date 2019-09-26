@@ -11,15 +11,15 @@
           </div>
           <div>
               <label>
-                  <h5>patientName:</h5>
-                  <h5>patientPhoneNumber: </h5>
-                  <h5>DoctorName:</h5>
-                  <h5>DoctorPhoneNumber:</h5>
+                  <h5>Patient Name: {{ patientName }} </h5>
+                  <h5>Patient Phone Number: {{ patientPhoneNumber }} </h5>
+                  <h5>Doctor Name: {{ doctorName }} </h5>
+                  <h5>Doctor Phone Number: {{ doctorPhoneNumber }} </h5>
               </label>
           </div>
       </mat-card>
   </section>
-  </form>
+</form>
   
   
   <!-- Code for symptoms  -->
@@ -55,6 +55,13 @@
           </mat-card>
       </section>
   </form>
+
+  <div>
+    <h5> Prescribed Medicines: </h5>
+    <div *ngFor="let medicine of ListOfMedicine">
+        <label> {{ medicine.medicineName }} </label>
+    </div>
+  </div>
   
   
   <!-- This is medicine details block  -->

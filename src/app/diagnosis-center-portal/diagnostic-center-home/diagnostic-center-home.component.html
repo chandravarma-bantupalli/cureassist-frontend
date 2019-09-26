@@ -2,13 +2,13 @@
 
 <!-- <p>diagnostic-center-home works!</p> -->
 
-<div *ngIf="dcProfileExists" class="current-appointments">
-  <div *ngFor="let slot of timeSlots">
+<div *ngIf="appointmentsExist" class="current-appointments">
+  <div *ngFor="let slot of todaySlots">
     <mat-card>
       <mat-card-subtitle class="time-slot">
         <div>
-          <h4> {{ slot.slotStartTime }} </h4>
-          <h4> {{ slot.slotEndTime }} </h4>
+          <h4> {{ slot.timeSlot.startTime | date: 'shortTime' }} </h4>
+          <h4> {{ slot.timeSlot.endTime | date: 'shortTime' }} </h4>
         </div>
         <div>
           <h3> {{ slot.slotCapacity }} has occupied this slot. </h3>
@@ -27,6 +27,18 @@
       </mat-card-content>
     </mat-card>
   </div>
+</div>
+
+<div *ngIf="!appointmentsExist">
+    <mat-card>
+      <mat-card-content>
+        <h4> You don't have any appointments so far, for this day..! </h4>
+        <h5> Update your time slots.</h5>
+      </mat-card-content>
+    </mat-card>
+    <button mat-stroked-button (click)="manageTimeSlots()">
+        Update
+    </button>
 </div>
 
 <div *ngIf="!dcProfileExists">

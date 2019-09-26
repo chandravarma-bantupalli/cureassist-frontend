@@ -105,7 +105,7 @@ export class PatientService {
     slotStartTime: Date,
     slotEndTime: Date
   ) {
-    userid = this.dcuserid; 
+    userid = this.dcuserid;
     // tslint:disable-next-line:max-line-length
     return this.http.post(this.urlForAppointments, {
       attendees: [userId, userid],
@@ -125,5 +125,9 @@ export class PatientService {
   }
   GetDiagnosticsById(diagnosticId: string): Observable<IDiagnostics> {
     return this.http.get<IDiagnostics>(environment.doctorsdcAPI + '/api/diagnosiscenter/' + diagnosticId);
+  }
+
+  getPatientByUserId(id: string) {
+    return this.http.get<any>(this.urlForPatient + `/${id}`);
   }
 }

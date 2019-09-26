@@ -36,8 +36,8 @@
           </mat-form-field><br>
           <div *ngFor="let time of viewprofiledata.doctorSlots">
             <button mat-raised-button color="primary"
-              (click)="openDialog(time.slotStartTime,time.slotEndTime, viewprofiledata.doctorId)">From :
-              {{time.slotStartTime}} To : {{time.slotEndTime}}</button>&nbsp;
+              (click)="openDialog(time.slotStartTime,time.slotEndTime, viewprofiledata.doctorId)">
+              {{time.slotStartTime}} To: {{time.slotEndTime}}</button>&nbsp;
             &nbsp;
           </div>
         </div>
