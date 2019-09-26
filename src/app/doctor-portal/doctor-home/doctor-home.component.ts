@@ -41,6 +41,7 @@ export class DoctorHomeComponent implements OnInit {
       this.doctorProfileExists = true;
     }, (err) => {
       console.log(err);
+      this.appointmentsExist = true;
     });
   }
 

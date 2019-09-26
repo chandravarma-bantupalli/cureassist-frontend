@@ -42,7 +42,8 @@ export class DiagnosticCenterHomeComponent implements OnInit {
       this.timeSlots = data;
       this.dcProfileExists = true;
     }, (err) => {
-      this.dcProfileExists = false;
+      console.log(err);
+      this.appointmentsExist = true;
     });
   }
 
@@ -63,6 +64,10 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   goToSetProfile() {
     this.onboardingService.userid = this.userid;
     this.router.navigate(['/diagnosisCenter/update']);
+  }
+
+  manageTimeSlots() {
+    this.router.navigate(['/diagnosisCenter/manage/timeslots']);
   }
 
 }
