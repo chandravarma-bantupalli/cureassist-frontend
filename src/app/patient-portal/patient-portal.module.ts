@@ -22,9 +22,13 @@ import {
   MatExpansionModule,
   MatListModule,
   MatNativeDateModule,
+  MatDialogModule,
+  MatDialogRef,
  } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
+import { AvatarModule } from 'ngx-avatar';
+import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { AppRoutingModule } from '../app-routing.module';
     ViewAppointmentComponent,
     ViewEditComponent,
     ConfirmBooking,
-    DCConfirmBooking
+    DCConfirmBooking,
+    EditProfileDialogComponent
   ],
   imports: [
     CommonModule,
@@ -49,8 +54,14 @@ import { AppRoutingModule } from '../app-routing.module';
     MatExpansionModule,
     MatListModule,
     AppRoutingModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AvatarModule,
+    MatDialogModule,
   ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} }
+  ],
+  entryComponents: [ EditProfileDialogComponent ],
   exports: [
     CardComponent,
     DiagnosticsprofileCardComponent,
