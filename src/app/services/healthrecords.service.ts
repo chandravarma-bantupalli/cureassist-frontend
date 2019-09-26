@@ -37,7 +37,7 @@ export class HealthrecordsService {
     console.log(this.PrescribedMedicines);
     this.CurrentLocation = this.currentPrescription.prescription.location;
     // tslint:disable-next-line:max-line-length
-    return this.http.post(environment.prescriptionAPI + '/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation});
+    return this.http.post(environment.prescriptionAPI + '/api/prescription', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation});
   }
   somethingClick(medicine: string) {
     if (this.orderMedicines.includes(medicine)) {
