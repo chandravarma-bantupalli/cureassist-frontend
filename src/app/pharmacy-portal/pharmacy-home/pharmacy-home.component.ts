@@ -28,4 +28,7 @@ export class PharmacyHomeComponent implements OnInit {
   getMyOrders() {
     this.route.navigate(['pharmacy/myorders']);
   }
+  gotohome() {
+    this.route.navigate(['pharmacy/home']);
+  }
 }
