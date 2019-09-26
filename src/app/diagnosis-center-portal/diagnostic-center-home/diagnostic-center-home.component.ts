@@ -21,6 +21,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   dcProfileExists: boolean;
   appointmentDayCalendar: AppointmentDayCalendar;
   todaySlots: AppointmentSlot[];
+  appointmentsExist: boolean;
 
   constructor(
     private timeSlotService: TimeSlotService,
@@ -32,7 +33,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   ngOnInit() {
     this.userid = this.onboardingService.userid;
     this.getAllDiagCenTimeSlots(this.userid);
-    this.appointments = [];
+    this.getDayCalendarOfDiagnosticCenter();
   }
 
   getAllDiagCenTimeSlots(id: string) {
@@ -52,8 +53,10 @@ export class DiagnosticCenterHomeComponent implements OnInit {
       this.todaySlots = this.appointmentDayCalendar.slots;
       console.log(this.todaySlots);
       this.dcProfileExists = true;
+      this.appointmentsExist = true;
     }, (err) => {
-      this.dcProfileExists = false;
+      this.dcProfileExists = true;
+      this.appointmentsExist = false;
     });
   }
 

@@ -128,6 +128,6 @@ export class PatientService {
   }
 
   getPatientByUserId(id: string) {
-    return this.http.get<any>(this.urlForPatient + `${id}`);
+    return this.http.get<any>(this.urlForPatient + `/${id}`);
   }
 }
