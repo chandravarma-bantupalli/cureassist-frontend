@@ -23,3 +23,22 @@
   .app-header{
     position: relative;
   }
+
+  .container {
+    padding: 10px;
+    justify-content: space-around;
+    width: auto;
+    margin: auto; 
+  }
+
+  /* .avatar {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+  } */
+
+  .item {
+    align-items: center;
+    align-self: center;
+  }

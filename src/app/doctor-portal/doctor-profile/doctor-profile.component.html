@@ -1,38 +1,48 @@
 <app-doctor-header class="app-header sticky"></app-doctor-header>
 
-<div class="profile-details">
-  <mat-card>
-    <mat-card-title>
-      <h3> Basic Details </h3>
-    </mat-card-title>
-    <mat-card-content>
-      <h5> FirstName: {{ doctor.doctorFirstName }}</h5>
-      <h5> LastName: {{ doctor.doctorLastName }} </h5>
-      <h5> Email: {{ doctor.doctorEmail }} </h5>
-      <h5> Phone:{{ doctor.doctorPhoneNumber }}</h5>
-      <h5> City: {{ doctor.doctorCity }} </h5>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>
-      <h4> Complete Address </h4>
-    </mat-card-title>
-    <mat-card-content>
-      <h5> Address: {{ doctor.doctorAddress }}</h5>
-      <h5> Pincode: {{ doctor.pincode }} </h5>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>
-      <h4> Advanced Details </h4>
-    </mat-card-title>
-    <mat-card-content>
-      <h5> Registration Number: {{ doctor.doctorRegNum }} </h5>
-      <h5> Experience: {{ doctor.doctorExperience }} </h5>
-      <h5> Specialization: {{ doctor.doctorSpecialization }}</h5>
-    </mat-card-content>
-  </mat-card>
+
+<div class="basicDetails">
+
+<div class="container" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
+    <div class="item" fxFlex="80%" fxFlexOrder="2">
+      <mat-card style="height: 200px;">
+          <mat-card-content>
+              <h5> Dr. {{ doctor.doctorFirstName }} {{ doctor.doctorLastName }} </h5>
+              <h5> {{ doctor.doctorRegNum }} </h5>
+              <h5> {{ doctor.doctorEmail }} </h5>
+              <h5> {{ doctor.doctorPhoneNumber }}</h5>
+              <h5> {{ doctor.doctorCity }} </h5>
+          </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="item avatar" fxFlex="25%">
+      <mat-card style="height: 200px;">
+        <mat-card-content style="display: flex; flex-flow: column wrap; align-items: center;">
+          <ngx-avatar [name]="docName" size="120" [round]="true"></ngx-avatar>
+          <mat-chip-list style="padding: 4px;">
+            <mat-chip> {{ doctor.doctorSpecialization }} ( {{ doctor.doctorExperience }} Years) </mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
 </div>
+
+<div class="container">
+  <div>
+    <mat-card>
+      <mat-card-subtitle>
+        Address
+      </mat-card-subtitle>
+      <mat-card-content>
+        <h5> {{ doctor.doctorAddress }} </h5>
+        <h5> {{ doctor.pincode }} </h5>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+</div>
+
 
 <div class="profile-options">
   <button mat-stroked-button color="primary" (click)="goToManageSlots()"> View Time Slots </button>

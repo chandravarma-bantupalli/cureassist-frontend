@@ -15,6 +15,8 @@ export class DoctorProfileComponent implements OnInit {
   doctor: Doctor;
   timeslots: TimeSlot[];
   userid: string;
+  docName: string;
+
   constructor(
     private router: Router,
     private doctorService: DoctorHttpService,
@@ -22,7 +24,8 @@ export class DoctorProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userid = this.onboardingService.userid;
+    // this.userid = this.onboardingService.userid;
+    this.userid = '4a030b89-84f7-4fc5-9010-c00a0f3a6b21';
     this.getDoctorProfile(this.userid);
   }
 
@@ -30,6 +33,7 @@ export class DoctorProfileComponent implements OnInit {
     this.doctor = new Doctor();
     this.doctorService.getDoctorById(id).subscribe((data) => {
       this.doctor = data;
+      this.docName = this.doctor.doctorFirstName + ' ' + this.doctor.doctorLastName;
     });
   }
 

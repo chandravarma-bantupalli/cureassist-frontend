@@ -14,6 +14,8 @@ import { DoctorTimeslotComponent } from './doctor-timeslot/doctor-timeslot.compo
 import { DoctorViewAppointmentsComponent } from './doctor-view-appointments/doctor-view-appointments.component';
 import { PrescriptionFormComponent } from '../prescription/prescription-form/prescription-form.component';
 import { PrescriptionModule } from '../prescription/prescription.module';
+import { AvatarModule } from 'ngx-avatar';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -43,8 +45,10 @@ import { PrescriptionModule } from '../prescription/prescription.module';
     MatInputModule,
     MatMenuModule,
     FormsModule,
+    AvatarModule,
     ReactiveFormsModule,
-    PrescriptionModule
+    PrescriptionModule,
+    FlexLayoutModule
   ],
   exports: [
    DoctorHeaderComponent,
