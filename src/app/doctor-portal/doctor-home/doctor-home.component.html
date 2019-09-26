@@ -1,56 +1,20 @@
-<app-doctor-header></app-doctor-header>
-<div *ngIf="appointmentsExist" class="current-appointments">
-  <div *ngFor="let slot of todaySlots">
-    <mat-card>
-      <mat-card-subtitle class="time-slot">
-        <div>
-          <h4> {{ slot.timeSlot.startTime | date: 'shortTime' }} </h4>
-          <h4> {{ slot.timeSlot.endTime | date: 'shortTime' }} </h4>
-        </div>
-        <div>
-          <h3> {{ slot.attendees.length }} has booked appointment with you in this slot. </h3>
-        </div>
-      </mat-card-subtitle>
-      <mat-card-content>
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Patients Details
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div *ngFor="let attendee of slot.attendees">
-                <mat-card>
-                  <!-- {{ attendee }} -->
-                </mat-card>
+<div class="home-container">
+    <div class="title">
+      <h3>Cure Assist | <span class="lead">Doctor Portal</span></h3>
+    </div>
+    <div class="chicklet-container">
+        <!-- <app-doctor-view-appointments [when]="today"></app-doctor-view-appointments> -->
+        <!-- <app-doctor-view-appointments [when]="upcoming"></app-doctor-view-appointments> -->
+        <app-doctor-profile detailType="name"></app-doctor-profile>
+        <div class="chicklet-data-container">
+            <div class="left">
+                <app-doctor-profile detailType="personalInformation"></app-doctor-profile>
+                <app-doctor-profile detailType="address"></app-doctor-profile>
             </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </mat-card-content>
-    </mat-card>
-  </div>
+            <div class="right">
+                <app-doctor-view-appointments when="today"></app-doctor-view-appointments>
+                <app-doctor-manage-slots></app-doctor-manage-slots>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div *ngIf="!appointmentsExist">
-  <mat-card>
-    <mat-card-content>
-      <h4> You don't have any appointments so far, for this day..! </h4>
-      <h5> Update your time slots.</h5>
-    </mat-card-content>
-  </mat-card>
-  <button mat-stroked-button (click)="manageTimeSlots()">
-      Update
-  </button>
-</div>
-
-<div *ngIf="!doctorProfileExists">
-  <mat-card>
-    <mat-card-content>
-      Please Provide your profile details and update your availability times to view your current appointments.
-    </mat-card-content>
-  </mat-card>
-  <button mat-stroked-button (click)="goToProfile()">
-    Update Your Profile
-  </button>
-</div>
-

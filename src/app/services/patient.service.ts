@@ -95,9 +95,6 @@ export class PatientService {
       slot: { Date: date, StartTime: slotStartTime, EndTime: slotEndTime }
     });
   }
-  // viewPrescriptions(): Observable<IPrescriptions[]> {
-  //   return this.http.get<IPrescriptions[]>('http://localhost:3000/prescriptions');
-  // }
   dcbookAppointment(
     userId: string,
     userid: string,
@@ -117,9 +114,7 @@ export class PatientService {
   viewAllAppointment(): Observable<IAppointments[]> {
     return this.http.get<IAppointments[]>(this.urlForAppointments + '/allappointments?UserId=' + this.service.userid);
   }
-  // viewAppointmentByDate(): Observable<IAppointments> {
-  //   return this.http.get<IAppointments>(this.urlForBookAppointments + '/dayappointment?UserId=' + this.service.userid + '&date='  );
-  // }
+
   GetDoctorById(userid: string): Observable<Doctor> {
     return this.http.get<Doctor>(environment.doctorsdcAPI + '/api/doctor/' + userid);
   }
@@ -127,7 +122,7 @@ export class PatientService {
     return this.http.get<IDiagnostics>(environment.doctorsdcAPI + '/api/diagnosiscenter/' + diagnosticId);
   }
 
-  getPatientByUserId(id: string) {
-    return this.http.get<any>(this.urlForPatient + `/${id}`);
+  getPatientByUserId(id: string): Observable<Patient> {
+    return this.http.get<Patient>(this.urlForPatient + `/${id}`);
   }
 }

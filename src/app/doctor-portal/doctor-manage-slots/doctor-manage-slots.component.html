@@ -1,23 +1,26 @@
-<app-doctor-header></app-doctor-header>
-<div *ngIf="!timeSlotsExist">
-  <div>
-    <h5> Please Add Time Slots to get your Appointments Booked </h5>
+<div class="mat-elevation-z2 time-slot-container">
+  <div class="title">Time Slots</div>
+  <div *ngIf="!timeSlotsExist">
+    <div>
+      <h5>Please add your preferred time slots to get your appointments booked</h5>
+    </div>
   </div>
-</div>
 
-<div *ngIf="timeSlotsExist">
-  <div *ngFor="let slot of timeSlots">
-    <mat-card>
-      <mat-card-content>
-        {{ slot.slotStartTime }} -- {{ slot.slotEndTime }}
-      </mat-card-content>
-      <mat-card-footer>
-        <button mat-stroked-button (click)="getSpecificTimeSlot(slot.doctorId,slot.slotId)" color="primary"> Update Time
+  <div class="time-slot-wrapper" *ngIf="timeSlotsExist">
+    <div *ngFor="let slot of timeSlots">
+      <mat-divider></mat-divider>
+      <div>
+        <span>{{ slot.slotStartTime }} - {{ slot.slotEndTime }}</span>
+        <span>
+          <button mat-button
+          (click)="getSpecificTimeSlot(slot.doctorId,slot.slotId)"
+          color="primary"> Update Time
           Slot </button>
-      </mat-card-footer>
-    </mat-card>
+        </span>
+      </div>
+      <mat-divider></mat-divider>
+      <button mat-button (click)="addNewTimeSlot()" color="primary"> Add New</button>
   </div>
-</div>
-<div>
-  <button mat-stroked-button (click)="addNewTimeSlot()" color="primary"> Add New Slot </button>
+  <div>
+  </div>
 </div>

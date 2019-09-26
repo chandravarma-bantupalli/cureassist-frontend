@@ -1,11 +1,9 @@
 .profile-details{
-    width: 80%;
-    margin: auto;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
   }
-  
+
   .profile-options{
     display: flex;
     flex-flow: row wrap;
