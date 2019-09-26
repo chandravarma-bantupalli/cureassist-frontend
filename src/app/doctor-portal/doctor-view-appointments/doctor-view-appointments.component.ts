@@ -5,6 +5,7 @@ import { OnboardingService } from 'src/app/services/onboarding.service';
 import { Patient } from 'src/app/models/patient';
 import { MatDialog } from '@angular/material';
 import { PrescriptionFormComponent } from 'src/app/prescription/prescription-form/prescription-form.component';
+import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
   selector: 'app-doctor-view-appointments',
@@ -23,12 +24,14 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private appointmentService: AppointmentHttpService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    private patientService: PatientService
   ) { }
 
   ngOnInit() {
     this.doctorId = this.onboardingService.userid;
     this.getAllAppointments();
+    this.getPatientDetails();
   }
 
   getAllAppointments() {
@@ -53,30 +56,33 @@ export class DoctorViewAppointmentsComponent implements OnInit {
       }
     }
     console.log(this.attendees);
-    this.getPatientDetails();
   }
 
-  getPatientDetails() {
+  getPatients() {
     this.patients = [];
     this.patients.length = this.attendees.length;
+    console.log(this.patients.length);
     for (const attendee of this.attendees) {
       this.appointmentService.getDetailsOfAttendee(attendee).subscribe( (data) => {
         console.log(data);
-        this.patients.push(data);
       });
     }
   }
 
-  openPrescriptionDialog() {
-    console.log('dialog opened');
-    const dialogRef = this.dialog.open(PrescriptionFormComponent, {
-      width: 'auto'
-    });
+  getPatientDetails() {
+    console.log('--Getting Patient Details--');
+    this.getPatients();
+    for (const attendee of this.attendees) {
+      this.patientService.getPatientByUserId(attendee).subscribe( (data) => {
+        console.log(data);
+        this.patients.push(data);
+      });
+    }
+    console.log(this.patients);
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-    this.onNoClick();
+  openPrescriptionDialog() {
+    console.log('opened prescription dialog');
   }
 
   onNoClick(): void {

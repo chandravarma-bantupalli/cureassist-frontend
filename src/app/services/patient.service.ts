@@ -126,4 +126,8 @@ export class PatientService {
   GetDiagnosticsById(diagnosticId: string): Observable<IDiagnostics> {
     return this.http.get<IDiagnostics>(environment.doctorsdcAPI + '/api/diagnosiscenter/' + diagnosticId);
   }
+
+  getPatientByUserId(id: string) {
+    return this.http.get<any>(this.urlForPatient + `${id}`);
+  }
 }
