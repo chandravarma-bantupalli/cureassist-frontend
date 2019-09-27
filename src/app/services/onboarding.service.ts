@@ -101,7 +101,7 @@ export class OnboardingService {
     this.userid = tokenInfo.UserId;
     this.usertype = tokenInfo.UserType;
     if ((window.location.href).includes('patient')) {
-      this.route.navigate(['/patient/search']);
+      this.route.navigate(['patient/home']);
     } else if ((window.location.href).includes('doctor')) {
       this.route.navigate(['doctor/home']);
     } else if ((window.location.href).includes('dc')) {

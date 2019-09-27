@@ -1,9 +1,14 @@
 .search-container{
-    padding-top: 4vh;
-    padding-left: 40vh;
+    width: 100%;
     display: flex;
-    background-color: aliceblue;
+    justify-content: space-between;
+    width: 600px;
 }
+
+.search-container > * {
+    margin-left: 10px;
+}
+
 .city-field{
     flex: 1;
 }
@@ -16,10 +21,10 @@
     margin-left: 0vh;
 }
 .search-field{
-    width:80vh;
+    flex: 4;
+    width: 100%;
     height: 5vh;   
-    box-shadow: 10px 5px 5px grey;
-    /* border-radius: 108vh; */
+   
 }
 .searchList{
     background-color: aliceblue;
@@ -59,10 +64,12 @@
     .city-field{
         border-radius: 108vh;
     }
+    
     .search-container{
-        padding-top: 15vh;
-        padding-left: 3vh;
+        display: flex;
+        justify-content: space-between;
     }
+
     .search-card {
         width: 90vh;
         margin-left: 50vh;

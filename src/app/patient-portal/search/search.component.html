@@ -1,19 +1,17 @@
-<app-home-page></app-home-page>
 <div class="search-container">
-    <div class="city-field">
+    
         <mat-form-field>
             <select placeholder="ENTER CITY" [(ngModel)]="city" required matNativeControl>
                 <option *ngFor="let city of City">{{city}}</option>
             </select>
         </mat-form-field>
-    </div>
-    <div class="search">
-        <input class="search-field" name="search" placeholder="Search by doctors,diagnostic and tests..."
-            [(ngModel)]="searchbar" (keyup)="searchDoctorsByName($event.target.value)"
-            (keyup)="searchDoctorBySpecialization($event.target.value)" (keyup)="searchDCByName($event.target.value)"
-            (keyup)="searchDCByTest($event.target.value)">
+        <mat-form-field class="search-field">
+            <input matInput  name="search" placeholder="Search by doctors,diagnostic and tests..."
+                [(ngModel)]="searchbar" (keyup)="searchDoctorsByName($event.target.value)"
+                (keyup)="searchDoctorBySpecialization($event.target.value)" (keyup)="searchDCByName($event.target.value)"
+                (keyup)="searchDCByTest($event.target.value)">
+        </mat-form-field>
         <!-- <button mat-raised-button color="primary" (click)="searchDoctorBySpecialization(searchbar)">search</button> -->
-    </div>
 </div>
 <mat-list>
     <mat-list-item class="searchList" *ngFor="let doctor of doctorByName">

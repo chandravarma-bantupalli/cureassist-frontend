@@ -1,50 +1,61 @@
-<app-home-page></app-home-page>
-<div class="pagebody">
+<p class="title">Prescriptions</p>
     <mat-accordion class="prescription-accordion" *ngFor="let prescribed of prescription">
         <mat-expansion-panel class="panel">
             <mat-expansion-panel-header class="test">
                 <mat-panel-title>
-                    <h4 mat-line>Prescription Date: {{prescribed.prescriptionDate | date: 'dd/MM/yyyy'}}</h4>
+                 {{prescribed.prescriptionDate | date: 'dd/MM/yyyy'}}
                 </mat-panel-title>
                 <mat-panel-title>
-                    <h4 mat-line>Symptoms: {{prescribed.symptoms}}</h4>
-                </mat-panel-title>
+              {{prescribed.symptoms}}
+              </mat-panel-title>
             </mat-expansion-panel-header>
             <div class="mat-listcontainer">
                 <div class="maincontainer">
-                    <div class="firstcontainer">
-                        <h3>Patient Name:</h3> {{prescribed.patientName}}
-                    </div>
                     <div class="lastcontainer">
-                        <h3>Doctor Name:</h3> {{prescribed.doctorName}}
+                      {{prescribed.doctorName}}
                     </div>
                 </div>
                 <div class="maincontainer">
                     <div class="firstcontainer">
-                        <h3>Symptoms: </h3>{{prescribed.symptoms}}
+                        Symptoms: {{prescribed.symptoms}}
                     </div>
                     <div class="lastcontainer">
-                        <h3>Remarks: </h3>{{prescribed.remarks}}
+                        Remarks:{{prescribed.remarks}}
                     </div>
                 </div>
+                <hr>
                 <div class="list-container">
                     <mat-list role="list" *ngFor="let medicine of prescribed.allPrescribedMedicines">
-                        <mat-list-item role="listitem" class="flexcontent">
+                        <mat-list-item role="listitem">
+                            <div class="flexcontent">
                             <div class="first">
                                 <mat-checkbox #checkbox="matCheckbox"
                                     (change)="pushMeds(medicine); prescribed.selectedMeds.push(medicine)"
                                     [checked]="medicine.medicineName.selected">
-                                    <h4> Medicine Name:</h4> {{medicine.medicineName}}
+                                   <b>Medicine Name :</b> {{medicine.medicineName}}
                                 </mat-checkbox>
                             </div>
                             <div class="second">
-                                <h4>Prescribed Dosage: </h4>{{medicine.prescribedDosage}}
+                            <b> Prescribed Dosage: </b>{{medicine.prescribedDosage}}
                             </div>
                             <div class="third">
-                                <h4> Prescribed Days:</h4> {{medicine.prescribedDays}}
+                              <b>Prescribed Days : </b> {{medicine.prescribedDays}}
                             </div>
                             <div class="fourth">
-                                <h4> Prescribed Timings : </h4> <b>{{medicine.prescribedTimings}}</b>
+                                 <b>Prescribed Timings : </b>
+                                  <div class="medicine" *ngFor="let item of medicine.prescribedTimings">
+                                        <div class="morning" *ngIf="item == 'Morning'">
+                                            <mat-icon>brightness_5</mat-icon>
+                                            
+                                        </div>
+                                        <div class="afternoon" *ngIf="item == 'afternoon'">
+                                            <mat-icon>brightness_4</mat-icon>
+                                        </div>
+                                        <div class="evening" *ngIf="item == 'evening'">
+                                            <mat-icon>brightness_3</mat-icon>
+                                        </div>
+                                      </div>
+                            </div>
                             </div>
                         </mat-list-item>
                         <br>
@@ -53,9 +64,38 @@
                         Now</button>
 
                 </div>
-                <!-- <button mat-raised-button color="primary" (click)="openDialog(prescribed)">Buy Now</button> -->
-            </div>
+        </div>
 
         </mat-expansion-panel>
     </mat-accordion>
-</div>
+
+
+<!-- <mat-accordion class="prescription-accordion" *ngFor="let prescribed of prescription">
+    <mat-expansion-panel class="panel">
+        <mat-expansion-panel-header class="test">
+            <mat-panel-title>
+                 {{prescribed.prescriptionDate | date: 'dd/MM/yyyy'}}
+            </mat-panel-title>
+            <mat-panel-title>
+                  {{prescribed.symptoms}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="maincontainer">
+            <div class="lastcontainer">
+                {{prescribed.doctorName}}
+            </div>
+        </div>
+        <mat-selection-list #shoes>
+            <mat-list-option *ngFor="let medicine of prescribed.allPrescribedMedicines"> 
+               Medicine Name: {{medicine.medicineName}}&nbsp;
+               Prescribed Dosage: {{medicine.prescribedDosage}}&nbsp;
+               Prescribed Timings: {{medicine.prescribedTimings}}&nbsp;
+               Prescribed Days: {{medicine.prescribedDays}}&nbsp;
+            </mat-list-option>
+          </mat-selection-list>
+          
+          <p>
+            Options selected: {{shoes.selectedOptions.selected.length}}
+          </p>
+    </mat-expansion-panel>
+</mat-accordion> -->

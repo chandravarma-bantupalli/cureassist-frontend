@@ -62,6 +62,9 @@ export class ViewAppointmentComponent implements OnInit {
     this.getAllAppointments();
 
   }
+  viewallapointments() {
+  
+  }
   // click() {
   //   this.doctorId = [];
   //   this.doctorFirstName = [];

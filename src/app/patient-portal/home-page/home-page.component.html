@@ -15,9 +15,14 @@
 <div class="home-container">
   <div class="title">
     <h3>Cure Assist | <span class="lead">Patient Portal</span></h3>
+    <button mat-button (click)="viewprescription()">ViewPrescription</button>
   </div>
+
   <div class="chicklet-container">
     <app-view-edit detailType="name"></app-view-edit>
+    <mat-card>
+      <app-search></app-search>
+    </mat-card>
     <div class="chicklet-data-container">
       <div class="left">
         <app-view-edit detailType="contact-info"></app-view-edit>
