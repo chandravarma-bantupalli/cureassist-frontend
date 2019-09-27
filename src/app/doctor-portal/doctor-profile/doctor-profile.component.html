@@ -1,40 +1,28 @@
-<app-doctor-header class="app-header sticky"></app-doctor-header>
-
-<div class="profile-details">
-  <mat-card>
-    <mat-card-title>
-      <h3> Basic Details </h3>
-    </mat-card-title>
-    <mat-card-content>
-      <h5> FirstName: {{ doctor.doctorFirstName }}</h5>
-      <h5> LastName: {{ doctor.doctorLastName }} </h5>
-      <h5> Email: {{ doctor.doctorEmail }} </h5>
-      <h5> Phone:{{ doctor.doctorPhoneNumber }}</h5>
-      <h5> City: {{ doctor.doctorCity }} </h5>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>
-      <h4> Complete Address </h4>
-    </mat-card-title>
-    <mat-card-content>
-      <h5> Address: {{ doctor.doctorAddress }}</h5>
-      <h5> Pincode: {{ doctor.pincode }} </h5>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>
-      <h4> Advanced Details </h4>
-    </mat-card-title>
-    <mat-card-content>
-      <h5> Registration Number: {{ doctor.doctorRegNum }} </h5>
-      <h5> Experience: {{ doctor.doctorExperience }} </h5>
-      <h5> Specialization: {{ doctor.doctorSpecialization }}</h5>
-    </mat-card-content>
-  </mat-card>
+<div class="mat-elevation-z2 name-container" *ngIf="detailType == 'name'">
+    <div class="name-card-bg"></div>
+    <div class="name-card-content">
+        <ngx-avatar size="120" name="{{ doctor.doctorFirstName | titlecase }} {{ doctor.doctorLastName | titlecase }}"></ngx-avatar>
+        <h2>Dr. {{ doctor.doctorFirstName | titlecase }} {{ doctor.doctorLastName | titlecase }}</h2>
+        <p>{{ doctor.doctorSpecialization }}</p>
+    </div>
 </div>
 
-<div class="profile-options">
-  <button mat-stroked-button color="primary" (click)="goToManageSlots()"> View Time Slots </button>
-  <button mat-stroked-button color="primary" (click)="goToUpdateProfile()"> Update Profile </button>
+<div class="mat-elevation-z2 personal-information" *ngIf="detailType == 'personalInformation'">
+    <p class="title">Personal Information</p>
+    <mat-card-content>
+        <p>{{ doctor.doctorEmail }} </p>
+        <p>{{ doctor.doctorRegNum }} </p>
+        <p>{{ doctor.doctorPhoneNumber }}</p>
+    </mat-card-content>
+    <button mat-button (click)="goToUpdateProfile()">  Update Profile</button>
 </div>
+
+<mat-card class="mat-elevation-z2" *ngIf="detailType == 'address'">
+    <p class="title">Address</p>
+    <mat-card-content>
+        <address>{{ doctor.doctorAddress }}</address>
+        <p> {{ doctor.doctorCity }} </p>
+        <address>{{ doctor.pincode }}</address>
+    </mat-card-content>
+    <button mat-button (click)="goToUpdateProfile()">  Update Profile</button>
+</mat-card>

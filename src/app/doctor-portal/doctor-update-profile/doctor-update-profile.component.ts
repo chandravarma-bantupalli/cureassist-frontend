@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DoctorHttpService } from '../../services/doctor-http.service';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 import { TimeSlot } from 'src/app/models/time-slot';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-doctor-update-profile',
@@ -21,14 +22,17 @@ export class DoctorUpdateProfileComponent implements OnInit {
     private router: Router,
     private onboardingService: OnboardingService,
     private doctorService: DoctorHttpService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<DoctorUpdateProfileComponent>
   ) { }
 
   ngOnInit() {
-    this.userid = this.onboardingService.userid;
+    this.userid = '4a030b89-84f7-4fc5-9010-c00a0f3a6b21';
+    // this.userid = this.onboardingService.userid;
     this.initializeDoctorProfileForm();
     this.getDoctorProfile(this.userid);
   }
+
   initializeDoctorProfileForm() {
     this.doctorProfile = this.formBuilder.group({
       ts: '',
@@ -72,9 +76,9 @@ export class DoctorUpdateProfileComponent implements OnInit {
       // setting the above values to previous because, these are updated only during the CRUD operations on Time Slots.
       this.doctorService.updateDoctor(this.userid, doctor).subscribe((res) => {
         console.log(res);
+        this.dialogRef.close();
       });
       // this.onboardingService.userid = this.userid;
-      this.router.navigate(['/doctor/profile']);
     } else {
       const doctor: Doctor = this.doctorProfile.value;
       doctor.userid = this.userid;
@@ -83,9 +87,10 @@ export class DoctorUpdateProfileComponent implements OnInit {
       this.doctorService.addNewDoctor(doctor).subscribe( (res) => {
         console.log(doctor);
         console.log(res);
+        this.dialogRef.close();
       });
       // this.onboardingService.userid = this.userid;
-      this.router.navigate(['/doctor/manage/timeslots']);
+      // this.router.navigate(['/doctor/manage/timeslots']);
     }
   }
 }

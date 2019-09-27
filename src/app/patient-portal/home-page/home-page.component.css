@@ -1,0 +1,49 @@
+.home-container {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(180deg, #2196f3 30vh, #fff 20vh);
+  /* background: linear-gradient(180deg, #2196f3 30%, #FFF 70%); */
+}
+
+.chicklet-container {
+  height: 100%;
+  width: 50%;
+  margin: auto;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.left>* {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.right {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right>* {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.chicklet-data-container {
+  display: flex;
+}
+
+.title {
+padding: 10px;
+}
+
+.lead {
+font-weight: 300 !important;
+}

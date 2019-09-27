@@ -1,23 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Validators, FormBuilder } from '@angular/forms';
-import { Patient } from '../../models/patient';
-import { PatientService } from '../../services/patient.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { PatientService } from '../../services/patient.service'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { EditProfileDialogComponent } from '../edit-profile-dialog/edit-profile-dialog.component';
+
 
 @Component({
-  selector: 'app-view-edit',
-  templateUrl: './view-edit.component.html',
-  styleUrls: ['./view-edit.component.css']
+  selector: 'app-edit-profile-dialog',
+  templateUrl: './edit-profile-dialog.component.html',
+  styleUrls: ['./edit-profile-dialog.component.css']
 })
-export class ViewEditComponent implements OnInit {
-  @Input() detailType: string;
-  sub: any;
-  emailid: any;
-  patient: Patient;
-  constructor(public dialog: MatDialog, private fb: FormBuilder, public service: PatientService) {
-  }
+export class EditProfileDialogComponent implements OnInit {
+
+  constructor(private fb: FormBuilder, public service: PatientService, public dialogRef: MatDialogRef<EditProfileDialogComponent>) { }
+
   formModel = this.fb.group({
     patientId: [''],
     userId: [''],
@@ -58,26 +53,19 @@ export class ViewEditComponent implements OnInit {
     return `${this.formModel.get('uaid').value}`;
   }
 
-
   ngOnInit() {
     this.service.getprofile()
       .subscribe(data => {
         console.log(data);
         this.formModel.setValue(data);
         console.log(this.formModel);
-        this.patient = data;
-        console.log(this.patient);
       });
   }
 
-  onUpdate() {
-    this.dialog.open(EditProfileDialogComponent, {
-      width: "50vw",
-      height: "80vh"
-    });
-  }
-
   onsubmit() {
-    this.service.updateProfile(this.formModel.value).subscribe(data => console.log(data));
+    this.service.updateProfile(this.formModel.value).subscribe(data => {
+      console.log(data);
+      this.dialogRef.close();
+    });
   }
 }

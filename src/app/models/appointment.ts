@@ -23,6 +23,7 @@ export class Daycalendar {
 export class AppointmentDayCalendar {
     dayCalenderId: string;
     date: Date;
+    moment: string;
     userId: string;
     slots: AppointmentSlot[];
 }

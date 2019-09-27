@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { AppointmentHttpService } from 'src/app/services/appointment-http.service';
 import { IAppointments, AppointmentDayCalendar, AppointmentTimeSlot } from 'src/app/models/appointment';
 import { OnboardingService } from 'src/app/services/onboarding.service';
@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { PrescriptionFormComponent } from 'src/app/prescription/prescription-form/prescription-form.component';
 import { PatientService } from 'src/app/services/patient.service';
 import { PrescriptionHttpService } from 'src/app/services/prescription-http.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-doctor-view-appointments',
@@ -15,12 +16,25 @@ import { PrescriptionHttpService } from 'src/app/services/prescription-http.serv
 })
 export class DoctorViewAppointmentsComponent implements OnInit {
 
+  @Input() when: string;
   userAppointments: IAppointments[];
   doctorId: string;
   appointments: AppointmentDayCalendar[];
   appointmentSlots: AppointmentTimeSlot[];
   attendees: string[];
   patients: Patient[];
+  today: AppointmentDayCalendar[];
+  tomorrow: AppointmentDayCalendar[];
+  later: AppointmentDayCalendar[];
+
+  todayPatients: Patient[];
+  tomorrowPatients: Patient[];
+  laterPatients: Patient[];
+
+  todaySlots: any;
+  upcomingSlots: any;
+
+  patientDisplayedColumns: string[];
   appointmentsExist: boolean;
 
   constructor(
@@ -29,7 +43,12 @@ export class DoctorViewAppointmentsComponent implements OnInit {
     private onboardingService: OnboardingService,
     private patientService: PatientService,
     private prescriptionService: PrescriptionHttpService
-  ) { }
+  ) {
+    this.todayPatients = [];
+    this.tomorrowPatients = [];
+    this.laterPatients = [];
+    this.patientDisplayedColumns = ['firstName', 'phoneNumber', 'prescription'];
+  }
 
   ngOnInit() {
     this.doctorId = this.onboardingService.userid;
@@ -40,29 +59,46 @@ export class DoctorViewAppointmentsComponent implements OnInit {
     this.getAllAppointments();
   }
 
-  getAllAppointments() {
-    this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe( (data) => {
-      console.log(data);
-      this.appointments = data;
-      this.getAttendeesArray();
-    });
+  getAttendees(days) {
+    return days.reduce((acc, { slots }) => {
+      slots.forEach(slot => {
+        acc.push(...slot.attendees);
+      });
+      return acc;
+    }, []);
   }
 
-  getAttendeesArray() {
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.appointments.length; i++) {
-      // tslint:disable-next-line: prefer-for-of
-      for (let j = 0; j < this.appointments[i].slots.length; j++) {
-        // tslint:disable-next-line: prefer-for-of
-        for (let k = 0; k < this.appointments[i].slots[j].attendees.length; k++) {
-          this.attendees.push(this.appointments[i].slots[j].attendees[k]);
-          this.patientService.getPatientByUserId(this.appointments[i].slots[j].attendees[k]).subscribe( (data) => {
-            console.log(data);
-            this.patients.push(data);
-          });
-        }
-      }
-    }
+  calculateMoment(date) {
+    const today = moment().endOf('day')
+    const tomorrow = moment().add(1, 'day').endOf('day')
+    if (date < today) return 'today'
+
+    return 'later'
+  }
+
+  getPatientData(patientId): Promise<Patient> {
+    return this.patientService.getPatientByUserId(patientId).toPromise();
+  }
+
+  getAllAppointments() {
+    this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe((data) => {
+      this.appointments = data.map(appointment => ({
+        ...appointment,
+        moment: this.calculateMoment(moment(appointment.date))
+      }));
+      this.today = this.appointments.filter(a => a.moment === 'today');
+      this.later = this.appointments.filter(a => a.moment === 'later');
+      var todayAttendeesIds = this.getAttendees(this.today);
+      var laterAttendeesIds = this.getAttendees(this.later);
+      var todaysPatientsPromise = Promise.all<Patient>(todayAttendeesIds.map(this.getPatientData.bind(this)));
+      var laterPatientPromise = Promise.all<Patient>(laterAttendeesIds.map(this.getPatientData.bind(this)));
+      laterPatientPromise.then((patients) => {
+        this.tomorrowPatients = patients;
+      });
+      todaysPatientsPromise.then((patients) => {
+        this.todayPatients.push(...patients);
+      });
+    });
   }
 
   openPrescriptionDialog(id: string) {
@@ -72,7 +108,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
       width: 'auto'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
   }
@@ -80,5 +116,4 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   onNoClick(): void {
     const dialogRef = this.dialog.closeAll();
   }
-
 }

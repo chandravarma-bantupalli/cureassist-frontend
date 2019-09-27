@@ -1,49 +1,5 @@
-<div class="mat-elevation-z2 name-container" *ngIf="detailType == 'name'">
-  <div class="name-card-bg"></div>
-  <div class="name-card-content">
-    <ngx-avatar size="120" name="{{ patientName | titlecase }}"></ngx-avatar>
-    <h2> {{ patientName | titlecase }}</h2>
-  </div>
-</div>
-
-<div class="contact-info mat-elevation-z2" *ngIf="detailType == 'contact-info'">
-  <div class="title">Contact Information</div>
-  <div class="contact-info-item">
-    <div>{{emailId}}</div>
-    <mat-hint>Email Address</mat-hint>
-  </div>
-  <div class="contact-info-item">
-    <div>{{phoneNumber}}</div>
-    <mat-hint>Phone Number</mat-hint>
-  </div>
-  <div class="contact-info-item">
-    <div>{{emergencyContactNumber}}</div>
-    <mat-hint>Emergency Contact Number</mat-hint>
-  </div>
-  <button mat-button (click)="onUpdate()">Update Button</button>
-</div>
-
-
-<div class="mat-elevation-z2 personal-info" *ngIf="detailType == 'personal-info'">
-  <div class="title">Personal Information</div>
-  <div class="personal-info-item">
-    <div>{{uaid}}</div>
-    <mat-hint>Aadhar ID</mat-hint>
-  </div>
-
-  <div class="personal-info-item">
-    <div>{{dateOfBirth}}</div>
-    <mat-hint>Date Of Birth</mat-hint>
-  </div>
-
-  <div class="personal-info-item">
-    <div>{{bloodGroup}}</div>
-    <mat-hint>Your Blood Group</mat-hint>
-  </div>
-  <button mat-button (click)="onUpdate()">Update Button</button>
-</div>
-
-<div *ngIf="detailType == 'profile'" class="mat-elevation-z2 patient-profile-form-wrapper">
+<div class="title">Update Profile</div>
+<div class="patient-profile-container">
   <form class="patient-profile-form-container" [formGroup]="formModel"
     (submit)="onsubmit()">
     <mat-form-field class="form-group" class="full-width">
@@ -111,6 +67,6 @@
       <input matInput class="form-control" formControlName="city" name="city"
         required>
     </mat-form-field>
-    <button mat-button>Update Profile</button>
+    <button mat-raised-button color="primary">update</button>
   </form>
 </div>

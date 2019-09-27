@@ -1,30 +1,55 @@
+<div class="mat-elevation-z2" *ngIf="when == 'today'">
+  <div class="appointments-container" *ngIf="todayPatients.length > 0">
+    <p class="title">Today's Appointments</p>
+    <table class="appointments" mat-table [dataSource]="todayPatients">
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let patient">{{patient.firstName | titlecase}}
+          {{patient.lastName | titlecase}}</td>
+      </ng-container>
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+        <td mat-cell *matCellDef="let patient">{{patient.phoneNumber}}</td>
+      </ng-container>
 
-<h1>Your Appointments</h1><hr>
-<!-- <mat-accordion >
-       <mat-expansion-panel *ngFor="let appointment of appointments" (click)=click()>
-         <mat-expansion-panel-header>
-           <mat-panel-title>
-                   <h4>Appointment Date: {{appointment.date | date}}</h4>
-           </mat-panel-title>
-         </mat-expansion-panel-header>
-         <div *ngFor="let item of doctorFirstName">{{item}}</div>
-         <div *ngFor="let item of appointment.slots" ><h3>At: </h3> {{item.timeSlot.startTime | date:'HH:mm'}}{{item.attendees}} With:<h3 *ngFor="let item of doctorFirstName">{{item}}</h3></div>
-       </mat-expansion-panel>
-</mat-accordion> -->
-<mat-accordion *ngFor="let appointment of appointments">
-       <mat-expansion-panel  (click)=click2() (click)=click()>
-         <mat-expansion-panel-header>
-           <mat-panel-title>
-                   <h4>Appointment Date: {{appointment.date | date}}</h4>
-           </mat-panel-title>
-         </mat-expansion-panel-header>
-         <!-- <div *ngFor="let item of diagnosticName">{{item}}</div>
-         <div *ngFor="let item of doctorFirstName">{{item}}</div> -->
-         <div *ngFor="let item of appointment.slots" >
-           <!-- {{item.timeSlot.startTime}} -->
-           At: {{item.timeSlot.startTime | date:'HH:MM':'+0000'}}
-         </div>
-          {{appointment.doctorDetail}}
-          {{appointment.diagnosticDetail}}
-       </mat-expansion-panel>
-</mat-accordion>
+      <ng-container matColumnDef="prescription">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let patient">
+          <button mat-flat-button color="primary">View Patient</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="patientDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: patientDisplayedColumns;"></tr>
+    </table>
+  </div>
+  <button mat-button>View All Appointments</button>
+</div>
+
+<div class="mat-elevation-z2" *ngIf="when == 'upcoming'">
+  <div class="appointments-container" *ngIf="laterPatients.length == 0">
+    <h4>Upcoming Appointments</h4>
+    <div>
+      You don't have any upcoming appointments.
+    </div>
+  </div>
+  <div class="appointments-container" *ngIf="laterPatients.length> 0">
+    <table mat-table [dataSource]="laterPatients">
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let patient">{{patient.firstName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+        <td mat-cell *matCellDef="let patient">{{patient.phoneNumber}}</td>
+      </ng-container>
+      <ng-container matColumnDef="prescription">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let patient">
+            <button mat-flat-button color="primary">View Doctor</button>
+          </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="patientDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: patientDisplayedColumns;"></tr>
+    </table>
+  </div>
+</div>
