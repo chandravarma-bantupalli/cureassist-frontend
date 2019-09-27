@@ -16,6 +16,8 @@ export class DoctorProfileComponent implements OnInit {
   doctor: Doctor;
   timeslots: TimeSlot[];
   userid: string;
+  docName: string;
+
   constructor(
     private router: Router,
     private doctorService: DoctorHttpService,
@@ -33,6 +35,7 @@ export class DoctorProfileComponent implements OnInit {
     this.doctor = new Doctor();
     this.doctorService.getDoctorById(id).subscribe((data) => {
       this.doctor = data;
+      this.docName = this.doctor.doctorFirstName + ' ' + this.doctor.doctorLastName;
     });
   }
 

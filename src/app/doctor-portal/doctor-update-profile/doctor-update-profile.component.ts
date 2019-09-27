@@ -27,10 +27,12 @@ export class DoctorUpdateProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userid = this.onboardingService.userid;
+    this.userid = '4a030b89-84f7-4fc5-9010-c00a0f3a6b21';
+    // this.userid = this.onboardingService.userid;
     this.initializeDoctorProfileForm();
     this.getDoctorProfile(this.userid);
   }
+
   initializeDoctorProfileForm() {
     this.doctorProfile = this.formBuilder.group({
       ts: '',

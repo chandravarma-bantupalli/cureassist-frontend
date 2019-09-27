@@ -44,6 +44,7 @@ import { MatDividerModule } from '@angular/material';
     MatInputModule,
     MatMenuModule,
     FormsModule,
+    AvatarModule,
     ReactiveFormsModule,
     PrescriptionModule,
     MatTableModule,
