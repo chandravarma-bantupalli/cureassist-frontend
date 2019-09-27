@@ -1,22 +1,21 @@
 <app-pharmacy-home></app-pharmacy-home>
-<h3> ORDERS CONFIRMED </h3>
-<div *ngFor="let orderdetail of confirmOrdersDetails">
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let orderdetail of confirmOrdersDetails">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <p>Patient Prescription ID: {{orderdetail.prescriptionId}}&nbsp;&nbsp;
-                     Patient Name: {{orderdetail.patientName}}
-                    </p>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>Address: {{orderdetail.currentLocation}}</p>
-            <p>Patient Phone Number: {{orderdetail.patientPhoneNumber}}</p>
-            <div *ngFor="let prescribedMedicine of orderdetail.prescribedMedicines">
-                <p>Medicine Name: {{prescribedMedicine.medicineName}}</p>
-                <p>Prescription Dose: {{prescribedMedicine.prescribedDosage}}</p>
-                <p>Medicine Cost: {{prescribedMedicine.medicinePrice}}</p>
-            </div>
-        </mat-expansion-panel>
-    </mat-accordion>
+<div class="header-container">
+<h4> CONFIRMED ORDERS! </h4>
 </div>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let orderdetail of confirmOrdersDetails">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <p>Prescription ID: {{orderdetail.prescriptionId}}&nbsp;&nbsp;
+                    Customer Name: {{orderdetail.patientName}} </p>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Phone Number: {{orderdetail.patientPhoneNumber}}</p>
+        <p>Address: {{orderdetail.currentLocation}}</p>
+        <div *ngFor="let prescribedMedicine of orderdetail.prescribedMedicines">
+            <p>Medicine Name: {{prescribedMedicine.medicineName}}</p>
+            <p>Prescribed Dose: {{prescribedMedicine.prescribedDosage}}</p>
+            <p>Medicine Cost: {{prescribedMedicine.medicinePrice}}</p>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

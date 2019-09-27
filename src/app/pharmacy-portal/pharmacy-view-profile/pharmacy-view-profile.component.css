@@ -1,3 +1,9 @@
-/* form {
-    
-} */
+.profileContent {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-width {
+    width: 300px;
+}

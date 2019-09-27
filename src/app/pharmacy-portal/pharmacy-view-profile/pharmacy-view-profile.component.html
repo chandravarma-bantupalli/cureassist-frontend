@@ -1,30 +1,29 @@
 <!-- <div class="Background-Image"> -->
-    <app-pharmacy-home></app-pharmacy-home>
-  <form [formGroup]="formModel" (submit)="onsubmit()">
-    <div class="profileContent">
-        <br>
-        <h3> Profile </h3>
-        <mat-form-field class="form-group" class="full-width">
-            <mat-label>Pharmacy Name</mat-label>
-            <input matInput class="form-control" formControlName="pharmacyName" name="pname" required>
-        </mat-form-field><br>
-        <mat-form-field class="form-group" class="full-width">
-            <mat-label>Pharmacy Register Number</mat-label>
-            <input matInput class="form-control" formControlName="pharmacyRegisterNumber" name="prnumber" required>
-        </mat-form-field><br>
-        <mat-form-field class="form-group" class="full-width">
-            <mat-label>Pharmacy Location</mat-label>
-            <input matInput class="form-control" formControlName="pharmacyLocation" name="plocation" required>
-        </mat-form-field><br>
-        <mat-form-field class="form-group" class="full-width">
-            <mat-label>EmailId</mat-label>
-            <input matInput class="form-control" formControlName="emailId" name="emailId" required>
-        </mat-form-field><br>
-        <mat-form-field class="form-group" class="full-width">
-            <mat-label>Phone Number</mat-label>
-            <input matInput class="form-control" formControlName="phoneNumber" name="PhoneNumber" required>
-        </mat-form-field><br>
-    </div>
+<app-pharmacy-home></app-pharmacy-home>
+<div class="profileContent">
+<form [formGroup]="formModel" (submit)="onsubmit()">
+    <br>
+    <h3> Profile </h3>
+    <mat-form-field class="form-group" class="full-width">
+        <mat-label>Pharmacy Name</mat-label>
+        <input matInput class="form-control" formControlName="pharmacyName" name="pname" required>
+    </mat-form-field><br>
+    <mat-form-field class="form-group" class="full-width">
+        <mat-label>Pharmacy Register Number</mat-label>
+        <input matInput class="form-control" formControlName="pharmacyRegisterNumber" name="prnumber" required>
+    </mat-form-field><br>
+    <mat-form-field class="form-group" class="full-width">
+        <mat-label>Pharmacy Location</mat-label>
+        <input matInput class="form-control" formControlName="pharmacyLocation" name="plocation" required>
+    </mat-form-field><br>
+    <mat-form-field class="form-group" class="full-width">
+        <mat-label>EmailId</mat-label>
+        <input matInput class="form-control" formControlName="emailId" name="emailId" required>
+    </mat-form-field><br>
+    <mat-form-field class="form-group" class="full-width">
+        <mat-label>Phone Number</mat-label>
+        <input matInput class="form-control" formControlName="phoneNumber" name="PhoneNumber" required>
+    </mat-form-field><br>
     <button mat-raised-button color="primary"> Update </button>
 </form>
-<!-- </div> -->
+</div>

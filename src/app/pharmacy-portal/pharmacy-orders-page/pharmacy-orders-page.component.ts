@@ -5,6 +5,12 @@ import { PrescribedMedicine } from 'src/app/models/prescribed-medicine';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Prescriptions } from 'src/app/models/prescriptions';
 import { BrowserModule } from '@angular/platform-browser';
+import {ThemePalette} from '@angular/material/core';
+
+export interface ChipColor {
+  name: string;
+  color: ThemePalette;
+}
 
 @Component({
   selector: 'app-pharmacy-orders-page',
