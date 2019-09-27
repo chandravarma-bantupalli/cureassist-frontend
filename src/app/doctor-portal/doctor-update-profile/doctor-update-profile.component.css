@@ -1,23 +1,13 @@
 .profile-details{
-  width: 80%;
-  margin: auto;
-  margin-top: 20px;
-}
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+  }
 
-.doctor-header-container:after {
-  clear: both;
-}
-
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.profile-options{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  width: 60%;
-  margin: auto;
-}
+  .profile-options{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 60%;
+    margin: auto;
+  }

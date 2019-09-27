@@ -75,7 +75,6 @@ const routes: Routes = [
     {path: 'home', component: PharmacyOrdersPageComponent},
     {path: 'createprofile', component: PharmacyProfileComponent},
     { path: 'view', component: PharmacyViewProfileComponent },
-    { path: 'orders', component: PharmacyOrdersPageComponent },
     {path: 'myorders', component: PharmacyConfirmOrdersComponent}
   ]},
   {path: '', pathMatch: 'full', component: PatientLandingPageComponent},

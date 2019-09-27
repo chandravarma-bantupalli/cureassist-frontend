@@ -1,4 +1,4 @@
-<mat-toolbar class="patient-header" color="primary" style="margin-top: -10px">
+<!-- <mat-toolbar class="patient-header" color="primary" style="margin-top: -10px">
     <button mat-button (click)="homebutton()">CureAssist</button>
     <button mat-button (click)="viewprescription()">ViewPrescription</button>
     <button mat-button (click)="viewtestreport()">ViewTestReports</button>
@@ -10,4 +10,21 @@
         <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
+
+<div class="home-container">
+  <div class="title">
+    <h3>Cure Assist | <span class="lead">Patient Portal</span></h3>
+  </div>
+  <div class="chicklet-container">
+    <app-view-edit detailType="name"></app-view-edit>
+    <div class="chicklet-data-container">
+      <div class="left">
+        <app-view-edit detailType="contact-info"></app-view-edit>
+        <app-view-edit detailType="personal-info"></app-view-edit>
+        <!-- <app-view-edit detailType="profile"></app-view-edit> -->
+      </div>
+      <div class="right"></div>
+    </div>
+  </div>
+</div>

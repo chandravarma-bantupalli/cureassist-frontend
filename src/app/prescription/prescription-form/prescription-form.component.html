@@ -1,113 +1,114 @@
-<p>prescription-form works!</p>
 
-<!-- These are the basic details of patient and doctor. -->
 <form [formGroup]="prescriptionForm">
   <section class="prescription">
-      <mat-card class="Detail">
-          <div class="header">
-              <label>
-                  <h3> precsriptionDate: {{today | date:'dd-MM-yyyy'}}</h3>
-              </label>
-          </div>
-          <div>
-              <label>
-                  <h5>Patient Name: {{ patientName }} </h5>
-                  <h5>Patient Phone Number: {{ patientPhoneNumber }} </h5>
-                  <h5>Doctor Name: {{ doctorName }} </h5>
-                  <h5>Doctor Phone Number: {{ doctorPhoneNumber }} </h5>
-              </label>
-          </div>
-      </mat-card>
+    <mat-card class="Detail">
+      <div class="header">
+        <label>
+          <h3> precsriptionDate: {{today | date:'dd-MM-yyyy'}}</h3>
+        </label>
+      </div>
+      <div>
+        <label>
+          <h5>Patient Name: {{ patientName }} </h5>
+          <h5>Patient Phone Number: {{ patientPhoneNumber }} </h5>
+          <h5>Doctor Name: {{ doctorName }} </h5>
+          <h5>Doctor Phone Number: {{ doctorPhoneNumber }} </h5>
+        </label>
+      </div>
+    </mat-card>
   </section>
 </form>
-  
-  
-  <!-- Code for symptoms  -->
-  <form [formGroup]="prescriptionForm">
-      <section class="prescription">
-          <mat-card class="Detail">
-              <div>
-                  <label>symptoms: </label>
-                  <mat-form-field>
-                  <input formControlName="symptoms" matInput placeholder="Provide symptoms">
-                  </mat-form-field>
-              </div>
-              <!-- <div class="addprescriptioncard">
+
+
+<!-- Code for symptoms  -->
+<form [formGroup]="prescriptionForm">
+  <section class="prescription">
+    <mat-card class="Detail">
+      <div>
+        <label>symptoms: </label>
+        <mat-form-field>
+          <input formControlName="symptoms" matInput placeholder="Provide
+            symptoms">
+        </mat-form-field>
+      </div>
+      <!-- <div class="addprescriptioncard">
                   <button mat-button class="addmedi" (click)="Addsymptoms()">Add</button>
               </div> -->
-          </mat-card>
-      </section>
-  </form>
-  
-  <!-- Code for Remarks -->
-  <form [formGroup]="prescriptionForm">
-          <section class="prescription">
-              <mat-card class="Detail">
-              <div>
-                  <label>remarks: </label>
-                  <mat-form-field>
-                  <input formControlName="remarks" matInput placeholder="Give remarks">
-                  </mat-form-field>
-              </div>
-              <!-- <div class="addprescriptioncard">
+    </mat-card>
+  </section>
+</form>
+
+<!-- Code for Remarks -->
+<form [formGroup]="prescriptionForm">
+  <section class="prescription">
+    <mat-card class="Detail">
+      <div>
+        <label>remarks: </label>
+        <mat-form-field>
+          <input formControlName="remarks" matInput placeholder="Give remarks">
+        </mat-form-field>
+      </div>
+      <!-- <div class="addprescriptioncard">
                   <button mat-button class="addmedi" (click)="AddRemarks()">Add</button>
               </div> -->
-          </mat-card>
-      </section>
-  </form>
-
-  <div>
-    <h5> Prescribed Medicines: </h5>
-    <div *ngFor="let medicine of ListOfMedicine">
-        <label> {{ medicine.medicineName }} </label>
-    </div>
-  </div>
-  
-  
-  <!-- This is medicine details block  -->
-  <section class="prescription">
-      <form [formGroup]="medicineForm">
-          <mat-card class="Detail">
-              <div>
-                  <label>Medicine Name: </label>
-                  <mat-form-field>
-                  <input formControlName="medicineName" matInput placeholder="Medicine name">
-                  </mat-form-field>
-              </div>
-              
-              <div>
-                  <label>Prescribed Dosage: </label>
-                  <mat-form-field >
-                      <input formControlName="prescribedDosage" matInput placeholder="Prescribed Dosage">
-                  </mat-form-field>
-              </div>
-  
-  
-              <div>
-                  <mat-label>prescribed Timings:</mat-label>
-                  <mat-form-field>
-                      <mat-select formControlName="prescribedTimings" multiple>
-                          <mat-option *ngFor="let item of TimingArray" [value]="item">{{item}}</mat-option>
-                      </mat-select>
-                  </mat-form-field>
-              </div>
-  
-  
-              <div>
-                  <label>prescribed Days: </label>
-                  <mat-form-field>
-                      <input  formControlName="prescribedDays"  matInput placeholder="prescribed Days">
-                  </mat-form-field>
-              </div>
-  
-              <div class="addprescriptioncard">
-                  <button mat-button class="addmedi" (click)="addMedicine()">Add Medicines</button>
-              </div>
-          </mat-card>           
-      </form>
+    </mat-card>
   </section>
-  
-  <div class="Submit">
-      <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
+</form>
+
+<div>
+  <h5> Prescribed Medicines: </h5>
+  <div *ngFor="let medicine of ListOfMedicine">
+    <label> {{ medicine.medicineName }} </label>
   </div>
-  
+</div>
+
+
+<!-- This is medicine details block  -->
+<section class="prescription">
+  <form [formGroup]="medicineForm">
+    <mat-card class="Detail">
+      <div>
+        <label>Medicine Name: </label>
+        <mat-form-field>
+          <input formControlName="medicineName" matInput placeholder="Medicine
+            name">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <label>Prescribed Dosage: </label>
+        <mat-form-field>
+          <input formControlName="prescribedDosage" matInput
+            placeholder="Prescribed Dosage">
+        </mat-form-field>
+      </div>
+
+
+      <div>
+        <mat-label>prescribed Timings:</mat-label>
+        <mat-form-field>
+          <mat-select formControlName="prescribedTimings" multiple>
+            <mat-option *ngFor="let item of TimingArray" [value]="item">{{item}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div>
+        <label>prescribed Days: </label>
+        <mat-form-field>
+          <input formControlName="prescribedDays" matInput
+            placeholder="prescribed Days">
+        </mat-form-field>
+      </div>
+
+      <div class="addprescriptioncard">
+        <button mat-button class="addmedi" (click)="addMedicine()">Add Medicines</button>
+      </div>
+    </mat-card>
+  </form>
+</section>
+
+<div class="Submit">
+  <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
+</div>

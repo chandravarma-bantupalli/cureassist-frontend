@@ -10,7 +10,7 @@ import { AppointmentSlot } from '../../models/appointment';
 @Component({
   selector: 'app-doctor-home',
   templateUrl: './doctor-home.component.html',
-  styleUrls: ['./doctor-home.component.css']
+  styleUrls: ['./doctor-home.component.css'],
 })
 export class DoctorHomeComponent implements OnInit {
   appointments: any[];
@@ -48,18 +48,18 @@ export class DoctorHomeComponent implements OnInit {
   getDayCalendarOfDoctor() {
     const date: Date = new Date();
     console.log(date + 'Todays Date');
-    this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
-      console.log(this.onboardingService.userid);
-      console.log(data);
-      this.appointmentDayCalendar = data;
-      this.todaySlots = data.slots;
-      console.log(this.todaySlots);
-      this.appointmentsExist = true;
-      this.doctorProfileExists = true;
-    }, (err) => {
-      this.appointmentsExist = false;
-      this.doctorProfileExists = true;
-    });
+    // this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
+    //   console.log(this.onboardingService.userid);
+    //   console.log(data);
+    //   this.appointmentDayCalendar = data;
+    //   this.todaySlots = data.slots;
+    //   console.log(this.todaySlots);
+    //   this.appointmentsExist = true;
+    //   this.doctorProfileExists = true;
+    // }, (err) => {
+    //   this.appointmentsExist = false;
+    //   this.doctorProfileExists = true;
+    // });
   }
 
   manageTimeSlots() {

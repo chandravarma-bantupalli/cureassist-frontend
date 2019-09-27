@@ -6,7 +6,7 @@ import { DoctorManageSlotsComponent } from './doctor-manage-slots/doctor-manage-
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { DoctorUpdateProfileComponent } from './doctor-update-profile/doctor-update-profile.component';
 // tslint:disable-next-line: max-line-length
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatMenuModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatDialogModule, MatDialogRef } from '@angular/material';
 import { MatListModule, MatSidenavModule, MatGridListModule, MatCardModule, MatExpansionModule, MatChipsModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,10 +14,9 @@ import { DoctorTimeslotComponent } from './doctor-timeslot/doctor-timeslot.compo
 import { DoctorViewAppointmentsComponent } from './doctor-view-appointments/doctor-view-appointments.component';
 import { PrescriptionFormComponent } from '../prescription/prescription-form/prescription-form.component';
 import { PrescriptionModule } from '../prescription/prescription.module';
+import { MatTableModule } from '@angular/material/table';
 import { AvatarModule } from 'ngx-avatar';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
-
+import { MatDividerModule } from '@angular/material';
 @NgModule({
   // tslint:disable-next-line: max-line-length
   declarations: [
@@ -48,7 +47,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AvatarModule,
     ReactiveFormsModule,
     PrescriptionModule,
-    FlexLayoutModule
+    MatTableModule,
+    AvatarModule,
+    MatDialogModule,
+    MatDividerModule,
   ],
   exports: [
    DoctorHeaderComponent,
@@ -58,8 +60,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
    DoctorManageSlotsComponent,
    DoctorViewAppointmentsComponent
   ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} }
+  ],
   entryComponents: [
     DoctorTimeslotComponent,
+    DoctorUpdateProfileComponent,
     PrescriptionFormComponent
   ]
 })

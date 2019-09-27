@@ -23,6 +23,7 @@ export class OnboardingService {
     private cookieService: CookieService,
     private route: Router
   ) {
+    this.userid = "4a030b89-84f7-4fc5-9010-c00a0f3a6b21";
     // const token = this.cookieService.get('loginToken');
     // this.user = this.getDecodedAccessToken(token);
     // console.log(this.user);

@@ -1,44 +1,59 @@
-.profile-details{
+.name-container {
+    background-image: linear-gradient(180deg);
+}
+
+.profile-details {
     width: 80%;
     margin: auto;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-  }
-  
-  .sticky {
+}
+
+.sticky {
     position: fixed;
     top: 0;
     width: 100%
-  }
-  
-  .profile-options{
+}
+
+.profile-options {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     width: 60%;
     margin: auto;
-  }
-  
-  .app-header{
+}
+
+.app-header {
     position: relative;
-  }
+}
 
-  .container {
-    padding: 10px;
-    justify-content: space-around;
-    width: auto;
-    margin: auto; 
-  }
+.name-card-bg {
+    background-color: navy;
+    background-image: url('../../../assets/images/poster.webp');
+    /* background-image: url(https://lh3.googleusercontent.com/c5dqxl-2uHZ82ah9p7yxrVF1ZssrJNSV_15Nu0TUZwzCWqmtoLxCUJgEzLGtxsrJ6-v6R6rKU_-FYm881TTiMCJ_=w728-h1600-rw); */
+    height: 100px;
+}
 
-  /* .avatar {
-    text-align: center;
-    align-items: center;
+.name-card-content {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-content: center;
-    justify-items: center;
-  } */
-
-  .item {
     align-items: center;
-    align-self: center;
-  }
+    border-radius: 4px;
+}
+
+.name-container {
+    background-color: #fff;
+    height: 250px;
+}
+
+.title {
+    font-size: 1.2em;
+}
+
+.personal-information {
+    padding: 15px;
+}

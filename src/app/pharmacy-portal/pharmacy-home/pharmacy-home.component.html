@@ -1,6 +1,7 @@
 <mat-toolbar class="homePage" color="primary">
-  <a href="#">CureAssist</a>
+  <button mat-button (click)=gotohome()> CureAssist </button>
   <button mat-button (click)= getMyOrders()>My Orders</button>
+  <span class="gotoend"></span>
   <button class="Profile" mat-button [matMenuTriggerFor]="profile">Profile</button>
   <mat-menu #profile="matMenu">
     <button mat-menu-item (click)="editprofile()">editProfile</button>
@@ -9,4 +10,3 @@
     <button mat-menu-item (click)=logout()>Logout</button>
   </mat-menu>
 </mat-toolbar>
-<p></p>

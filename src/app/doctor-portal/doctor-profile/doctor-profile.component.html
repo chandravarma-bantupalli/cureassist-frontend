@@ -1,50 +1,28 @@
-<app-doctor-header class="app-header sticky"></app-doctor-header>
-
-
-<div class="basicDetails">
-
-<div class="container" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
-    <div class="item" fxFlex="80%" fxFlexOrder="2">
-      <mat-card style="height: 200px;">
-          <mat-card-content>
-              <h5> Dr. {{ doctor.doctorFirstName }} {{ doctor.doctorLastName }} </h5>
-              <h5> {{ doctor.doctorRegNum }} </h5>
-              <h5> {{ doctor.doctorEmail }} </h5>
-              <h5> {{ doctor.doctorPhoneNumber }}</h5>
-              <h5> {{ doctor.doctorCity }} </h5>
-          </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="item avatar" fxFlex="25%">
-      <mat-card style="height: 200px;">
-        <mat-card-content style="display: flex; flex-flow: column wrap; align-items: center;">
-          <ngx-avatar [name]="docName" size="120" [round]="true"></ngx-avatar>
-          <mat-chip-list style="padding: 4px;">
-            <mat-chip> {{ doctor.doctorSpecialization }} ( {{ doctor.doctorExperience }} Years) </mat-chip>
-          </mat-chip-list>
-        </mat-card-content>
-      </mat-card>
+<div class="mat-elevation-z2 name-container" *ngIf="detailType == 'name'">
+    <div class="name-card-bg"></div>
+    <div class="name-card-content">
+        <ngx-avatar size="120" name="{{ doctor.doctorFirstName | titlecase }} {{ doctor.doctorLastName | titlecase }}"></ngx-avatar>
+        <h2>Dr. {{ doctor.doctorFirstName | titlecase }} {{ doctor.doctorLastName | titlecase }}</h2>
+        <p>{{ doctor.doctorSpecialization }}</p>
     </div>
 </div>
 
-<div class="container">
-  <div>
-    <mat-card>
-      <mat-card-subtitle>
-        Address
-      </mat-card-subtitle>
-      <mat-card-content>
-        <h5> {{ doctor.doctorAddress }} </h5>
-        <h5> {{ doctor.pincode }} </h5>
-      </mat-card-content>
-    </mat-card>
-  </div>
+<div class="mat-elevation-z2 personal-information" *ngIf="detailType == 'personalInformation'">
+    <p class="title">Personal Information</p>
+    <mat-card-content>
+        <p>{{ doctor.doctorEmail }} </p>
+        <p>{{ doctor.doctorRegNum }} </p>
+        <p>{{ doctor.doctorPhoneNumber }}</p>
+    </mat-card-content>
+    <button mat-button (click)="goToUpdateProfile()">  Update Profile</button>
 </div>
 
-</div>
-
-
-<div class="profile-options">
-  <button mat-stroked-button color="primary" (click)="goToManageSlots()"> View Time Slots </button>
-  <button mat-stroked-button color="primary" (click)="goToUpdateProfile()"> Update Profile </button>
-</div>
+<mat-card class="mat-elevation-z2" *ngIf="detailType == 'address'">
+    <p class="title">Address</p>
+    <mat-card-content>
+        <address>{{ doctor.doctorAddress }}</address>
+        <p> {{ doctor.doctorCity }} </p>
+        <address>{{ doctor.pincode }}</address>
+    </mat-card-content>
+    <button mat-button (click)="goToUpdateProfile()">  Update Profile</button>
+</mat-card>

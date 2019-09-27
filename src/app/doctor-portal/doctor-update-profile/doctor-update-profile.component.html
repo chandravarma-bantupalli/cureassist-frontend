@@ -1,76 +1,69 @@
-<div class="doctor-header-container">
-  <app-doctor-header></app-doctor-header>
-</div>
+<div mat-dialog-title>Update Profile</div>
+<div mat-dialog-content class="profile-details">
 
-
-<div class="profile-details">
-  <mat-card>
-    <mat-card-header>
+  <form [formGroup]="doctorProfile">
       <mat-card-subtitle>
-        Basic Details
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="doctorProfile">
-        <div style="display: flex; flex-flow: row wrap; align-items: center; width: 100%;">
-            <mat-form-field>
-              <input matInput formControlName="doctorFirstName" placeholder="First Name">
-            </mat-form-field>
-          
-            <mat-form-field>
-              <input matInput formControlName="doctorLastName" placeholder="Last Name">
-            </mat-form-field>            
-        </div>
-        <div style="display: flex; flex-flow: row wrap; align-items: center;">
-          <mat-form-field>
-            <input matInput formControlName="doctorPhoneNumber" placeholder="Phone Number">
-          </mat-form-field>
-        </div>
-        <div style="display: flex; flex-flow: row wrap; align-items: center;">
-          <mat-form-field style="width: 100%;">
-            <input matInput formControlName="doctorEmail" placeholder="Email">
-          </mat-form-field>
-        </div>
-        <div style="display: flex; flex-flow: row wrap; align-items: center;">
-            <mat-form-field>
-              <input matInput formControlName="doctorRegNum" placeholder="Registration Number">
-            </mat-form-field>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+          Basic Details
+        </mat-card-subtitle>
+    <div style="display: flex; flex-flow: row wrap; align-items: center; width:
+      100%;">
+      <mat-form-field>
+        <input matInput formControlName="doctorFirstName" placeholder="First
+          Name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput formControlName="doctorLastName" placeholder="Last
+          Name">
+      </mat-form-field>
+    </div>
+    <div style="display: flex; flex-flow: row wrap; align-items: center;">
+      <mat-form-field>
+        <input matInput formControlName="doctorPhoneNumber" placeholder="Phone
+          Number">
+      </mat-form-field>
+    </div>
+    <div style="display: flex; flex-flow: row wrap; align-items: center;">
+      <mat-form-field style="width: 100%;">
+        <input matInput formControlName="doctorEmail" placeholder="Email">
+      </mat-form-field>
+    </div>
+    <div style="display: flex; flex-flow: row wrap; align-items: center;">
+      <mat-form-field>
+        <input matInput formControlName="doctorRegNum" placeholder="Registration
+          Number">
+      </mat-form-field>
+    </div>
+  </form>
 </div>
 
 <div class="profile-details">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-subtitle>
-        Address
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="doctorProfile">
-        <div>
-          <mat-form-field style="width: 100%;">
-            <textarea matInput formControlName="doctorAddress" placeholder="Address Line"></textarea>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <input matInput formControlName="doctorCity" placeholder="City">
-          </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field>
-              <input matInput formControlName="pincode" placeholder="Pincode">
-            </mat-form-field>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+  <mat-card-subtitle>
+    Address
+  </mat-card-subtitle>
+  <form [formGroup]="doctorProfile">
+    <div>
+      <mat-form-field style="width: 100%;">
+        <textarea matInput formControlName="doctorAddress" placeholder="Address
+          Line"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="doctorCity" placeholder="City">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="pincode" placeholder="Pincode">
+      </mat-form-field>
+    </div>
+  </form>
 </div>
 
-<div class="profile-options">
-  <button mat-stroked-button color="primary" (click)="goToManageSlots()"> Update Time Slots </button>
-  <button mat-stroked-button color="primary" (click)="saveProfile()"> Save Profile </button>
+<div class="profile-options" mat-dialog-actions>
+  <button mat-stroked-button color="primary" (click)="goToManageSlots()"> Update
+    Time Slots </button>
+  <button mat-stroked-button color="primary" (click)="saveProfile()"> Save
+    Profile </button>
 </div>

@@ -1,14 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { QuotationService } from 'src/app/services/quotation.service';
 import { Quotation } from 'src/app/models/quotation';
 import { PrescribedMedicine } from 'src/app/models/prescribed-medicine';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { Prescriptions } from 'src/app/models/prescriptions';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pharmacy-orders-page',
   templateUrl: './pharmacy-orders-page.component.html',
   styleUrls: ['./pharmacy-orders-page.component.css']
 })
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    FlexLayoutModule
+  ]
+})
+
 export class PharmacyOrdersPageComponent implements OnInit {
   displayedColumns: string[] = ['MedicineName', 'PrescribedDosage', 'Quantity', 'MedicinePrice'];
   selectedQuotationObject: Quotation;
