@@ -1,4 +1,3 @@
-
 <form [formGroup]="prescriptionForm">
   <section class="prescription">
     <mat-card class="Detail">
@@ -24,13 +23,32 @@
 <form [formGroup]="prescriptionForm">
   <section class="prescription">
     <mat-card class="Detail">
-      <div>
-        <label>symptoms: </label>
-        <mat-form-field>
-          <input formControlName="symptoms" matInput placeholder="Provide
-            symptoms">
-        </mat-form-field>
-      </div>
+      <mat-form-field class="symptoms-chip-list">
+        <mat-chip-list #chipList aria-label="Symptom selection">
+          <mat-chip
+            *ngFor="let symptom of symptoms"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(symptom)">
+            {{symptom}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Add symptom .."
+            #symptomInput
+            [formControl]="symptomsCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let symptom of filteredSymptoms | async" [value]="symptom">
+            {{symptom}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
       <!-- <div class="addprescriptioncard">
                   <button mat-button class="addmedi" (click)="Addsymptoms()">Add</button>
               </div> -->

@@ -8,7 +8,10 @@ import {
   MatCheckboxModule,
   MatInputModule,
   MatOptionModule,
-  MatSelectModule
+  MatSelectModule,
+  MatChipsModule,
+  MatIconModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -26,7 +29,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule
   ],
   exports: [
     PrescriptionFormComponent

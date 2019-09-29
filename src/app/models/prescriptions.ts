@@ -21,3 +21,9 @@ export class PrescribedMedicines {
     PrescribedDosage: string;
     PrescribedTimings: Array<string>;
 }
+export interface ISymptoms {
+    symptoms: Array<string>;
+}
+export interface IMedicine {
+    drugs: Array<string>;
+}

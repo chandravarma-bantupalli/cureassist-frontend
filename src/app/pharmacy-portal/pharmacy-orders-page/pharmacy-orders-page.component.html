@@ -3,7 +3,7 @@
   <div class="flex-grid">
     <aside class="col sidebar">
       <mat-chip-list class="mat-chip-list-stacked" primary="Color selection">
-  <mat-chip (click)="onQuotationRequestSelected(quotationRequest)" *ngFor="let quotationRequest of quotationRequests" selected [color]="primary">
+  <mat-chip (click)="onQuotationRequestSelected(quotationRequest)" *ngFor="let quotationRequest of quotationRequests" selected color="primary">
      order {{quotationRequest?.prescriptionId}}
   </mat-chip>
 </mat-chip-list>

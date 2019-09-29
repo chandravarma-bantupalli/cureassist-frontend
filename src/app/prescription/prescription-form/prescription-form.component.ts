@@ -1,11 +1,17 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Prescription, PrescribedMedicines } from '../../models/prescription';
 import { DoctorViewAppointmentsComponent } from 'src/app/doctor-portal/doctor-view-appointments/doctor-view-appointments.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material';
 import { PrescriptionHttpService } from 'src/app/services/prescription-http.service';
+import {MatChipInputEvent} from '@angular/material/chips';
 import { PatientService } from 'src/app/services/patient.service';
 import { DoctorHttpService } from 'src/app/services/doctor-http.service';
+import { ISymptoms } from 'src/app/models/prescriptions';
+import { element } from 'protractor';
+import { Observable } from 'rxjs';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-prescription-form',
@@ -29,7 +35,20 @@ export class PrescriptionFormComponent implements OnInit {
   patientPhoneNumber: string;
   doctorName: string;
   doctorPhoneNumber: string;
+  
+  // starting of symtoms sugestions
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  symptomsCtrl = new FormControl();
+  filteredSymptoms: Observable<string[]>;
+  symptoms: string[] = [];
+  allSymptoms: Array<string> = [];
 
+  @ViewChild('symptomInput', {static: false}) symptomInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   constructor(
     public dialogRef: MatDialogRef<DoctorViewAppointmentsComponent>,
@@ -38,7 +57,11 @@ export class PrescriptionFormComponent implements OnInit {
     private prescriptionService: PrescriptionHttpService,
     private patientService: PatientService,
     private doctorService: DoctorHttpService
-  ) { }
+  ) { 
+    this.filteredSymptoms = this.symptomsCtrl.valueChanges.pipe(
+      startWith(null),
+      map((symptom: string | null) => symptom ? this._filter(symptom) : this.allSymptoms.slice()));
+  }
 
   ngOnInit() {
     this.patientUserId = this.prescriptionService.patientId;
@@ -47,6 +70,9 @@ export class PrescriptionFormComponent implements OnInit {
     this.initiateMedicineForm();
     this.getDoctorNameAndPhone();
     this.getPatientNameAndPhone();
+    this.prescriptionService.getSymptomsSuggestions().subscribe(data => data[0].symptoms.forEach(symptom => {
+      this.allSymptoms.push(symptom);
+    }));
   }
 
 
@@ -75,7 +101,7 @@ export class PrescriptionFormComponent implements OnInit {
   }
 
   getDoctorNameAndPhone() {
-    this.doctorService.getDoctorById(this.doctorId).subscribe( (d) => {
+    this.doctorService.getDoctorById(this.doctorId).subscribe((d) => {
       console.log(d);
       this.doctorName = 'Dr. ' + d.doctorFirstName + ' ' + d.doctorLastName;
       this.doctorPhoneNumber = d.doctorPhoneNumber;
@@ -83,7 +109,7 @@ export class PrescriptionFormComponent implements OnInit {
   }
 
   getPatientNameAndPhone() {
-    this.patientService.getPatientByUserId(this.patientUserId).subscribe( (p) => {
+    this.patientService.getPatientByUserId(this.patientUserId).subscribe((p) => {
       console.log(p);
       this.patientId = p.patientId;
       this.patientName = p.firstName + ' ' + p.lastName;
@@ -101,7 +127,7 @@ export class PrescriptionFormComponent implements OnInit {
   submitPrescription() {
     const symptoms = this.prescriptionForm.value.symptoms;
     const date = new Date();
-    this.SymptomsByDoctor = symptoms.split(' ');
+    this.SymptomsByDoctor = this.symptoms;
     this.newPrescription = this.prescriptionForm.value;
     this.newPrescription.patientId = this.patientUserId;
     this.newPrescription.patientName = this.patientName;
@@ -111,7 +137,7 @@ export class PrescriptionFormComponent implements OnInit {
     this.newPrescription.prescriptionDate = date.toLocaleDateString();
     this.newPrescription.symptoms = this.SymptomsByDoctor;
     this.newPrescription.allPrescribedMedicines = this.ListOfMedicine;
-    this.prescriptionService.addNewPrescription(this.newPrescription).subscribe( (data) => {
+    this.prescriptionService.addNewPrescription(this.newPrescription).subscribe((data) => {
       console.log(this.newPrescription);
       console.log(data);
       this.prescriptionForm.reset();
@@ -122,7 +148,45 @@ export class PrescriptionFormComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+  // symptoms method start
+  add(event: MatChipInputEvent): void {
+    // Add fruit only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
 
+      // Add our fruit
+      if ((value || '').trim()) {
+        this.symptoms.push(value.trim());
+      }
 
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
 
+      this.symptomsCtrl.setValue(null);
+    }
+  }
+
+  remove(symptom: string): void {
+    const index = this.symptoms.indexOf(symptom);
+
+    if (index >= 0) {
+      this.symptoms.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.symptoms.push(event.option.viewValue);
+    this.symptomInput.nativeElement.value = '';
+    this.symptomsCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allSymptoms.filter(symptom => symptom.toLowerCase().indexOf(filterValue) === 0);
+  }
 }
