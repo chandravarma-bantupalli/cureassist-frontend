@@ -9,6 +9,7 @@ export class Prescriptions {
     doctorphoneNumber: string;
     symptoms: Array<string>;
     remarks: string;
+    prescriptionImage?: File;
     prescribedMedicines: Array<PrescribedMedicines>;
     prescription: any;
     currentLocation: string;

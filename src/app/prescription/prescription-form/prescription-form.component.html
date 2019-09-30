@@ -25,23 +25,14 @@
     <mat-card class="Detail">
       <mat-form-field class="symptoms-chip-list">
         <mat-chip-list #chipList aria-label="Symptom selection">
-          <mat-chip
-            *ngFor="let symptom of symptoms"
-            [selectable]="selectable"
-            [removable]="removable"
+          <mat-chip *ngFor="let symptom of symptoms" [selectable]="selectable" [removable]="removable"
             (removed)="remove(symptom)">
             {{symptom}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input
-            placeholder="Add symptom .."
-            #symptomInput
-            [formControl]="symptomsCtrl"
-            [matAutocomplete]="auto"
-            [matChipInputFor]="chipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="add($event)">
+          <input placeholder="Add symptom .." #symptomInput [formControl]="symptomsCtrl" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let symptom of filteredSymptoms | async" [value]="symptom">
@@ -52,6 +43,16 @@
       <!-- <div class="addprescriptioncard">
                   <button mat-button class="addmedi" (click)="Addsymptoms()">Add</button>
               </div> -->
+    </mat-card>
+  </section>
+</form>
+<!-- code for image prescription -->
+<form [formGroup]="prescriptionForm">
+  <section class="prescription">
+    <mat-card class="Detail">
+      <img [src]='imageUrl' style="width: 100px; height: 100px">
+      <input type="file" formControlName="prescriptionImage" accept="image/*"
+        (change)='handleImage($event.target.files)'>
     </mat-card>
   </section>
 </form>
@@ -96,8 +97,7 @@
       <div>
         <label>Prescribed Dosage: </label>
         <mat-form-field>
-          <input formControlName="prescribedDosage" matInput
-            placeholder="Prescribed Dosage">
+          <input formControlName="prescribedDosage" matInput placeholder="Prescribed Dosage">
         </mat-form-field>
       </div>
 
@@ -115,18 +115,18 @@
       <div>
         <label>prescribed Days: </label>
         <mat-form-field>
-          <input formControlName="prescribedDays" matInput
-            placeholder="prescribed Days">
+          <input formControlName="prescribedDays" matInput placeholder="prescribed Days">
         </mat-form-field>
       </div>
 
       <div class="addprescriptioncard">
         <button mat-button class="addmedi" (click)="addMedicine()">Add Medicines</button>
       </div>
-    </mat-card>
-  </form>
-</section>
 
-<div class="Submit">
-  <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
-</div>
+    </mat-card>
+
+  </form>
+  <div class="Submit">
+    <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
+  </div>
+</section>
