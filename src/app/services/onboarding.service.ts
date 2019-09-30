@@ -100,8 +100,11 @@ export class OnboardingService {
     this.cookieService.set('loginToken', userAccessToken, 2147483647, '/', '.cureassist.cgi-wave7.stackroute.io');
     const tokenInfo = this.getDecodedAccessToken(userAccessToken); // decode token
     this.emailId = tokenInfo.EmailId;
+    console.log(this.emailId);
     this.userid = tokenInfo.UserId;
+    console.log(this.userid);
     this.usertype = tokenInfo.UserType;
+    console.log(this.usertype);
     if ((window.location.href).includes('patient')) {
       this.route.navigate(['patient/home']);
     } else if ((window.location.href).includes('doctor')) {
