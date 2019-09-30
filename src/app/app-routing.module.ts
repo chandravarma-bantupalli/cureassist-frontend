@@ -34,6 +34,7 @@ import { PharmacyConfirmOrdersComponent } from './pharmacy-portal/pharmacy-confi
 import { DiagnosticCenterViewAppointmentsComponent } from './diagnosis-center-portal/diagnostic-center-view-appointments/diagnostic-center-view-appointments.component';
 import { ViewAppointmentComponent } from './patient-portal/view-appointment/view-appointment.component';
 import { PrescriptionFormComponent } from './prescription/prescription-form/prescription-form.component';
+import { DoctorAppointmentHistoryComponent } from './doctor-portal/doctor-appointment-history/doctor-appointment-history.component';
 
 const routes: Routes = [
   { path: 'onboarding', children: [
@@ -72,7 +73,7 @@ const routes: Routes = [
     {path: 'manage', children: [
       {path: 'timeslots', component: DoctorManageSlotsComponent}
     ]},
-    {path: 'view', component: DoctorViewAppointmentsComponent},
+    {path: 'view', component: DoctorAppointmentHistoryComponent},
   ]},
   {path: 'pharmacy', children: [
     {path: 'home', component: PharmacyOrdersPageComponent},

@@ -21,10 +21,10 @@
             <tr mat-row *matRowDef="let row; columns: patientDisplayedColumns;"></tr>
         </table>
     </div>
-    <button mat-button>View All Appointments</button>
+    <button mat-button (click)="viewAllAppointments()">View All Appointments</button>
 </div>
 
-<div *ngIf="when == 'upcoming'">
+ <div *ngIf="when == 'upcoming'"> 
     <div class="appointments-container" *ngIf="laterPatients.length == 0">
         <h4>Upcoming Appointments</h4>
         <div>
