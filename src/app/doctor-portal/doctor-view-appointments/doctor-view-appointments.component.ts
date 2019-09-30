@@ -69,11 +69,11 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   }
 
   calculateMoment(date) {
-    const today = moment().endOf('day')
-    const tomorrow = moment().add(1, 'day').endOf('day')
-    if (date < today) return 'today'
+    const today = moment().endOf('day');
+    const tomorrow = moment().add(1, 'day').endOf('day');
+    if (date < today) { return 'today' }
 
-    return 'later'
+    return 'later';
   }
 
   getPatientData(patientId): Promise<Patient> {
@@ -88,10 +88,10 @@ export class DoctorViewAppointmentsComponent implements OnInit {
       }));
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
-      var todayAttendeesIds = this.getAttendees(this.today);
-      var laterAttendeesIds = this.getAttendees(this.later);
-      var todaysPatientsPromise = Promise.all<Patient>(todayAttendeesIds.map(this.getPatientData.bind(this)));
-      var laterPatientPromise = Promise.all<Patient>(laterAttendeesIds.map(this.getPatientData.bind(this)));
+      let todayAttendeesIds = this.getAttendees(this.today);
+      let laterAttendeesIds = this.getAttendees(this.later);
+      let todaysPatientsPromise = Promise.all<Patient>(todayAttendeesIds.map(this.getPatientData.bind(this)));
+      let laterPatientPromise = Promise.all<Patient>(laterAttendeesIds.map(this.getPatientData.bind(this)));
       laterPatientPromise.then((patients) => {
         this.tomorrowPatients = patients;
       });
@@ -105,7 +105,8 @@ export class DoctorViewAppointmentsComponent implements OnInit {
     this.prescriptionService.patientId = id;
     this.prescriptionService.doctorId = this.doctorId;
     const dialogRef = this.dialog.open(PrescriptionFormComponent, {
-      width: 'auto'
+      width: 'auto',
+      height: '100vh'
     });
 
     dialogRef.afterClosed().subscribe((result) => {

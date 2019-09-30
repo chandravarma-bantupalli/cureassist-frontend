@@ -33,6 +33,7 @@ import { PharmacyConfirmOrdersComponent } from './pharmacy-portal/pharmacy-confi
 // tslint:disable-next-line: max-line-length
 import { DiagnosticCenterViewAppointmentsComponent } from './diagnosis-center-portal/diagnostic-center-view-appointments/diagnostic-center-view-appointments.component';
 import { ViewAppointmentComponent } from './patient-portal/view-appointment/view-appointment.component';
+import { PrescriptionFormComponent } from './prescription/prescription-form/prescription-form.component';
 
 const routes: Routes = [
   { path: 'onboarding', children: [
@@ -78,6 +79,9 @@ const routes: Routes = [
     {path: 'createprofile', component: PharmacyProfileComponent},
     { path: 'view', component: PharmacyViewProfileComponent },
     {path: 'myorders', component: PharmacyConfirmOrdersComponent}
+  ]},
+  {path: 'prescription', children: [
+    {path: 'form', component: PrescriptionFormComponent}
   ]},
   {path: '', pathMatch: 'full', component: PatientLandingPageComponent},
   {path: 'patient', pathMatch: 'full', component: HomePageComponent},
