@@ -2,16 +2,16 @@ import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core'
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Prescription, PrescribedMedicines } from '../../models/prescription';
 import { DoctorViewAppointmentsComponent } from 'src/app/doctor-portal/doctor-view-appointments/doctor-view-appointments.component';
-import { MatDialogRef, MAT_DIALOG_DATA, MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material';
 import { PrescriptionHttpService } from 'src/app/services/prescription-http.service';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { PatientService } from 'src/app/services/patient.service';
 import { DoctorHttpService } from 'src/app/services/doctor-http.service';
 import { ISymptoms } from 'src/app/models/prescriptions';
 import { element } from 'protractor';
 import { Observable } from 'rxjs';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {map, startWith} from 'rxjs/operators';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-prescription-form',
@@ -35,8 +35,10 @@ export class PrescriptionFormComponent implements OnInit {
   patientPhoneNumber: string;
   doctorName: string;
   doctorPhoneNumber: string;
-  
-  // starting of symtoms sugestions
+  imageUrl: string;
+  fileToUpload: File = null;
+
+  // starting of symtoms suggestions
   visible = true;
   selectable = true;
   removable = true;
@@ -46,9 +48,12 @@ export class PrescriptionFormComponent implements OnInit {
   filteredSymptoms: Observable<string[]>;
   symptoms: string[] = [];
   allSymptoms: Array<string> = [];
+  allMedicine: Array<string> = [];
+  // myMedicine = new FormControl();
+  // filteredMedicine: Observable<string[]>;
 
-  @ViewChild('symptomInput', {static: false}) symptomInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('symptomInput', { static: false }) symptomInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     public dialogRef: MatDialogRef<DoctorViewAppointmentsComponent>,
@@ -57,7 +62,7 @@ export class PrescriptionFormComponent implements OnInit {
     private prescriptionService: PrescriptionHttpService,
     private patientService: PatientService,
     private doctorService: DoctorHttpService
-  ) { 
+  ) {
     this.filteredSymptoms = this.symptomsCtrl.valueChanges.pipe(
       startWith(null),
       map((symptom: string | null) => symptom ? this._filter(symptom) : this.allSymptoms.slice()));
@@ -73,9 +78,15 @@ export class PrescriptionFormComponent implements OnInit {
     this.prescriptionService.getSymptomsSuggestions().subscribe(data => data[0].symptoms.forEach(symptom => {
       this.allSymptoms.push(symptom);
     }));
+    this.prescriptionService.getMedicineSuggestions().subscribe(data => data[0].medicines.forEach(medicine => {
+      this.allMedicine.push(medicine);
+    }));
+    // this.filteredMedicine = this.myMedicine.valueChanges
+    // .pipe(
+    //   startWith(''),
+    //   map(value => this._filterMedicine(value))
+    // );
   }
-
-
   instantiatePrescriptionForm() {
     this.prescriptionForm = this.formBuilder.group({
       prescriptionId: '',
@@ -87,6 +98,7 @@ export class PrescriptionFormComponent implements OnInit {
       doctorphoneNumber: this.doctorPhoneNumber,
       symptoms: '',
       remarks: '',
+      prescriptionImage: '',
       allPrescribedMedicines: ''
     });
   }
@@ -189,4 +201,23 @@ export class PrescriptionFormComponent implements OnInit {
 
     return this.allSymptoms.filter(symptom => symptom.toLowerCase().indexOf(filterValue) === 0);
   }
+  // private _filterMedicine(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //   console.log(this.myMedicine.value);
+
+  //   return this.allMedicine.filter(option => option.toLowerCase().includes(filterValue));
+  // }
+
+
+
+  // Method to handle image
+  handleImage(File: File) {
+    this.fileToUpload = File;
+    var reader = new FileReader();
+    // reader.onload = (event: any) => {
+    //   this.imageUrl = event.target.result;
+    // }
+    reader.readAsDataURL(this.fileToUpload);
+  }
+
 }
