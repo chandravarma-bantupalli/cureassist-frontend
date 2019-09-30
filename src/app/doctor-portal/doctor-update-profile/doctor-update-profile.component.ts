@@ -6,6 +6,8 @@ import { DoctorHttpService } from '../../services/doctor-http.service';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 import { TimeSlot } from 'src/app/models/time-slot';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-doctor-update-profile',
@@ -13,10 +15,28 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
   styleUrls: ['./doctor-update-profile.component.css']
 })
 export class DoctorUpdateProfileComponent implements OnInit {
-  doctorProfile: FormGroup;
   doctor: Doctor;
   userid: string;
   doctorProfileExists: boolean;
+  // tslint:disable-next-line:max-line-length
+  optionsForSpecialization: string[] = ['General Physician', 'Cardiologist', 'Ear, Nose and Throat', 'Gastroenterologist', 'Dermatologist', 'Neurologist', 'Gynecologist', 'Psychiatrist'];
+  filteredSpecialization: Observable<string[]>;
+  doctorProfile = this.formBuilder.group({
+    ts: '',
+    doctorId: '',
+    userid: '',
+    doctorFirstName: '',
+    doctorLastName: '',
+    doctorEmail: '',
+    doctorPhoneNumber: '',
+    doctorCity: '',
+    doctorAddress: '',
+    pincode: '',
+    doctorRegNum: '',
+    doctorExperience: '',
+    doctorSpecialization: '',
+    doctorSlots: ''
+  });
 
   constructor(
     private router: Router,
@@ -29,27 +49,17 @@ export class DoctorUpdateProfileComponent implements OnInit {
   ngOnInit() {
     this.userid = '4a030b89-84f7-4fc5-9010-c00a0f3a6b21';
     // this.userid = this.onboardingService.userid;
-    this.initializeDoctorProfileForm();
     this.getDoctorProfile(this.userid);
+    this.filteredSpecialization = this.doctorProfile.controls.doctorSpecialization.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filterSpecilization(value))
+    );
   }
+  private _filterSpecilization(value: string): string[] {
+    const filterValue = value.toLowerCase();
 
-  initializeDoctorProfileForm() {
-    this.doctorProfile = this.formBuilder.group({
-      ts: '',
-      doctorId: '',
-      userid: '',
-      doctorFirstName: '',
-      doctorLastName: '',
-      doctorEmail: '',
-      doctorPhoneNumber: '',
-      doctorCity: '',
-      doctorAddress: '',
-      pincode: '',
-      doctorRegNum: '',
-      doctorExperience: '',
-      doctorSpecialization: '',
-      doctorSlots: ''
-    });
+    return this.optionsForSpecialization.filter(specialization => specialization.toLowerCase().includes(filterValue));
   }
 
   getDoctorProfile(userid: string) {

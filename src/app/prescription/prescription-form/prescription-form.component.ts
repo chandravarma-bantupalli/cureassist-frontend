@@ -21,7 +21,6 @@ import { map, startWith } from 'rxjs/operators';
 export class PrescriptionFormComponent implements OnInit {
 
   today = Date.now();
-  prescriptionForm: FormGroup;
   medicineForm: FormGroup;
   RemarksByDoctor: string;
   SymptomsByDoctor: string[];
@@ -55,6 +54,23 @@ export class PrescriptionFormComponent implements OnInit {
   @ViewChild('symptomInput', { static: false }) symptomInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
+  prescriptionForm = this.formBuilder.group({
+    prescriptionId: '',
+    prescritionDate: '',
+    patientId: '',
+    patientName: this.patientName,
+    patientPhoneNumber: this.patientPhoneNumber,
+    doctorName: this.doctorName,
+    doctorphoneNumber: this.doctorPhoneNumber,
+    symptoms: '',
+    remarks: '',
+    allPrescribedMedicines: [{medicineForm: this.formBuilder.group({
+      medicineName: '',
+      prescribedDosage: '',
+      prescribedTimings: [],
+      prescribedDays: '',
+    })}]
+  });
   constructor(
     public dialogRef: MatDialogRef<DoctorViewAppointmentsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -71,7 +87,6 @@ export class PrescriptionFormComponent implements OnInit {
   ngOnInit() {
     this.patientUserId = this.prescriptionService.patientId;
     this.doctorId = this.prescriptionService.doctorId;
-    this.instantiatePrescriptionForm();
     this.initiateMedicineForm();
     this.getDoctorNameAndPhone();
     this.getPatientNameAndPhone();
@@ -87,21 +102,7 @@ export class PrescriptionFormComponent implements OnInit {
     //   map(value => this._filterMedicine(value))
     // );
   }
-  instantiatePrescriptionForm() {
-    this.prescriptionForm = this.formBuilder.group({
-      prescriptionId: '',
-      prescritionDate: '',
-      patientId: '',
-      patientName: this.patientName,
-      patientPhoneNumber: this.patientPhoneNumber,
-      doctorName: this.doctorName,
-      doctorphoneNumber: this.doctorPhoneNumber,
-      symptoms: '',
-      remarks: '',
-      prescriptionImage: '',
-      allPrescribedMedicines: ''
-    });
-  }
+    
 
   initiateMedicineForm() {
     this.medicineForm = this.formBuilder.group({
@@ -129,10 +130,10 @@ export class PrescriptionFormComponent implements OnInit {
     });
   }
 
-  addMedicine() {
-    const newItem = this.medicineForm.value;
-    this.ListOfMedicine.push(newItem);
-    this.initiateMedicineForm();
+  onSubmit() {
+    this.prescriptionForm.controls.PrescribedMedicines.value.push(this.medicineForm.value);
+    console.log(this.prescriptionForm.value);
+    this.medicineForm.reset();
   }
 
 
@@ -219,5 +220,4 @@ export class PrescriptionFormComponent implements OnInit {
     // }
     reader.readAsDataURL(this.fileToUpload);
   }
-
 }

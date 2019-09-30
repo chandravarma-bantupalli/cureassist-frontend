@@ -6,7 +6,7 @@ import { DoctorManageSlotsComponent } from './doctor-manage-slots/doctor-manage-
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { DoctorUpdateProfileComponent } from './doctor-update-profile/doctor-update-profile.component';
 // tslint:disable-next-line: max-line-length
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatDialogModule, MatDialogRef } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatDialogModule, MatDialogRef, MatAutocompleteModule } from '@angular/material';
 import { MatListModule, MatSidenavModule, MatGridListModule, MatCardModule, MatExpansionModule, MatChipsModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -53,6 +53,7 @@ import { DoctorAppointmentHistoryComponent } from './doctor-appointment-history/
     AvatarModule,
     MatDialogModule,
     MatDividerModule,
+    MatAutocompleteModule
   ],
   exports: [
    DoctorHeaderComponent,
