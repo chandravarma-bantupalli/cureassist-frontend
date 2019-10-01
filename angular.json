@@ -65,13 +65,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "cure-assist-front-end:build",
-            "proxyConfig": "proxy.conf.json",
-            "disableHostCheck": false
+            "proxyConfig": "proxy.conf.js",
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {
               "browserTarget": "cure-assist-front-end:build:production",
-              "proxyConfig": "proxy.conf.json",
+              "proxyConfig": "proxy.conf.js",
               "disableHostCheck": false
             }
           }
