@@ -1,0 +1,165 @@
+ [
+  { 
+    "specialization":"General Physician",
+    "symptoms": [
+      "fever",
+      "diarrhea",
+      "headache",
+      "intense_fatigue",
+      "muscular_pain",
+      "nausea_vomiting",
+      "sore_throat",
+      "unexplained_bleedings",
+      "rash",
+      "anorexia",
+      "weight loss",
+      "cachexia",
+      "chills and shivering",
+      "convulsions",
+      "deformity",
+      "discharge",
+      "dizziness",
+      "fatigue",
+      "malaise",
+      "asthenia",
+      "hypothermia",
+      "jaundice",
+      "muscle weakness",
+      "pyrexia",
+      "sweats",
+      "swelling",
+      "swollen or painful lymph node",
+      "weight gain"
+      ]
+  },
+  {
+    "specialization": "Cardiologist",
+    "symptom":
+    [
+      "arrhythmia",
+      "bradycardia",
+      "chest pain",
+      "claudication",
+      "palpitations",
+      "tachycardia"
+    ]
+  },
+  {
+    "specialization": "Ear, Nose and Throat",
+    "symptom":
+    [
+      "dry mouth",
+      "epistaxis",
+      "halitosis",
+      "hearing loss",
+      "nasal discharge",
+      "otalgia",
+      "otorrhea",
+      "sore throat",
+      "toothache",
+      "tinnitus",
+      "trismus"
+      ]
+  },
+  {
+    "specialization": "Gastroenterologist",
+    "symptom":
+    [
+      "abdominal pain",
+      "bloating",
+      "belching",
+      "bleeding",
+      "Hematemesis",
+      "blood in stool",
+      "hematochezia",
+      "constipation",
+      "diarrhea",
+      "dysphagia",
+      "dyspepsia",
+      "fecal incontinence",
+      "flatulence",
+      "heartburn",
+      "nausea",
+      "odynophagia",
+      "proctalgia fugax",
+      "pyrosis",
+      "Rectal tenesmus",
+      "steatorrhea",
+      "vomiting"
+    ]
+  },
+  {
+     "specialization": "Dermatologist",
+     "symptom": 
+     [
+      "Hair alopecia",
+      "Hair hirsutism",
+      "Hair hypertrichosis",
+      "Skin abrasion",
+      "Skin anasarca",
+      "Skin bleeding into the skin",
+      "Skin petechia",
+      "Skin purpura",
+      "Skin ecchymosis and bruising",
+      "Skin blister",
+      "Skin edema",
+      "Skin itching",
+      "Skin Janeway lesions and Osler's node",
+      "Skin laceration",
+      "Skin rash",
+      "Skin urticaria"
+      ]
+  },
+  {
+    "specialization": "Neurologist",
+     "symptom":
+     [
+      "abnormal posturing",
+      "acalculia",
+      "agnosia",
+      "alexia",
+      "amnesia",
+      "anomia",
+      "anosognosia",
+      "aphasia and apraxia",
+      "apraxia",
+      "ataxia",
+      "cataplexy",
+      "confusion",
+      "dysarthria",
+      "dysdiadochokinesia",
+      "dysgraphia",
+      "hallucination",
+      "headache"
+      ]
+  },
+  {
+    "specialization": "Gynecologist",
+     "symptom":
+     [
+      "amenorrhea",
+      "infertility",
+      "painful intercourse",
+      "pelvic pain",
+      "vaginal discharge"
+      ]
+  },
+  {
+     "specialization": "Psychiatrist",
+     "symptom":
+     [
+      "amusia",
+      "anhedonia",
+      "anxiety",
+      "apathy",
+      "confabulation",
+      "depression",
+      "delusion",
+      "euphoria",
+      "homicidalideation",
+      "irritability",
+      "mania",
+      "paranoid ideation"
+    ]
+  }
+]

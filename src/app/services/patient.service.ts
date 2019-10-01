@@ -5,7 +5,7 @@ import { OnboardingService } from './onboarding.service';
 import { IAppointments } from '../models/appointment';
 import { Doctor } from '../models/doctor';
 import { IDiagnostics } from '../models/diagnostics';
-import { Patient } from '../models/patient';
+import { Patient, ISymptomsBySuggestions } from '../models/patient';
 import { DiagnosticCenter } from '../models/diagnostic-center';
 import { environment} from '../../environments/environment.prod';
 @Injectable({
@@ -48,6 +48,7 @@ export class PatientService {
       pincode
     );
   }
+  
   searchDoctorsBySpecialization(
     searchbar: string,
     City: string, pincode: string
@@ -76,6 +77,9 @@ export class PatientService {
       '&testsConducted=' +
       searchbar
     );
+  }
+  getDoctorBySymptoms(): Observable<ISymptomsBySuggestions[]> {
+    return this.http.get<ISymptomsBySuggestions[]>('../../../assets/json_files/specializationANDsymptoms.json');
   }
   // data from searched component
   viewdoctorprofile(doctor: Doctor) {

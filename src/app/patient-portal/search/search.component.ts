@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Doctor } from '../../models/doctor';
 import { DiagnosticCenter } from '../../models/diagnostic-center';
 import { PatientService } from '../../services/patient.service';
+import {ISymptomsBySuggestions} from '../../models/patient';
 
 @Component({
   selector: 'app-search',
@@ -17,6 +18,7 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
   diagnosticsByTest: DiagnosticCenter[];
   diagnosticsByName: DiagnosticCenter[];
   searchbar: string;
+  specializationBySymptoms: Array<ISymptomsBySuggestions> = [];
   city: string;
   area: string;
   pincode: any;
@@ -36,6 +38,18 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
   searchDoctorsByName(searchbar) {
     this.doctorByName = [];
     this.service.searchDoctorsByName(searchbar, this.city, this.pincode).subscribe(data => this.doctorByName = data);
+  }
+  searchDoctorsBySymptoms(searchbar) {
+    this.doctorByName = [];
+    this.specializationBySymptoms.forEach(specializationBySymptom => specializationBySymptom.symptoms.forEach(symptom => {
+        if (symptom === searchbar) {
+          searchbar = specializationBySymptom.specialization;
+          console.log(searchbar);
+        }
+      }));
+   // this.service.getDoctorBySymptoms().subscribe(data => console.log(data));
+  // console.log(this.specializationBySymptoms);
+    this.service.searchDoctorsBySpecialization(searchbar, this.city, this.pincode).subscribe(data => this.doctorByName = data);
   }
   searchDoctorBySpecialization(searchbar) {
     this.doctorByName = [];
@@ -61,10 +75,15 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
   viewdcprofilecard() {
     this.route.navigate(['patient/viewdcprofile']);
   }
+
   // viewAllAppointment() {
   //   this.service.viewAllAppointment().subscribe(data => console.log(data));
   // }
   ngOnInit() {
     this.getpincode();
+    // tslint:disable-next-line:max-line-length
+    this.service.getDoctorBySymptoms().subscribe(data => data.forEach(specialization => {
+      this.specializationBySymptoms.push(specialization);
+     } ));
   }
 }
