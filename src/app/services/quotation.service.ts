@@ -47,6 +47,7 @@ export class QuotationService {
     this.patientDetails.next(patientDetail);
   }
 
+  
   pharmacyOnline(pharmacyPincode: string) {
     if (this.hubConnection.state === HubConnectionState.Disconnected) {
       return this.hubConnection.start()
