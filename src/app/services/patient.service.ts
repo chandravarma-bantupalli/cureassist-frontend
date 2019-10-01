@@ -44,12 +44,7 @@ export class PatientService {
   //   });
   // }
     getpincodeAPI(city): Observable<any> {
-    return this.http.get(environment.pincodeAPI + city, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    });
+    return this.http.get(environment.pincodeAPI + city);
   }
   searchDoctorsByName(
     searchbar: string,
