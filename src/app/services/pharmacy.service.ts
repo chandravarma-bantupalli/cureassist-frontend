@@ -14,21 +14,20 @@ export class PharmacyService {
   constructor(private fb: FormBuilder, private http: HttpClient) { }
   formModel = this.fb.group({
     pharmacyName: ['', Validators.required],
-    pharmacyRegisterNumber: ['', Validators.required],
     pharmacyLocation: ['', Validators.required],
     pharmacyPincode: ['', Validators.required],
-    emailId: ['', Validators.required],
-    phoneNumber: ['', Validators.maxLength(10)]
+    pharmacyRegisterNumber: ['', Validators.required],
+    phoneNumber: ['', Validators.maxLength(10)],
+    emailId: ['', Validators.required]
    });
    CreateProfile() {
      return this.http.post(this.urlpost, this.formModel.value);
    }
-  //  getPharmacy(email): Observable<Pharmacy> {
-  //    return this.http.get<Pharmacy>(this.urlpost + '/' + email);
-  //  }
+
   getPharmacy(): Observable<Pharmacy> {
     return this.http.get<Pharmacy>(this.urlpost + '/viewprofile');
   }
+
    updateprofile(body) {
      return this.http.put(this.urlpost + '/editprofile', body);
    }
