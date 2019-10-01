@@ -38,6 +38,7 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
   searchDoctorsByName(searchbar) {
     this.doctorByName = [];
     this.service.searchDoctorsByName(searchbar, this.city, this.pincode).subscribe(data => this.doctorByName = data);
+    console.log(this.pincode);
   }
   searchDoctorsBySymptoms(searchbar) {
     this.doctorByName = [];
