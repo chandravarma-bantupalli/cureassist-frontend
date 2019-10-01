@@ -34,23 +34,31 @@ export class PatientService {
   updateProfile(body) {
     return this.http.put(this.urlForPatient + '/updateprofile', body);
   }
-  searchDoctorsByName(searchbar: string, City: string): Observable<Doctor[]> {
+  //to get the pincode by areanames
+    getpincodeAPI(city): Observable<any> {
+    return this.http.get('/postoffice/' + city,{headers: {'Access-Control-Allow-Origin': '*','Access-Control-Allow-Headers': '*'}});
+  }
+  searchDoctorsByName(searchbar: string, City: string, pincode: string): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(
       environment.doctorsdcAPI + '/api/doctor/search?city=' +
       City +
       '&name=' +
-      searchbar
+      searchbar +
+      '&pincode=' +
+      pincode
     );
   }
   searchDoctorsBySpecialization(
     searchbar: string,
-    City: string
+    City: string, pincode: string
   ): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(
       environment.doctorsdcAPI + '/api/doctor/search?city=' +
       City +
       '&specialization=' +
-      searchbar
+      searchbar +
+      '&pincode=' +
+      pincode
     );
   }
   searchDCByName(searchbar: string, City: string): Observable<DiagnosticCenter[]> {
