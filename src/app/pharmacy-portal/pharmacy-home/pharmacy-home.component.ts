@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import { OnboardingService } from 'src/app/services/onboarding.service';
+import { MatDialog } from '@angular/material';
+import { ResetpasswordComponent } from 'src/app/onboarding/resetpassword/resetpassword.component';
 
 @Component({
   selector: 'app-pharmacy-home',
@@ -9,7 +11,7 @@ import { OnboardingService } from 'src/app/services/onboarding.service';
 })
 export class PharmacyHomeComponent implements OnInit {
 
-  constructor(private route: Router, private service: OnboardingService) { }
+  constructor(public dialog: MatDialog, private route: Router, private router: ActivatedRoute, public service: OnboardingService) { }
 
   ngOnInit() {
   }
@@ -19,8 +21,11 @@ export class PharmacyHomeComponent implements OnInit {
   viewprofile() {
     this.route.navigate(['pharmacy/view']);
   }
-  resetPassword() {
-    this.route.navigate(['onboarding/resetpassword']);
+  resetpassword() {
+    this.dialog.open(ResetpasswordComponent, {
+      width: '30vw',
+      height: '70vh'
+    });
   }
   logout() {
     this.service.Logout();

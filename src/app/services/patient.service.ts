@@ -8,6 +8,7 @@ import { IDiagnostics } from '../models/diagnostics';
 import { Patient, ISymptomsBySuggestions } from '../models/patient';
 import { DiagnosticCenter } from '../models/diagnostic-center';
 import { environment } from '../../environments/environment.prod';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,22 +36,30 @@ export class PatientService {
     return this.http.put(this.urlForPatient + '/updateprofile', body);
   }
   //to get the pincode by areanames
-  getpincodeAPI(city): Observable<any> {
-    return this.http.get('https://api.postalpincode.in/postoffice/' + city, {
+  // getpincodeAPI(city): Observable<any> {
+  //   // tslint:disable-next-line:max-line-length
+  //   return this.http.jsonp('https://api.postalpincode.in/postoffice/' + city ,'callback').pipe(
+  //     map(res => {
+  //       return res.map(item => {
+  //         return new SearchItem(
+  //           item.trackName,
+  //           item.artistName,
+  //           item.trackViewUrl,
+  //           item.artworkUrl30,
+  //           item.artistId
+  //         );
+  //       });
+  //     })
+  //     );
+  // }
+    getpincodeAPI(city): Observable<any> {
+    return this.http.get(environment.pincodeAPI + city, {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*'
       }
     });
   }
-  //   getpincodeAPI(city): Observable<any> {
-  //   return this.http.get(environment.pincodeAPI + city, {
-  //     headers: {
-  //       'Access-Control-Allow-Origin': '*',
-  //       'Access-Control-Allow-Headers': '*'
-  //     }
-  //   });
-  // }
   searchDoctorsByName(
     searchbar: string,
     City: string,
