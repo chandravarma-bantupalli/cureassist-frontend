@@ -36,7 +36,7 @@ export class PatientService {
   }
   //to get the pincode by areanames
   getpincodeAPI(city): Observable<any> {
-    return this.http.get('/postoffice/' + city, {
+    return this.http.get('https://api.postalpincode.in/postoffice/' + city, {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*'
