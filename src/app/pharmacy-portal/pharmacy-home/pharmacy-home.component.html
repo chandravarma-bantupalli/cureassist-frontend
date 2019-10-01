@@ -14,17 +14,26 @@
 <div class="home-container">
   <div class="title">
     <h3>Cure Assist | <span class="lead">Pharmacy portal</span></h3>
-    <button mat-button (click)="orderHistory()">Order history</button>
+    <span class="gotoend"></span>
+    <button class="Profile" mat-button [matMenuTriggerFor]="profile">
+        <img src="../../../assets/images/profile.jpg" alt="profile">
+     </button>
+     <mat-menu #profile="matMenu">
+         <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
+         <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
+     </mat-menu>
   </div>
-
   <div class="chicklet-container">
     <app-pharmacy-view-profile detailType="name"></app-pharmacy-view-profile>
+    <div class="main-content" >
+        <app-pharmacy-orders-page></app-pharmacy-orders-page>
+    </div>
     <div class="chicklet-data-container">
       <div class="left">
         <app-pharmacy-view-profile detailType="contact-info"></app-pharmacy-view-profile>
       </div>
       <div class="right">
-        <app-pharmacy-orders-page when="today"></app-pharmacy-orders-page>
+      <app-pharmacy-confirm-orders></app-pharmacy-confirm-orders>
       </div>
     </div>
   </div>

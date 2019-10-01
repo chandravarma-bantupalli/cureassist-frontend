@@ -50,8 +50,8 @@ export class PharmacyOrdersPageComponent implements OnInit {
 
   ngOnInit() {
     this.pharmacyService.getPharmacy().subscribe(data => this.pharmacistDetails = data);
-    // this.quotationService.pharmacyOnline(this.pharmacistDetails.pharmacyPincode);
-    // console.log('got pharmacy pincode', this.pharmacistDetails.pharmacyPincode);
+    this.quotationService.pharmacyOnline(this.pharmacistDetails.pharmacyPincode);
+    console.log('got pharmacy pincode', this.pharmacistDetails.pharmacyPincode);
     this.quotationService.quotationRequests.subscribe((quotation: any) => {
       if (quotation === '') {
         console.log('incoming string is null');
@@ -62,21 +62,8 @@ export class PharmacyOrdersPageComponent implements OnInit {
         this.quotationRequests.push(quotation);
       }
     });
-    // this.quotationService.patientDetails.subscribe((details: any) => {
-    //   if (details === '') {
-    //     console.log('no details');
-    //   } else {
-    //     // console.log(details);
-    //     this.patientDetail = details;
-    //     console.log(this.patientDetail, 'got details');
-    //   }
-    // });
   }
-  // sendResponse(totalCost) {
-  //   // console.log(totalCost);
-  //   this.selectedQuotationObject.totalCost = totalCost;
-  //   this.quotationService.sendQuotation(this.selectedQuotationObject);
-  // }
+
   totalMedicineCost(medicineName, medicinePrice) {
     // tslint:disable-next-line:radix
     this.totalCost = this.totalCost + parseInt(medicinePrice.target.value);

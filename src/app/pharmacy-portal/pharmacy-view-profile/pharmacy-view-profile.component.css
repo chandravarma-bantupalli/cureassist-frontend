@@ -1,12 +1,8 @@
-/* .profileContent {
+ button {
     display: flex;
   align-items: center;
   justify-content: center;
 }
-
-.full-width {
-    width: 300px;
-} */
 
 .patient-profile-container {
   display: flex;
