@@ -5,7 +5,7 @@ import { OnboardingService } from './onboarding.service';
 import { IAppointments } from '../models/appointment';
 import { Doctor } from '../models/doctor';
 import { IDiagnostics } from '../models/diagnostics';
-import { Patient } from '../models/patient';
+import { Patient, ISymptomsBySuggestions } from '../models/patient';
 import { DiagnosticCenter } from '../models/diagnostic-center';
 import { environment} from '../../environments/environment.prod';
 @Injectable({
@@ -34,23 +34,32 @@ export class PatientService {
   updateProfile(body) {
     return this.http.put(this.urlForPatient + '/updateprofile', body);
   }
-  searchDoctorsByName(searchbar: string, City: string): Observable<Doctor[]> {
+  //to get the pincode by areanames
+    getpincodeAPI(city): Observable<any> {
+    return this.http.get('/postoffice/' + city,{headers: {'Access-Control-Allow-Origin': '*','Access-Control-Allow-Headers': '*'}});
+  }
+  searchDoctorsByName(searchbar: string, City: string, pincode: string): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(
       environment.doctorsdcAPI + '/api/doctor/search?city=' +
       City +
       '&name=' +
-      searchbar
+      searchbar +
+      '&pincode=' +
+      pincode
     );
   }
+  
   searchDoctorsBySpecialization(
     searchbar: string,
-    City: string
+    City: string, pincode: string
   ): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(
       environment.doctorsdcAPI + '/api/doctor/search?city=' +
       City +
       '&specialization=' +
-      searchbar
+      searchbar +
+      '&pincode=' +
+      pincode
     );
   }
   searchDCByName(searchbar: string, City: string): Observable<DiagnosticCenter[]> {
@@ -68,6 +77,9 @@ export class PatientService {
       '&testsConducted=' +
       searchbar
     );
+  }
+  getDoctorBySymptoms(): Observable<ISymptomsBySuggestions[]> {
+    return this.http.get<ISymptomsBySuggestions[]>('../../../assets/json_files/specializationANDsymptoms.json');
   }
   // data from searched component
   viewdoctorprofile(doctor: Doctor) {
