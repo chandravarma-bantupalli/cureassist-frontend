@@ -19,12 +19,13 @@ import { DCConfirmBooking } from './patient-portal/diagnosticsprofile-card/diagn
 import { BuyNow } from './medical-records/view-prescription/view-prescription.component';
 import { BottomSheet } from './onboarding/register/register.component';
 import { PrescriptionModule } from './prescription/prescription.module';
+import { ResetpasswordComponent } from './onboarding/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  entryComponents: [ConfirmBooking, DCConfirmBooking, BuyNow, BottomSheet],
+  entryComponents: [ConfirmBooking, DCConfirmBooking, BuyNow, BottomSheet, ResetpasswordComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
