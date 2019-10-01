@@ -5,6 +5,7 @@ import { Quotation } from '../models/quotation';
 import { OnboardingService } from './onboarding.service';
 import { Prescriptions } from '../models/prescriptions';
 import { environment} from '../../environments/environment.prod';
+import { HubConnectionState } from '@aspnet/signalr';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,20 @@ export class QuotationService {
 
   private onPatientDetailsReceived(patientDetail) {
     this.patientDetails.next(patientDetail);
+  }
+
+  
+  pharmacyOnline(pharmacyPincode: string) {
+    if (this.hubConnection.state === HubConnectionState.Disconnected) {
+      return this.hubConnection.start()
+        .then(() => {
+          console.log('Pharmacy online');
+          this.hubConnection.invoke('Initialize', pharmacyPincode);
+        });
+    } else {
+      console.log('Pharmacy online');
+      this.hubConnection.invoke('Initialize', pharmacyPincode);
+    }
   }
 
   sendQuotation(quotation: Quotation) {

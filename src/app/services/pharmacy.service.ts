@@ -16,6 +16,7 @@ export class PharmacyService {
     pharmacyName: ['', Validators.required],
     pharmacyRegisterNumber: ['', Validators.required],
     pharmacyLocation: ['', Validators.required],
+    pharmacyPincode: ['', Validators.required],
     emailId: ['', Validators.required],
     phoneNumber: ['', Validators.maxLength(10)]
    });

@@ -1,0 +1,20 @@
+.home-container {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(180deg, #2196f3 30vh, #fff 20vh);
+    /* background: linear-gradient(180deg, #2196f3 30%, #FFF 70%); */
+}
+.title {
+    padding: 10px;
+  }
+.profilebutton{
+    margin-left: 90%;
+}
+.appointments-container {
+    height: 100%;
+    width: 50%;
+    margin: auto;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+}

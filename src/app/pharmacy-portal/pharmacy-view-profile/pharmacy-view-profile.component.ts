@@ -21,6 +21,7 @@ export class PharmacyViewProfileComponent implements OnInit {
     pharmacyName: [''],
     pharmacyRegisterNumber: [''],
     pharmacyLocation: [''],
+    pharmacyPincode: [''],
     emailId: [''],
     phoneNumber: ['']
    });

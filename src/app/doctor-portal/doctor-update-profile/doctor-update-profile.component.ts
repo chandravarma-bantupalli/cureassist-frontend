@@ -27,8 +27,8 @@ export class DoctorUpdateProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userid = '4a030b89-84f7-4fc5-9010-c00a0f3a6b21';
-    // this.userid = this.onboardingService.userid;
+    // this.userid = '4a030b89-84f7-4fc5-9010-c00a0f3a6b21';
+    this.userid = this.onboardingService.userid;
     this.initializeDoctorProfileForm();
     this.getDoctorProfile(this.userid);
   }
@@ -76,7 +76,8 @@ export class DoctorUpdateProfileComponent implements OnInit {
       // setting the above values to previous because, these are updated only during the CRUD operations on Time Slots.
       this.doctorService.updateDoctor(this.userid, doctor).subscribe((res) => {
         console.log(res);
-        this.dialogRef.close();
+      }, (err) => {
+        console.log(err);
       });
       // this.onboardingService.userid = this.userid;
     } else {

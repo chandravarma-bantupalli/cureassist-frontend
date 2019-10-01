@@ -11,3 +11,7 @@ export class Patient {
     gender: string;
     city: string;
 }
+export interface ISymptomsBySuggestions {
+    specialization: string;
+    symptoms: Array<string>;
+}
