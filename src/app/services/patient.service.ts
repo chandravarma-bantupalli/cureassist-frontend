@@ -43,6 +43,14 @@ export class PatientService {
       }
     });
   }
+  //   getpincodeAPI(city): Observable<any> {
+  //   return this.http.get(environment.pincodeAPI + city, {
+  //     headers: {
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Access-Control-Allow-Headers': '*'
+  //     }
+  //   });
+  // }
   searchDoctorsByName(
     searchbar: string,
     City: string,

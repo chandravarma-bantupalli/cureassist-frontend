@@ -30,81 +30,88 @@ export class ViewAppointmentComponent implements OnInit {
   today: AppointmentDayCalendar[];
   tomorrow: AppointmentDayCalendar[];
   later: AppointmentDayCalendar[];
+  previous: AppointmentDayCalendar[];
 
-  todayPatients: Patient[];
-  tomorrowPatients: Patient[];
-  laterPatients: Patient[];
+  todayPatients: Doctor[] = [];
+  tomorrowPatients: Doctor[] = [];
+  laterPatients: Doctor[] = [];
+  previousPatients: Doctor[] = [];
 
-  todaySlots: any;
-  upcomingSlots: any;
+  // todaySlots: any;
+ //  upcomingSlots: any;
+  // doctor: Doctor[];
+ //  patientId: string;
+  // datetoday = new Date();
 
   patientDisplayedColumns: string[];
 
-  // tslint:disable-next-line:max-line-length
-  constructor(public appointmentService: AppointmentHttpService, public service: PatientService, public onboardingService: OnboardingService) { }
+  constructor(public appointmentService: AppointmentHttpService,
+              public service: PatientService, public onboardingService: OnboardingService) {
+                this.patientDisplayedColumns = ['doctorFirstName', 'doctorPhoneNumber', 'doctorLastName'];
+               }
   ngOnInit() {
-    // this.doctorId = this.onboardingService.userid;
+    // console.log(this.datetoday.toLocaleDateString());
+    // this.patientId = this.onboardingService.userid;
     this.appointments = [];
     // this.appointmentSlots = [];
     this.attendees = [];
-    this.todayPatients = [];
-    this.patientDisplayedColumns = ['firstName', 'phoneNumber', 'prescription'];
+    // this.doctor = [];
     // this.patients = [];
     this.getAllAppointments();
     // this.service.viewAllAppointment().subscribe(data => this.appointments = data);
-    console.log(this.appointments);
-    // tslint:disable-next-line:no-shadowed-variable
+    // console.log(this.appointments);
+    // tslint:disable-next-line:no-shadowed-constiable
     // tslint:disable-next-line:max-line-length
-    // tslint:disable-next-line:no-shadowed-variable
+    // tslint:disable-next-line:no-shadowed-constiable
     // this.service.viewAllAppointment().subscribe(data => data.forEach(element => {
-    //   // tslint:disable-next-line:no-shadowed-variable
+    //   // tslint:disable-next-line:no-shadowed-constiable
     //   element.slots.forEach(element => this.attendees.push(element.attendees));
     // }));
-    this.getAllAppointments();
+    // this.getAllAppointments();
 
   }
   viewallapointments() {
-
   }
   // click() {
   //   this.doctorId = [];
   //   this.doctorFirstName = [];
   //   // this.service.GetDoctorById(this.doctorId).subscribe(data => this.doctordetails = data);
-  //   // tslint:disable-next-line:no-shadowed-variable
+  //   // tslint:disable-next-line:no-shadowed-constiable
   //   this.attendees.forEach(element => {
-  //     // tslint:disable-next-line: no-shadowed-variable
+  //     // tslint:disable-next-line: no-shadowed-constiable
   //     element.forEach(element => this.doctorId.push(element));
   //   });
-  //   // tslint:disable-next-line:no-shadowed-variable
+  //   // tslint:disable-next-line:no-shadowed-constiable
   //   this.doctorId.forEach(element => {
   //     this.service.GetDoctorById(element)
   //       // tslint:disable-next-line:max-line-length
   //       .subscribe((data: Doctor) =>
   //       // tslint:disable-next-line: max-line-length
-  // tslint:disable-next-line:max-line-length
-  //       this.appointments.map( e =>  e.doctorDetail = ('Doctor Name:  ' + data.doctorFirstName + ' ' + data.doctorLastName + '  Doctor Address:   ' + data.doctorAddress)));
+  //       this.appointments.map( e =>  e.doctorDetail = ('Doctor Name:  '
+  //  + data.doctorFirstName + ' ' + data.doctorLastName + '  Doctor Address:   ' + data.doctorAddress)));
   //   });
   // }
   // click2() {
   //   // this.service.GetDoctorById(this.doctorId).subscribe(data => this.doctordetails = data);
-  //   // tslint:disable-next-line:no-shadowed-variable
+  //   // tslint:disable-next-line:no-shadowed-constiable
   //   this.doctorId = [];
   //   this.diagnosticName = [];
-  //   // tslint:disable-next-line:no-shadowed-variable
+  //   // tslint:disable-next-line:no-shadowed-constiable
   //   this.attendees.forEach(element => {
-  //     // tslint:disable-next-line: no-shadowed-variable
+  //     // tslint:disable-next-line: no-shadowed-constiable
   //     element.forEach(element => this.doctorId.push(element));
   //   });
-  //   // tslint:disable-next-line:no-shadowed-variable
+  //   // tslint:disable-next-line:no-shadowed-constiable
   //   this.doctorId.forEach(element => {
   //     this.service.GetDiagnosticsById((element))
   //       .subscribe((data: IDiagnostics) => {
   //         // tslint:disable-next-line: max-line-length
-  // tslint:disable-next-line:max-line-length
-  //         this.appointments.map( e =>  e.diagnosticDetail = 'Diagnostic Name=' + data.diagnosticCenterName + ' Diagnostic Center Address=' + data.diagnosticCenterAddress);
+  //         this.appointments.map( e =>  e.diagnosticDetail = 'Diagnostic Name='
+  //  + data.diagnosticCenterName + ' Diagnostic Center Address=' + data.diagnosticCenterAddress);
   //       });
   //   });
   // }
+
 
   getAttendees(days) {
     return days.reduce((acc, { slots }) => {
@@ -115,45 +122,44 @@ export class ViewAppointmentComponent implements OnInit {
     }, []);
   }
 
-  getPatientData(patientId): Promise<Patient> {
-    return this.service.getPatientByUserId(patientId).toPromise();
+  getdoctorData(doctorId): Promise<Doctor> {
+    return this.service.GetDoctorById(doctorId).toPromise();
   }
 
   calculateMoment(date) {
-    const today = moment().endOf('day');
+    const today = moment().endOf('day').format('YYYY-MM-DD');
     const tomorrow = moment().add(1, 'day').endOf('day');
-    if (date < today) {
-      return 'today';
-    }
-
-    return 'later';
+    // tslint:disable-next-line:max-line-length
+    if (date.format('YYYY-MM-DD') === today) { console.log(true); return 'today'; } else if (date.format('YYYY-MM-DD') > today) { console.log(true); return 'later'; }
+    return 'previous';
   }
 
   getAllAppointments() {
-    this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe((data) => {
+    console.log(this.onboardingService.userIdDemo);
+    this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userIdDemo).subscribe((data) => {
       this.appointments = data.map(appointment => ({
         ...appointment,
-        moment: this.calculateMoment(moment(appointment.date)),
+        moment: this.calculateMoment(moment(appointment.date))
       }));
 
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
-
-      var todayAttendeesIds = this.getAttendees(this.today);
-      var laterAttendeesIds = this.getAttendees(this.later);
-      var todaysPatientsPromise = Promise.all<Patient>(todayAttendeesIds.map(this.getPatientData.bind(this)));
-      var laterPatientPromise = Promise.all<Patient>(laterAttendeesIds.map(this.getPatientData.bind(this)));
-
-      laterPatientPromise.then((patients) => {
-        this.tomorrowPatients = patients;
-        console.log(this.tomorrowPatients);
-      });
-      todaysPatientsPromise.then((patients) => {
-        if (patients !== undefined) {
-          this.todayPatients = patients;
-        }
-        console.log(this.todayPatients);
-      });
+      this.previous = this.appointments.filter(a => a.moment === 'previous');
+      // console.log(this.today);
+      const todayAttendeesIds = this.getAttendees(this.today);
+      console.log(todayAttendeesIds, 'Today');
+      const laterAttendeesIds = this.getAttendees(this.later);
+      const previousAttendeesIds = this.getAttendees(this.previous);
+      console.log(previousAttendeesIds, 'previous');
+      // tslint:disable-next-line:max-line-length
+      todayAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.todayPatients.push(data) ); });
+      console.log(this.todayPatients);
+      // tslint:disable-next-line:max-line-length
+      laterAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.tomorrowPatients.push(data) ); });
+      console.log(this.tomorrowPatients);
+      // tslint:disable-next-line:max-line-length
+      previousAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.previousPatients.push(data) ); });
+      console.log(this.previousPatients);
     });
   }
 

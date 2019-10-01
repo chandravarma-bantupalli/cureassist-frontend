@@ -17,17 +17,17 @@ export class OnboardingService {
   userid: string;
   usertype: string;
   user: any;
-
+  userIdDemo: string;
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
     private route: Router
   ) {
-    this.userid = "4a030b89-84f7-4fc5-9010-c00a0f3a6b21";
+    this.userIdDemo = '2bf06dd0-2bfa-4cba-8966-6c2ffe9839c1';
     // const token = this.cookieService.get('loginToken');
     // this.user = this.getDecodedAccessToken(token);
     // console.log(this.user);
-    // // this.userid = this.user.userid;
+    // this.userid = this.user.userid;
     // // this.emailId = this.user.email;
   }
 

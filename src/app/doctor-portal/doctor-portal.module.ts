@@ -17,6 +17,7 @@ import { PrescriptionModule } from '../prescription/prescription.module';
 import { MatTableModule } from '@angular/material/table';
 import { AvatarModule } from 'ngx-avatar';
 import { MatDividerModule } from '@angular/material';
+import { DoctorAppointmentHistoryComponent } from './doctor-appointment-history/doctor-appointment-history.component';
 @NgModule({
   // tslint:disable-next-line: max-line-length
   declarations: [
@@ -26,7 +27,8 @@ import { MatDividerModule } from '@angular/material';
     DoctorProfileComponent,
     DoctorUpdateProfileComponent,
     DoctorTimeslotComponent,
-    DoctorViewAppointmentsComponent
+    DoctorViewAppointmentsComponent,
+    DoctorAppointmentHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ import { MatDividerModule } from '@angular/material';
    DoctorProfileComponent,
    DoctorUpdateProfileComponent,
    DoctorManageSlotsComponent,
-   DoctorViewAppointmentsComponent
+   DoctorViewAppointmentsComponent,
+   DoctorAppointmentHistoryComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OnboardingService } from '../../services/onboarding.service';
+import { MatDialog } from '@angular/material';
+import { ResetpasswordComponent } from 'src/app/onboarding/resetpassword/resetpassword.component';
 
 @Component({
   selector: 'app-home-page',
@@ -9,7 +11,7 @@ import { OnboardingService } from '../../services/onboarding.service';
 })
 export class HomePageComponent implements OnInit {
   patientid: any;
-  constructor(private router: Router, private route: ActivatedRoute, public service: OnboardingService) {
+  constructor(public dialog: MatDialog, private router: Router, private route: ActivatedRoute, public service: OnboardingService) {
     this.route.params.subscribe(params => this.patientid = params.patientid);
   }
 
@@ -22,8 +24,14 @@ export class HomePageComponent implements OnInit {
   homebutton() {
     this.router.navigate(['patient/search']);
   }
+  // resetpassword() {
+  //   this.router.navigate(['onboarding/resetpassword']);
+  // }
   resetpassword() {
-    this.router.navigate(['onboarding/resetpassword']);
+    this.dialog.open(ResetpasswordComponent, {
+      width: '30vw',
+      height: '70vh'
+    });
   }
   viewprescription() {
     this.router.navigate(['medicalrecords/viewprescription/' + this.service.userid]);
