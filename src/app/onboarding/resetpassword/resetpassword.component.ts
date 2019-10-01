@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OnboardingService } from '../../services/onboarding.service';
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-resetpassword',
@@ -12,7 +13,7 @@ export class ResetpasswordComponent implements OnInit {
   newpassword: string;
   confirmnewpassword: any;
   errorStatus: number;
-  constructor(private service: OnboardingService, private route: Router) { }
+  constructor(private service: OnboardingService, private route: Router, public dialogRef: MatDialogRef<ResetpasswordComponent>) { }
 
   ngOnInit() {
   }
@@ -21,6 +22,7 @@ export class ResetpasswordComponent implements OnInit {
     if (this.newpassword === this.confirmnewpassword) {
       this.route.navigate(['onboarding/login']);
       this.service.ResetPassword(this.oldpassword, this.newpassword).subscribe();
+      this.dialogRef.close();
     }
   }
 
