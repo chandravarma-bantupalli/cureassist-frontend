@@ -72,7 +72,7 @@
             "production": {
               "browserTarget": "cure-assist-front-end:build:production",
               "proxyConfig": "proxy.conf.json",
-              "disableHostCheck": true
+              "disableHostCheck": false
             }
           }
         },
