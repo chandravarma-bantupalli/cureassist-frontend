@@ -10,12 +10,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { PharmacyConfirmOrdersComponent } from './pharmacy-confirm-orders/pharmacy-confirm-orders.component';
+import { PharmacyEditProfileDialogComponent } from './pharmacy-edit-profile-dialog/pharmacy-edit-profile-dialog.component';
+import { AvatarModule } from 'ngx-avatar';
 
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [PharmacyHomeComponent, PharmacyOrdersPageComponent, PharmacyProfileComponent, PharmacyViewProfileComponent, PharmacyConfirmOrdersComponent],
+  declarations: [PharmacyHomeComponent, PharmacyOrdersPageComponent, PharmacyProfileComponent, PharmacyViewProfileComponent, PharmacyConfirmOrdersComponent, PharmacyEditProfileDialogComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -34,7 +36,8 @@ import { PharmacyConfirmOrdersComponent } from './pharmacy-confirm-orders/pharma
     MatTableModule,
     MatSidenavModule,
     MatExpansionModule,
-    MatChipsModule
+    MatChipsModule,
+    AvatarModule
   ]
 })
 export class PharmacyPortalModule { }

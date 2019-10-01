@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { OnboardingService } from 'src/app/services/onboarding.service';
 })
 export class PharmacyHomeComponent implements OnInit {
 
-  constructor(private route: Router, private service: OnboardingService) { }
+  constructor(private route: Router, private router: ActivatedRoute, public service: OnboardingService) { }
 
   ngOnInit() {
   }

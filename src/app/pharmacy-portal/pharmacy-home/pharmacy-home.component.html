@@ -1,4 +1,4 @@
-<mat-toolbar class="homePage" color="primary">
+<!-- <mat-toolbar class="homePage" color="primary">
   <button mat-button (click)=gotohome()> CureAssist </button>
   <button mat-button (click)= getMyOrders()>My Orders</button>
   <span class="gotoend"></span>
@@ -9,4 +9,23 @@
     <button mat-menu-item (click)=  resetPassword()>Change Password</button>
     <button mat-menu-item (click)=logout()>Logout</button>
   </mat-menu>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<div class="home-container">
+  <div class="title">
+    <h3>Cure Assist | <span class="lead">Pharmacy portal</span></h3>
+    <button mat-button (click)="orderHistory()">Order history</button>
+  </div>
+
+  <div class="chicklet-container">
+    <app-pharmacy-view-profile detailType="name"></app-pharmacy-view-profile>
+    <div class="chicklet-data-container">
+      <div class="left">
+        <app-pharmacy-view-profile detailType="contact-info"></app-pharmacy-view-profile>
+      </div>
+      <div class="right">
+        <app-pharmacy-orders-page when="today"></app-pharmacy-orders-page>
+      </div>
+    </div>
+  </div>
+</div>

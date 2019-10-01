@@ -50,8 +50,8 @@ export class PharmacyOrdersPageComponent implements OnInit {
 
   ngOnInit() {
     this.pharmacyService.getPharmacy().subscribe(data => this.pharmacistDetails = data);
-    this.quotationService.pharmacyOnline(this.pharmacistDetails.pharmacyPincode);
-    console.log('got pharmacy pincode', this.pharmacistDetails.pharmacyPincode);
+    // this.quotationService.pharmacyOnline(this.pharmacistDetails.pharmacyPincode);
+    // console.log('got pharmacy pincode', this.pharmacistDetails.pharmacyPincode);
     this.quotationService.quotationRequests.subscribe((quotation: any) => {
       if (quotation === '') {
         console.log('incoming string is null');

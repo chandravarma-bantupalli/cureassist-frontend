@@ -40,6 +40,7 @@ export class ViewAppointmentComponent implements OnInit {
 
   patientDisplayedColumns: string[];
 
+  // tslint:disable-next-line:max-line-length
   constructor(public appointmentService: AppointmentHttpService, public service: PatientService, public onboardingService: OnboardingService) { }
   ngOnInit() {
     // this.doctorId = this.onboardingService.userid;
@@ -63,7 +64,7 @@ export class ViewAppointmentComponent implements OnInit {
 
   }
   viewallapointments() {
-  
+
   }
   // click() {
   //   this.doctorId = [];
@@ -80,6 +81,7 @@ export class ViewAppointmentComponent implements OnInit {
   //       // tslint:disable-next-line:max-line-length
   //       .subscribe((data: Doctor) =>
   //       // tslint:disable-next-line: max-line-length
+  // tslint:disable-next-line:max-line-length
   //       this.appointments.map( e =>  e.doctorDetail = ('Doctor Name:  ' + data.doctorFirstName + ' ' + data.doctorLastName + '  Doctor Address:   ' + data.doctorAddress)));
   //   });
   // }
@@ -98,6 +100,7 @@ export class ViewAppointmentComponent implements OnInit {
   //     this.service.GetDiagnosticsById((element))
   //       .subscribe((data: IDiagnostics) => {
   //         // tslint:disable-next-line: max-line-length
+  // tslint:disable-next-line:max-line-length
   //         this.appointments.map( e =>  e.diagnosticDetail = 'Diagnostic Name=' + data.diagnosticCenterName + ' Diagnostic Center Address=' + data.diagnosticCenterAddress);
   //       });
   //   });
@@ -117,11 +120,13 @@ export class ViewAppointmentComponent implements OnInit {
   }
 
   calculateMoment(date) {
-    const today = moment().endOf('day')
-    const tomorrow = moment().add(1, 'day').endOf('day')
-    if (date < today) return 'today'
+    const today = moment().endOf('day');
+    const tomorrow = moment().add(1, 'day').endOf('day');
+    if (date < today) {
+      return 'today';
+    }
 
-    return 'later'
+    return 'later';
   }
 
   getAllAppointments() {
