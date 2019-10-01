@@ -54,9 +54,9 @@ export class ViewEditComponent implements OnInit {
   get bloodGroup() {
     return `${this.formModel.get('bloodGroup').value}`;
   }
-  // get uaid() {
-  //   return `${this.formModel.get('uaid').value}`;
-  // }
+  get uaid() {
+    return `${this.formModel.get('uaid').value}`;
+  }
 
 
   ngOnInit() {

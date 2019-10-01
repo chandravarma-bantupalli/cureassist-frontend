@@ -135,17 +135,16 @@ export class ViewAppointmentComponent implements OnInit {
   }
 
   getAllAppointments() {
-    console.log(this.onboardingService.userIdDemo);
-    this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userIdDemo).subscribe((data) => {
+    console.log(this.onboardingService.userid);
+    this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe((data) => {
       this.appointments = data.map(appointment => ({
         ...appointment,
         moment: this.calculateMoment(moment(appointment.date))
       }));
-
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');
-      // console.log(this.today);
+      console.log(this.today, 'you want');
       const todayAttendeesIds = this.getAttendees(this.today);
       console.log(todayAttendeesIds, 'Today');
       const laterAttendeesIds = this.getAttendees(this.later);
