@@ -4,8 +4,9 @@ const PROXY_CONFIG = [
           "/postoffice"
       ],
       target: "https://api.postalpincode.in/",
-      secure: true,
+      secure: false,
       changeOrigin: true,
+      
   }
 ]
 
