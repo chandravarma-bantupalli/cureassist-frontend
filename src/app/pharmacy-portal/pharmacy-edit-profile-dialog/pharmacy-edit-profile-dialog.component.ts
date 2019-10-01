@@ -16,11 +16,11 @@ export class PharmacyEditProfileDialogComponent implements OnInit {
   formModel = this.fb.group({
     pharmacyId: [''],
     pharmacyName: [''],
-    pharmacyRegisterNumber: [''],
     pharmacyLocation: [''],
     pharmacyPincode: [''],
-    emailId: [''],
-    phoneNumber: ['']
+    pharmacyRegisterNumber: [''],
+    phoneNumber: [''],
+    emailId: ['']
    });
 
   get emailId() {
