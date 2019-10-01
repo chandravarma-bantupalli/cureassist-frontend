@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { TimeSlot } from '../models/time-slot';
 import { Observable } from 'rxjs';
 import { environment} from '../../environments/environment.prod';
+import { OnboardingService } from './onboarding.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class TimeSlotService {
 
   constructor(
     private http: HttpClient,
+    private service: OnboardingService
   ) { }
 
   getDiagnosticCenterTimeSlots(id: string): Observable<TimeSlot[]> {
@@ -48,7 +50,7 @@ export class TimeSlotService {
     return this.http.get<TimeSlot>((this.DOCTOR_TS_URL + `${id}` + '/timeslots/' + `${tsId}`));
   }
 
-  addNewTimeSlotToDoctor(docId: string, ts: TimeSlot) {
-    return this.http.post<TimeSlot>((this.DOCTOR_TS_URL + `${docId}` + '/timeslots'), ts);
+  addNewTimeSlotToDoctor(ts: TimeSlot): Observable<TimeSlot> {
+    return this.http.post<TimeSlot>((this.DOCTOR_TS_URL + this.service.userid + '/timeslots'), ts);
   }
 }
