@@ -6,6 +6,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { Prescriptions } from 'src/app/models/prescriptions';
 import { BrowserModule } from '@angular/platform-browser';
 import {ThemePalette} from '@angular/material/core';
+import { Pharmacy } from 'src/app/models/pharmacy';
+import { OnboardingService } from 'src/app/services/onboarding.service';
+import { PharmacyService } from 'src/app/services/pharmacy.service';
 
 export interface ChipColor {
   name: string;
@@ -35,8 +38,9 @@ export class PharmacyOrdersPageComponent implements OnInit {
   pharmacyResponse: Quotation;
   MedicinePrice = 0;
   totalCost = 0;
+  pharmacistDetails: Pharmacy;
 
-  constructor(private quotationService: QuotationService) {
+  constructor(private quotationService: QuotationService, private pharmacyService: PharmacyService) {
     this.quotationRequests = [];
   }
 
@@ -45,6 +49,9 @@ export class PharmacyOrdersPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pharmacyService.getPharmacy().subscribe(data => this.pharmacistDetails = data);
+    this.quotationService.pharmacyOnline(this.pharmacistDetails.pharmacyPincode);
+    console.log('got pharmacy pincode', this.pharmacistDetails.pharmacyPincode);
     this.quotationService.quotationRequests.subscribe((quotation: any) => {
       if (quotation === '') {
         console.log('incoming string is null');
