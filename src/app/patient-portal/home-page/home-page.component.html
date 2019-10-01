@@ -17,6 +17,13 @@
     <h3>Cure Assist | <span class="lead">Patient Portal</span></h3>
     <button mat-button (click)="viewprescription()">ViewPrescription</button>
     <button mat-button (click)="viewtestreport()">ViewTestReports</button>
+    <button class="Profile" mat-button [matMenuTriggerFor]="profile">
+       <img src="../../../assets/images/profile.jpg" alt="profile">
+    </button>
+    <mat-menu #profile="matMenu">
+        <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
+        <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
   </div>
 
   <div class="chicklet-container">
@@ -25,7 +32,7 @@
       <app-search></app-search>
     </mat-card>
     <div class="chicklet-data-container">
-      <div class="left">
+      <div class="left">  
         <app-view-edit detailType="contact-info"></app-view-edit>
         <app-view-edit detailType="personal-info"></app-view-edit>
         <!-- <app-view-edit detailType="profile"></app-view-edit> -->

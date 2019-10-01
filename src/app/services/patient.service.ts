@@ -35,8 +35,16 @@ export class PatientService {
     return this.http.put(this.urlForPatient + '/updateprofile', body);
   }
   // to get the pincode by areanames
-  getpincodeAPI(city): Observable<any> {
-    return this.http.get('https://api.postalpincode.in/postoffice/' + city, {
+  // getpincodeAPI(city): Observable<any> {
+  //   return this.http.get('/postoffice/' + city, {
+  //     headers: {
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Access-Control-Allow-Headers': '*'
+  //     }
+  //   });
+  // }
+    getpincodeAPI(city): Observable<any> {
+    return this.http.get(environment.pincodeAPI + city, {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*'
