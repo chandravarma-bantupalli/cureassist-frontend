@@ -33,7 +33,7 @@ export class DoctorTimeslotComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.doctorId = this.onboardingService.userid;
+    // this.doctorId = this.onboardingService.userid;
     this.tsId = this.timeSlotService.timeSlotId;
     this.initiateTimeSlotForm();
     this.getTimeSlotValue();
@@ -42,7 +42,7 @@ export class DoctorTimeslotComponent implements OnInit {
   initiateTimeSlotForm() {
     this.tsForm = this.formBuilder.group({
       slotId: '',
-      doctorId: this.timeSlotService.doctorId,
+    //  doctorId: this.timeSlotService.doctorId,
       slotStartTime: '',
       slotEndTime: '',
       slotCapacity: 0
@@ -51,7 +51,7 @@ export class DoctorTimeslotComponent implements OnInit {
 
 
   getTimeSlotValue() {
-    this.timeSlotService.getSingleTimeSlotOfDoctor(this.doctorId, this.tsId).subscribe((data) => {
+    this.timeSlotService.getSingleTimeSlotOfDoctor('', this.tsId).subscribe((data) => {
       this.timeSlot = data;
       this.tsForm.setValue(data);
       this.timeSlotValueNotNull = true;
@@ -64,7 +64,7 @@ export class DoctorTimeslotComponent implements OnInit {
   updateTimeSlot() {
     console.log('update method call');
     // tslint:disable-next-line: max-line-length
-    this.timeSlotService.updateDoctorTimeSlot(this.doctorId, this.tsId, this.tsForm.value).subscribe((data) => {
+    this.timeSlotService.updateDoctorTimeSlot('', this.tsId, this.tsForm.value).subscribe((data) => {
       console.log(data);
     });
     this.onNoClick();
@@ -74,11 +74,11 @@ export class DoctorTimeslotComponent implements OnInit {
     console.log('add new time slot method called');
     const doctorSlot: TimeSlot = this.tsForm.value;
     console.log(doctorSlot);
-    this.timeSlotService.addNewTimeSlotToDoctor(this.timeSlotService.doctorId, doctorSlot).subscribe((data) => {
+    this.timeSlotService.addNewTimeSlotToDoctor(doctorSlot).subscribe((data) => {
       console.log(data);
     });
     this.onNoClick();
-    this.onboardingService.userid = this.doctorId;
+    // this.onboardingService.userid = this.doctorId;
   }
 
 }

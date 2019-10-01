@@ -84,7 +84,6 @@ export class DoctorUpdateProfileComponent implements OnInit {
       const doctor: Doctor = this.doctorProfile.value;
       doctor.userid = this.userid;
       doctor.doctorSlots = [];
-
       this.doctorService.addNewDoctor(doctor).subscribe( (res) => {
         console.log(doctor);
         console.log(res);
