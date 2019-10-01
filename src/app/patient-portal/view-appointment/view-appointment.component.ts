@@ -135,7 +135,7 @@ export class ViewAppointmentComponent implements OnInit {
   }
 
   getAllAppointments() {
-    console.log(this.onboardingService.userIdDemo);
+    console.log(this.onboardingService.userid);
     this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userIdDemo).subscribe((data) => {
       this.appointments = data.map(appointment => ({
         ...appointment,

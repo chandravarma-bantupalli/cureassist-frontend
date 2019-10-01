@@ -1,4 +1,10 @@
 <div class="mat-elevation-z2" *ngIf="when == 'today'">
+    <div class="appointments-container" *ngIf="todayPatients.length == 0">
+        <h4>Today's Appointments</h4>
+        <div>
+          You don't have any appointments.
+        </div>
+          </div>
   <div class="appointments-container" *ngIf="todayPatients.length > 0">
     <p class="title">Today's Appointments</p>
     <table class="appointments" mat-table [dataSource]="todayPatients">
