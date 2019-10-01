@@ -1,22 +1,20 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import * as moment from 'moment';
+import { Patient } from 'src/app/models/patient';
 import { AppointmentHttpService } from 'src/app/services/appointment-http.service';
 import { IAppointments, AppointmentDayCalendar, AppointmentTimeSlot } from 'src/app/models/appointment';
 import { OnboardingService } from 'src/app/services/onboarding.service';
-import { Patient } from 'src/app/models/patient';
-import { MatDialog } from '@angular/material';
-import { PrescriptionFormComponent } from 'src/app/prescription/prescription-form/prescription-form.component';
 import { PatientService } from 'src/app/services/patient.service';
-import { PrescriptionHttpService } from 'src/app/services/prescription-http.service';
-import * as moment from 'moment';
+
+
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-doctor-view-appointments',
-  templateUrl: './doctor-view-appointments.component.html',
-  styleUrls: ['./doctor-view-appointments.component.css']
+  selector: 'app-doctor-appointment-history',
+  templateUrl: './doctor-appointment-history.component.html',
+  styleUrls: ['./doctor-appointment-history.component.css']
 })
-export class DoctorViewAppointmentsComponent implements OnInit {
-
+export class DoctorAppointmentHistoryComponent implements OnInit {
   @Input() when: string;
   userAppointments: IAppointments[];
   doctorId: string;
@@ -38,19 +36,9 @@ export class DoctorViewAppointmentsComponent implements OnInit {
   patientDisplayedColumns: string[];
   appointmentsExist: boolean;
 
-  constructor(
-    private dialog: MatDialog,
-    private appointmentService: AppointmentHttpService,
-    private onboardingService: OnboardingService,
-    private patientService: PatientService,
-    private prescriptionService: PrescriptionHttpService,
-    private router: Router
-  ) {
-    this.todayPatients = [];
-    this.tomorrowPatients = [];
-    this.laterPatients = [];
-    this.patientDisplayedColumns = ['firstName', 'phoneNumber', 'prescription'];
-  }
+  constructor( private appointmentService: AppointmentHttpService,
+               private onboardingService: OnboardingService,
+               private patientService: PatientService,  private router: Router) { }
 
   ngOnInit() {
     this.doctorId = this.onboardingService.userid;
@@ -90,8 +78,6 @@ export class DoctorViewAppointmentsComponent implements OnInit {
       }));
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
-      console.log(this.today);
-      console.log(this.later);
       const todayAttendeesIds = this.getAttendees(this.today);
       const laterAttendeesIds = this.getAttendees(this.later);
       const todaysPatientsPromise = Promise.all<Patient>(todayAttendeesIds.map(this.getPatientData.bind(this)));
@@ -99,30 +85,14 @@ export class DoctorViewAppointmentsComponent implements OnInit {
       laterPatientPromise.then((patients) => {
         this.tomorrowPatients = patients;
       });
-      todaysPatientsPromise.then((patients) => {
-        this.todayPatients.push(...patients);
-      });
+      // todaysPatientsPromise.then((patients) => {
+      //   this.todayPatients.push(...patients);
+      // });
     });
   }
-
-  openPrescriptionDialog(id: string) {
-    this.prescriptionService.patientId = id;
-    this.prescriptionService.doctorId = this.doctorId;
-    const dialogRef = this.dialog.open(PrescriptionFormComponent, {
-      width: 'auto',
-      height: '100vh'
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+  gotoprofile() {
+      this.router.navigate(['/doctor/home']);
+    }
   }
 
-  viewAllAppointments() {
-    this.router.navigate(['/doctor/view']);
-  }
 
-  onNoClick(): void {
-    const dialogRef = this.dialog.closeAll();
-  }
-}

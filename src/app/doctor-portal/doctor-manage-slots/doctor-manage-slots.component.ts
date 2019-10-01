@@ -44,7 +44,11 @@ export class DoctorManageSlotsComponent implements OnInit {
   getAllDoctorTimeSlots(id: string) {
     this.timeSlotService.getDoctorTimeSlots(id).subscribe((data) => {
       console.log(data);
-      this.timeSlots = data;
+      if (data == null) {
+        this.timeSlots = [];
+      } else {
+        this.timeSlots = data;
+      }
       if (this.timeSlots.length > 0) {
         this.timeSlotsExist = true;
       }
