@@ -141,11 +141,10 @@ export class ViewAppointmentComponent implements OnInit {
         ...appointment,
         moment: this.calculateMoment(moment(appointment.date))
       }));
-
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');
-      // console.log(this.today);
+      console.log(this.today, 'you want');
       const todayAttendeesIds = this.getAttendees(this.today);
       console.log(todayAttendeesIds, 'Today');
       const laterAttendeesIds = this.getAttendees(this.later);

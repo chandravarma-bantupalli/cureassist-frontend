@@ -1,4 +1,10 @@
 <div class="mat-elevation-z2" *ngIf="when == 'today'">
+  <div class="appointments-container" *ngIf="todayPatients.length == 0">
+    <h4>Today's Appointments</h4>
+      <div>
+         You don't have any appointments Today.
+      </div>
+  </div>
   <div class="appointments-container" *ngIf="todayPatients.length > 0">
     <p class="title">Today's Appointments</p>
     <table class="appointments" mat-table [dataSource]="todayPatients">
@@ -14,8 +20,8 @@
 
       <ng-container matColumnDef="doctorLastName">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let doctor">
-          <button mat-flat-button color="primary">View Doctor</button>
+        <td mat-cell *matCellDef="let today">
+          <button mat-flat-button color="primary" *ngFor="let item of today.slots">{{item.timeSlot.startTime}}</button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="patientDisplayedColumns"></tr>
@@ -94,32 +100,3 @@
     </div>
   </div>
 
-<!-- 
-<div class="mat-elevation-z2" *ngIf="when == 'upcoming'">
-  <div class="appointments-container" *ngIf="tomorrowPatients.length == 0">
-    <h4>Upcoming Appointments</h4>
-    <div>
-      You don't have any upcoming appointments.
-    </div>
-  </div>
-  <div class="appointments-container" *ngIf="tomorrowPatients.length> 0">
-    <table mat-table [dataSource]="tomorrowPatients">
-      <ng-container matColumnDef="doctorFirstName">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let doctor">{{doctor.doctorFirstName }}</td>
-      </ng-container>
-      <ng-container matColumnDef="doctorPhoneNumber">
-        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-        <td mat-cell *matCellDef="let doctor">{{doctor.doctorPhoneNumber}}</td>
-      </ng-container>
-      <ng-container matColumnDef="doctorLastName">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let doctor">
-            <button mat-flat-button color="primary">View Doctor</button>
-          </td>
-        </ng-container>
-      <tr mat-header-row *matHeaderRowDef="patientDisplayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: patientDisplayedColumns;"></tr>
-    </table>
-  </div>
-</div> -->
