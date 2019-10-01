@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AppointmentHttpService } from 'src/app/services/appointment-http.service';
 import { AppointmentDayCalendar } from '../../models/appointment';
 import { AppointmentSlot } from '../../models/appointment';
+import { DoctorHttpService } from 'src/app/services/doctor-http.service';
+import { Doctor } from 'src/app/models/doctor';
 
 @Component({
   selector: 'app-doctor-home',
@@ -17,27 +19,58 @@ export class DoctorHomeComponent implements OnInit {
   timeSlots: TimeSlot[];
   userid: string; // = this.onboardingService.userid;
   doctorProfileExists: boolean;
+  timeSlotsExistForDoctor: boolean;
   appointmentDayCalendar: AppointmentDayCalendar;
   todaySlots: AppointmentSlot[];
   appointmentsExist: boolean;
+  doctorProfile: Doctor;
 
   constructor(
     private onboardingService: OnboardingService,
     private timeSlotService: TimeSlotService,
     private appointmentService: AppointmentHttpService,
+    private doctorService: DoctorHttpService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    console.log(this.onboardingService.userid);
     this.userid = this.onboardingService.userid;
-    this.getAllDoctorTimeSlots(this.userid);
+    console.log(this.userid);
+    this.getDoctorProfile(this.userid);
     this.getDayCalendarOfDoctor();
+  }
+
+  getDoctorProfile(id: string) {
+    this.doctorService.getDoctorById(id).subscribe( (data) => {
+      console.log(data);
+      if (data == null) {
+        this.doctorProfileExists = false;
+      } else {
+        this.doctorProfile = data;
+        this.getAllDoctorTimeSlots(this.doctorProfile.userid);
+        if (this.doctorProfile.ts == null) {
+          this.doctorProfile.ts = [];
+          this.doctorProfile.doctorSlots = [];
+        }
+        this.timeSlots = this.doctorProfile.doctorSlots;
+      }
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   getAllDoctorTimeSlots(id: string) {
     this.timeSlotService.getDoctorTimeSlots(id).subscribe((data) => {
       console.log(data);
-      this.timeSlots = data;
+      if (data == null) {
+        this.timeSlots = [];
+        this.timeSlotsExistForDoctor = false;
+      } else {
+        this.timeSlots = data;
+        this.timeSlotsExistForDoctor = true;
+      }
+      console.log(this.timeSlots);
       this.doctorProfileExists = true;
     }, (err) => {
       console.log(err);
