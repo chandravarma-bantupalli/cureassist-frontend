@@ -3,6 +3,7 @@
   <div *ngIf="!timeSlotsExist">
     <div>
       <h5>Please add your preferred time slots to get your appointments booked</h5>
+      <button mat-button (click)="addNewTimeSlot()" color="primary"> Add TimeSlot</button>
     </div>
   </div>
 
