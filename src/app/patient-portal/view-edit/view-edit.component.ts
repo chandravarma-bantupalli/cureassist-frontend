@@ -72,8 +72,8 @@ export class ViewEditComponent implements OnInit {
 
   onUpdate() {
     this.dialog.open(EditProfileDialogComponent, {
-      width: "50vw",
-      height: "80vh"
+      width: '50vw',
+      height: '80vh'
     });
   }
 
