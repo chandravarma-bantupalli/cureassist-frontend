@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AppointmentHttpService } from 'src/app/services/appointment-http.service';
 import { AppointmentDayCalendar } from '../../models/appointment';
 import { AppointmentSlot } from '../../models/appointment';
+import { ResetpasswordComponent } from '../../onboarding/resetpassword/resetpassword.component';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -28,10 +30,12 @@ export class DiagnosticCenterHomeComponent implements OnInit {
     private onboardingService: OnboardingService,
     private router: Router,
     private appointmentService: AppointmentHttpService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.userid = '45987123-ed2456';
+    // this.userid = this.onboardingService.userid;
     this.getAllDiagCenTimeSlots(this.userid);
     this.getDayCalendarOfDiagnosticCenter();
   }
@@ -68,6 +72,17 @@ export class DiagnosticCenterHomeComponent implements OnInit {
 
   manageTimeSlots() {
     this.router.navigate(['/diagnosisCenter/manage/timeslots']);
+  }
+
+  resetpassword() {
+    this.dialog.open(ResetpasswordComponent, {
+      width: '30vw',
+      height: '70vh'
+    });
+  }
+
+  logout() {
+    return this.onboardingService.Logout();
   }
 
 }

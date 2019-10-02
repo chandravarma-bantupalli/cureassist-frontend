@@ -8,7 +8,7 @@ export class DiagnosticCenter {
   diagnosticCenterPhone: string;
   diagnosticCenterCity: string;
   diagnosticCenterRegNum: string;
-  diagnosticCenter: string;
+  diagnosticCenterAddress: string;
   pincode: string;
   testsConducted: string;
   diagnosticCenterSlots: TimeSlot[];

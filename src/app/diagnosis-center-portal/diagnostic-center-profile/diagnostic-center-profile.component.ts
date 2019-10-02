@@ -4,6 +4,8 @@ import { DiagnosticCenterHttpService } from '../../services/diagnostic-center-ht
 import { DiagnosticCenter } from '../../models/diagnostic-center';
 import { TimeSlot } from '../../models/time-slot';
 import { OnboardingService } from 'src/app/services/onboarding.service';
+import { MatDialog } from '@angular/material';
+import { DiagnosticCenterUpdateProfileComponent } from '../diagnostic-center-update-profile/diagnostic-center-update-profile.component';
 
 @Component({
   selector: 'app-diagnostic-center-profile',
@@ -21,11 +23,13 @@ export class DiagnosticCenterProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private dcService: DiagnosticCenterHttpService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.dcId = '45987123-ed2456';
+    // this.dcId = this.onboardingService.userid;
     this.getDiagnosticCenterProfile();
   }
 
@@ -39,7 +43,14 @@ export class DiagnosticCenterProfileComponent implements OnInit {
   }
 
   goToUpdateProfile() {
-    this.router.navigate(['/diagnosisCenter/update']);
+    const dialogRef = this.dialog.open(DiagnosticCenterUpdateProfileComponent, {
+      width: '50vw',
+      height: '80vh',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   goToManageSlots() {

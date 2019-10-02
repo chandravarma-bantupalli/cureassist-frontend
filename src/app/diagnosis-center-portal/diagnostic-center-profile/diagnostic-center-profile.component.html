@@ -3,7 +3,11 @@
     <div class="name-card-content">
         <ngx-avatar size="120" name="{{ diagnosticCenter.diagnosticCenterName | titlecase }}"></ngx-avatar>
         <h2> {{ diagnosticCenter.diagnosticCenterName | titlecase }} </h2>
-        
+        <mat-chip-list>
+            <mat-chip *ngFor="let test of testsConducted">
+                {{ test }}
+            </mat-chip>
+        </mat-chip-list>        
     </div>
 </div>
 
@@ -13,7 +17,6 @@
         <p>{{ diagnosticCenter.diagnosticCenterEmail }} </p>
         <p>{{ diagnosticCenter.diagnosticCenterRegNum }} </p>
         <p>{{ diagnosticCenter.diagnosticCenterPhone }}</p>
-         <!-- <p>{{ diagnosticCenter.doctorExperience}}</p>  -->
     </mat-card-content>
     <button mat-button (click)="goToUpdateProfile()">  Update Profile</button>
 </div>
@@ -21,7 +24,7 @@
 <mat-card class="mat-elevation-z2" *ngIf="detailType == 'address'">
     <p class="title">Address</p>
     <mat-card-content>
-        <address>{{ diagnosticCenter.diagnosticCenter }}</address>
+        <address>{{ diagnosticCenter.diagnosticCenterAddress }}</address>
         <p> {{ diagnosticCenter.diagnosticCenterCity }} </p>
         <address>{{ diagnosticCenter.pincode }}</address>
     </mat-card-content>
