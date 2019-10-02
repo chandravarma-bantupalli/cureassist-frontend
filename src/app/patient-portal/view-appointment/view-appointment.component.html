@@ -1,67 +1,66 @@
+<!--View Today's Appointment-->
 <div class="mat-elevation-z2" *ngIf="when == 'today'">
-    <div class="appointments-container" *ngIf="todayPatients.length == 0">
-        <h4>Today's Appointments</h4>
-        <div>
-          You don't have any appointments.
-        </div>
-          </div>
+  <div class="appointments-container" *ngIf="todayPatients.length == 0">
+    <h4>Today's Appointments</h4>
+    <div>
+      You don't have any appointments.
+    </div>
+  </div>
   <div class="appointments-container" *ngIf="todayPatients.length > 0">
     <p class="title">Today's Appointments</p>
-    <table class="appointments" mat-table [dataSource]="todayPatients">
-      <ng-container matColumnDef="doctorFirstName">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let doctor">{{doctor.doctorFirstName | titlecase}}
-          {{doctor.doctorLastName | titlecase}}</td>
+    <mat-table class="appointments" [dataSource]="todayPatients">
+      <ng-container cdkColumnDef="doctorFirstName">
+        <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let doctor">Dr.&nbsp;{{doctor.doctorFirstName | titlecase}}&nbsp;{{doctor.doctorLastName | titlecase}}</mat-cell>
       </ng-container>
-      <ng-container matColumnDef="doctorPhoneNumber">
-        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-        <td mat-cell *matCellDef="let doctor">{{doctor.doctorPhoneNumber}}</td>
+      <ng-container cdkColumnDef="doctorPhoneNumber">
+        <mat-header-cell *cdkHeaderCellDef>doctorPhoneNumber</mat-header-cell>
+        <mat-cell *cdkCellDef="let doctor">{{doctor.doctorPhoneNumber}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="doctorLastName">
+      <!-- <ng-container matColumnDef="doctorLastName">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let today">
           <button mat-flat-button color="primary" *ngFor="let item of today.slots">{{item.timeSlot.startTime}}</button>
         </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="patientDisplayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: patientDisplayedColumns;"></tr>
-    </table>
+      </ng-container> -->
+      <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber']"></mat-header-row>
+      <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber']"></mat-row>
+    </mat-table>
   </div>
   <button mat-button (click)="viewallapointments()">View All Appointments</button>
 </div>
 
- <!-- Upcoming appointments -->
+<!-- Upcoming appointments -->
 
 <div class="mat-elevation-z2" *ngIf="when == 'upcoming'">
-  <div class="appointments-container" *ngIf="tomorrowPatients.length == 0">
+  <div class="appointments-container" *ngIf="tomorrowPatients.length == 0;">
     <h4>Upcoming Appointments</h4>
     <div>
       You don't have any upcoming appointments.
     </div>
-      </div>
-  <div class="appointments-container" *ngIf="tomorrowPatients.length > 0">
+  </div>
+  <div class="appointments-container" *ngIf="tomorrowPatients.length > 1">
     <p class="title">Upcoming Appointments</p>
-    <table class="appointments" mat-table [dataSource]="tomorrowPatients">
-      <ng-container matColumnDef="doctorFirstName">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let doctor">{{doctor.doctorFirstName | titlecase}}
-          {{doctor.doctorLastName | titlecase}}</td>
+    <mat-table class="appointments" [dataSource]="tomorrowPatients">
+      <ng-container cdkColumnDef="doctorFirstName">
+        <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let doctor">Dr.&nbsp;{{doctor.doctorFirstName | titlecase}}&nbsp;{{doctor.doctorLastName | titlecase}}</mat-cell>
       </ng-container>
-      <ng-container matColumnDef="doctorPhoneNumber">
-        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-        <td mat-cell *matCellDef="let doctor">{{doctor.doctorPhoneNumber}}</td>
+      <ng-container cdkColumnDef="doctorPhoneNumber">
+        <mat-header-cell *cdkHeaderCellDef>doctorPhoneNumber</mat-header-cell>
+        <mat-cell *cdkCellDef="let doctor">{{doctor.doctorPhoneNumber}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="doctorLastName">
+     <!--  <ng-container matColumnDef="doctorLastName">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let doctor">
           <button mat-flat-button color="primary">View Doctor</button>
         </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="patientDisplayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: patientDisplayedColumns;"></tr>
-    </table>
+      </ng-container> -->
+      <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber']"></mat-header-row>
+      <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber']"></mat-row>
+    </mat-table>
   </div>
 </div>
 
@@ -69,34 +68,34 @@
 
 
 <div class="mat-elevation-z2" *ngIf="when == 'previous'">
-    <div class="appointments-container" *ngIf="previousPatients.length == 0">
-      <h4>Previous Appointments</h4>
-      <div>
-        You don't have any previous appointments.
-      </div>
-        </div>
-    <div class="appointments-container" *ngIf="previousPatients.length > 0">
-      <p class="title">Previous Appointments</p>
-      <table class="appointments" mat-table [dataSource]="previousPatients">
-        <ng-container matColumnDef="doctorFirstName">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let doctor">{{doctor.doctorFirstName | titlecase}}
-            {{doctor.doctorLastName | titlecase}}</td>
-        </ng-container>
-        <ng-container matColumnDef="doctorPhoneNumber">
-          <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-          <td mat-cell *matCellDef="let doctor">{{doctor.doctorPhoneNumber}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="doctorLastName">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let doctor">
-            <button mat-flat-button color="primary">View Doctor</button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="patientDisplayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: patientDisplayedColumns;"></tr>
-      </table>
+  <div class="appointments-container" *ngIf="previousPatients.length == 0">
+    <h4>Previous Appointments</h4>
+    <div>
+      You don't have any previous appointments.
     </div>
   </div>
+  <div class="appointments-container" *ngIf="previousPatients.length > 0">
+    <p class="title">Previous Appointments</p>
+    <mat-table class="appointments" [dataSource]="previousPatients">
+      <ng-container cdkColumnDef="doctorFirstName">
+        <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let doctor">Dr.&nbsp;{{doctor.doctorFirstName | titlecase}}&nbsp;{{doctor.doctorLastName | titlecase}}</mat-cell>
+      </ng-container>
+      <ng-container cdkColumnDef="doctorPhoneNumber">
+        <mat-header-cell *cdkHeaderCellDef>doctorPhoneNumber</mat-header-cell>
+        <mat-cell *cdkCellDef="let doctor">{{doctor.doctorPhoneNumber}}</mat-cell>
+      </ng-container>
+
+
+      <!-- <ng-container matColumnDef="doctorLastName">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let doctor">
+          <button mat-flat-button color="primary">View Doctor</button>
+        </td>
+      </ng-container> -->
+      <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber']"></mat-header-row>
+      <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber']"></mat-row>
+    </mat-table>
+  </div>
+</div>
 

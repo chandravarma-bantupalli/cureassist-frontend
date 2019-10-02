@@ -66,7 +66,7 @@ export class DoctorManageSlotsComponent implements OnInit {
   }
 
   addNewTimeSlot() {
-    this.timeSlotService.doctorId = this.userid;
+    // this.timeSlotService.doctorId = this.userid;
     this.timeSlotService.timeSlotId = '';
     this.openDialog();
   }
