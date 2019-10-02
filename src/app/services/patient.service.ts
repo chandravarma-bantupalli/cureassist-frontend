@@ -43,7 +43,7 @@ export class PatientService {
   //to get the pincode by areanames
   getpincodeAPI(city): Observable<any> {
     // tslint:disable-next-line:max-line-length
-    return this.http.get('https://api.postalpincode.in/postoffice/' + city,  {
+    return this.http.get(environment.pincodeAPI + city,  {
       headers: {
         'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
         'Access-Control-Allow-Headers': '*',
