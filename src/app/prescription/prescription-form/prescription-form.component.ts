@@ -66,6 +66,7 @@ export class PrescriptionFormComponent implements OnInit {
     remarks: '',
     allPrescribedMedicines: [{medicineForm: this.formBuilder.group({
       medicineName: '',
+      medicineQuantity: '',
       prescribedDosage: '',
       prescribedTimings: [],
       prescribedDays: '',
@@ -102,11 +103,11 @@ export class PrescriptionFormComponent implements OnInit {
     //   map(value => this._filterMedicine(value))
     // );
   }
-    
 
   initiateMedicineForm() {
     this.medicineForm = this.formBuilder.group({
       medicineName: '',
+      medicineQuantity: '',
       prescribedDosage: '',
       prescribedTimings: [],
       prescribedDays: '',
@@ -214,7 +215,7 @@ export class PrescriptionFormComponent implements OnInit {
   // Method to handle image
   handleImage(File: File) {
     this.fileToUpload = File;
-    var reader = new FileReader();
+    const reader = new FileReader();
     // reader.onload = (event: any) => {
     //   this.imageUrl = event.target.result;
     // }
