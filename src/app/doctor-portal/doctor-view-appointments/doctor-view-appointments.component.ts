@@ -39,6 +39,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
 
   patientDisplayedColumns: string[];
   appointmentsExist: boolean;
+  temp: string;
 
   constructor(
     private dialog: MatDialog,
@@ -113,8 +114,8 @@ export class DoctorViewAppointmentsComponent implements OnInit {
     }, []);
   }
 
-  getdoctorData(doctorId): Promise<Patient> {
-    return this.patientService.getPatientByUserId(doctorId).toPromise();
+  getpatientData(patientId): Promise<Patient> {
+    return this.patientService.getPatientByUserId(patientId).toPromise();
   }
 
   calculateMoment(date) {
@@ -132,26 +133,28 @@ export class DoctorViewAppointmentsComponent implements OnInit {
         ...appointment,
         moment: this.calculateMoment(moment(appointment.date))
       }));
-
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');
-      // console.log(this.today);
+      console.log(this.today);
       const todayAttendeesIds = this.getAttendees(this.today);
+
+      // todayAttendeesIds.map( x => { this.temp = x.attendeeId; });
+      // console.log(this.temp);
       console.log(todayAttendeesIds, 'Today');
       const laterAttendeesIds = this.getAttendees(this.later);
       console.log(laterAttendeesIds, 'tomo');
-      // const previousAttendeesIds = this.getAttendees(this.previous);
-      // console.log(previousAttendeesIds, 'previous');
+      const previousAttendeesIds = this.getAttendees(this.previous);
+      console.log(previousAttendeesIds, 'previous');
       // tslint:disable-next-line:max-line-length
       todayAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.todayPatients.push(data) ); });
-      console.log(this.todayPatients);
+      console.log(this.todayPatients, 'today patients');
       // tslint:disable-next-line:max-line-length
       laterAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.tomorrowPatients.push(data) ); });
-      console.log(this.tomorrowPatients);
+      console.log(this.tomorrowPatients, 'upcoming patients');
       // tslint:disable-next-line:max-line-length
-      // previousAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.previousPatients.push(data) ); });
-      // console.log(this.previousPatients);
+      previousAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.previousPatients.push(data) ); });
+      console.log(this.previousPatients);
     });
   }
 

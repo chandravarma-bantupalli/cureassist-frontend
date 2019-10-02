@@ -5,7 +5,7 @@ import { OnboardingService } from './onboarding.service';
 import { IAppointments } from '../models/appointment';
 import { Doctor } from '../models/doctor';
 import { IDiagnostics } from '../models/diagnostics';
-import { Patient, ISymptomsBySuggestions } from '../models/patient';
+import { Patient, ISymptomsBySuggestions, IPincode } from '../models/patient';
 import { DiagnosticCenter } from '../models/diagnostic-center';
 import { environment } from '../../environments/environment.prod';
 import { map } from 'rxjs/operators';
@@ -35,31 +35,31 @@ export class PatientService {
   updateProfile(body) {
     return this.http.put(this.urlForPatient + '/updateprofile', body);
   }
-  // to get the pincode by areanames
-  // getpincodeAPI(city): Observable<any> {
-  //   // tslint:disable-next-line:max-line-length
-  //   return this.http.jsonp('https://api.postalpincode.in/postoffice/' + city ,'callback').pipe(
-  //     map(res => {
-  //       return res.map(item => {
-  //         return new SearchItem(
-  //           item.trackName,
-  //           item.artistName,
-  //           item.trackViewUrl,
-  //           item.artworkUrl30,
-  //           item.artistId
-  //         );
-  //       });
-  //     })
-  //     );
+  // getpincodeAPI(): Observable<IPincode[]> {
+  //   return this.http.get<IPincode[]>(
+  //     '../../../assets/json_files/pincode.json'
+  //   );
   // }
-    getpincodeAPI(city): Observable<any> {
-    return this.http.get(environment.pincodeAPI + city, {
+  //to get the pincode by areanames
+  getpincodeAPI(city): Observable<any> {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get(environment.pincodeAPI + city,  {
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*'
+        'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Credentials': 'true'
+        
       }
     });
   }
+  //   getpincodeAPI(city): Observable<any> {
+  //   return this.http.get(environment.pincodeAPI + city, {
+  //     headers: {
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Access-Control-Allow-Headers': '*'
+  //     }
+  //   });
+  // }
   searchDoctorsByName(
     searchbar: string,
     City: string,
@@ -135,13 +135,15 @@ export class PatientService {
     userid: string, // userid for the doctor
     date: Date,
     slotStartTime: Date,
-    slotEndTime: Date
+    slotEndTime: Date,
+    symptomsarr: string[]
   ) {
     userid = this.doctorUserId;
-    console.log(userId, userid, date, slotStartTime, slotEndTime);
+    console.log(userId, userid, date, slotStartTime, slotEndTime, symptomsarr);
     // tslint:disable-next-line:max-line-length
     return this.http.post(this.urlForAppointments, {
       attendees: [userId, userid],
+      symptoms: symptomsarr,
       Date: date,
       slot: { Date: date, StartTime: slotStartTime, EndTime: slotEndTime }
     });

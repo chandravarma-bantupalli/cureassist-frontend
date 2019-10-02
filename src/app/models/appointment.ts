@@ -32,6 +32,10 @@ export class AppointmentDayCalendar {
 }
 
 export class AppointmentSlot {
-    attendees: string[];
+    attendees: [];
     timeSlot: AppointmentTimeSlot;
+}
+export class Attendee {
+    attendeeId: string;
+    symptoms: string;
 }

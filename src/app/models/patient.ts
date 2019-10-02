@@ -15,3 +15,8 @@ export interface ISymptomsBySuggestions {
     specialization: string;
     symptoms: Array<string>;
 }
+export interface IPincode {
+    city: string;
+    area: string;
+    pincode: string;
+}

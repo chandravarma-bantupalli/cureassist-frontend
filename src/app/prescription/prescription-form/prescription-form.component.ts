@@ -64,12 +64,14 @@ export class PrescriptionFormComponent implements OnInit {
     doctorphoneNumber: this.doctorPhoneNumber,
     symptoms: '',
     remarks: '',
-    allPrescribedMedicines: [{medicineForm: this.formBuilder.group({
-      medicineName: '',
-      prescribedDosage: '',
-      prescribedTimings: [],
-      prescribedDays: '',
-    })}]
+    // allPrescribedMedicines: [{medicineForm: this.formBuilder.group({
+    //   medicineName: '',
+    //   medicineQuantity: '',
+    //   prescribedDosage: '',
+    //   prescribedTimings: [],
+    //   prescribedDays: '',
+    // })}]
+     allPrescribedMedicines: []
   });
   constructor(
     public dialogRef: MatDialogRef<DoctorViewAppointmentsComponent>,
@@ -106,6 +108,7 @@ export class PrescriptionFormComponent implements OnInit {
   initiateMedicineForm() {
     this.medicineForm = this.formBuilder.group({
       medicineName: '',
+      medicineQuantity: '',
       prescribedDosage: '',
       prescribedTimings: [],
       prescribedDays: '',
@@ -129,10 +132,13 @@ export class PrescriptionFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.prescriptionForm.controls.PrescribedMedicines.value.push(this.medicineForm.value);
-    console.log(this.prescriptionForm.value);
-    this.medicineForm.reset();
+  AddMedicines() {
+   // this.ListOfMedicine =
+  console.log(this.medicineForm.value);
+  this.ListOfMedicine.push(this.medicineForm.value);
+  this.prescriptionForm.controls.allPrescribedMedicines.setValue(this.ListOfMedicine);
+  console.log(this.prescriptionForm.value);
+  this.medicineForm.reset();
   }
 
 
@@ -213,7 +219,7 @@ export class PrescriptionFormComponent implements OnInit {
   // Method to handle image
   handleImage(File: File) {
     this.fileToUpload = File;
-    var reader = new FileReader();
+    const reader = new FileReader();
     // reader.onload = (event: any) => {
     //   this.imageUrl = event.target.result;
     // }

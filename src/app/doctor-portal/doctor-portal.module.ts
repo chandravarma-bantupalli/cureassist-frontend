@@ -18,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { AvatarModule } from 'ngx-avatar';
 import { MatDividerModule } from '@angular/material';
 import { DoctorAppointmentHistoryComponent } from './doctor-appointment-history/doctor-appointment-history.component';
+import { CdkTableModule } from '@angular/cdk/table';
 @NgModule({
   // tslint:disable-next-line: max-line-length
   declarations: [
@@ -53,7 +54,8 @@ import { DoctorAppointmentHistoryComponent } from './doctor-appointment-history/
     AvatarModule,
     MatDialogModule,
     MatDividerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    CdkTableModule
   ],
   exports: [
    DoctorHeaderComponent,
