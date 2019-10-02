@@ -33,7 +33,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   ngOnInit() {
     this.userid = this.onboardingService.userid;
     this.getAllDiagCenTimeSlots(this.userid);
-    this.getDayCalendarOfDiagnosticCenter();
+    // this.getDayCalendarOfDiagnosticCenter();
   }
 
   getAllDiagCenTimeSlots(id: string) {
@@ -47,19 +47,19 @@ export class DiagnosticCenterHomeComponent implements OnInit {
     });
   }
 
-  getDayCalendarOfDiagnosticCenter() {
-    const date = new Date();
-    this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
-      this.appointmentDayCalendar = data;
-      this.todaySlots = this.appointmentDayCalendar.slots;
-      console.log(this.todaySlots);
-      this.dcProfileExists = true;
-      this.appointmentsExist = true;
-    }, (err) => {
-      this.dcProfileExists = true;
-      this.appointmentsExist = false;
-    });
-  }
+  // getDayCalendarOfDiagnosticCenter() {
+  //   const date = new Date();
+  //   this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
+  //     this.appointmentDayCalendar = data;
+  //     this.todaySlots = this.appointmentDayCalendar.slots;
+  //     console.log(this.todaySlots);
+  //     this.dcProfileExists = true;
+  //     this.appointmentsExist = true;
+  //   }, (err) => {
+  //     this.dcProfileExists = true;
+  //     this.appointmentsExist = false;
+  //   });
+  // }
 
   goToSetProfile() {
     this.onboardingService.userid = this.userid;
