@@ -1,9 +1,37 @@
 .profileContent {
-    display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.pharmacy-profile-illustration {
+  flex: 1;
+  overflow: hidden;
+  background: url("../../../assets/images/tabs.jpg");
+  height: 100vh;
+  background-color: skyblue;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pharmacy-profile-form-container {
+  flex: 1;
+  height: 100vh;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; 
 }
 
 .full-width {
-    width: 300px;
+  width: 100%;
+}
+
+.Profile {
+  padding: 0 14px;
+}
+
+.gotoend {
+  flex: 1 1 auto;
 }

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Doctor } from '../../models/doctor';
 import { DiagnosticCenter } from '../../models/diagnostic-center';
 import { PatientService } from '../../services/patient.service';
-import {ISymptomsBySuggestions} from '../../models/patient';
+import {ISymptomsBySuggestions, IPincode} from '../../models/patient';
 
 @Component({
   selector: 'app-search',
@@ -22,7 +22,8 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
   city: string;
   area: string;
   pincode: any;
-  // viewprofiledata: IDoctors[];
+  Ipin: IPincode[];
+    // viewprofiledata: IDoctors[];
   // viewdcprofiledata: IDiagnostics[];
   constructor(private service: PatientService, private route: Router) { }
   getpincode() {
@@ -35,6 +36,11 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
     });
 
   }
+  // getpincode() {
+  //   this.service.getpincodeAPI().subscribe(data => data.forEach(list => {
+  //     this.Ipin.push(list);
+  //    } ));
+  // }
   searchDoctorsByName(searchbar) {
     this.doctorByName = [];
     this.service.searchDoctorsByName(searchbar, this.city, this.pincode).subscribe(data => this.doctorByName = data);

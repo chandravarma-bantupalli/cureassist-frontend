@@ -45,7 +45,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     ViewEditComponent,
     ConfirmBooking,
     DCConfirmBooking,
-    EditProfileDialogComponent
+    EditProfileDialogComponent,
   ],
   imports: [
     CommonModule,
