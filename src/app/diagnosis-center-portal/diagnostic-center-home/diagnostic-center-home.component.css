@@ -68,6 +68,9 @@
 
 .title {
 padding: 10px;
+display: flex;
+flex-flow: row wrap;
+justify-content: space-between;
 }
 
 .lead {

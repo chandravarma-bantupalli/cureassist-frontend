@@ -1,5 +1,5 @@
 <div class="mat-elevation-z2 time-slot-container">
-  <div class="title">Time Slots</div>
+  <div class="title">Available Diagnosis Tests</div>
   <div *ngIf="!timeSlotsExist">
     <div>
       <h5>Please add your preferred time slots to get your appointments booked</h5>
@@ -7,21 +7,35 @@
     </div>
   </div>
 
-  <div class="time-slot-wrapper" *ngIf="timeSlotsExist">
+  <!-- <div class="time-slot-wrapper" *ngIf="timeSlotsExist">
     <div *ngFor="let slot of timeSlots">
       <mat-divider></mat-divider>
       <div>
         <span>{{ slot.slotStartTime }} - {{ slot.slotEndTime }}</span>
         <span>
           <button mat-button
-          (click)="getSpecificTimeSlot(userid,slot.slotId)"
           color="primary"> Update Time
           Slot </button>
         </span>
       </div>
       <mat-divider></mat-divider>
+    </div> -->
+    
+    <div class="time-slot-wrapper" *ngIf="timeSlotsExist">
+      <mat-chip-list class="mat-chip-list-stacked">
+        <mat-chip style="width: 100%;" *ngFor="let slot of timeSlots">
+            
+            {{ slot.testConductedInSlot }}
+            
+            ( {{ slot.slotStartTime }} - {{ slot.slotEndTime }} )
+            
+            <a class ='btn' style="float: right;"> <i class="material-icons" (click)="getSpecificTimeSlot(userid,slot.slotId)"> update </i> </a>
+            
+        </mat-chip>
+        
+    </mat-chip-list> 
   </div>
-  <button mat-button (click)="addNewSlot(userid)" color="primary"> Add New</button>
+  <button mat-button color="primary" (click)="addNewSlot(userid)" color="primary"><mat-icon>fiber_new</mat-icon> Diagnosis Test</button>
   <div>
   </div>
 </div>

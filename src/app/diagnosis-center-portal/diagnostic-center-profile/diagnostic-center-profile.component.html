@@ -12,13 +12,13 @@
 </div>
 
 <div class="mat-elevation-z2 personal-information" *ngIf="detailType == 'personalInformation'">
-    <p class="title">Basic Informations</p>
+    <p class="title">Basic Information</p>
     <mat-card-content>
         <p>{{ diagnosticCenter.diagnosticCenterEmail }} </p>
         <p>{{ diagnosticCenter.diagnosticCenterRegNum }} </p>
         <p>{{ diagnosticCenter.diagnosticCenterPhone }}</p>
     </mat-card-content>
-    <button mat-button (click)="goToUpdateProfile()">  Update Profile</button>
+    <button mat-button color="primary" (click)="goToUpdateProfile()"><mat-icon>edit</mat-icon> Update Profile</button>
 </div>
 
 <mat-card class="mat-elevation-z2" *ngIf="detailType == 'address'">
@@ -28,5 +28,5 @@
         <p> {{ diagnosticCenter.diagnosticCenterCity }} </p>
         <address>{{ diagnosticCenter.pincode }}</address>
     </mat-card-content>
-    <button mat-button (click)="goToUpdateProfile()">  Update Profile</button>
+    <button mat-button color="primary" (click)="goToUpdateProfile()"><mat-icon>edit</mat-icon> Update Profile</button>
 </mat-card>

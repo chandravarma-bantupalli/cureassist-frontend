@@ -2,6 +2,14 @@
 <div class="home-container">
     <div class="title">
         <h3>Cure Assist | <span class="lead">Diagnosis Center Portal</span></h3>
+        <div>
+            <a style="color: crimson; text-decoration: underline; cursor: pointer;"><h5 [matMenuTriggerFor]="options"> Profile Options <mat-icon>arrow_drop_down</mat-icon> </h5></a>
+            <mat-menu #options="matMenu">
+                <button class="Profile" mat-menu-item>View Appointment History</button>
+                <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
+                <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
+        </div>
     </div>
     <div class="chicklet-container">
       <app-diagnostic-center-profile detailType="name"></app-diagnostic-center-profile>
