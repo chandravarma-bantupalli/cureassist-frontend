@@ -93,8 +93,8 @@
           <button mat-flat-button color="primary">View Doctor</button>
         </td>
       </ng-container> -->
-      <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber']"></mat-header-row>
-      <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber']"></mat-row>
+      <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber','doctorLastName']"></mat-header-row>
+      <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber', 'doctorLastName']"></mat-row>
     </mat-table>
   </div>
 </div>

@@ -44,7 +44,7 @@ export class ViewAppointmentComponent implements OnInit {
  //  patientId: string;
   // datetoday = new Date();
 
-  patientDisplayedColumns: string[] = ['doctorFirstName', 'doctorPhoneNumber'];
+  patientDisplayedColumns: string[] = ['doctorFirstName', 'doctorPhoneNumber', 'doctorLastName'];
 
   constructor(public appointmentService: AppointmentHttpService,
               public service: PatientService, public onboardingService: OnboardingService) {
@@ -141,7 +141,7 @@ export class ViewAppointmentComponent implements OnInit {
         ...appointment,
         moment: this.calculateMoment(moment(appointment.date))
       }));
-      console.log(this.appointments,'app');
+      console.log(this.appointments, 'app');
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');

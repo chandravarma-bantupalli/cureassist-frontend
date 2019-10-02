@@ -5,7 +5,7 @@ import { DiagnosticsprofileCardComponent, DCConfirmBooking } from './diagnostics
 import { EditprofilePageComponent } from './editprofile-page/editprofile-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchComponent } from './search/search.component';
-
+import { RatingModule } from 'ng-starrating';
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 import { ViewEditComponent } from './view-edit/view-edit.component';
 import {
@@ -63,7 +63,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatDialogModule,
     CdkTableModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    RatingModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} }
