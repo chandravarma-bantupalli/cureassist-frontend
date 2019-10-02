@@ -60,13 +60,25 @@ export class QuotationService {
   //   }
   // }
 
-  pharmacyOnline(pharmacyPincode) {
-    console.log(pharmacyPincode);
-    if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
-      this.hubConnection.start();
-  }
-    console.log('Pharmacy online');
+//   pharmacyOnline(pharmacyPincode) {
+//     console.log(pharmacyPincode);
+//     if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
+//       this.hubConnection.start();
+//   }
+//     console.log('Pharmacy online');
+//     this.hubConnection.invoke('Initialize', pharmacyPincode);
+// }
+
+pharmacyOnline(pharmacyPincode: string) {
+  if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
+    this.hubConnection.start().then(() => {
+      this.hubConnection.invoke('Initialize', pharmacyPincode);
+      console.log('Pharmacy online 1');
+    });
+  } else {
     this.hubConnection.invoke('Initialize', pharmacyPincode);
+    console.log('Pharmacy online 2');
+  }
 }
 
   sendQuotation(quotation: Quotation) {
