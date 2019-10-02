@@ -34,6 +34,25 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field><br>
+          <!-- // symptoms chips -->
+          <mat-form-field class="symptoms-chip-list">
+            <mat-chip-list #chipList aria-label="Symptom selection">
+              <mat-chip *ngFor="let symptom of symptoms" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(symptom)">
+                {{symptom}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Add symptom .." #symptomInput [formControl]="symptomsCtrl" [matAutocomplete]="auto"
+                [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let symptom of filteredSymptoms | async" [value]="symptom">
+                {{symptom}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field><br>
+          
           <div *ngFor="let time of viewprofiledata.doctorSlots">
             <button mat-raised-button color="primary"
               (click)="openDialog(time.slotStartTime,time.slotEndTime, viewprofiledata.doctorId)">
