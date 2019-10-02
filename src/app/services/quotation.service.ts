@@ -47,19 +47,27 @@ export class QuotationService {
     this.patientDetails.next(patientDetail);
   }
 
-  
-  pharmacyOnline(pharmacyPincode: string) {
-    if (this.hubConnection.state === HubConnectionState.Disconnected) {
-      return this.hubConnection.start()
-        .then(() => {
-          console.log('Pharmacy online');
-          this.hubConnection.invoke('Initialize', pharmacyPincode);
-        });
-    } else {
-      console.log('Pharmacy online');
-      this.hubConnection.invoke('Initialize', pharmacyPincode);
-    }
+  // pharmacyOnline(pharmacyPincode) {
+  //   if (this.hubConnection.state === HubConnectionState.Disconnected) {
+  //     return this.hubConnection.start()
+  //       .then(() => {
+  //         console.log('Pharmacy online');
+  //         this.hubConnection.invoke('Initialize', pharmacyPincode);
+  //       });
+  //   } else {
+  //     console.log('Pharmacy online');
+  //     this.hubConnection.invoke('Initialize', pharmacyPincode);
+  //   }
+  // }
+
+  pharmacyOnline(pharmacyPincode) {
+    console.log(pharmacyPincode);
+    if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
+      this.hubConnection.start();
   }
+    console.log('Pharmacy online');
+    this.hubConnection.invoke('Initialize', pharmacyPincode);
+}
 
   sendQuotation(quotation: Quotation) {
     console.log(quotation);
