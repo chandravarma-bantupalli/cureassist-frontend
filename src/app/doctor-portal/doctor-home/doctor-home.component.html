@@ -1,6 +1,14 @@
 <div class="home-container">
     <div class="title">
-      <h3>Cure Assist | <span class="lead">Doctor Portal</span></h3>
+        <h3>Cure Assist | <span class="lead">Doctor Portal</span></h3>
+        <span class="gotoend"></span>
+        <button class="Profile" mat-button [matMenuTriggerFor]="profile">
+          <img src="../../../assets/images/profile.jpg" alt="profile">
+       </button>
+    <mat-menu #profile="matMenu">
+        <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
+        <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
     </div>
     <div class="chicklet-container">
         <!-- <app-doctor-view-appointments [when]="today"></app-doctor-view-appointments> -->
