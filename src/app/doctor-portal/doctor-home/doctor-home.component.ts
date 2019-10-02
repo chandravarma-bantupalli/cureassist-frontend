@@ -8,6 +8,8 @@ import { AppointmentDayCalendar } from '../../models/appointment';
 import { AppointmentSlot } from '../../models/appointment';
 import { DoctorHttpService } from 'src/app/services/doctor-http.service';
 import { Doctor } from 'src/app/models/doctor';
+import { ResetpasswordComponent } from 'src/app/onboarding/resetpassword/resetpassword.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-doctor-home',
@@ -30,7 +32,8 @@ export class DoctorHomeComponent implements OnInit {
     private timeSlotService: TimeSlotService,
     private appointmentService: AppointmentHttpService,
     private doctorService: DoctorHttpService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -102,5 +105,16 @@ export class DoctorHomeComponent implements OnInit {
   goToProfile() {
      this.onboardingService.userid = this.userid;
      this.router.navigate(['/doctor/update']);
+  }
+
+  resetpassword() {
+    this.dialog.open(ResetpasswordComponent, {
+      width: '30vw',
+      height: '70vh'
+    });
+  }
+
+  logout() {
+    return this.onboardingService.Logout();
   }
 }

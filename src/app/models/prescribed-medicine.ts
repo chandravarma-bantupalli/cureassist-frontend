@@ -1,8 +1,8 @@
 export class PrescribedMedicine {
   medicineName: string;
+  medicineQuantity: string;
   prescribedDosage: string;
   prescribedTimings: string[];
-  medicineQuantity: string;
   prescribedDays: number;
   medicinePrice?: number;
 }
