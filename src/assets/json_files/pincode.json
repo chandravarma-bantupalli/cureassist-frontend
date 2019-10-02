@@ -1,0 +1,412 @@
+[
+  {
+    "city":"bangalore",
+    "pincode":	560001,
+    "area": [
+      "BJ Circle",
+      "Brigade Road",
+      "High Court",
+      "Legislator's Home",
+      "Madhav Nagar",
+      "M. G. Road",
+      "N. P. Street",
+      "Plain Street",
+    	"Seppings Road",	
+    	"Vidhana Soudha",	
+    	"BANGALORE G P O",
+       "Shivajinagar",
+       "BJ Circle",
+       "Brigade Road",
+       "High Court"
+    ],
+    "pincode":	560002,
+    "area":[
+      "Avenue Road",
+    	"Bangalore Corpn Bldg",
+      "Bangalore City Head Post Office",
+      "BR Market",
+	    "J. C. Road",
+      "N. R. Road",
+      "Nagarathpet",
+      "New Tharagupet",
+	    "BANGALORE CITY H O"
+    ],
+    "pincode":	560003,
+    "area":[
+    	"Malleswaram",
+       "Palace Guttahalli",
+        "Pipe Line Ext",
+      "S. P. Extention",
+      	"Sampige Road",
+      "Venkatarangapuram",
+      "Vyalikaval Extension",
+      "Malleswaram",
+      "Vyalikaval"
+    ],
+    "pincode":560004,
+    "area":[
+        "Basavangudi Head Post Office",
+        "Bull Temple Road",
+        "Lalbagh West",
+	      "Mavalli",
+        "Pampa Mahakavi Road",
+        "S. P. Square",
+        "Shankarpuram",
+      	"VV Puram",
+        "Basavangudi"
+      ],
+      "pincode":	560005,
+      "area":[
+        "Frazer Town",
+         "Jeevanahalli"
+      ],
+      "pincode":560006,
+      "area":[
+          "J. C. Nagar",
+          "Training Command IAF",
+        ],
+        "pincode":560007,
+        "area":[
+          "Agram"
+      ],
+      "pincode":560008,
+      "area":[
+          "H. A. L. 2ndStage HPO",
+          "Someswarapura",
+          "Ulsoor Bazaar",
+          "HAL II Stage",
+        ],
+      "pincode":560009,
+        "area":[
+            "District Office Bldg",
+            "Gandhi Nagar",
+            "Kempegowda Road"
+          ],
+      "pincode":560010,
+          "area":[
+              "Rajajinagar Head Office",
+              "RAJAJINAGAR",
+              "Kempegowda Road"
+            ],
+      "pincode":560010,
+         "area":[
+                "Byrasandra",
+                "Jayanagar",
+                "Madhavan Park"
+              ],
+      "pincode":560011,
+          "area":[
+                  "Indian Institute of Science"
+                ],
+      "pincode":560013,
+           "area":[
+            "Jalahalli"
+       ],
+       "pincode":560014,
+       "area":[
+        "Jalahalli East",
+        "Hospital Town East"
+   ], 
+   "pincode":560016,
+   "area":[
+    "Doorvaninagar"
+],  
+"pincode":560018,
+"area":[
+ "Chamarajpet",
+ "Vithalnagar"
+],
+"pincode":560019,
+"area":[
+ "Gavipuram Ext",
+ "G. G. Halli",
+ "N. R. Colony"
+],   
+"pincode":560022,
+"area":[
+ "APMC Yard",
+ "Yeshwanthpur"
+],  
+"pincode":560023,
+"area":[
+ "Bangalore City Rly Stn",
+ "K. S. R. T. C. Bus Stn",
+ "Magadi Road"
+],
+"pincode":560024,
+"area":[
+ "Anandnagar",
+ "Hebbal Agrl Farm"
+],
+"pincode":560025,
+"area":[
+ "Museum Road",
+ "Residency Road",
+ "Richmond Town"
+],
+"pincode":560026,
+"area":[
+ "Bapujinagar",
+ "DeepanjaliNagar",
+ "G. E. Factory",
+ "Goripalya",
+ "GOVT ELEC. FACTORY"
+],
+"pincode":560027,
+"area":[
+ "S. R. Nagar",
+ "Shantinagar",
+ "Sudhamanagar",
+ "Wilson Garden"
+],
+"pincode":560028,
+"area":[
+ "THYAGARAJANAGAR"
+],
+"pincode":560029,
+"area":[
+ "Dharmaram College"
+],
+"pincode":560030,
+"area":[
+ "Adugodi",
+ "Hosur Road"
+],
+"pincode":560032,
+"area":[
+ "Gangenahalli Ext",
+ "P & T Colony K. B. Sandra",
+ "R. T. Nagar H. O"
+],
+"pincode":560034,
+"area":[
+ "Koramangala",
+ "St. Johns Medical College",
+ "R. T. Nagar H. O"
+],
+"pincode":560036,
+"area":[
+ "Krishnarajapuram"
+],
+"pincode":560037,
+"area":[
+ "M. H. Colony",
+ "Ramesh Nagar",
+ "Marathahalli Colony"
+],
+"pincode":560037,
+"area":[
+ "M. H. Colony",
+ "Ramesh Nagar",
+ "Marathahalli Colony"
+],
+"pincode":560038,
+"area":[
+ "Byappanahalli",
+ "Binnamangala 2 nd Stage",
+ "Indiranagar Shopping Complex"
+],
+"pincode":560040,
+"area":[
+ "Vijaynagar"
+],
+"pincode":560041,
+"area":[
+ "Jayanagar South",
+ "Tilaknagar"
+],
+"pincode":560043,
+"area":[
+ "Bansawadi"
+],
+"pincode":560044,
+"area":[
+ "Rajajinagar Ind Est",
+ "Industrial Estate"
+],
+"pincode":560044,
+"area":[
+ "Arabic College",
+ "Devar Jeevanahalli",
+ "Venkateshpuram"
+],
+
+"pincode":560046,
+"area":[
+ "Benson Town",
+ "Chinnappa Garden",
+ "Jayamahal Ext",
+ "Williams Town"
+],
+"pincode":560047,
+"area":[
+ "Neelasandra",
+ "Viveknagar"
+],
+"pincode":560048,
+"area":[
+ "Mahadevapura"
+],
+"pincode":560049,
+"area":[
+ "Virgoagar"
+],
+"pincode":560050,
+"area":[
+ "Banashankari I Stage"
+],
+"pincode":560051,
+"area":[
+ "Broadway Road",
+ "H K P Road"
+],
+"pincode":560052,
+"area":[
+ "Broadway Road",
+ "H K P Road"
+],
+"pincode":560053,
+"area":[
+ "Balepet",
+ "Cottonpet",
+ "Chickpet"
+],
+
+"pincode":560060,
+"area":[
+ "Kengeri"
+],
+"pincode":560061,
+"area":[
+ "Subramanyapura"
+],
+
+"pincode":560062,
+"area":[
+ "Doddakallasandra"
+],
+"pincode":560063,
+"area":[
+ "Air Force Stn-Yelahanka"
+],
+"pincode":560064,
+"area":[
+ "Wheel & Axle Plant",
+ "Yelhanka"
+],
+"pincode":560065,
+"area":[
+ "G. K. V. K"
+],
+"pincode":560066,
+"area":[
+ "Whitefield"
+],
+"pincode":560067,
+"area":[
+ "Kadugodi"
+],
+"pincode":560068,
+"area":[
+ "Bommanahalli",
+ "Madiwala"
+],
+"pincode":560069,
+"area":[
+ "Jayanagar East"
+],
+"pincode":560070,
+"area":[
+ "Banashankari II Stage",
+ "Padmanabhanagar"
+],
+"pincode":560070,
+"area":[
+ 
+ "Domlur"
+],
+"pincode":560075,
+"area":[
+ 
+ "New Thippasandra"
+],
+"pincode":560076,
+"area":[
+ "Bannerghatta Road",
+ "BTM Layout"
+],
+"pincode":560077,
+"area":[
+ "Kothanur"
+],
+"pincode":560078,
+"area":[
+ "J P Nagar"
+],
+"pincode":560079,
+"area":[
+ "Basaveshwarnagar"
+],
+"pincode":560080,
+"area":[
+ "Palace Orchards",
+ "Sadashivanagar"
+],
+"pincode":560085,
+"area":[
+"Banashankari 3rd Stage"
+],
+"pincode":560086,
+"area":[
+"Mahalakshmipuram Layout"
+],
+"pincode":560087,
+"area":[
+"Varthur"
+],
+"pincode":560090,
+"area":[
+"Chikkabanavara"
+],
+"pincode":560091,
+"area":[
+"Viswaneedam"
+],
+"pincode":560092,
+"area":[
+"Byatarayanapura"
+],
+"pincode":560093,
+"area":[
+"C V Raman Nagar"
+],
+"pincode":560094,
+"area":[
+"Antharikshabhavan",
+"I. S. R. O",
+"NAGASETTY HALLI",
+"RMV Extn 2nd Stage",
+"Sanjayanagar"
+],
+"pincode":560095,
+"area":[
+"Koramangala 6th Block"
+],
+"pincode":560096,
+"area":[
+"Nandhini Layout"
+],
+"pincode":560097,
+"area":[
+"Vidyaranyapura"
+],
+"pincode":560098,
+"area":[
+"Rajarajeshwari Nagar"
+],
+"pincode":560100,
+"area":[
+"Electronic City"
+]
+  }
+]

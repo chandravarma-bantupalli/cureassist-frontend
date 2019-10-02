@@ -5,6 +5,7 @@ import { DiagnosticsprofileCardComponent, DCConfirmBooking } from './diagnostics
 import { EditprofilePageComponent } from './editprofile-page/editprofile-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchComponent } from './search/search.component';
+
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 import { ViewEditComponent } from './view-edit/view-edit.component';
 import {
@@ -29,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { AvatarModule } from 'ngx-avatar';
 import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-d
     MatNativeDateModule,
     AvatarModule,
     MatDialogModule,
+    CdkTableModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} }

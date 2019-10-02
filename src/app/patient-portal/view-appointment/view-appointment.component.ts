@@ -8,6 +8,7 @@ import { AppointmentHttpService } from 'src/app/services/appointment-http.servic
 import { IAppointments, AppointmentDayCalendar, AppointmentTimeSlot } from 'src/app/models/appointment';
 import { Patient } from 'src/app/models/patient';
 import { OnboardingService } from 'src/app/services/onboarding.service';
+import { DataSource } from '@angular/cdk/table';
 
 @Component({
   selector: 'app-view-appointment',
@@ -43,11 +44,10 @@ export class ViewAppointmentComponent implements OnInit {
  //  patientId: string;
   // datetoday = new Date();
 
-  patientDisplayedColumns: string[];
+  patientDisplayedColumns: string[] = ['doctorFirstName', 'doctorPhoneNumber'];
 
   constructor(public appointmentService: AppointmentHttpService,
               public service: PatientService, public onboardingService: OnboardingService) {
-                this.patientDisplayedColumns = ['doctorFirstName', 'doctorPhoneNumber', 'doctorLastName'];
                }
   ngOnInit() {
     // console.log(this.datetoday.toLocaleDateString());
@@ -141,13 +141,16 @@ export class ViewAppointmentComponent implements OnInit {
         ...appointment,
         moment: this.calculateMoment(moment(appointment.date))
       }));
+      console.log(this.appointments,'app');
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');
       console.log(this.today, 'you want');
+      this.later.forEach(element => console.log(element));
       const todayAttendeesIds = this.getAttendees(this.today);
       console.log(todayAttendeesIds, 'Today');
       const laterAttendeesIds = this.getAttendees(this.later);
+      console.log(laterAttendeesIds,'upcoming');
       const previousAttendeesIds = this.getAttendees(this.previous);
       console.log(previousAttendeesIds, 'previous');
       // tslint:disable-next-line:max-line-length
@@ -155,7 +158,7 @@ export class ViewAppointmentComponent implements OnInit {
       console.log(this.todayPatients);
       // tslint:disable-next-line:max-line-length
       laterAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.tomorrowPatients.push(data) ); });
-      console.log(this.tomorrowPatients);
+      console.log(this.tomorrowPatients,'tomorrowpatients');
       // tslint:disable-next-line:max-line-length
       previousAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.previousPatients.push(data) ); });
       console.log(this.previousPatients);
