@@ -31,7 +31,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userid = this.onboardingService.userid;
+    this.userid = '45987123-ed2456';
     this.getAllDiagCenTimeSlots(this.userid);
     this.getDayCalendarOfDiagnosticCenter();
   }
@@ -51,7 +51,7 @@ export class DiagnosticCenterHomeComponent implements OnInit {
     const date = new Date();
     this.appointmentService.getDayCalendarOfUser(this.userid, date.toLocaleDateString()).subscribe( (data) => {
       this.appointmentDayCalendar = data;
-      this.todaySlots = this.appointmentDayCalendar.slots;
+      // this.todaySlots = this.appointmentDayCalendar.slots;
       console.log(this.todaySlots);
       this.dcProfileExists = true;
       this.appointmentsExist = true;

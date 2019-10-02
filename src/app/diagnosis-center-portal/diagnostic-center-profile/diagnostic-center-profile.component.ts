@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DiagnosticCenterHttpService } from '../../services/diagnostic-center-http.service';
 import { DiagnosticCenter } from '../../models/diagnostic-center';
@@ -12,6 +12,7 @@ import { OnboardingService } from 'src/app/services/onboarding.service';
 })
 export class DiagnosticCenterProfileComponent implements OnInit {
 
+  @Input() detailType: string;
   diagnosticCenter: DiagnosticCenter;
   diagnosticCenterSlots: TimeSlot[];
   testsConducted: string[];
@@ -24,7 +25,7 @@ export class DiagnosticCenterProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dcId = this.onboardingService.userid;
+    this.dcId = '45987123-ed2456';
     this.getDiagnosticCenterProfile();
   }
 
