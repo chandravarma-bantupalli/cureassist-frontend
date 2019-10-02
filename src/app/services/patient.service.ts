@@ -170,8 +170,8 @@ export class PatientService {
     );
   }
 
-  GetDoctorById(userid: string): Observable<Doctor> {
-    return this.http.get<Doctor>(
+  GetDoctorById(userid: string): Observable<any> {
+    return this.http.get(
       environment.doctorsdcAPI + '/api/doctor/' + userid
     );
   }
