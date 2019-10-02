@@ -5,9 +5,10 @@ import { OnboardingService } from './onboarding.service';
 import { IAppointments } from '../models/appointment';
 import { Doctor } from '../models/doctor';
 import { IDiagnostics } from '../models/diagnostics';
-import { Patient, ISymptomsBySuggestions } from '../models/patient';
+import { Patient, ISymptomsBySuggestions, IPincode } from '../models/patient';
 import { DiagnosticCenter } from '../models/diagnostic-center';
 import { environment } from '../../environments/environment.prod';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,12 +35,20 @@ export class PatientService {
   updateProfile(body) {
     return this.http.put(this.urlForPatient + '/updateprofile', body);
   }
-  // to get the pincode by areanames
+  // getpincodeAPI(): Observable<IPincode[]> {
+  //   return this.http.get<IPincode[]>(
+  //     '../../../assets/json_files/pincode.json'
+  //   );
+  // }
+  //to get the pincode by areanames
   getpincodeAPI(city): Observable<any> {
-    return this.http.get('/postoffice/' + city, {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get(environment.pincodeAPI + city,  {
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*'
+        'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Credentials': 'true'
+        
       }
     });
   }

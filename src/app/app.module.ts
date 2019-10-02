@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClientJsonpModule } from '@angular/common/http';
 
 import { DoctorPortalModule } from './doctor-portal/doctor-portal.module';
 import { DiagnosisCenterPortalModule } from './diagnosis-center-portal/diagnosis-center-portal.module';
@@ -30,6 +30,7 @@ import { ResetpasswordComponent } from './onboarding/resetpassword/resetpassword
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     DoctorPortalModule,
     DiagnosisCenterPortalModule,
     PatientPortalModule,
