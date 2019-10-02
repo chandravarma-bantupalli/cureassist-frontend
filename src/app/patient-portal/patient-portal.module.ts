@@ -25,6 +25,8 @@ import {
   MatNativeDateModule,
   MatDialogModule,
   MatDialogRef,
+  MatChipsModule,
+  MatAutocompleteModule,
  } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
@@ -59,7 +61,9 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatNativeDateModule,
     AvatarModule,
     MatDialogModule,
-    CdkTableModule
+    CdkTableModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} }
