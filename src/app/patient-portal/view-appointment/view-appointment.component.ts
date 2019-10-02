@@ -9,11 +9,38 @@ import { IAppointments, AppointmentDayCalendar, AppointmentTimeSlot } from 'src/
 import { Patient } from 'src/app/models/patient';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 
+export interface IDoctors {
+  ts: any[];
+  userid: string;
+  doctorId: string;
+  doctorFirstName: string;
+  doctorLastName: string;
+  doctorEmail: string;
+  doctorPhoneNumber: string;
+  doctorCity: string;
+  doctorRegNum: string;
+  doctorAddress: string;
+  pincode: string;
+  doctorSpecialization: string;
+  doctorExperience: string;
+  doctorSlots: ITimeSlot[];
+}
+export interface ITimeSlot {
+  slotId: string;
+  doctorId?: string;
+  diagnosticCenterId?: string;
+  slotStartTime: string;
+  slotEndTime: string;
+  testConductedInSlot?: string;
+  slotCapacity: number;
+}
+
 @Component({
   selector: 'app-view-appointment',
   templateUrl: './view-appointment.component.html',
   styleUrls: ['./view-appointment.component.css']
 })
+
 export class ViewAppointmentComponent implements OnInit {
   @Input() when: string;
   panelOpenState = false;
@@ -31,7 +58,6 @@ export class ViewAppointmentComponent implements OnInit {
   tomorrow: AppointmentDayCalendar[];
   later: AppointmentDayCalendar[];
   previous: AppointmentDayCalendar[];
-
   todayPatients: Doctor[] = [];
   tomorrowPatients: Doctor[] = [];
   laterPatients: Doctor[] = [];
@@ -47,7 +73,7 @@ export class ViewAppointmentComponent implements OnInit {
 
   constructor(public appointmentService: AppointmentHttpService,
               public service: PatientService, public onboardingService: OnboardingService) {
-                this.patientDisplayedColumns = ['doctorFirstName', 'doctorPhoneNumber', 'doctorLastName'];
+                this.patientDisplayedColumns = ['doctorFirstName', 'doctorPhoneNumber'];
                }
   ngOnInit() {
     // console.log(this.datetoday.toLocaleDateString());
@@ -135,7 +161,6 @@ export class ViewAppointmentComponent implements OnInit {
   }
 
   getAllAppointments() {
-    console.log(this.onboardingService.userid);
     this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe((data) => {
       this.appointments = data.map(appointment => ({
         ...appointment,
@@ -144,7 +169,8 @@ export class ViewAppointmentComponent implements OnInit {
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');
-      console.log(this.today, 'you want');
+      console.log(this.later, 'upcoming app details');
+      console.log(this.today, 'appointment details');
       const todayAttendeesIds = this.getAttendees(this.today);
       console.log(todayAttendeesIds, 'Today');
       const laterAttendeesIds = this.getAttendees(this.later);
@@ -152,13 +178,14 @@ export class ViewAppointmentComponent implements OnInit {
       console.log(previousAttendeesIds, 'previous');
       // tslint:disable-next-line:max-line-length
       todayAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.todayPatients.push(data) ); });
-      console.log(this.todayPatients);
+      console.log(this.todayPatients, 'TodayPatients');
       // tslint:disable-next-line:max-line-length
       laterAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.tomorrowPatients.push(data) ); });
-      console.log(this.tomorrowPatients);
+      console.log(this.tomorrowPatients, 'TomorrowPatients');
+      // const displayTomorrowPatients: Doctor[] = this.tomorrowPatients;
       // tslint:disable-next-line:max-line-length
       previousAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.previousPatients.push(data) ); });
-      console.log(this.previousPatients);
+      console.log(this.previousPatients, 'PreviousPatients');
     });
   }
 
