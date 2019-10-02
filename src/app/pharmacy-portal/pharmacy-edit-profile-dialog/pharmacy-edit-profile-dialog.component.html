@@ -1,0 +1,38 @@
+<div class="title">Update Profile</div>
+<div class="pharmacy-profile-container">
+    <form class="pharmacy-profile-form-container" [formGroup]="formModel" (submit)="onsubmit()">
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Pharmacy Name</mat-label>
+            <input matInput class="form-control" formControlName="pharmacyName" name="pharmacyName" required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Pharmacy Location</mat-label>
+            <input matInput class="form-control" formControlName="pharmacyLocation" name="pharmacyLocation" required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Pharmacy Pincode</mat-label>
+            <input matInput class="form-control" formControlName="pharmacyPincode" name="pharmacyPincode" required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Pharmacy Register Number</mat-label>
+            <input matInput class="form-control" formControlName="pharmacyRegisterNumber" name="pharmacyRegisterNumber"
+                required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput class="form-control" formControlName="phoneNumber" name="phoneNumber" required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput class="form-control" formControlName="emailId" name="emailId" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary">update</button>
+    </form>
+</div>

@@ -27,7 +27,7 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
   constructor(private service: PatientService, private route: Router) { }
   getpincode() {
     this.service.getpincodeAPI(this.area).subscribe(data => {
-          console.log(data[0].PostOffice);
+          // console.log(data[0].PostOffice);
           console.log(data);
           this.pincode = data[0].PostOffice.filter(u => (u.District === this.city) && (u.Name === this.area)); 
           this.pincode = this.pincode[0].Pincode;

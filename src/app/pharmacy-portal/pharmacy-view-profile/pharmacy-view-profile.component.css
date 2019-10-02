@@ -1,9 +1,69 @@
-.profileContent {
+ button {
     display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.patient-profile-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.patient-profile-form-wrapper {
+  padding: 10px;
+}
+
+.patient-profile-form-container {
+  flex: 1;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
 .full-width {
-    width: 300px;
+  width: 100%;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 2vh;
+}
+
+.name-card-bg {
+  background-color: navy;
+  background-image: url('../../../assets/images/poster.webp');
+  /* background-image: url(https://lh3.googleusercontent.com/c5dqxl-2uHZ82ah9p7yxrVF1ZssrJNSV_15Nu0TUZwzCWqmtoLxCUJgEzLGtxsrJ6-v6R6rKU_-FYm881TTiMCJ_=w728-h1600-rw); */
+  height: 100px;
+}
+
+.name-card-content {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.name-container {
+  background-color: #fff;
+  height: 250px;
+}
+
+.contact-info {
+  padding: 15px;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.contact-info-item {
+  padding: 10px;
 }

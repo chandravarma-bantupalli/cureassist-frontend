@@ -62,21 +62,8 @@ export class PharmacyOrdersPageComponent implements OnInit {
         this.quotationRequests.push(quotation);
       }
     });
-    // this.quotationService.patientDetails.subscribe((details: any) => {
-    //   if (details === '') {
-    //     console.log('no details');
-    //   } else {
-    //     // console.log(details);
-    //     this.patientDetail = details;
-    //     console.log(this.patientDetail, 'got details');
-    //   }
-    // });
   }
-  // sendResponse(totalCost) {
-  //   // console.log(totalCost);
-  //   this.selectedQuotationObject.totalCost = totalCost;
-  //   this.quotationService.sendQuotation(this.selectedQuotationObject);
-  // }
+
   totalMedicineCost(medicineName, medicinePrice) {
     // tslint:disable-next-line:radix
     this.totalCost = this.totalCost + parseInt(medicinePrice.target.value);

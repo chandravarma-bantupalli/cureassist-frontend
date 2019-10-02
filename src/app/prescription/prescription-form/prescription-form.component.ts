@@ -102,7 +102,6 @@ export class PrescriptionFormComponent implements OnInit {
     //   map(value => this._filterMedicine(value))
     // );
   }
-    
 
   initiateMedicineForm() {
     this.medicineForm = this.formBuilder.group({
