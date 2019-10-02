@@ -41,7 +41,7 @@ import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-d
     ViewEditComponent,
     ConfirmBooking,
     DCConfirmBooking,
-    EditProfileDialogComponent
+    EditProfileDialogComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,12 @@
-<app-pharmacy-home></app-pharmacy-home>
+<mat-toolbar class="homePage" color="primary">
+  <button mat-button (click)=gotohome()> CureAssist </button>
+  <span class="gotoend"></span>
+<button class="Profile" mat-menu-item (click)=logout()>Logout</button>
+</mat-toolbar>
+
 <div class="profileContent">
-    <form [formGroup]="service.formModel" (submit)="onsubmit()"><br>
+    <div class="pharmacy-profile-illustration"></div>
+    <form class="pharmacy-profile-form-container" [formGroup]="service.formModel" (submit)="onsubmit()"><br>
         <h3> Create Profile </h3>
         <mat-form-field class="form-group" class="full-width">
             <mat-label>Pharmacy Name</mat-label>
