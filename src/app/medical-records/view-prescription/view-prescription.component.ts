@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OnboardingService } from '../../services/onboarding.service';
 import { QuotationService } from 'src/app/services/quotation.service';
 import { Quotation } from 'src/app/models/quotation';
+import { FormControl } from '@angular/forms';
 
 
 // import { QueryValueType } from '@angular/compiler/src/core';
@@ -68,7 +69,7 @@ export class ViewPrescriptionComponent implements OnInit {
 // tslint:disable-next-line:component-class-suffix
 export class BuyNow implements OnInit {
   healthRecord: Prescriptions;
-  quantity: any;
+  quantity = new FormControl();
   location: any;
   orderQuotation: Quotation;
   completeData: any;
@@ -133,6 +134,10 @@ export class BuyNow implements OnInit {
     // this.completeData.prescription = this.completeData.prescription.map(e => {
     //     e.location = location
     this.completeData.prescription.location = location;
+  }
+  addpincode(pincode) {
+    console.log(this.completeData.prescription);
+    this.completeData.prescription.pincode = pincode;
   }
   setTimer() {
     this.interval = setTimeout(() => {
