@@ -163,7 +163,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
     this.prescriptionService.patientId = id;
     this.prescriptionService.doctorId = this.doctorId;
     const dialogRef = this.dialog.open(PrescriptionFormComponent, {
-      width: 'auto',
+      width: '50%',
       height: '100vh'
     });
 

@@ -12,7 +12,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export interface IDoctors {
   ts: any[];
   userid: string;
-  doctorId: string;
+  doctorId: string; 
   doctorFirstName: string;
   doctorLastName: string;
   doctorEmail: string;
@@ -162,3 +162,4 @@ export class ViewAppointmentComponent implements OnInit {
     }
 
   }
+  
