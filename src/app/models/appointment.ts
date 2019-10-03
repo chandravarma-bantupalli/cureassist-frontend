@@ -35,7 +35,7 @@ export class AppointmentDayCalendar {
     doctorPhoneNumber?: string;
     startTime?: any;
     endTime?: any;
-    symptoms?: string[];
+    symptom?: string[];
     ////////////////////////////////
     slots: AppointmentSlot[];
 }
@@ -46,5 +46,5 @@ export class AppointmentSlot {
 }
 export class Attendee {
     attendeeId: string;
-    symptoms: string[];
+    symptom: string[];
 }
