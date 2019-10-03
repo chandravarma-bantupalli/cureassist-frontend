@@ -155,7 +155,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
             appointment.doctorPhoneNumber = data.phoneNumber.toString();
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-            appointment.symptom = appointment.slots[0].attendees[0].symptom;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
           });
       });
       console.log(this.today, 'todayPatients');
@@ -168,7 +168,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
             appointment.doctorPhoneNumber = data.phoneNumber.toString();
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-            appointment.symptom = appointment.slots[0].attendees[0].symptom;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
           });
       });
       console.log(this.later, 'laterPatients');
@@ -183,7 +183,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
             appointment.doctorPhoneNumber = data.phoneNumber.toString();
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-            appointment.symptom = appointment.slots[0].attendees[0].symptom;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
           });
       });
       console.log(this.previous, 'previousPatients');

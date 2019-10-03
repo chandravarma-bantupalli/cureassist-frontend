@@ -15,6 +15,7 @@ import { map } from 'rxjs/operators';
 export class PatientService {
   urlForPatient = environment.patientAPI + '/api/patient';
   urlForAppointments = environment.appointmentAPI + '/appointments';
+  //urlForAppointments = 'http://localhost:5006/appointments';
   urlForRating = 'http://rating-api.cureassist.cgi-wave7.stackroute.io/rating';
   viewprofiledata: Doctor;
   bookappointment: IAppointments;
