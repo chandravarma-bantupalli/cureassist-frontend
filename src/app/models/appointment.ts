@@ -28,14 +28,21 @@ export class AppointmentDayCalendar {
     date: Date;
     moment: string;
     userId: string;
+    //////////////////////////////////
+    doctorFirstName?: string;
+    doctorLastName?: string;
+    doctorPhoneNumber?: string;
+    startTime?: any;
+    endTime?: any;
+    ////////////////////////////////
     slots: AppointmentSlot[];
 }
 
 export class AppointmentSlot {
-    attendees: [];
+    attendees: Attendee[];
     timeSlot: AppointmentTimeSlot;
 }
 export class Attendee {
     attendeeId: string;
-    symptoms: string;
+    symptoms: string[];
 }

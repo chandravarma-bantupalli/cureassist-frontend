@@ -10,4 +10,3 @@ export class Detailedappointments {
   startTime?: any;
   endTime?: any;
 }
-
