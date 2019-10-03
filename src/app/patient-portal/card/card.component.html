@@ -55,7 +55,7 @@
           
           <div *ngFor="let time of viewprofiledata.doctorSlots">
             <button mat-raised-button color="primary"
-              (click)="openDialog(time.slotStartTime,time.slotEndTime, viewprofiledata.doctorId,symptomsCtrl)">
+              (click)="openDialog(time.slotStartTime,time.slotEndTime, viewprofiledata.doctorId,symptoms)">
               {{time.slotStartTime}} To: {{time.slotEndTime}}</button>&nbsp;
             &nbsp;
           </div>
