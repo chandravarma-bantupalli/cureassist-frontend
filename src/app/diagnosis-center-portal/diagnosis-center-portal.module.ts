@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatExpansionModule, MatChipsModule,
-  MatMenuModule } from '@angular/material';
+  MatMenuModule, 
+  MatTableModule} from '@angular/material';
 import { MatListModule, MatGridListModule, MatCardModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
 
 import { DiagnosticCenterHeaderComponent } from './diagnostic-center-header/diagnostic-center-header.component';
@@ -17,6 +18,9 @@ import { TimeSlotComponent } from './time-slot/time-slot.component';
 // tslint:disable-next-line: max-line-length
 import { DiagnosticCenterViewAppointmentsComponent } from './diagnostic-center-view-appointments/diagnostic-center-view-appointments.component';
 import { AvatarModule } from 'ngx-avatar';
+import { CdkTableModule } from '@angular/cdk/table';
+import { ViewAppointmentDetailsComponent } from './view-appointment-details/view-appointment-details.component';
+import { DcAppointmentHistoryComponent } from './dc-appointment-history/dc-appointment-history.component';
 
 
 @NgModule({
@@ -27,7 +31,9 @@ import { AvatarModule } from 'ngx-avatar';
     DiagnosticCenterUpdateProfileComponent,
     DiagnosticCenterManageSlotsComponent,
     TimeSlotComponent,
-    DiagnosticCenterViewAppointmentsComponent
+    DiagnosticCenterViewAppointmentsComponent,
+    ViewAppointmentDetailsComponent,
+    DcAppointmentHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +53,9 @@ import { AvatarModule } from 'ngx-avatar';
     MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
-    AvatarModule
+    AvatarModule,
+    MatTableModule,
+    CdkTableModule
   ],
   exports: [
     DiagnosticCenterHeaderComponent,
@@ -55,8 +63,9 @@ import { AvatarModule } from 'ngx-avatar';
     DiagnosticCenterProfileComponent,
     DiagnosticCenterUpdateProfileComponent,
     DiagnosticCenterManageSlotsComponent,
-    DiagnosticCenterViewAppointmentsComponent
+    DiagnosticCenterViewAppointmentsComponent,
+    DcAppointmentHistoryComponent
   ],
-  entryComponents: [TimeSlotComponent]
+  entryComponents: [TimeSlotComponent, ViewAppointmentDetailsComponent]
 })
 export class DiagnosisCenterPortalModule { }

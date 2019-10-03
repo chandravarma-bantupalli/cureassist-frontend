@@ -12,6 +12,9 @@ export class AppointmentHttpService {
   url = environment.appointmentAPI + '/appointments/';
   patientApiUrl = environment.patientAPI + '/api/patient/';
 
+  dcAppointmentPatientId: string;
+  dcId: string;
+
   constructor(
     private http: HttpClient
   ) { }

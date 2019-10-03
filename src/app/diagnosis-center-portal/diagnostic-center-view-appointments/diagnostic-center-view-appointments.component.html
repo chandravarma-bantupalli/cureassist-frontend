@@ -1,16 +1,32 @@
-<app-diagnostic-center-header></app-diagnostic-center-header>
-<div *ngFor="let p of patients">
-    <mat-card>
-      <mat-card-subtitle>
-        Patient Details
-      </mat-card-subtitle>
-      <mat-card-content>
-        <h4> Patient Name: {{ p.firstName }} {{ p.lastName }} </h4>
-        <h5> Patient Phone Number: {{ p.phoneNumber }} </h5>
-        <h5> </h5>
-      </mat-card-content>
-      <mat-card-actions>
-          <button mat-stroked-button color="primary"> Upload Test Report </button>
-      </mat-card-actions>
-    </mat-card>
+<div class="mat-elevation-z2" *ngIf="when == 'today'">
+    <div class="appointments-container" *ngIf="todayPatients.length == 0">
+        <h4>Today's Appointments</h4>
+        <div>
+            You don't have any appointments.
+        </div>
+    </div>
+    <div class="appointments-container" *ngIf="todayPatients.length >= 1">
+        <p class="title">Today's Appointments</p>
+        <mat-table class="appointments" [dataSource]="todayPatients">
+            <ng-container cdkColumnDef="firstName">
+                <mat-header-cell *cdkHeaderCellDef>Patient</mat-header-cell>
+                <mat-cell *cdkCellDef="let patient">
+                    {{patient.firstName | titlecase}}&nbsp;{{patient.lastName | titlecase}}</mat-cell>
+            </ng-container>
+            <ng-container cdkColumnDef="phoneNumber">
+                <mat-header-cell *cdkHeaderCellDef>phoneNumber</mat-header-cell>
+                <mat-cell *cdkCellDef="let patient">{{patient.phoneNumber}}</mat-cell>
+            </ng-container>
+
+            <ng-container cdkColumnDef="moreDetails">
+                <mat-header-cell *cdkHeaderCellDef> Patient Details </mat-header-cell>
+                <mat-cell *cdkCellDef="let patient">
+                      <button mat-button color="primary" (click)="viewAppointmentDetails(patient.userId)"> <mat-icon>cloud_upload</mat-icon> Reports </button> 
+                </mat-cell>
+            </ng-container>  
+            <mat-header-row *cdkHeaderRowDef="['firstName','phoneNumber', 'moreDetails']"></mat-header-row>
+            <mat-row *cdkRowDef="let doctor; columns: ['firstName','phoneNumber', 'moreDetails']"></mat-row>
+        </mat-table>
+    </div>
+    <button mat-button (click)="viewAllAppointments()">View All Appointments</button>
 </div>

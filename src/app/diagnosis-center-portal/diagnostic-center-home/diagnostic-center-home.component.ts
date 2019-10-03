@@ -87,6 +87,10 @@ export class DiagnosticCenterHomeComponent implements OnInit {
     this.router.navigate(['/diagnosisCenter/manage/timeslots']);
   }
 
+  viewAllAppointments() {
+    this.router.navigate(['/diagnosisCenter/appoinments/history']);
+  }
+
   resetpassword() {
     this.dialog.open(ResetpasswordComponent, {
       width: '30vw',
