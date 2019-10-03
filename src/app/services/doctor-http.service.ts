@@ -30,4 +30,8 @@ export class DoctorHttpService {
     console.log(doctor);
     return this.http.put<Doctor>((this.URL + '/' +  `${userid}`), doctor);
   }
+  getRating(): Observable<Float32Array> {
+    // tslint:disable-next-line: max-line-length
+    return this.http.get<Float32Array>('http://rating-api.cureassist.cgi-wave7.stackroute.io/rating/doctorrating?DoctorId=' + this.service.userid);
+  }
 }

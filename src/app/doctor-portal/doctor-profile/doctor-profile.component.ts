@@ -6,6 +6,8 @@ import { DoctorHttpService } from '../../services/doctor-http.service';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DoctorUpdateProfileComponent } from '../doctor-update-profile/doctor-update-profile.component';
+import { StarRatingComponent } from 'ng-starrating';
+
 @Component({
   selector: 'app-doctor-profile',
   templateUrl: './doctor-profile.component.html',
@@ -17,6 +19,7 @@ export class DoctorProfileComponent implements OnInit {
   timeslots: TimeSlot[];
   userid: string;
   docName: string;
+  rating: Float32Array;
 
   constructor(
     private router: Router,
@@ -29,6 +32,7 @@ export class DoctorProfileComponent implements OnInit {
     console.log(this.detailType);
     this.userid = this.onboardingService.userid;
     this.getDoctorProfile(this.userid);
+    this.doctorService.getRating().subscribe(data => {this.rating = data; });
   }
 
   getDoctorProfile(id: string) {

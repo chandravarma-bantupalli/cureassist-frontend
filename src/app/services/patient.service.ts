@@ -52,13 +52,13 @@ export class PatientService {
   //     }
   //   });
   // }
-    getpincodeAPI(city): Observable<any> {
-    return this.http.get('/postoffice/' + city, {
-      headers: {
-        'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
-      }
-    });
-  }
+  //   getpincodeAPI(city): Observable<any> {
+  //   return this.http.get('/postoffice/' + city, {
+  //     headers: {
+  //       'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
+  //     }
+  //   });
+  // }
   searchDoctorsByName(
     searchbar: string,
     City: string,
