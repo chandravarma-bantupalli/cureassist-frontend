@@ -49,7 +49,6 @@ export class PrescriptionFormComponent implements OnInit {
   symptoms: string[] = [];
   allSymptoms: Array<string> = [];
   allMedicine: string[] = [];
-  filteredMedicine: Observable<string[]>;
   // myMedicine = new FormControl();
   // filteredMedicine: Observable<string[]>;
 
