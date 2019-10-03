@@ -55,7 +55,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatDialogModule,
     MatDividerModule,
     MatAutocompleteModule,
-    CdkTableModule
+    CdkTableModule,
   ],
   exports: [
    DoctorHeaderComponent,
