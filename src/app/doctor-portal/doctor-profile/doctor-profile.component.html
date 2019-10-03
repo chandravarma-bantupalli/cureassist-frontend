@@ -3,7 +3,8 @@
     <div class="name-card-content">
         <ngx-avatar size="120" name="{{ doctor.doctorFirstName | titlecase }} {{ doctor.doctorLastName | titlecase }}"></ngx-avatar>
         <h2>Dr. {{ doctor.doctorFirstName | titlecase }} {{ doctor.doctorLastName | titlecase }}</h2>
-        <p>{{ doctor.doctorSpecialization }}</p>
+        <p style="margin-bottom: 0%">{{ doctor.doctorSpecialization }}</p>
+        <star-rating [value]="rating" checkedcolor="red" uncheckedcolor="black" size="20px"></star-rating>
     </div>
 </div>
 
