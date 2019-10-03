@@ -53,14 +53,13 @@ export class PatientService {
   //     }
   //   });
   // }
-    getpincodeAPI(city): Observable<any> {
-    return this.http.get('/postoffice/' + city, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-      }
-    });
-  }
+  //   getpincodeAPI(city): Observable<any> {
+  //   return this.http.get('/postoffice/' + city, {
+  //     headers: {
+  //       'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
+  //     }
+  //   });
+  // }
   searchDoctorsByName(
     searchbar: string,
     City: string,
@@ -137,14 +136,15 @@ export class PatientService {
     date: Date,
     slotStartTime: Date,
     slotEndTime: Date,
-    symptomsarr: string[]
+    symptom: string[]
   ) {
     userid = this.doctorUserId;
-    console.log(userId, userid, date, slotStartTime, slotEndTime, symptomsarr);
+
+    console.log(userId, userid, date, slotStartTime, slotEndTime, symptom);
     // tslint:disable-next-line:max-line-length
     return this.http.post(this.urlForAppointments, {
       attendees: [userId, userid],
-      symptoms: symptomsarr,
+      symptom,
       Date: date,
       slot: { Date: date, StartTime: slotStartTime, EndTime: slotEndTime }
     });

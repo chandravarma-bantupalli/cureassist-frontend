@@ -6,6 +6,8 @@ import { DoctorHttpService } from '../../services/doctor-http.service';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 import { TimeSlot } from 'src/app/models/time-slot';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-doctor-update-profile',
@@ -17,6 +19,9 @@ export class DoctorUpdateProfileComponent implements OnInit {
   doctor: Doctor;
   userid: string;
   doctorProfileExists: boolean;
+  specialization: string[] = ['General Physician', 'Cardiologist',
+  'Ear, Nose and Throat', 'Gastroenterologist', 'Dermatologist', 'Neurologist', 'Gynaecologist', 'Psychiatrist']
+  filteredSpecialization: Observable<string[]>;
 
   constructor(
     private router: Router,
@@ -31,6 +36,15 @@ export class DoctorUpdateProfileComponent implements OnInit {
     this.userid = this.onboardingService.userid;
     this.initializeDoctorProfileForm();
     this.getDoctorProfile(this.userid);
+    this.filteredSpecialization = this.doctorProfile.controls.doctorSpecialization.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterSpecialization(value)));
+  }
+  private _filterSpecialization(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.specialization.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   initializeDoctorProfileForm() {

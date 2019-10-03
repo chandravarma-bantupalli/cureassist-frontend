@@ -26,16 +26,16 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
     // viewprofiledata: IDoctors[];
   // viewdcprofiledata: IDiagnostics[];
   constructor(private service: PatientService, private route: Router) { }
-  getpincode() {
-    this.service.getpincodeAPI(this.area).subscribe(data => {
-          // console.log(data[0].PostOffice);
-          console.log(data);
-          this.pincode = data[0].PostOffice.filter(u => (u.District === this.city) && (u.Name === this.area)); 
-          this.pincode = this.pincode[0].Pincode;
-          console.log(this.pincode);
-    });
+  // getpincode() {
+  //   this.service.getpincodeAPI(this.area).subscribe(data => {
+  //         // console.log(data[0].PostOffice);
+  //         console.log(data);
+  //         this.pincode = data[0].PostOffice.filter(u => (u.District === this.city) && (u.Name === this.area)); 
+  //         this.pincode = this.pincode[0].Pincode;
+  //         console.log(this.pincode);
+  //   });
 
-  }
+  // }
   // getpincode() {
   //   this.service.getpincodeAPI().subscribe(data => data.forEach(list => {
   //     this.Ipin.push(list);
@@ -87,7 +87,7 @@ City = [ 'Mumbai' , 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', '
   //   this.service.viewAllAppointment().subscribe(data => console.log(data));
   // }
   ngOnInit() {
-    this.getpincode();
+   // this.getpincode();
     // tslint:disable-next-line:max-line-length
     this.service.getDoctorBySymptoms().subscribe(data => data.forEach(specialization => {
       this.specializationBySymptoms.push(specialization);

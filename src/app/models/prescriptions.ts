@@ -13,6 +13,7 @@ export class Prescriptions {
     prescribedMedicines: Array<PrescribedMedicines>;
     prescription: any;
     currentLocation: string;
+    pincode?: string;
 }
 export class PrescribedMedicines {
     MedicineName: string;
