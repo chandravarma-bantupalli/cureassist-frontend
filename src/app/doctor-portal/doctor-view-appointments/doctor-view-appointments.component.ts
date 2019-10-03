@@ -155,7 +155,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
             appointment.doctorPhoneNumber = data.phoneNumber.toString();
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
+            appointment.symptom = appointment.slots[0].attendees[0].symptom;
           });
       });
       console.log(this.today, 'todayPatients');
