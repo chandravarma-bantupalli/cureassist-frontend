@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Doctor } from 'src/app/models/doctor';
 import { PatientService } from 'src/app/services/patient.service';
-import { DiagnosticCenter } from 'src/app/models/diagnostic-center';
-import { IDiagnostics } from 'src/app/models/diagnostics';
 import * as moment from 'moment';
 import { AppointmentHttpService } from 'src/app/services/appointment-http.service';
 import { IAppointments, AppointmentDayCalendar, AppointmentTimeSlot } from 'src/app/models/appointment';

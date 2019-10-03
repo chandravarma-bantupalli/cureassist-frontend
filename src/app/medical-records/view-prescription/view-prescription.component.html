@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <p class="title">Prescriptions</p>
     <mat-accordion class="prescription-accordion" *ngFor="let prescribed of prescription">
         <mat-expansion-panel class="panel">
@@ -24,7 +25,7 @@
                     </div>
                 </div>
                 <hr>
-                <div class="list-container">
+                <!-- <div class="list-container">
                     <mat-list role="list" *ngFor="let medicine of prescribed.allPrescribedMedicines">
                         <mat-list-item role="listitem">
                             <div class="flexcontent">
@@ -63,7 +64,43 @@
                     <button mat-raised-button color="primary" (click)="openDialog(prescribed)">Buy
                         Now</button>
 
-                </div>
+                </div> -->
+
+                <div class="appointments-container">
+                    <p class="title">Today's Appointments</p>
+                    <mat-table class="appointments" [dataSource]="prescribed.allPrescribedMedicines">
+                      <ng-container cdkColumnDef="Medicine Name">
+                        <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+                        <mat-cell *cdkCellDef="let medicine"><mat-checkbox #checkbox="matCheckbox"
+                            (change)="pushMeds(medicine); prescribed.selectedMeds.push(medicine)"
+                            [checked]="medicine.medicineName.selected">
+                           {{medicine.medicineName}}
+                        </mat-checkbox></mat-cell>
+                      </ng-container>
+                      <ng-container cdkColumnDef="Prescribed Dosage">
+                        <mat-header-cell *cdkHeaderCellDef>Prescribed Dosage</mat-header-cell>
+                        <mat-cell *cdkCellDef="let medicine">{{medicine.prescribedDosage}}</mat-cell>
+                      </ng-container>
+                      <ng-container cdkColumnDef="Prescribed Days">
+                        <mat-header-cell *cdkHeaderCellDef>Prescribed Days</mat-header-cell>
+                        <mat-cell *cdkCellDef="let medicine">{{medicine.prescribedDays}}</mat-cell>
+                      </ng-container>
+                      <ng-container cdkColumnDef="Prescribed Timings">
+                        <mat-header-cell *cdkHeaderCellDef>Prescribed Timings</mat-header-cell>
+                        <mat-cell *cdkCellDef="let medicine">{{medicine.prescribedTimings}}</mat-cell>
+                      </ng-container>
+                      <mat-header-row *cdkHeaderRowDef="['Medicine Name','Prescribed Dosage','Prescribed Days','Prescribed Timings']"></mat-header-row>
+                      <mat-row *cdkRowDef="let medicine; columns: ['Medicine Name','Prescribed Dosage','Prescribed Days','Prescribed Timings']"></mat-row>
+                    </mat-table>
+                    <button mat-raised-button color="primary" (click)="openDialog(prescribed)">Buy
+                        Now</button>
+                  </div>
+                  
+                
+                
+                
+                
+             
         </div>
 
         </mat-expansion-panel>
