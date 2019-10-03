@@ -5,7 +5,6 @@ import { Quotation } from '../models/quotation';
 import { OnboardingService } from './onboarding.service';
 import { Prescriptions } from '../models/prescriptions';
 import { environment} from '../../environments/environment.prod';
-import { HubConnectionState } from '@aspnet/signalr';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +14,17 @@ export class QuotationService {
   public quotationRequests: BehaviorSubject<Quotation>;
   public finalQuotation: BehaviorSubject<Quotation>;
   public patientDetails: BehaviorSubject<Prescriptions>;
-  // private pharmacyId: string;
-  // quotation: Quotation;
+  public connectionPincode: BehaviorSubject<string>;
 
   constructor( private service: OnboardingService) {
     this.quotationRequests = new BehaviorSubject<Quotation>(new Quotation());
     this.finalQuotation = new BehaviorSubject<Quotation>(new Quotation());
     this.patientDetails = new BehaviorSubject<Prescriptions>(new Prescriptions());
+    this.connectionPincode = new BehaviorSubject<string>(null);
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(environment.pharmacyAPI + '/notifications')
       .build();
+    this.hubConnection.on('Initialize', this.onConnectionStarted.bind(this));
     this.hubConnection.on('ReceiveQuotationRequest', this.onQuotationRequestReceived.bind(this));
     this.hubConnection.on('SelectedQuotation', this.onQuotationReceived.bind(this));
     this.hubConnection.on('PatientDetails', this.onPatientDetailsReceived.bind(this));
@@ -32,6 +32,10 @@ export class QuotationService {
       .start()
       .then(() => console.log('Connection started'))
       .catch(err => console.log('Error while starting connection: ' + err));
+  }
+
+  private onConnectionStarted(pharmacyPincode) {
+    this.connectionPincode.next(pharmacyPincode);
   }
 
   private onQuotationRequestReceived(quotationRequest) {
@@ -47,19 +51,40 @@ export class QuotationService {
     this.patientDetails.next(patientDetail);
   }
 
-  
-  pharmacyOnline(pharmacyPincode: string) {
-    if (this.hubConnection.state === HubConnectionState.Disconnected) {
-      return this.hubConnection.start()
-        .then(() => {
-          console.log('Pharmacy online');
-          this.hubConnection.invoke('Initialize', pharmacyPincode);
-        });
-    } else {
-      console.log('Pharmacy online');
+  // pharmacyOnline(pharmacyPincode) {
+  //   if (this.hubConnection.state === HubConnectionState.Disconnected) {
+  //     return this.hubConnection.start()
+  //       .then(() => {
+  //         console.log('Pharmacy online');
+  //         this.hubConnection.invoke('Initialize', pharmacyPincode);
+  //       });
+  //   } else {
+  //     console.log('Pharmacy online');
+  //     this.hubConnection.invoke('Initialize', pharmacyPincode);
+  //   }
+  // }
+
+//   pharmacyOnline(pharmacyPincode) {
+//     console.log(pharmacyPincode);
+//     if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
+//       this.hubConnection.start();
+//   }
+//     console.log('Pharmacy online');
+//     this.hubConnection.invoke('Initialize', pharmacyPincode);
+// }
+
+pharmacyOnline(pharmacyPincode: string) {
+  console.log('i am in pharmacyOnline', pharmacyPincode);
+  if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
+    this.hubConnection.start().then(() => {
       this.hubConnection.invoke('Initialize', pharmacyPincode);
-    }
+      console.log('Pharmacy online 1');
+    });
+  } else {
+    this.hubConnection.invoke('Initialize', pharmacyPincode);
+    console.log('Pharmacy online 2');
   }
+}
 
   sendQuotation(quotation: Quotation) {
     console.log(quotation);

@@ -5,7 +5,7 @@ import { DiagnosticsprofileCardComponent, DCConfirmBooking } from './diagnostics
 import { EditprofilePageComponent } from './editprofile-page/editprofile-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchComponent } from './search/search.component';
-
+import { RatingModule } from 'ng-starrating';
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 import { ViewEditComponent } from './view-edit/view-edit.component';
 import {
@@ -25,6 +25,8 @@ import {
   MatNativeDateModule,
   MatDialogModule,
   MatDialogRef,
+  MatChipsModule,
+  MatAutocompleteModule,
  } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
@@ -61,7 +63,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatNativeDateModule,
     AvatarModule,
     MatDialogModule,
-    CdkTableModule
+    CdkTableModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    RatingModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} }

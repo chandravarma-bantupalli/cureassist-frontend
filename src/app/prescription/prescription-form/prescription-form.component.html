@@ -1,3 +1,4 @@
+<div class =form>
 <form [formGroup]="prescriptionForm">
   <section class="prescription">
     <mat-card class="Detail">
@@ -74,17 +75,19 @@
   </section>
 </form>
 
-<div>
+<!-- <div>
   <h5> Prescribed Medicines: </h5>
   <div *ngFor="let medicine of ListOfMedicine">
     <label> {{ medicine.medicineName }} </label>
   </div>
-</div>
+</div> -->
 
 
 <!-- This is medicine details block  -->
 <section class="prescription">
-  <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
+  <!-- <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()"> -->
+      <form [formGroup]="medicineForm">
+        
     <mat-card class="Detail">
       <div>
         <label>Medicine Name: </label>
@@ -127,7 +130,7 @@
       </div>
 
       <div class="addprescriptioncard">
-        <button mat-button class="addmedi" type="submit" >Add Medicines</button>
+        <button mat-button class="addmedi" (click)="AddMedicines()" >Add Medicines</button>
       </div>
 
     </mat-card>
@@ -137,3 +140,4 @@
     <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
   </div>
 </section>
+</div>

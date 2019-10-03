@@ -134,13 +134,15 @@ export class PatientService {
     userid: string, // userid for the doctor
     date: Date,
     slotStartTime: Date,
-    slotEndTime: Date
+    slotEndTime: Date,
+    symptomsarr: string[]
   ) {
     userid = this.doctorUserId;
-    console.log(userId, userid, date, slotStartTime, slotEndTime);
+    console.log(userId, userid, date, slotStartTime, slotEndTime, symptomsarr);
     // tslint:disable-next-line:max-line-length
     return this.http.post(this.urlForAppointments, {
       attendees: [userId, userid],
+      symptoms: symptomsarr,
       Date: date,
       slot: { Date: date, StartTime: slotStartTime, EndTime: slotEndTime }
     });
@@ -167,8 +169,8 @@ export class PatientService {
     );
   }
 
-  GetDoctorById(userid: string): Observable<Doctor> {
-    return this.http.get<Doctor>(
+  GetDoctorById(userid: string): Observable<any> {
+    return this.http.get(
       environment.doctorsdcAPI + '/api/doctor/' + userid
     );
   }

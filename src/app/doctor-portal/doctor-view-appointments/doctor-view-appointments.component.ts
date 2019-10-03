@@ -133,7 +133,6 @@ export class DoctorViewAppointmentsComponent implements OnInit {
         ...appointment,
         moment: this.calculateMoment(moment(appointment.date))
       }));
-
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');
