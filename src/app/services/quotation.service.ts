@@ -74,6 +74,7 @@ export class QuotationService {
 // }
 
 pharmacyOnline(pharmacyPincode: string) {
+  console.log('i am in pharmacyOnline', pharmacyPincode);
   if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
     this.hubConnection.start().then(() => {
       this.hubConnection.invoke('Initialize', pharmacyPincode);
