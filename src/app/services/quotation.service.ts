@@ -44,16 +44,27 @@ export class QuotationService {
     this.patientDetails.next(patientDetail);
   }
 
+// pharmacyOnline(pharmacyPincode: string) {
+//   console.log('i am in pharmacyOnline', pharmacyPincode);
+//   if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
+//     this.hubConnection.start().then(() => {
+//       this.hubConnection.invoke('Initialize', pharmacyPincode);
+//       console.log('Pharmacy online 1');
+//     });
+//   } else {
+//     this.hubConnection.invoke('Initialize', pharmacyPincode);
+//     console.log('Pharmacy online 2');
+//   }
+// }
+
 pharmacyOnline(pharmacyPincode: string) {
-  console.log('i am in pharmacyOnline', pharmacyPincode);
-  if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
+  if (this.hubConnection.state === signalR.HubConnectionState.Connected) {
+    this.hubConnection.invoke('Initialize', pharmacyPincode);
+    console.log('Pharmacy online');
+  } else {
     this.hubConnection.start().then(() => {
       this.hubConnection.invoke('Initialize', pharmacyPincode);
-      console.log('Pharmacy online 1');
     });
-  } else {
-    this.hubConnection.invoke('Initialize', pharmacyPincode);
-    console.log('Pharmacy online 2');
   }
 }
 

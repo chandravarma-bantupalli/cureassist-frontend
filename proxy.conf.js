@@ -1,13 +1,13 @@
-{
-  "/postoffice"; {
-    "target"; "https://api.postalpincode.in/",
-    "secure"; false,
-    "pathRewrite"; {
-      "^/api"; ""
-    };
-    "changeOrigin"; true
-  }
-}
+// {
+//   "/postoffice"; {
+//     "target"; "https://api.postalpincode.in/",
+//     "secure"; false,
+//     "pathRewrite"; {
+//       "^/api"; ""
+//     };
+//     "changeOrigin"; true
+//   }
+// }
 
 
 

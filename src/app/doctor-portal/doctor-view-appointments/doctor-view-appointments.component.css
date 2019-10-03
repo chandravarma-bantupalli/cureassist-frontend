@@ -19,3 +19,14 @@
 .title {
     font-size: 1.2em;
 }
+mat-cell:first-of-type, mat-footer-cell:first-of-type, mat-header-cell:first-of-type {
+    padding: 0;
+}
+
+mat-cell {
+    justify-content: center;
+}
+
+mat-header-cell {
+    justify-content: center;
+}
