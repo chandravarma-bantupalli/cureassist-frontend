@@ -36,10 +36,10 @@ export class DoctorViewAppointmentsComponent implements OnInit {
 
   todaySlots: any;
   upcomingSlots: any;
-attendees1: string;
   patientDisplayedColumns: string[];
   appointmentsExist: boolean;
   temp: string;
+  symptom: string[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -126,8 +126,16 @@ attendees1: string;
     return 'previous';
   }
 
+
+////////////////View Appointments//////////////////////////////////
+
+
+
+
+
   getAllAppointments() {
-    console.log(this.onboardingService.userid);
+     
+    const promise = new Promise((resolve, reject) =>
     this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe((data) => {
       this.appointments = data.map(appointment => ({
         ...appointment,
@@ -136,52 +144,58 @@ attendees1: string;
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');
-      console.log(this.today);
-      let symptomsforpatient;
-      const todayAttendeesIds = this.getAttendees(this.today);
+      console.log(this.today, 'Todays appointments');
+      console.log(this.later, 'upcoming appointments');
+   ////////////////////////// Today Appointments////////////////////////////////////
+      this.today.forEach(appointment => {
+        this.patientService.getPatientByUserId(appointment.slots[0].attendees[0].attendeeId)
+          .subscribe(data => {
+            appointment.doctorFirstName = data.firstName;
+            appointment.doctorLastName = data.lastName;
+            appointment.doctorPhoneNumber = data.phoneNumber.toString();
+            appointment.startTime = appointment.slots[0].timeSlot.startTime;
+            appointment.endTime = appointment.slots[0].timeSlot.endTime;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
+          });
+      });
+      console.log(this.today, 'todayPatients');
+   ////////////////////////// Upcoming Appointments////////////////////////////////////
+      this.later.forEach(appointment => {
+        this.patientService.getPatientByUserId(appointment.slots[0].attendees[0].attendeeId)
+          .subscribe(data => {
+            appointment.doctorFirstName = data.firstName;
+            appointment.doctorLastName = data.lastName;
+            appointment.doctorPhoneNumber = data.phoneNumber.toString();
+            appointment.startTime = appointment.slots[0].timeSlot.startTime;
+            appointment.endTime = appointment.slots[0].timeSlot.endTime;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
+          });
+      });
+      console.log(this.later, 'laterPatients');
 
-      // todayAttendeesIds.map( x => { this.temp = x.attendeeId; });
-      // console.log(this.temp);
-      console.log(todayAttendeesIds, 'Today');
-      const laterAttendeesIds = this.getAttendees(this.later);
-      console.log(laterAttendeesIds, 'tomo');
-      const previousAttendeesIds = this.getAttendees(this.previous);
-      console.log(previousAttendeesIds, 'previous');
-      // tslint:disable-next-line:max-line-length
-      todayAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.todayPatients.push(data) ); });
-      console.log(this.todayPatients, 'today patients');
-      ///////////////////////
-      // tslint:disable-next-line: prefer-const
-      for (let value of this.appointments) {
-        // console.log(value.slots);
-         let slot1 = value.slots;
-         console.log(slot1);
-         for (let value1 of slot1) {
-           let val = value1.attendees;
-           console.log(val);
-           for (let value2 of val) {
-             symptomsforpatient = value2.symptoms;
-             console.log(symptomsforpatient);
-           }
-         }
-       }
-      console.log(symptomsforpatient);
-       ////////////////////////////////
-      // tslint:disable-next-line:max-line-length
-      laterAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => {this.tomorrowPatients.push(data); this.tomorrowPatients.map(e => e.symptoms = this.appointments.forEach(e => e.slots.forEach(e => e.attendees.forEach(e => e.symptoms)))); }); });
-      console.log(this.tomorrowPatients, 'upcoming patients');
-      // tslint:disable-next-line:max-line-length
-      previousAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.previousPatients.push(data) ); });
-      console.log(this.previousPatients);
-    });
-  }
+  ////////////////////////// Previous Appointments////////////////////////////////////
 
+      this.previous.forEach(appointment => {
+        this.patientService.getPatientByUserId(appointment.slots[0].attendees[0].attendeeId)
+          .subscribe(data => {
+            appointment.doctorFirstName = data.firstName;
+            appointment.doctorLastName = data.lastName;
+            appointment.doctorPhoneNumber = data.phoneNumber.toString();
+            appointment.startTime = appointment.slots[0].timeSlot.startTime;
+            appointment.endTime = appointment.slots[0].timeSlot.endTime;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
+          });
+      });
+      console.log(this.previous, 'previousPatients');
+
+///////////////////////////////////////////////////////////////////////////////////
+})) ; }
 
   openPrescriptionDialog(id: string) {
     this.prescriptionService.patientId = id;
     this.prescriptionService.doctorId = this.doctorId;
     const dialogRef = this.dialog.open(PrescriptionFormComponent, {
-      width: 'auto',
+      width: '50%',
       height: '100vh'
     });
 
@@ -198,3 +212,42 @@ attendees1: string;
     const dialogRef = this.dialog.closeAll();
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// console.log(this.onboardingService.userid);
+// this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe((data) => {
+//   this.appointments = data.map(appointment => ({
+//     ...appointment,
+//     moment: this.calculateMoment(moment(appointment.date))
+//   }));
+//   this.today = this.appointments.filter(a => a.moment === 'today');
+//   this.later = this.appointments.filter(a => a.moment === 'later');
+//   this.previous = this.appointments.filter(a => a.moment === 'previous');
+//   console.log(this.today);
+//   const todayAttendeesIds = this.getAttendees(this.today);
+//   console.log(todayAttendeesIds, 'Today');
+//   const laterAttendeesIds = this.getAttendees(this.later);
+//   console.log(laterAttendeesIds, 'tomorrow appointments');
+//   const previousAttendeesIds = this.getAttendees(this.previous);
+//   console.log(previousAttendeesIds, 'previous');
+//   // tslint:disable-next-line:max-line-length
+//   todayAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.todayPatients.push(data) ); });
+//   console.log(this.todayPatients, 'today patients');
+//   // tslint:disable-next-line:max-line-length
+//   laterAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.tomorrowPatients.push(data) ); });
+//   console.log(this.tomorrowPatients, 'upcoming patients');
+//   // tslint:disable-next-line:max-line-length
+//   previousAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.previousPatients.push(data) ); });
+//   console.log(this.previousPatients);
+// });
