@@ -54,5 +54,5 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
   //       }
   //     }
   //   }
-  //}
+  // }
 }

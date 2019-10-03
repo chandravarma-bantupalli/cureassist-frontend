@@ -27,7 +27,8 @@ export class DiagnosticCenterUpdateProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userId = this.onboardingService.userid;
+    this.userId = '45987123-ed2456';
+    // this.userId = this.onboardingService.userid;
     this.initializeDcProfileForm();
     this.getDiagnosticCenterProfile();
   }

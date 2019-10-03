@@ -9,11 +9,14 @@ export interface IAppointments {
     diagnosticDetail?: any;
 }
 export class AppointmentTimeSlot {
-    Date: Date;
-    StartTime: Date;
-    EndTime: Date;
+    Date?: Date;
+    StartTime?: Date;
+    EndTime?: Date;
     DoctorId?: string;
     DiagnosticCenterId?: string;
+    startTime?: Date;
+    endTime?: Date;
+    date?: Date;
 }
 export class Daycalendar {
     UserId: string;
@@ -25,6 +28,13 @@ export class AppointmentDayCalendar {
     date: Date;
     moment: string;
     userId: string;
+    //////////////////////////////////
+    doctorFirstName?: string;
+    doctorLastName?: string;
+    doctorPhoneNumber?: string;
+    startTime?: any;
+    endTime?: any;
+    ////////////////////////////////
     slots: AppointmentSlot[];
 }
 
@@ -34,5 +44,5 @@ export class AppointmentSlot {
 }
 export class Attendee {
     attendeeId: string;
-    symptoms: string;
+    symptoms: string[];
 }

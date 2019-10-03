@@ -5,16 +5,42 @@ import { DiagnosticCenter } from 'src/app/models/diagnostic-center';
 import { IDiagnostics } from 'src/app/models/diagnostics';
 import * as moment from 'moment';
 import { AppointmentHttpService } from 'src/app/services/appointment-http.service';
-import { IAppointments, AppointmentDayCalendar, AppointmentTimeSlot } from 'src/app/models/appointment';
-import { Patient } from 'src/app/models/patient';
+import { AppointmentDayCalendar } from 'src/app/models/appointment';
 import { OnboardingService } from 'src/app/services/onboarding.service';
-import { DataSource } from '@angular/cdk/table';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+export interface IDoctors {
+  ts: any[];
+  userid: string;
+  doctorId: string;
+  doctorFirstName: string;
+  doctorLastName: string;
+  doctorEmail: string;
+  doctorPhoneNumber: string;
+  doctorCity: string;
+  doctorRegNum: string;
+  doctorAddress: string;
+  pincode: string;
+  doctorSpecialization: string;
+  doctorExperience: string;
+  doctorSlots: ITimeSlot[];
+}
+export interface ITimeSlot {
+  slotId: string;
+  doctorId?: string;
+  diagnosticCenterId?: string;
+  slotStartTime: string;
+  slotEndTime: string;
+  testConductedInSlot?: string;
+  slotCapacity: number;
+}
 
 @Component({
   selector: 'app-view-appointment',
   templateUrl: './view-appointment.component.html',
   styleUrls: ['./view-appointment.component.css']
 })
+
 export class ViewAppointmentComponent implements OnInit {
   @Input() when: string;
   panelOpenState = false;
@@ -30,89 +56,26 @@ export class ViewAppointmentComponent implements OnInit {
 
   today: AppointmentDayCalendar[];
   tomorrow: AppointmentDayCalendar[];
-  later: AppointmentDayCalendar[];
+  later: AppointmentDayCalendar[] = [];
   previous: AppointmentDayCalendar[];
-
   todayPatients: Doctor[] = [];
   tomorrowPatients: Doctor[] = [];
   laterPatients: Doctor[] = [];
   previousPatients: Doctor[] = [];
-
-  // todaySlots: any;
- //  upcomingSlots: any;
-  // doctor: Doctor[];
- //  patientId: string;
-  // datetoday = new Date();
-
-  patientDisplayedColumns: string[] = ['doctorFirstName', 'doctorPhoneNumber'];
+  dialog: any;
+  bookdate: any;
 
   constructor(public appointmentService: AppointmentHttpService,
               public service: PatientService, public onboardingService: OnboardingService) {
                }
   ngOnInit() {
-    // console.log(this.datetoday.toLocaleDateString());
-    // this.patientId = this.onboardingService.userid;
     this.appointments = [];
-    // this.appointmentSlots = [];
     this.attendees = [];
-    // this.doctor = [];
-    // this.patients = [];
-    this.getAllAppointments();
-    // this.service.viewAllAppointment().subscribe(data => this.appointments = data);
-    // console.log(this.appointments);
-    // tslint:disable-next-line:no-shadowed-constiable
-    // tslint:disable-next-line:max-line-length
-    // tslint:disable-next-line:no-shadowed-constiable
-    // this.service.viewAllAppointment().subscribe(data => data.forEach(element => {
-    //   // tslint:disable-next-line:no-shadowed-constiable
-    //   element.slots.forEach(element => this.attendees.push(element.attendees));
-    // }));
-    // this.getAllAppointments();
+    this.getData();
 
   }
   viewallapointments() {
   }
-  // click() {
-  //   this.doctorId = [];
-  //   this.doctorFirstName = [];
-  //   // this.service.GetDoctorById(this.doctorId).subscribe(data => this.doctordetails = data);
-  //   // tslint:disable-next-line:no-shadowed-constiable
-  //   this.attendees.forEach(element => {
-  //     // tslint:disable-next-line: no-shadowed-constiable
-  //     element.forEach(element => this.doctorId.push(element));
-  //   });
-  //   // tslint:disable-next-line:no-shadowed-constiable
-  //   this.doctorId.forEach(element => {
-  //     this.service.GetDoctorById(element)
-  //       // tslint:disable-next-line:max-line-length
-  //       .subscribe((data: Doctor) =>
-  //       // tslint:disable-next-line: max-line-length
-  //       this.appointments.map( e =>  e.doctorDetail = ('Doctor Name:  '
-  //  + data.doctorFirstName + ' ' + data.doctorLastName + '  Doctor Address:   ' + data.doctorAddress)));
-  //   });
-  // }
-  // click2() {
-  //   // this.service.GetDoctorById(this.doctorId).subscribe(data => this.doctordetails = data);
-  //   // tslint:disable-next-line:no-shadowed-constiable
-  //   this.doctorId = [];
-  //   this.diagnosticName = [];
-  //   // tslint:disable-next-line:no-shadowed-constiable
-  //   this.attendees.forEach(element => {
-  //     // tslint:disable-next-line: no-shadowed-constiable
-  //     element.forEach(element => this.doctorId.push(element));
-  //   });
-  //   // tslint:disable-next-line:no-shadowed-constiable
-  //   this.doctorId.forEach(element => {
-  //     this.service.GetDiagnosticsById((element))
-  //       .subscribe((data: IDiagnostics) => {
-  //         // tslint:disable-next-line: max-line-length
-  //         this.appointments.map( e =>  e.diagnosticDetail = 'Diagnostic Name='
-  //  + data.diagnosticCenterName + ' Diagnostic Center Address=' + data.diagnosticCenterAddress);
-  //       });
-  //   });
-  // }
-
-
   getAttendees(days) {
     return days.reduce((acc, { slots }) => {
       slots.forEach(slot => {
@@ -122,9 +85,9 @@ export class ViewAppointmentComponent implements OnInit {
     }, []);
   }
 
-  getdoctorData(doctorId): Promise<Doctor> {
-    return this.service.GetDoctorById(doctorId).toPromise();
-  }
+  // getdoctorData(doctorId):  {
+  //   return this.service.GetDoctorById(doctorId);
+  // }
 
   calculateMoment(date) {
     const today = moment().endOf('day').format('YYYY-MM-DD');
@@ -134,35 +97,68 @@ export class ViewAppointmentComponent implements OnInit {
     return 'previous';
   }
 
-  getAllAppointments() {
-    console.log(this.onboardingService.userid);
+  async getAllAppointments() {
+    const promise = new Promise((resolve, reject) =>
     this.appointmentService.getAllAppointmentsOfUser(this.onboardingService.userid).subscribe((data) => {
       this.appointments = data.map(appointment => ({
         ...appointment,
         moment: this.calculateMoment(moment(appointment.date))
       }));
-      console.log(this.appointments,'app');
       this.today = this.appointments.filter(a => a.moment === 'today');
       this.later = this.appointments.filter(a => a.moment === 'later');
       this.previous = this.appointments.filter(a => a.moment === 'previous');
-      console.log(this.today, 'you want');
-      this.later.forEach(element => console.log(element));
-      const todayAttendeesIds = this.getAttendees(this.today);
-      console.log(todayAttendeesIds, 'Today');
-      const laterAttendeesIds = this.getAttendees(this.later);
-      console.log(laterAttendeesIds,'upcoming');
-      const previousAttendeesIds = this.getAttendees(this.previous);
-      console.log(previousAttendeesIds, 'previous');
-      // tslint:disable-next-line:max-line-length
-      todayAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.todayPatients.push(data) ); });
-      console.log(this.todayPatients);
-      // tslint:disable-next-line:max-line-length
-      laterAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.tomorrowPatients.push(data) ); });
-      console.log(this.tomorrowPatients,'tomorrowpatients');
-      // tslint:disable-next-line:max-line-length
-      previousAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.service.GetDoctorById(data.attendeeId).subscribe(data => this.previousPatients.push(data) ); });
-      console.log(this.previousPatients);
-    });
-  }
+      console.log(this.today, 'Todays appointments');
+      console.log(this.later, 'upcoming appointments');
 
-}
+////////////////////////////////// Today Appointment///////////////////////////////////////////////////
+
+      this.today.forEach( appointment => {
+      this.service.GetDoctorById(appointment.slots[0].attendees[0].attendeeId)
+      .subscribe(data => {
+        appointment.doctorFirstName = data.doctorFirstName;
+        appointment.doctorLastName = data.doctorLastName;
+        appointment.doctorPhoneNumber = data.doctorPhoneNumber;
+        appointment.startTime = appointment.slots[0].timeSlot.startTime;
+        appointment.endTime = appointment.slots[0].timeSlot.endTime;
+
+          }); });
+      console.log(this.today, 'todayDoctors');
+
+
+
+///////////////////////////// Upcoming Appointments///////////////////////////////////////////////////
+      this.later.forEach( appointment => {
+          this.service.GetDoctorById(appointment.slots[0].attendees[0].attendeeId)
+          .subscribe(data => {
+            appointment.doctorFirstName = data.doctorFirstName;
+            appointment.doctorLastName = data.doctorLastName;
+            appointment.doctorPhoneNumber = data.doctorPhoneNumber;
+            appointment.startTime = appointment.slots[0].timeSlot.startTime;
+            appointment.endTime = appointment.slots[0].timeSlot.endTime;
+
+          }); });
+      console.log(this.later, 'laterDoctors');
+
+/////////////////////////// Previous Appointments///////////////////////////////////////
+      this.previous.forEach(appointment => {
+        this.service.GetDoctorById(appointment.slots[0].attendees[0].attendeeId)
+          .subscribe(data => {
+            appointment.doctorFirstName = data.doctorFirstName;
+            appointment.doctorLastName = data.doctorLastName;
+            appointment.doctorPhoneNumber = data.doctorPhoneNumber;
+            appointment.startTime = appointment.slots[0].timeSlot.startTime;
+            appointment.endTime = appointment.slots[0].timeSlot.endTime;
+
+          });
+      });
+      console.log(this.previous, 'previousDoctors');
+
+////////////////////////////////////////////////////////////////////////////////////////
+    }));
+    await promise;
+  }
+    getData() {
+      this.getAllAppointments();
+    }
+
+  }

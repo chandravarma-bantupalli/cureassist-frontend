@@ -31,7 +31,7 @@ export class TimeSlotComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userid = this.onboardingService.userid;
+    this.userid = '45987123-ed2456';
     this.tsId = this.timeSlotService.timeSlotId;
     this.initiateTimeSlotForm();
     this.getTimeSlotValue();
@@ -50,7 +50,8 @@ export class TimeSlotComponent implements OnInit {
   initiateTimeSlotForm() {
     this.tsForm = this.formBuilder.group({
       slotId: '',
-      diagnosticCenterId: this.onboardingService.userid,
+      userId: '',
+      diagnosticCenterId: '45987123-ed2456',
       testConductedInSlot: '',
       slotStartTime: '',
       slotEndTime: '',
