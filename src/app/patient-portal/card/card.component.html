@@ -42,7 +42,7 @@
                 {{symptom}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
-              <input placeholder="Add symptom .." #symptomInput [formControl]="symptomsCtrl" [matAutocomplete]="auto"
+              <input placeholder="Add symptom .." #symptomInput [(ngModel)]="symptomsCtrl" [matAutocomplete]="auto"
                 [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
@@ -55,7 +55,7 @@
           
           <div *ngFor="let time of viewprofiledata.doctorSlots">
             <button mat-raised-button color="primary"
-              (click)="openDialog(time.slotStartTime,time.slotEndTime, viewprofiledata.doctorId)">
+              (click)="openDialog(time.slotStartTime,time.slotEndTime, viewprofiledata.doctorId,symptomsCtrl)">
               {{time.slotStartTime}} To: {{time.slotEndTime}}</button>&nbsp;
             &nbsp;
           </div>
