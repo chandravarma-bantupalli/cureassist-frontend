@@ -54,8 +54,7 @@ export class PatientService {
     getpincodeAPI(city): Observable<any> {
     return this.http.get('/postoffice/' + city, {
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
       }
     });
   }
