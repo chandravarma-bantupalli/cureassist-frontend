@@ -15,6 +15,7 @@ import { map } from 'rxjs/operators';
 export class PatientService {
   urlForPatient = environment.patientAPI + '/api/patient';
   urlForAppointments = environment.appointmentAPI + '/appointments';
+  urlForRating = 'http://rating-api.cureassist.cgi-wave7.stackroute.io/rating';
   viewprofiledata: Doctor;
   bookappointment: IAppointments;
   // appointment: IAppointments;
@@ -40,26 +41,24 @@ export class PatientService {
   //     '../../../assets/json_files/pincode.json'
   //   );
   // }
-  //to get the pincode by areanames
-  getpincodeAPI(city): Observable<any> {
-    // tslint:disable-next-line:max-line-length
-    return this.http.get(environment.pincodeAPI + city,  {
-      headers: {
-        'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Credentials': 'true'
-        
-      }
-    });
-  }
-  //   getpincodeAPI(city): Observable<any> {
-  //   return this.http.get(environment.pincodeAPI + city, {
+  // to get the pincode by areanames
+  // getpincodeAPI(city): Observable<any> {
+  //   // tslint:disable-next-line:max-line-length
+  //   return this.http.get(environment.pincodeAPI + city,  {
   //     headers: {
-  //       'Access-Control-Allow-Origin': '*',
-  //       'Access-Control-Allow-Headers': '*'
+  //       'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
+  //       'Access-Control-Allow-Headers': '*',
+  //       'Access-Control-Allow-Credentials': 'true'
   //     }
   //   });
   // }
+    getpincodeAPI(city): Observable<any> {
+    return this.http.get('/postoffice/' + city, {
+      headers: {
+        'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
+      }
+    });
+  }
   searchDoctorsByName(
     searchbar: string,
     City: string,
@@ -184,4 +183,12 @@ export class PatientService {
   getPatientByUserId(id: string): Observable<Patient> {
     return this.http.get<Patient>(this.urlForPatient + `/${id}`);
   }
+  SendRating( PatientId11, DoctorId1, rating) {
+    console.log(rating, PatientId11, DoctorId1);
+    return this.http.post(this.urlForRating, {
+    PatientId: PatientId11,
+    DoctorId: DoctorId1,
+    Rating: rating
+  });
+}
 }

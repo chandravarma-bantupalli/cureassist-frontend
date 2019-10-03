@@ -1,103 +1,128 @@
+<!-- //real -->
 <!-- View Today's Appointment-->
 <div class="mat-elevation-z2" *ngIf="when == 'today'">
-    <div class="appointments-container" *ngIf="todayPatients.length == 0">
+    <div class="appointments-container" *ngIf="today.length == 0;">
         <h4>Today's Appointments</h4>
         <div>
             You don't have any appointments.
         </div>
     </div>
-    <div class="appointments-container" *ngIf="todayPatients.length > 1">
+    <div class="appointments-container" *ngIf="today.length > 0">
         <p class="title">Today's Appointments</p>
-        <mat-table class="appointments" [dataSource]="todayPatients">
+        <mat-table class="appointments" [dataSource]="today">
             <ng-container cdkColumnDef="firstName">
                 <mat-header-cell *cdkHeaderCellDef>Patient</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">
-                    {{patient.firstName | titlecase}}&nbsp;{{patient.lastName | titlecase}}</mat-cell>
-            </ng-container>
-            <ng-container cdkColumnDef="phoneNumber">
-                <mat-header-cell *cdkHeaderCellDef>phoneNumber</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">{{patient.
-                    
-                    
-                    phoneNumber}}</mat-cell>
-            </ng-container>
-
-            <!-- <ng-container cdkColumnDef="symptoms">
-                <mat-header-cell *cdkHeaderCellDef>symptoms</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">{{.symptoms}}</mat-cell>
-            </ng-container> -->
-
-            <ng-container cdkColumnDef="prescription">
-                <mat-header-cell *cdkHeaderCellDef>Add Prescription</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">
-                        <button color="primary" (click)= openPrescriptionDialog(patient.userId)>Add Prescription</button>
+                <mat-cell *cdkCellDef="let appointment">
+                    {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}
                 </mat-cell>
             </ng-container>
-           
-            <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber', 'prescription']"></mat-header-row>
-            <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber', 'prescription']"></mat-row>
+            <ng-container cdkColumnDef="symptoms">
+                <mat-header-cell *cdkHeaderCellDef>Symptoms</mat-header-cell>
+                <mat-cell *cdkCellDef="let appointment">{{appointment.symptoms}}</mat-cell>
+            </ng-container>
+            <ng-container cdkColumnDef="startTime">
+                <mat-header-cell *cdkHeaderCellDef>Time</mat-header-cell>
+                <mat-cell *cdkCellDef="let appointment">{{appointment.startTime | date: 'HH:mm'}}</mat-cell>
+            </ng-container>
+            <ng-container cdkColumnDef="prescription">
+                <mat-header-cell *cdkHeaderCellDef>Add Prescription</mat-header-cell>
+                <mat-cell *cdkCellDef="let appointment">
+                    <button color="primary" (click)=openPrescriptionDialog(appointment.slots[0].attendees[0].attendeeId)>Prescription</button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *cdkHeaderRowDef="['firstName','symptoms','startTime','prescription']">
+            </mat-header-row>
+            <mat-row *cdkRowDef="let patient; columns: ['firstName','symptoms','startTime','prescription']">
+            </mat-row>
         </mat-table>
     </div>
-    <!-- <button mat-button (click)="viewallapointments()">View All Appointments</button> -->
 </div>
+
 <!-- Upcoming appointments -->
 <div class="mat-elevation-z2" *ngIf="when == 'upcoming'">
-    <div class="appointments-container" *ngIf="tomorrowPatients.length == 0;">
+    <div class="appointments-container" *ngIf="later.length == 0;">
         <h4>Upcoming Appointments</h4>
         <div>
             You don't have any upcoming appointments.
         </div>
     </div>
-    <div class="appointments-container" *ngIf="tomorrowPatients.length > 1">
+    <div class="appointments-container" *ngIf="later.length > 1">
         <p class="title">Upcoming Appointments</p>
-        <mat-table class="appointments" [dataSource]="tomorrowPatients">
+        <mat-table class="appointments" [dataSource]="later">
+            <ng-container cdkColumnDef="date">
+                <mat-header-cell *cdkHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *cdkCellDef="let appointment">
+                    {{appointment.date | date: "MMM d"}}</mat-cell>
+            </ng-container>
             <ng-container cdkColumnDef="firstName">
                 <mat-header-cell *cdkHeaderCellDef>Patient</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">
-                    {{patient.firstName | titlecase}}&nbsp;{{patient.lastName | titlecase}}</mat-cell>
-            </ng-container>
-            <ng-container cdkColumnDef="phoneNumber">
-                <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">{{patient.phoneNumber}}</mat-cell>
-            </ng-container>
-            <ng-container cdkColumnDef="prescription">
-                <mat-header-cell *cdkHeaderCellDef>Add Prescription</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">
-                        <button color="primary" (click)= openPrescriptionDialog(patient.userId)>Add Prescription</button>
+                <mat-cell *cdkCellDef="let appointment">
+                    {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}
                 </mat-cell>
             </ng-container>
-            <mat-header-row *cdkHeaderRowDef="['firstName','phoneNumber','prescription']"></mat-header-row>
-            <mat-row *cdkRowDef="let patient; columns: ['firstName','phoneNumber','prescription']"></mat-row>
+            <ng-container cdkColumnDef="symptoms">
+                <mat-header-cell *cdkHeaderCellDef>Symptoms</mat-header-cell>
+                <mat-cell *cdkCellDef="let appointment">{{appointment.symptoms}}</mat-cell>
+            </ng-container>
+            <ng-container cdkColumnDef="startTime">
+                <mat-header-cell *cdkHeaderCellDef>Time</mat-header-cell>
+                <mat-cell *cdkCellDef="let appointment">{{appointment.startTime | date: 'HH:mm'}}</mat-cell>
+            </ng-container>
+            <!-- <ng-container cdkColumnDef="prescription">
+                <mat-header-cell *cdkHeaderCellDef>Add Prescription</mat-header-cell>
+                <mat-cell *cdkCellDef="let appointment">
+                    <button color="primary" (click)=openPrescriptionDialog(patient.userId)>Prescription</button>
+                </mat-cell>
+            </ng-container> -->
+            <mat-header-row *cdkHeaderRowDef="['date','firstName','symptoms','startTime']">
+            </mat-header-row>
+            <mat-row *cdkRowDef="let patient; columns: ['date','firstName','symptoms','startTime']">
+            </mat-row>
         </mat-table>
     </div>
 </div>
 
 <!--Previous Appointments-->
 <div class="mat-elevation-z2" *ngIf="when == 'previous'">
-        <div class="appointments-container" *ngIf="previousPatients.length == 0;">
+        <div class="appointments-container" *ngIf="previous.length == 0;">
             <h4>Previous Appointments</h4>
             <div>
                 You don't have any previous appointments.
             </div>
         </div>
-        <div class="appointments-container" *ngIf="previousPatients.length > 1">
+        <div class="appointments-container" *ngIf="previous.length > 1">
             <p class="title">Previous Appointments</p>
-            <mat-table class="appointments" [dataSource]="previousPatients">
+            <mat-table class="appointments" [dataSource]="previous">
+                <ng-container cdkColumnDef="date">
+                    <mat-header-cell *cdkHeaderCellDef>Date</mat-header-cell>
+                    <mat-cell *cdkCellDef="let appointment">
+                        {{appointment.date | date: "MMM d"}}</mat-cell>
+                </ng-container>
                 <ng-container cdkColumnDef="firstName">
-                    <mat-header-cell *cdkHeaderCellDef>Patient</mat-header-cell>
-                    <mat-cell *cdkCellDef="let patient">
-                        {{patient.firstName | titlecase}}&nbsp;{{patient.lastName | titlecase}}</mat-cell>
+                    <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+                    <mat-cell *cdkCellDef="let appointment">
+                        {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}
+                    </mat-cell>
                 </ng-container>
                 <ng-container cdkColumnDef="phoneNumber">
-                    <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
-                    <mat-cell *cdkCellDef="let patient">{{patient.phoneNumber}}</mat-cell>
+                    <mat-header-cell *cdkHeaderCellDef>Contact Number</mat-header-cell>
+                    <mat-cell *cdkCellDef="let appointment">
+                        {{appointment.doctorPhoneNumber}}
+                    </mat-cell>
                 </ng-container>
-                <mat-header-row *cdkHeaderRowDef="['firstName','phoneNumber']"></mat-header-row>
-                <mat-row *cdkRowDef="let patient; columns: ['firstName','phoneNumber']"></mat-row>
+                <!-- <ng-container cdkColumnDef="prescription">
+                    <mat-header-cell *cdkHeaderCellDef>Add Prescription</mat-header-cell>
+                    <mat-cell *cdkCellDef="let appointment">
+                        <button color="primary" (click)=openPrescriptionDialog(patient.userId)>Prescription</button>
+                    </mat-cell>
+                </ng-container> -->
+                <mat-header-row *cdkHeaderRowDef="['date','firstName','phoneNumber']">
+                </mat-header-row>
+                <mat-row *cdkRowDef="let patient; columns: ['date','firstName','phoneNumber']">
+                </mat-row>
             </mat-table>
         </div>
     </div>
-
 
 
 

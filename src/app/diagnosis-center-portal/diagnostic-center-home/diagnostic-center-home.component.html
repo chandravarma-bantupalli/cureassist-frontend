@@ -1,53 +1,26 @@
-<app-diagnostic-center-header></app-diagnostic-center-header>
 
-<!-- <p>diagnostic-center-home works!</p> -->
-
-<div *ngIf="appointmentsExist" class="current-appointments">
-  <div *ngFor="let slot of todaySlots">
-    <mat-card>
-      <mat-card-subtitle class="time-slot">
+<div class="home-container">
+    <div class="title">
+        <h3>Cure Assist | <span class="lead">Diagnosis Center Portal</span></h3>
         <div>
-          <h4> {{ slot.timeSlot.startTime | date: 'shortTime' }} </h4>
-          <h4> {{ slot.timeSlot.endTime | date: 'shortTime' }} </h4>
+            <a style="color: crimson; text-decoration: underline; cursor: pointer;"><h5 [matMenuTriggerFor]="options"> Profile Options </h5></a>
+            <mat-menu #options="matMenu">
+                <button class="Profile" mat-menu-item>View Appointment History</button>
+                <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
+                <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
         </div>
-        <div>
-          <h3> {{ slot.slotCapacity }} has occupied this slot. </h3>
+    </div>
+    <div class="chicklet-container">
+      <app-diagnostic-center-profile detailType="name"></app-diagnostic-center-profile>
+        <div class="chicklet-data-container">
+            <div class="left">
+                <app-diagnostic-center-profile detailType="personalInformation"></app-diagnostic-center-profile>
+                <app-diagnostic-center-profile detailType="address"></app-diagnostic-center-profile>
+            </div>
+            <div class="right">
+                <app-diagnostic-center-manage-slots></app-diagnostic-center-manage-slots>
+            </div>
         </div>
-      </mat-card-subtitle>
-      <mat-card-content>
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Patients Details
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
-
-<div *ngIf="!appointmentsExist">
-    <mat-card>
-      <mat-card-content>
-        <h4> You don't have any appointments so far, for this day..! </h4>
-        <h5> Update your time slots.</h5>
-      </mat-card-content>
-    </mat-card>
-    <button mat-stroked-button (click)="manageTimeSlots()">
-        Update
-    </button>
-</div>
-
-<div *ngIf="!dcProfileExists">
-  <mat-card>
-    <mat-card-content>
-      Please Provide your profile details and update your availability times to view your current appointments.
-    </mat-card-content>
-  </mat-card>
-  <button mat-stroked-button (click)="goToSetProfile()">
-    Update Your Profile
-  </button>
+    </div>
 </div>

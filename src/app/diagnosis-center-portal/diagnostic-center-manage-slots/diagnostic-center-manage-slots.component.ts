@@ -24,7 +24,8 @@ export class DiagnosticCenterManageSlotsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userid = this.onboardingService.userid;
+    this.userid = '45987123-ed2456';
+    // this.userid = this.onboardingService.userid;
     this.getAllDiagCenTimeSlots(this.userid);
   }
 

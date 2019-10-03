@@ -33,6 +33,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { AvatarModule } from 'ngx-avatar';
 import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
 import { CdkTableModule } from '@angular/cdk/table';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     ConfirmBooking,
     DCConfirmBooking,
     EditProfileDialogComponent,
+    NavbarComponent,
   ],
   imports: [
     CommonModule,
@@ -77,7 +79,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     HomePageComponent,
     SearchComponent,
     ViewAppointmentComponent,
-    ViewEditComponent
+    ViewEditComponent,
+    NavbarComponent
   ]
 })
 export class PatientPortalModule { }

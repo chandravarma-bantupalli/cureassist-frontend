@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Doctor } from 'src/app/models/doctor';
 import { PatientService } from 'src/app/services/patient.service';
-import { DiagnosticCenter } from 'src/app/models/diagnostic-center';
-import { IDiagnostics } from 'src/app/models/diagnostics';
 import * as moment from 'moment';
 import { AppointmentHttpService } from 'src/app/services/appointment-http.service';
 import { AppointmentDayCalendar } from 'src/app/models/appointment';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { StarRatingComponent } from 'ng-starrating';
+import { DiagnosticCenterHttpService } from 'src/app/services/diagnostic-center-http.service';
 
 export interface IDoctors {
   ts: any[];
@@ -64,9 +64,11 @@ export class ViewAppointmentComponent implements OnInit {
   previousPatients: Doctor[] = [];
   dialog: any;
   bookdate: any;
+  ratingvalue: number;
 
   constructor(public appointmentService: AppointmentHttpService,
-              public service: PatientService, public onboardingService: OnboardingService) {
+              public service: PatientService, public onboardingService: OnboardingService,
+              public diagnosis: DiagnosticCenterHttpService) {
                }
   ngOnInit() {
     this.appointments = [];
@@ -110,49 +112,95 @@ export class ViewAppointmentComponent implements OnInit {
       console.log(this.today, 'Todays appointments');
       console.log(this.later, 'upcoming appointments');
 
-////////////////////////////////// Today Appointment///////////////////////////////////////////////////
+////////////////////////////////// Today Appointment Doctor///////////////////////////////////////////////////
 
       this.today.forEach( appointment => {
       this.service.GetDoctorById(appointment.slots[0].attendees[0].attendeeId)
       .subscribe(data => {
-        appointment.doctorFirstName = data.doctorFirstName;
+        if (data !== null) {
+        appointment.doctorFirstName = 'Dr. ' + data.doctorFirstName;
         appointment.doctorLastName = data.doctorLastName;
         appointment.doctorPhoneNumber = data.doctorPhoneNumber;
         appointment.startTime = appointment.slots[0].timeSlot.startTime;
         appointment.endTime = appointment.slots[0].timeSlot.endTime;
-
+        }
           }); });
       console.log(this.today, 'todayDoctors');
+////////////////////////////// Today Appointments Diagnosis///////////////////
+      this.today.forEach(appointment => {
+        this.diagnosis.getDiagnosticCenterById(appointment.slots[0].attendees[0].attendeeId)
+          .subscribe(data => {
+            if (data !== null) {
+              appointment.doctorFirstName = data.diagnosticCenterName;
+              appointment.doctorPhoneNumber = data.diagnosticCenterPhone;
+              appointment.startTime = appointment.slots[0].timeSlot.startTime;
+              appointment.endTime = appointment.slots[0].timeSlot.endTime;
+            }
+          });
+      });
+      console.log(this.today, 'todayDiagnosis');
 
 
-
-///////////////////////////// Upcoming Appointments///////////////////////////////////////////////////
+///////////////////////////// Upcoming Appointments Doctor///////////////////////////////////////////////////
       this.later.forEach( appointment => {
           this.service.GetDoctorById(appointment.slots[0].attendees[0].attendeeId)
           .subscribe(data => {
-            appointment.doctorFirstName = data.doctorFirstName;
+            if (data !== null) {
+            appointment.doctorFirstName = 'Dr. ' + data.doctorFirstName;
             appointment.doctorLastName = data.doctorLastName;
             appointment.doctorPhoneNumber = data.doctorPhoneNumber;
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-
+            }
           }); });
       console.log(this.later, 'laterDoctors');
+
+
+//////////////////////////// Upcoming Appointments DC///////////////////////////
+      this.later.forEach(appointment => {
+        this.diagnosis.getDiagnosticCenterById(appointment.slots[0].attendees[0].attendeeId)
+          .subscribe(data => {
+            if (data !== null) {
+              appointment.doctorFirstName = data.diagnosticCenterName;
+              appointment.doctorPhoneNumber = data.diagnosticCenterPhone;
+              appointment.startTime = appointment.slots[0].timeSlot.startTime;
+              appointment.endTime = appointment.slots[0].timeSlot.endTime;
+            }
+          });
+      });
+      console.log(this.later, 'laterDiagnosis');
 
 /////////////////////////// Previous Appointments///////////////////////////////////////
       this.previous.forEach(appointment => {
         this.service.GetDoctorById(appointment.slots[0].attendees[0].attendeeId)
+
           .subscribe(data => {
-            appointment.doctorFirstName = data.doctorFirstName;
+            if (data !== null) {
+            appointment.doctorFirstName =  'Dr. ' + data.doctorFirstName;
             appointment.doctorLastName = data.doctorLastName;
             appointment.doctorPhoneNumber = data.doctorPhoneNumber;
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-
+            appointment.userId = appointment.slots[0].attendees[0].attendeeId;
+            }
           });
       });
       console.log(this.previous, 'previousDoctors');
+///////////////////////////////// Previous Appointments Diagnosis///////////////////////
+      this.previous.forEach(appointment => {
+        this.diagnosis.getDiagnosticCenterById(appointment.slots[0].attendees[0].attendeeId)
 
+          .subscribe(data => {
+            if (data !== null) {
+              appointment.doctorFirstName = data.diagnosticCenterName;
+              appointment.doctorPhoneNumber = data.diagnosticCenterPhone;
+              appointment.startTime = appointment.slots[0].timeSlot.startTime;
+              appointment.endTime = appointment.slots[0].timeSlot.endTime;
+              appointment.userId = appointment.slots[0].attendees[0].attendeeId;
+            }
+          });
+      });
+      console.log(this.previous, 'previousDoctors');
 ////////////////////////////////////////////////////////////////////////////////////////
     }));
     await promise;
@@ -160,6 +208,11 @@ export class ViewAppointmentComponent implements OnInit {
     getData() {
       this.getAllAppointments();
     }
-
+    onRate($event: {oldValue: number, newValue: number, starRating: StarRatingComponent}, doctorId: string) {
+      this.ratingvalue = $event.newValue;
+      console.log(this.ratingvalue);
+      console.log(doctorId);
+      this.service.SendRating( this.onboardingService.userid, doctorId, this.ratingvalue).subscribe();
+      }
   }
   

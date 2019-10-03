@@ -1,18 +1,18 @@
-<!--View Today's Appointment-->
-<!-- <div class="mat-elevation-z2" *ngIf="when == 'today'">
+<!-- View Today's Appointment-->
+<div class="mat-elevation-z2" *ngIf="when == 'today'">
   <div class="appointments-container" *ngIf="today.length == 0">
     <h4>Today's Appointments</h4>
     <div>
       You don't have any appointments.
     </div>
   </div>
-  <div class="appointments-container" *ngIf="today.length > 0">
+  <div class="appointments-container" *ngIf="today.length > 1">
     <p class="title">Today's Appointments</p>
     <mat-table class="appointments" [dataSource]="today">
       <ng-container cdkColumnDef="doctorFirstName">
-        <mat-header-cell *cdkHeaderCellDef>Doctor</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef>Doctor/Diagnosis Center</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">
-          Dr.&nbsp;{{appointment.doctorFirstName | titlecase}}&nbsp{{appointment.doctorLastName | titlecase}}</mat-cell>
+          {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="doctorPhoneNumber">
         <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
@@ -23,13 +23,13 @@
         <mat-header-cell *cdkHeaderCellDef>Time</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">{{appointment.startTime | date: 'HH:mm'}}</mat-cell>
       </ng-container>
-      <mat-header-row *cdkHeaderRowDef="[doctorFirstName','doctorPhoneNumber','startTime']">
+      <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber','startTime']">
       </mat-header-row>
       <mat-row *cdkRowDef="let appointment; columns: ['doctorFirstName','doctorPhoneNumber','startTime']">
       </mat-row>
     </mat-table>
   </div>
-</div> -->
+</div>
 
 
 <!-- Upcoming appointments -->
@@ -47,12 +47,12 @@
       <ng-container cdkColumnDef="date">
         <mat-header-cell *cdkHeaderCellDef>Date</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">
-          {{appointment.date | date: "MMMM d"}}</mat-cell>
+          {{appointment.date | date: "MMM d"}}</mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="doctorFirstName">
-        <mat-header-cell *cdkHeaderCellDef>Doctor</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef>Doctor/Diagnosis Center</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">
-          Dr.&nbsp;{{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
+          {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="startTime">
         <mat-header-cell *cdkHeaderCellDef>Time</mat-header-cell>
@@ -82,61 +82,19 @@
         <ng-container cdkColumnDef="date">
             <mat-header-cell *cdkHeaderCellDef>Date</mat-header-cell>
             <mat-cell *cdkCellDef="let appointment">
-              {{appointment.date | date: "MMMM d"}}</mat-cell>
+              {{appointment.date | date: "MMM d"}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="doctorFirstName">
-            <mat-header-cell *cdkHeaderCellDef>Doctor</mat-header-cell>
+            <mat-header-cell *cdkHeaderCellDef>Doctor/Diagnosis Center</mat-header-cell>
             <mat-cell *cdkCellDef="let appointment">
-              Dr.&nbsp;{{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
+             {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
           </ng-container>
-          <!-- <ng-container cdkColumnDef="doctorPhoneNumber">
-            <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
-            <mat-cell *cdkCellDef="let appointment">
-              {{appointment.doctorPhoneNumber}}</mat-cell>
-          </ng-container> -->
           <ng-container cdkColumnDef="rating">
-            <mat-header-cell *cdkHeaderCellDef>Feedback</mat-header-cell>
-            <mat-cell *cdkCellDef="let appointment">FeedBack</mat-cell>
+            <mat-header-cell *cdkHeaderCellDef>Rate</mat-header-cell>
+            <mat-cell *cdkCellDef="let appointment"><star-rating value="5" checkedcolor="red" uncheckedcolor="black" size="24px" readonly="false" (rate)="onRate($event,appointment.userId)"></star-rating></mat-cell>
           </ng-container>
-
-      <!-- <ng-container matColumnDef="doctorLastName">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let doctor">
-          <button mat-flat-button color="primary">View Doctor</button>
-        </td>
-      </ng-container> -->
       <mat-header-row *cdkHeaderRowDef="['date','doctorFirstName','rating']"></mat-header-row>
       <mat-row *cdkRowDef="let appointment; columns: ['date','doctorFirstName','rating']"></mat-row>
     </mat-table>
   </div>
 </div>
-
-<!-- 
-<div class="mat-elevation-z2" *ngIf="when == 'upcoming'">
-  <div class="appointments-container" *ngIf="tomorrowPatients.length == 0">
-    <h4>Upcoming Appointments</h4>
-    <div>
-      You don't have any upcoming appointments.
-    </div>
-  </div>
-  <div class="appointments-container" *ngIf="tomorrowPatients.length> 0">
-    <table mat-table [dataSource]="tomorrowPatients">
-      <ng-container matColumnDef="doctorFirstName">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let doctor">{{doctor.doctorFirstName }}</td>
-      </ng-container>
-      <ng-container matColumnDef="doctorPhoneNumber">
-        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-        <td mat-cell *matCellDef="let doctor">{{doctor.doctorPhoneNumber}}</td>
-      </ng-container>
-      <ng-container matColumnDef="doctorLastName">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let doctor">
-            <button mat-flat-button color="primary">View Doctor</button>
-          </td>
-        </ng-container>
-      <tr mat-header-row *matHeaderRowDef="patientDisplayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: patientDisplayedColumns;"></tr>
-    </table>
-  </div>
-</div> -->

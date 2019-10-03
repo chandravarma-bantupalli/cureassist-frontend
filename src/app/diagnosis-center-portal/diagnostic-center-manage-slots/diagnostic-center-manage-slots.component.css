@@ -1,0 +1,17 @@
+.title {
+  font-size: 1.2em;
+}
+
+.time-slot-container {
+  padding: 15px;
+}
+
+.time-slot-wrapper {
+  margin-top: 15px;
+}
+
+.title {
+  font-size: 1.2em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

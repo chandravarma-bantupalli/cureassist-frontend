@@ -15,7 +15,7 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
   diagnosticCenterId: string;
   appointments: AppointmentDayCalendar[];
   appointmentSlots: AppointmentTimeSlot[];
-  attendees: [];
+  // attendees: [];
   patients: Patient[] = [];
 
 
