@@ -35,6 +35,7 @@ export class AppointmentDayCalendar {
     doctorPhoneNumber?: string;
     startTime?: any;
     endTime?: any;
+    symptoms?: string[];
     ////////////////////////////////
     slots: AppointmentSlot[];
 }

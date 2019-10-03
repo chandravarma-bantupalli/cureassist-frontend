@@ -1,143 +1,130 @@
 <div class =form>
-<form [formGroup]="prescriptionForm">
-  <section class="prescription">
-    <mat-card class="Detail">
-      <div class="header">
-        <label>
-          <h3> precsriptionDate: {{today | date:'dd-MM-yyyy'}}</h3>
-        </label>
-      </div>
-      <div>
-        <label>
-          <h5>Patient Name: {{ patientName }} </h5>
-          <h5>Patient Phone Number: {{ patientPhoneNumber }} </h5>
-          <h5>Doctor Name: {{ doctorName }} </h5>
-          <h5>Doctor Phone Number: {{ doctorPhoneNumber }} </h5>
-        </label>
-      </div>
-    </mat-card>
-  </section>
-</form>
-
-
-<!-- Code for symptoms  -->
-<form [formGroup]="prescriptionForm">
-  <section class="prescription">
-    <mat-card class="Detail">
-      <mat-form-field class="symptoms-chip-list">
-        <mat-chip-list #chipList aria-label="Symptom selection">
-          <mat-chip *ngFor="let symptom of symptoms" [selectable]="selectable" [removable]="removable"
-            (removed)="remove(symptom)">
-            {{symptom}}
-            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-          </mat-chip>
-          <input placeholder="Add symptom .." #symptomInput [formControl]="symptomsCtrl" [matAutocomplete]="auto"
-            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
-        </mat-chip-list>
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let symptom of filteredSymptoms | async" [value]="symptom">
-            {{symptom}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-      <!-- <div class="addprescriptioncard">
-                  <button mat-button class="addmedi" (click)="Addsymptoms()">Add</button>
-              </div> -->
-    </mat-card>
-  </section>
-</form>
-<!-- code for image prescription -->
-<form [formGroup]="prescriptionForm">
-  <section class="prescription">
-    <mat-card class="Detail">
-      <img [src]='imageUrl' style="width: 100px; height: 100px">
-      <input type="file" formControlName="prescriptionImage" accept="image/*"
-        (change)='handleImage($event.target.files)'>
-    </mat-card>
-  </section>
-</form>
-
-<!-- Code for Remarks -->
-<form [formGroup]="prescriptionForm">
-  <section class="prescription">
-    <mat-card class="Detail">
-      <div>
-        <label>remarks: </label>
-        <mat-form-field>
-          <input formControlName="remarks" matInput placeholder="Give remarks">
-        </mat-form-field>
-      </div>
-      <!-- <div class="addprescriptioncard">
-                  <button mat-button class="addmedi" (click)="AddRemarks()">Add</button>
-              </div> -->
-    </mat-card>
-  </section>
-</form>
-
-<!-- <div>
-  <h5> Prescribed Medicines: </h5>
-  <div *ngFor="let medicine of ListOfMedicine">
-    <label> {{ medicine.medicineName }} </label>
-  </div>
-</div> -->
-
-
-<!-- This is medicine details block  -->
-<section class="prescription">
-  <!-- <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()"> -->
-      <form [formGroup]="medicineForm">
-        
-    <mat-card class="Detail">
-      <div>
-        <label>Medicine Name: </label>
-        <mat-form-field>
-          <input formControlName="medicineName" matInput placeholder="Medicine
-            name">
-        </mat-form-field>
-      </div>
-
-      <div>
-        <label>Medicine Quantity: </label>
-        <mat-form-field>
-          <input formControlName="medicineQuantity" matInput placeholder="Medicine Quantity">
-        </mat-form-field>
-      </div>
-
-      <div>
-        <label>Prescribed Dosage: </label>
-        <mat-form-field>
-          <input formControlName="prescribedDosage" matInput placeholder="Prescribed Dosage">
-        </mat-form-field>
-      </div>
-
-
-      <div>
-        <mat-label>prescribed Timings:</mat-label>
-        <mat-form-field>
-          <mat-select formControlName="prescribedTimings" multiple>
-            <mat-option *ngFor="let item of TimingArray" [value]="item">{{item}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-
-      <div>
-        <label>prescribed Days: </label>
-        <mat-form-field>
-          <input formControlName="prescribedDays" matInput placeholder="prescribed Days">
-        </mat-form-field>
-      </div>
-
-      <div class="addprescriptioncard">
-        <button mat-button class="addmedi" (click)="AddMedicines()" >Add Medicines</button>
-      </div>
-
-    </mat-card>
-
+  <form [formGroup]="prescriptionForm">
+    <section class="prescription">
+      <mat-card class="Detail">
+        <div class="header">
+          <label>
+            <h3> precsriptionDate: {{today | date:'dd-MM-yyyy'}}</h3>
+          </label>
+        </div>
+        <div>
+          <label>
+            <h5>Patient Name: {{ patientName }} </h5>
+            <h5>Patient Phone Number: {{ patientPhoneNumber }} </h5>
+            <h5>Doctor Name: {{ doctorName }} </h5>
+            <h5>Doctor Phone Number: {{ doctorPhoneNumber }} </h5>
+          </label>
+        </div>
+      </mat-card>
+    </section>
   </form>
-  <div class="Submit">
-    <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
-  </div>
-</section>
+
+
+  <!-- Code for symptoms  -->
+  <form [formGroup]="prescriptionForm">
+    <section class="prescription">
+      <mat-card class="Detail">
+        <mat-form-field class="symptoms-chip-list">
+          <mat-chip-list #chipList aria-label="Symptom selection">
+            <mat-chip *ngFor="let symptom of symptoms" [selectable]="selectable" [removable]="removable"
+              (removed)="remove(symptom)">
+              {{symptom}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Add symptom .." #symptomInput [formControl]="symptomsCtrl" [matAutocomplete]="auto"
+              [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let symptom of filteredSymptoms | async" [value]="symptom">
+              {{symptom}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </mat-card>
+    </section>
+  </form>
+
+  <!-- code for image prescription -->
+  <form [formGroup]="prescriptionForm">
+    <section class="prescription">
+      <mat-card class="Detail">
+        <img [src]='imageUrl' style="width: 100px; height: 100px">
+        <input type="file" formControlName="prescriptionImage" accept="image/*"
+          (change)='handleImage($event.target.files)'>
+      </mat-card>
+    </section>
+  </form>
+
+  <!-- Code for Remarks -->
+  <form [formGroup]="prescriptionForm">
+    <section class="prescription">
+      <mat-card class="Detail">
+        <div>
+          <label>remarks: </label>
+          <mat-form-field>
+            <input formControlName="remarks" matInput placeholder="Give remarks">
+          </mat-form-field>
+        </div>
+      </mat-card>
+    </section>
+  </form>
+
+  <!-- This is medicine details block  -->
+  <section class="prescription">
+    <!-- <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()"> -->
+        <form [formGroup]="medicineForm">
+          
+      <mat-card class="Detail">
+        <div>
+          <label>Medicine Name: </label>
+          <mat-form-field>
+            <input formControlName="medicineName" matInput placeholder="Medicine
+              name">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <label>Medicine Quantity: </label>
+          <mat-form-field>
+            <input formControlName="medicineQuantity" matInput placeholder="Medicine Quantity">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <label>Prescribed Dosage: </label>
+          <mat-form-field>
+            <input formControlName="prescribedDosage" matInput placeholder="Prescribed Dosage">
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <mat-label>prescribed Timings:</mat-label>
+          <mat-form-field>
+            <mat-select formControlName="prescribedTimings" multiple>
+              <mat-option *ngFor="let item of TimingArray" [value]="item">{{item}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <div>
+          <label>prescribed Days: </label>
+          <mat-form-field>
+            <input formControlName="prescribedDays" matInput placeholder="prescribed Days">
+          </mat-form-field>
+        </div>
+
+        <div class="addprescriptioncard">
+          <button mat-button class="addmedi" (click)="AddMedicines()" >Add Medicines</button>
+        </div>
+
+      </mat-card>
+
+    </form>
+    <div class="Submit">
+      <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
+    </div>
+  </section>
 </div>
