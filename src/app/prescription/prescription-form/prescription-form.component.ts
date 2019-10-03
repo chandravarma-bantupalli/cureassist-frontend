@@ -47,7 +47,8 @@ export class PrescriptionFormComponent implements OnInit {
   filteredSymptoms: Observable<string[]>;
   symptoms: string[] = [];
   allSymptoms: Array<string> = [];
-  allMedicine: Array<string> = [];
+  allMedicine: string[] = [];
+  filteredMedicine: Observable<string[]>;
   // myMedicine = new FormControl();
   // filteredMedicine: Observable<string[]>;
 
@@ -95,14 +96,14 @@ export class PrescriptionFormComponent implements OnInit {
     this.prescriptionService.getSymptomsSuggestions().subscribe(data => data[0].symptoms.forEach(symptom => {
       this.allSymptoms.push(symptom);
     }));
-    this.prescriptionService.getMedicineSuggestions().subscribe(data => data[0].medicines.forEach(medicine => {
-      this.allMedicine.push(medicine);
-    }));
-    // this.filteredMedicine = this.myMedicine.valueChanges
-    // .pipe(
-    //   startWith(''),
-    //   map(value => this._filterMedicine(value))
-    // );
+    // this.prescriptionService.getMedicineSuggestions().subscribe(data => data[0].medicines.forEach(medicine => {
+    //   this.allMedicine.push(medicine);
+    // }));
+    // this.filteredMedicine = this.prescriptionForm.controls.medicineName.valueChanges
+    //   .pipe(
+    //     startWith(''),
+    //     map(value => this._filterMedicine(value))
+    //   );
   }
 
   initiateMedicineForm() {
