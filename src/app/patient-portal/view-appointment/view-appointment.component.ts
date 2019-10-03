@@ -6,6 +6,7 @@ import { AppointmentHttpService } from 'src/app/services/appointment-http.servic
 import { AppointmentDayCalendar } from 'src/app/models/appointment';
 import { OnboardingService } from 'src/app/services/onboarding.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { StarRatingComponent } from 'ng-starrating';
 
 export interface IDoctors {
   ts: any[];
@@ -62,6 +63,7 @@ export class ViewAppointmentComponent implements OnInit {
   previousPatients: Doctor[] = [];
   dialog: any;
   bookdate: any;
+  ratingvalue: number;
 
   constructor(public appointmentService: AppointmentHttpService,
               public service: PatientService, public onboardingService: OnboardingService) {
@@ -146,6 +148,7 @@ export class ViewAppointmentComponent implements OnInit {
             appointment.doctorPhoneNumber = data.doctorPhoneNumber;
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
+            appointment.userId = appointment.slots[0].attendees[0].attendeeId;
 
           });
       });
@@ -158,5 +161,10 @@ export class ViewAppointmentComponent implements OnInit {
     getData() {
       this.getAllAppointments();
     }
-
+    onRate($event: {oldValue: number, newValue: number, starRating: StarRatingComponent}, doctorId: string) {
+      this.ratingvalue = $event.newValue;
+      console.log(this.ratingvalue);
+      console.log(doctorId);
+      this.service.SendRating( this.onboardingService.userid, doctorId, this.ratingvalue).subscribe();
+      }
   }

@@ -32,10 +32,9 @@
                 <mat-cell *cdkCellDef="let patient">
                         <button color="primary" (click)= openPrescriptionDialog(patient.userId)>Add Prescription</button>
                 </mat-cell>
-            </ng-container>
-           
-            <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber', 'prescription']"></mat-header-row>
-            <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber', 'prescription']"></mat-row>
+            </ng-container>  
+            <mat-header-row *cdkHeaderRowDef="['firstName','phoneNumber', 'prescription']"></mat-header-row>
+            <mat-row *cdkRowDef="let doctor; columns: ['firstName','phoneNumber', 'prescription']"></mat-row>
         </mat-table>
     </div>
     <!-- <button mat-button (click)="viewallapointments()">View All Appointments</button> -->
