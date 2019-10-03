@@ -14,6 +14,7 @@ export class HealthrecordsService {
   currentPrescription: Prescriptions;
   PrescriptionId: string; PrescriptionDate: Date; PatientId: string; PatientName: string; PatientPhoneNumber: string; DoctorName: string;
   DoctorPhoneNumber: string; Symptoms: Array<string> = []; Remarks: string;
+  urlForTestReports = environment.testreportAPI + '/api/testreports';
   PrescribedMedicines: PrescribedMedicines; CurrentLocation: string; pincode: string;
 
   constructor(private http: HttpClient) { }
@@ -47,7 +48,7 @@ export class HealthrecordsService {
       this.orderMedicines.push(medicine);
     }
     console.log(this.orderMedicines);
-    }
+  }
     selectedPrescription(prescribed) {
       this.prescription = prescribed;
       console.log(this.prescription);
@@ -57,4 +58,13 @@ export class HealthrecordsService {
       return this.http.get<TestReports[]>(environment.testreportAPI + '/api/testreports/patient/' + patientid);
     }
 
-}
+    getAllTestReports() {
+      return this.http.get<TestReports[]>(this.urlForTestReports);
+    }
+    getLinkToReport(patientId: string, fileName: string) {
+      return this.http.get(this.urlForTestReports + `/${patientId}/report/${fileName}/link`, {responseType: 'text'});
+    }
+    getReportofpatient(patientId: string) {
+      return this.http.get<TestReports[]>(this.urlForTestReports + `/${patientId}`);
+    }
+  }

@@ -7,7 +7,8 @@
             <mat-chip *ngFor="let test of testsConducted">
                 {{ test }}
             </mat-chip>
-        </mat-chip-list>        
+        </mat-chip-list>   
+        <star-rating [value]="rating" checkedcolor="red" uncheckedcolor="black" size="20px"></star-rating>     
     </div>
 </div>
 

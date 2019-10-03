@@ -1,0 +1,12 @@
+.home-container {
+  width: 100%;
+  background-image: linear-gradient(180deg, #2196f3 30vh, #fff 20vh);
+  /* background: linear-gradient(180deg, #2196f3 30%, #FFF 70%); */
+}
+
+.title {
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
