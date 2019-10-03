@@ -15,6 +15,7 @@ import { map } from 'rxjs/operators';
 export class PatientService {
   urlForPatient = environment.patientAPI + '/api/patient';
   urlForAppointments = environment.appointmentAPI + '/appointments';
+  urlForRating = 'http://rating-api.cureassist.cgi-wave7.stackroute.io/rating';
   viewprofiledata: Doctor;
   bookappointment: IAppointments;
   // appointment: IAppointments;
@@ -183,4 +184,12 @@ export class PatientService {
   getPatientByUserId(id: string): Observable<Patient> {
     return this.http.get<Patient>(this.urlForPatient + `/${id}`);
   }
+  SendRating( PatientId11, DoctorId1, rating) {
+    console.log(rating, PatientId11, DoctorId1);
+    return this.http.post(this.urlForRating, {
+    PatientId: PatientId11,
+    DoctorId: DoctorId1,
+    Rating: rating
+  });
+}
 }

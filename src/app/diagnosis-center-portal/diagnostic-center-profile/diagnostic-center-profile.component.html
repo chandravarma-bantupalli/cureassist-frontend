@@ -1,43 +1,32 @@
-<app-diagnostic-center-header class="app-header sticky"></app-diagnostic-center-header>
-
-<!-- <p>diagnostic-center-profile works!</p> -->
-
-<div class="profile-details">
-  <mat-card>
-    <mat-card-title style="margin: auto;">
-      <h3> Basic Details </h3>
-    </mat-card-title>
-    <mat-card-content>
-      <h4> Name: {{ diagnosticCenter.diagnosticCenterName }}</h4>
-      <h5> Email: {{ diagnosticCenter.diagnosticCenterEmail }} </h5>
-      <h5> Phone: {{ diagnosticCenter.diagnosticCenterPhone }} </h5>
-      <h5> City: {{ diagnosticCenter.diagnosticCenterCity }} </h5>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>
-      <h4> Complete Address </h4>
-    </mat-card-title>
-    <mat-card-content>
-      <h5> Address: {{ diagnosticCenter.diagnosticCenterAddress }} </h5>
-      <h5> Pincode: {{ diagnosticCenter.pincode }} </h5>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>
-      <h4> Advanced Details </h4>
-    </mat-card-title>
-    <mat-card-content>
-      <h5> Registration Number: {{ diagnosticCenter.diagnosticCenterRegNum }} </h5>
-      <h5> Tests Conducted: <mat-chip-list *ngFor="let test of testsConducted" class="tests">
-          <mat-chip> {{ test }} </mat-chip>
-        </mat-chip-list>
-      </h5>
-    </mat-card-content>
-  </mat-card>
+<div class="mat-elevation-z2 name-container" *ngIf="detailType == 'name'">
+    <div class="name-card-bg"></div>
+    <div class="name-card-content">
+        <ngx-avatar size="120" name="{{ diagnosticCenter.diagnosticCenterName | titlecase }}"></ngx-avatar>
+        <h2> {{ diagnosticCenter.diagnosticCenterName | titlecase }} </h2>
+        <mat-chip-list>
+            <mat-chip *ngFor="let test of testsConducted">
+                {{ test }}
+            </mat-chip>
+        </mat-chip-list>        
+    </div>
 </div>
 
-<div class="profile-options">
-  <button mat-stroked-button color="primary" (click)="goToManageSlots()"> View Time Slots </button>
-  <button mat-stroked-button color="primary" (click)="goToUpdateProfile()"> Update Profile </button>
+<div class="mat-elevation-z2 personal-information" *ngIf="detailType == 'personalInformation'">
+    <p class="title">Basic Information</p>
+    <mat-card-content>
+        <p>{{ diagnosticCenter.diagnosticCenterEmail }} </p>
+        <p>{{ diagnosticCenter.diagnosticCenterRegNum }} </p>
+        <p>{{ diagnosticCenter.diagnosticCenterPhone }}</p>
+    </mat-card-content>
+    <button mat-button color="primary" (click)="goToUpdateProfile()"><mat-icon>edit</mat-icon> Update Profile</button>
 </div>
+
+<mat-card class="mat-elevation-z2" *ngIf="detailType == 'address'">
+    <p class="title">Address</p>
+    <mat-card-content>
+        <address>{{ diagnosticCenter.diagnosticCenterAddress }}</address>
+        <p> {{ diagnosticCenter.diagnosticCenterCity }} </p>
+        <address>{{ diagnosticCenter.pincode }}</address>
+    </mat-card-content>
+    <button mat-button color="primary" (click)="goToUpdateProfile()"><mat-icon>edit</mat-icon> Update Profile</button>
+</mat-card>
