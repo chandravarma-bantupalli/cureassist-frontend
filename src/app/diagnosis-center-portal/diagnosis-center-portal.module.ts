@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatExpansionModule, MatChipsModule,
-  MatMenuModule, 
+  MatMenuModule,
   MatTableModule} from '@angular/material';
 import { MatListModule, MatGridListModule, MatCardModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
 
@@ -21,6 +21,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { CdkTableModule } from '@angular/cdk/table';
 import { ViewAppointmentDetailsComponent } from './view-appointment-details/view-appointment-details.component';
 import { DcAppointmentHistoryComponent } from './dc-appointment-history/dc-appointment-history.component';
+import { RatingModule } from 'ng-starrating';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { DcAppointmentHistoryComponent } from './dc-appointment-history/dc-appoi
     ReactiveFormsModule,
     AvatarModule,
     MatTableModule,
-    CdkTableModule
+    CdkTableModule,
+    RatingModule
   ],
   exports: [
     DiagnosticCenterHeaderComponent,

@@ -14,6 +14,7 @@ export class DiagnosticCenterHttpService {
 
   constructor(
     private http: HttpClient,
+    private service: OnboardingService
   ) { }
 
   addNewDiagnsoticCenter(dc: DiagnosticCenter): Observable<DiagnosticCenter> {
@@ -26,6 +27,11 @@ export class DiagnosticCenterHttpService {
 
   updateDiagnosticCenter(userid: string, dc: DiagnosticCenter): Observable<DiagnosticCenter> {
     return this.http.put<DiagnosticCenter>((this.URL + `${userid}`), dc);
+  }
+
+  getRating(): Observable<Float32Array> {
+    // tslint:disable-next-line: max-line-length
+    return this.http.get<Float32Array>('http://rating-api.cureassist.cgi-wave7.stackroute.io/rating/doctorrating?DoctorId=' + this.service.userid);
   }
 
 }
