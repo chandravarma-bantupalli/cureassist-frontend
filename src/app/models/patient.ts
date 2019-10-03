@@ -10,6 +10,7 @@ export class Patient {
     emergencyContactNumber: Int32Array;
     gender: string;
     city: string;
+    symptoms?: any;
 }
 export interface ISymptomsBySuggestions {
     specialization: string;
