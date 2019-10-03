@@ -17,6 +17,7 @@ export class AppointmentTimeSlot {
     startTime?: Date;
     endTime?: Date;
     date?: Date;
+    symptoms?: any;
 }
 export class Daycalendar {
     UserId: string;

@@ -70,8 +70,7 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "cure-assist-front-end:build:production",
-              "proxyConfig": "proxy.conf.js"
+              "browserTarget": "cure-assist-front-end:build:production"
             }
           }
         },

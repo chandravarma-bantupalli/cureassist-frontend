@@ -17,6 +17,7 @@ export class DoctorUpdateProfileComponent implements OnInit {
   doctor: Doctor;
   userid: string;
   doctorProfileExists: boolean;
+  filteredSpecialization: any;
 
   constructor(
     private router: Router,
