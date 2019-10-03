@@ -29,6 +29,10 @@ export class DcAppointmentHistoryComponent implements OnInit {
     this.router.navigate(['/diagnosisCenter/home']);
   }
 
+  viewAllAppointments() {
+    this.router.navigate(['/diagnosisCenter/appointments/history']);
+  }
+
   resetpassword() {
     this.dialog.open(ResetpasswordComponent, {
       width: '30vw',

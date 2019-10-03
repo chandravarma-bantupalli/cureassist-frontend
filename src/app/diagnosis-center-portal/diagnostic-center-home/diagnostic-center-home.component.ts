@@ -85,6 +85,10 @@ export class DiagnosticCenterHomeComponent implements OnInit {
     this.router.navigate(['/diagnosisCenter/update']);
   }
 
+  goToHome() {
+    this.router.navigate(['/diagnosisCenter/home']);
+  }
+
   manageTimeSlots() {
     this.router.navigate(['/diagnosisCenter/manage/timeslots']);
   }
