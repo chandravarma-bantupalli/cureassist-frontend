@@ -14,6 +14,7 @@ import { map } from 'rxjs/operators';
 })
 export class PatientService {
   urlForPatient = environment.patientAPI + '/api/patient';
+  urlForTestReports = environment.testreportAPI + 'api/testreports';
   urlForAppointments = environment.appointmentAPI + '/appointments';
   //urlForAppointments = 'http://localhost:5006/appointments';
   urlForRating = 'http://rating-api.cureassist.cgi-wave7.stackroute.io/rating';
@@ -192,5 +193,7 @@ export class PatientService {
     DoctorId: DoctorId1,
     Rating: rating
   });
+//   getTestReports(id: string): Observable<
+// }
 }
 }

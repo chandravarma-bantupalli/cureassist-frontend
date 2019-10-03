@@ -20,12 +20,13 @@ import { BuyNow } from './medical-records/view-prescription/view-prescription.co
 import { BottomSheet } from './onboarding/register/register.component';
 import { PrescriptionModule } from './prescription/prescription.module';
 import { ResetpasswordComponent } from './onboarding/resetpassword/resetpassword.component';
+import { ViewReport } from './medical-records/view-testreports/view-testreports.component';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  entryComponents: [ConfirmBooking, DCConfirmBooking, BuyNow, BottomSheet, ResetpasswordComponent],
+  entryComponents: [ConfirmBooking, ViewReport, DCConfirmBooking, BuyNow, BottomSheet, ResetpasswordComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

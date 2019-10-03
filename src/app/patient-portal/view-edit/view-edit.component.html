@@ -20,7 +20,7 @@
     <div>{{emergencyContactNumber}}</div>
     <mat-hint>Emergency Contact Number</mat-hint>
   </div>
-  <button mat-button (click)="onUpdate()">Update Button</button>
+  <button mat-raised-button (click)="onUpdate()"><mat-icon>create</mat-icon>&nbsp;Update profile</button>
 </div>
 
 
@@ -40,7 +40,7 @@
     <div>{{bloodGroup}}</div>
     <mat-hint>Your Blood Group</mat-hint>
   </div>
-  <button mat-button (click)="onUpdate()">Update Button</button>
+  <button mat-button (click)="onUpdate()"><mat-icon>create</mat-icon>&nbsp;Update profile</button>
 </div>
 
 <div *ngIf="detailType == 'profile'" class="mat-elevation-z2 patient-profile-form-wrapper">
