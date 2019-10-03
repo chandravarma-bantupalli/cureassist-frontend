@@ -14,7 +14,7 @@ export class HealthrecordsService {
   currentPrescription: Prescriptions;
   PrescriptionId: string; PrescriptionDate: Date; PatientId: string; PatientName: string; PatientPhoneNumber: string; DoctorName: string;
   DoctorPhoneNumber: string; Symptoms: Array<string> = []; Remarks: string;
-  PrescribedMedicines: PrescribedMedicines; CurrentLocation: string;
+  PrescribedMedicines: PrescribedMedicines; CurrentLocation: string; pincode: string;
 
   constructor(private http: HttpClient) { }
   getPatientPrescriptions(patientid: string): Observable<Prescriptions[]> {
@@ -36,8 +36,9 @@ export class HealthrecordsService {
     this.PrescribedMedicines = this.currentPrescription.prescription.selectedMeds;
     console.log(this.PrescribedMedicines);
     this.CurrentLocation = this.currentPrescription.prescription.location;
+    this.pincode = this.currentPrescription.prescription.pincode;
     // tslint:disable-next-line:max-line-length
-    return this.http.post(environment.pharmacyAPI + '/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation});
+    return this.http.post(environment.pharmacyAPI + '/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation, pincode: this.pincode});
   }
   somethingClick(medicine: string) {
     if (this.orderMedicines.includes(medicine)) {
