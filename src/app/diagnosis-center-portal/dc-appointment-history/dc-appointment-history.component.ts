@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ResetpasswordComponent } from '../../onboarding/resetpassword/resetpassword.component';
+import { OnboardingService } from 'src/app/services/onboarding.service';
 
 @Component({
   selector: 'app-dc-appointment-history',
@@ -7,9 +11,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DcAppointmentHistoryComponent implements OnInit {
 
-  constructor() { }
+  isHomePage: boolean;
+  appointmentHistoryPage: boolean;
+
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    private onboardingService: OnboardingService
+  ) { }
 
   ngOnInit() {
+    this.isHomePage = false;
+    this.appointmentHistoryPage = true;
+  }
+
+  goToHome() {
+    this.router.navigate(['/diagnosisCenter/home']);
+  }
+
+  resetpassword() {
+    this.dialog.open(ResetpasswordComponent, {
+      width: '30vw',
+      height: '70vh'
+    });
+  }
+
+  logout() {
+    return this.onboardingService.Logout();
   }
 
 }
