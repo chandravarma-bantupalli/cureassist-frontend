@@ -40,7 +40,7 @@ export class PatientService {
   //     '../../../assets/json_files/pincode.json'
   //   );
   // }
-  //to get the pincode by areanames
+  // to get the pincode by areanames
   getpincodeAPI(city): Observable<any> {
     // tslint:disable-next-line:max-line-length
     return this.http.get(environment.pincodeAPI + city,  {
@@ -48,7 +48,6 @@ export class PatientService {
         'Access-Control-Allow-Origin': 'patient.cureassist.cgi-wave7.stackroute.io',
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Allow-Credentials': 'true'
-        
       }
     });
   }

@@ -90,6 +90,10 @@
         <mat-cell *cdkCellDef="let doctor">{{doctor.doctorPhoneNumber}}</mat-cell>
       </ng-container>
 
+      <ng-container cdkColumnDef="rating">
+        <mat-header-cell *cdkHeaderCellDef>Rating</mat-header-cell>
+        <mat-cell *cdkCellDef="let doctor">Do the Rating</mat-cell>
+      </ng-container>
 
       <!-- <ng-container matColumnDef="doctorLastName">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -97,8 +101,8 @@
           <button mat-flat-button color="primary">View Doctor</button>
         </td>
       </ng-container> -->
-      <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber']"></mat-header-row>
-      <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber']"></mat-row>
+      <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber','rating']"></mat-header-row>
+      <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber','rating']"></mat-row>
     </mat-table>
   </div>
 </div>
