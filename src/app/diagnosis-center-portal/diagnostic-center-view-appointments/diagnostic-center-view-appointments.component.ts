@@ -15,7 +15,7 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
   diagnosticCenterId: string;
   appointments: AppointmentDayCalendar[];
   appointmentSlots: AppointmentTimeSlot[];
-  attendees: [];
+  // attendees: [];
   patients: Patient[] = [];
 
 
@@ -34,25 +34,25 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
       console.log(data);
       this.appointments = data;
       console.log(this.appointments);
-      this.getAttendeesArray();
+      // this.getAttendeesArray();
     });
   }
 
-  getAttendeesArray() {
-    this.attendees = [];
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.appointments.length; i++) {
-      // tslint:disable-next-line: prefer-for-of
-      for (let j = 0; j < this.appointments[i].slots.length; j++) {
-        // tslint:disable-next-line: prefer-for-of
-        for (let k = 0; k < this.appointments[i].slots[j].attendees.length; k++) {
-          this.attendees.push(this.appointments[i].slots[j].attendees[k]);
-          this.patientService.getPatientByUserId(this.appointments[i].slots[j].attendees[k]).subscribe( (data) => {
-            console.log(data);
-            this.patients.push(data);
-          });
-        }
-      }
-    }
-  }
+  // getAttendeesArray() {
+  //   this.attendees = [];
+  //   // tslint:disable-next-line: prefer-for-of
+  //   for (let i = 0; i < this.appointments.length; i++) {
+  //     // tslint:disable-next-line: prefer-for-of
+  //     for (let j = 0; j < this.appointments[i].slots.length; j++) {
+  //       // tslint:disable-next-line: prefer-for-of
+  //       for (let k = 0; k < this.appointments[i].slots[j].attendees.length; k++) {
+  //         this.attendees.push(this.appointments[i].slots[j].attendees[k]);
+  //         this.patientService.getPatientByUserId(this.appointments[i].slots[j].attendees[k]).subscribe( (data) => {
+  //           console.log(data);
+  //           this.patients.push(data);
+  //         });
+  //       }
+  //     }
+  //   }
+  //}
 }

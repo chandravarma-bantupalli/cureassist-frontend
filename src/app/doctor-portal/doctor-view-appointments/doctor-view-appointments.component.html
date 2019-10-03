@@ -16,16 +16,13 @@
             </ng-container>
             <ng-container cdkColumnDef="phoneNumber">
                 <mat-header-cell *cdkHeaderCellDef>phoneNumber</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">{{patient.
-                    
-                    
-                    phoneNumber}}</mat-cell>
+                <mat-cell *cdkCellDef="let patient">{{patient.phoneNumber}}</mat-cell>
             </ng-container>
 
-            <!-- <ng-container cdkColumnDef="symptoms">
+            <ng-container cdkColumnDef="symptoms">
                 <mat-header-cell *cdkHeaderCellDef>symptoms</mat-header-cell>
-                <mat-cell *cdkCellDef="let patient">{{.symptoms}}</mat-cell>
-            </ng-container> -->
+                <mat-cell *cdkCellDef="let patient">{{patient.symptoms}}</mat-cell>
+            </ng-container>
 
             <ng-container cdkColumnDef="prescription">
                 <mat-header-cell *cdkHeaderCellDef>Add Prescription</mat-header-cell>
@@ -35,7 +32,7 @@
             </ng-container>
            
             <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber', 'prescription']"></mat-header-row>
-            <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber', 'prescription']"></mat-row>
+            <mat-row *cdkRowDef="let doctor; columns: ['doctorFirstName','doctorPhoneNumber','symptoms', 'prescription']"></mat-row>
         </mat-table>
     </div>
     <!-- <button mat-button (click)="viewallapointments()">View All Appointments</button> -->
@@ -60,14 +57,18 @@
                 <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
                 <mat-cell *cdkCellDef="let patient">{{patient.phoneNumber}}</mat-cell>
             </ng-container>
+            <ng-container cdkColumnDef="symptoms">
+                    <mat-header-cell *cdkHeaderCellDef>symptoms</mat-header-cell>
+                    <mat-cell *cdkCellDef="let patient">{{patient.symptoms}}</mat-cell>
+                </ng-container>
             <ng-container cdkColumnDef="prescription">
                 <mat-header-cell *cdkHeaderCellDef>Add Prescription</mat-header-cell>
                 <mat-cell *cdkCellDef="let patient">
                         <button color="primary" (click)= openPrescriptionDialog(patient.userId)>Add Prescription</button>
                 </mat-cell>
             </ng-container>
-            <mat-header-row *cdkHeaderRowDef="['firstName','phoneNumber','prescription']"></mat-header-row>
-            <mat-row *cdkRowDef="let patient; columns: ['firstName','phoneNumber','prescription']"></mat-row>
+            <mat-header-row *cdkHeaderRowDef="['firstName','phoneNumber','symptoms','prescription']"></mat-header-row>
+            <mat-row *cdkRowDef="let patient; columns: ['firstName','phoneNumber','symptoms','prescription']"></mat-row>
         </mat-table>
     </div>
 </div>

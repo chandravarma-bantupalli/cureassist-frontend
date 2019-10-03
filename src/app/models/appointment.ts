@@ -29,7 +29,7 @@ export class AppointmentDayCalendar {
 }
 
 export class AppointmentSlot {
-    attendees: [];
+    attendees: Attendee[];
     timeSlot: AppointmentTimeSlot;
 }
 export class Attendee {
