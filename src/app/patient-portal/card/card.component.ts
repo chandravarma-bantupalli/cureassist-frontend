@@ -15,7 +15,6 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  
   panelOpenState = false;
   viewprofiledata: Doctor;
   attendees: string[];
