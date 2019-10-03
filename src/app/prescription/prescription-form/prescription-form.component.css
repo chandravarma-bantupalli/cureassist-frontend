@@ -1,1 +1,32 @@
-
+.header{
+    text-align: right;
+}
+/* .ptsdetails{
+    display: inline-block;
+}
+.docdetails{
+    display: inline-block;
+    margin-left: 54%;
+    text-align: end;
+} */
+.doc-pat-details{
+    display: flex;
+    flex-direction:  row;
+    justify-content: space-between;
+}
+.addprescriptioncard{
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+.addmedi{
+    background: #b0ab9e;
+}
+.Submit{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+.postform{
+    background: #b0ab9e;
+}
