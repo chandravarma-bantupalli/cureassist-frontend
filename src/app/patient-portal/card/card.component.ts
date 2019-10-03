@@ -29,7 +29,7 @@ export class CardComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  symptomsCtrl = new FormControl();
+  symptomsCtrl: string[] = [];
   filteredSymptoms: Observable<string[]>;
   symptoms: string[] = [];
   allSymptoms: Array<string> = [];
@@ -67,8 +67,6 @@ export class CardComponent implements OnInit {
       if (input) {
         input.value = '';
       }
-
-      this.symptomsCtrl.setValue(null);
     }
   }
 
@@ -83,7 +81,7 @@ export class CardComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.symptoms.push(event.option.viewValue);
     this.symptomInput.nativeElement.value = '';
-    this.symptomsCtrl.setValue(null);
+    
   }
 
   private _filter(value: string): string[] {
@@ -92,11 +90,11 @@ export class CardComponent implements OnInit {
     return this.allSymptoms.filter(symptom => symptom.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  openDialog(slotStartTime: Date, slotEndTime: Date, doctorId: string) {
+  openDialog(slotStartTime: Date, slotEndTime: Date, doctorId: string, symptom: string[]) {
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(ConfirmBooking, {
       width: '500px',
-      data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime, DoctorId: doctorId , symptoms: this.symptoms}
+      data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime, DoctorId: doctorId , symptoms: symptom}
     });
 
   }

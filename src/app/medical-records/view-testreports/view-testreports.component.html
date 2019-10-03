@@ -1,30 +1,38 @@
-<app-navbar></app-navbar>
-<div class="pagebody">
-    <mat-accordion class="prescription-accordion" *ngFor="let reports of testreports"> 
-        <mat-expansion-panel class="panel">
-            <mat-expansion-panel-header class="test">
-                <mat-panel-title>
-                    <h4 mat-line>Prescription Date: {{reports.dateOfConductedTest | date: 'dd/MM/yyyy'}}</h4>
-                </mat-panel-title>
-                <mat-panel-title>
-                    <h4 mat-line>nameOfConductedTest: {{reports.nameOfConductedTest}}</h4>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="mat-listcontainer">
-            <div class="maincontainer">
-        <div class="firstcontainer"><h3>Patient Name:</h3> {{reports.patientName}}</div>
-        <div  class="lastcontainer"><h3>DiagnosticCenter Name:</h3> {{reports.diagnosticCenterName}}</div>
-        </div>
-        <div class="maincontainer">
-        <div class="firstcontainer"><h3>DiagnosticCenter Phonenumber: </h3>{{reports.diagnosticCenterPhone}}</div>
-        <div class="lastcontainer"><h3>TestReport: </h3>{{reports.fileUrl}}</div>
-        </div>
-        </div>
-        </mat-expansion-panel>
-        <!-- <mat-expansion-panel (opened)="panelOpenState = true"
-                            (closed)="panelOpenState = false">
-        </mat-expansion-panel> -->
-    </mat-accordion>
-</div>
+<h1>Your Test Reports</h1>
 
- 
+<div class="mat-elevation-z2">
+    <div class="reports-container" *ngIf="allTestReports.length == 0">
+      <h4>Test Reports</h4>
+      <div>
+        You don't have any reports.
+      </div>
+    </div>
+    <div class="appointments-container" *ngIf="allTestReports.length > 0">
+      <p class="title">Test Reports</p>
+      <mat-table class="appointments" [dataSource]="allTestReports">
+        <ng-container cdkColumnDef="doctorFirstName">
+          <mat-header-cell *cdkHeaderCellDef>Diagnosis Center </mat-header-cell>
+          <mat-cell *cdkCellDef="let appointment">
+           {{appointment.diagnosticCenterName | titlecase}}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="doctorPhoneNumber">
+          <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
+          <mat-cell *cdkCellDef="let appointment">
+            {{appointment.diagnosticCenterPhone | titlecase}}</mat-cell>
+        </ng-container>
+        <ng-container cdkColumnDef="startTime">
+          <mat-header-cell *cdkHeaderCellDef>Report</mat-header-cell>
+    <mat-cell *cdkCellDef="let appointment"><button mat-raised-button color="primary" (click)="getUrlOfReport(appointment.patientId, appointment.fileName)">View Report </button>
+            <hr>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *cdkHeaderRowDef="['doctorFirstName','doctorPhoneNumber','startTime']">
+        </mat-header-row>
+        <mat-row *cdkRowDef="let appointment; columns: ['doctorFirstName','doctorPhoneNumber','startTime']">
+        </mat-row>
+      </mat-table>
+    </div>
+    <ngx-doc-viewer *ngIf="rxdFileUrl" [url]="fileUrl" viewer="google" style="width:100%;height:50vh;"></ngx-doc-viewer>
+  </div>
+  
+  

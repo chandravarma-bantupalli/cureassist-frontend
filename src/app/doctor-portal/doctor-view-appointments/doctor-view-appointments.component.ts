@@ -195,8 +195,8 @@ export class DoctorViewAppointmentsComponent implements OnInit {
     this.prescriptionService.patientId = id;
     this.prescriptionService.doctorId = this.doctorId;
     const dialogRef = this.dialog.open(PrescriptionFormComponent, {
-      width: '50%',
-      height: '100vh'
+      // width: '50%',
+      // height: '100vh'
     });
 
     dialogRef.afterClosed().subscribe((result) => {

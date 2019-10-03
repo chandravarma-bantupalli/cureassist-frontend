@@ -46,7 +46,6 @@
       </mat-card>
     </section>
   </form>
-
   <!-- code for image prescription -->
   <!-- <form [formGroup]="prescriptionForm">
     <section class="prescription">
@@ -71,7 +70,6 @@
       </mat-card>
     </section>
   </form>
-
   <!-- This is medicine details block  -->
   <section class="prescription">
     <!-- <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()"> -->
@@ -81,26 +79,23 @@
         <div>
           <label>Medicine Name: </label>
           <mat-form-field>
-            <input formControlName="medicineName" matInput placeholder="Medicine
-              name">
+            <input formControlName="medicineName" matInput placeholder="Medicinename">
           </mat-form-field>
         </div>
-
         <div>
           <label>Medicine Quantity: </label>
           <mat-form-field>
             <input formControlName="medicineQuantity" matInput placeholder="Medicine Quantity">
           </mat-form-field>
         </div>
-
         <div>
           <label>Prescribed Dosage: </label>
           <mat-form-field>
             <input formControlName="prescribedDosage" matInput placeholder="Prescribed Dosage">
           </mat-form-field>
         </div>
-
-
+​
+​
         <div>
           <mat-label>prescribed Timings:</mat-label>
           <mat-form-field>
@@ -109,21 +104,21 @@
             </mat-select>
           </mat-form-field>
         </div>
-
-
+​
+​
         <div>
           <label>prescribed Days: </label>
           <mat-form-field>
             <input formControlName="prescribedDays" matInput placeholder="prescribed Days">
           </mat-form-field>
         </div>
-
+​
         <div class="addprescriptioncard">
           <button mat-button class="addmedi" (click)="AddMedicines()" >Add Medicines</button>
         </div>
-
+​
       </mat-card>
-
+​
     </form>
     <div class="Submit">
       <button mat-button class="postform" (click)="submitPrescription()">Submit</button>

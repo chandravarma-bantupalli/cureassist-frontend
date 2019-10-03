@@ -1,0 +1,12 @@
+.reports-container {
+    width: 100%;
+    padding: 15px;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+.mat-elevation-z2{
+    width: 50%;
+    padding: 15px;
+    margin: auto;
+    margin-bottom: 20px;
+}

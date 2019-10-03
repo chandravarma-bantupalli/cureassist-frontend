@@ -14,7 +14,8 @@ export class HealthrecordsService {
   currentPrescription: Prescriptions;
   PrescriptionId: string; PrescriptionDate: Date; PatientId: string; PatientName: string; PatientPhoneNumber: string; DoctorName: string;
   DoctorPhoneNumber: string; Symptoms: Array<string> = []; Remarks: string;
-  PrescribedMedicines: PrescribedMedicines; CurrentLocation: string;
+  urlForTestReports = environment.testreportAPI + '/api/testreports';
+  PrescribedMedicines: PrescribedMedicines; CurrentLocation: string; pincode: string;
 
   constructor(private http: HttpClient) { }
   getPatientPrescriptions(patientid: string): Observable<Prescriptions[]> {
@@ -36,8 +37,9 @@ export class HealthrecordsService {
     this.PrescribedMedicines = this.currentPrescription.prescription.selectedMeds;
     console.log(this.PrescribedMedicines);
     this.CurrentLocation = this.currentPrescription.prescription.location;
+    this.pincode = this.currentPrescription.prescription.pincode;
     // tslint:disable-next-line:max-line-length
-    return this.http.post(environment.pharmacyAPI + '/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation});
+    return this.http.post(environment.pharmacyAPI + '/api/prescriptions', {PrescriptionId: this.PrescriptionId, PrescriptionDate: this.PrescriptionDate, PatientId: this.PatientId, PatientName: this.PatientName, PatientPhoneNumber: this.PatientPhoneNumber, DoctorName: this.DoctorName, DoctorPhoneNumber: this.DoctorPhoneNumber, Symptoms: this.Symptoms, Remarks: this.Remarks, PrescribedMedicines: this.PrescribedMedicines, CurrentLocation: this.CurrentLocation, pincode: this.pincode});
   }
   somethingClick(medicine: string) {
     if (this.orderMedicines.includes(medicine)) {
@@ -46,7 +48,7 @@ export class HealthrecordsService {
       this.orderMedicines.push(medicine);
     }
     console.log(this.orderMedicines);
-    }
+  }
     selectedPrescription(prescribed) {
       this.prescription = prescribed;
       console.log(this.prescription);
@@ -56,4 +58,13 @@ export class HealthrecordsService {
       return this.http.get<TestReports[]>(environment.testreportAPI + '/api/testreports/patient/' + patientid);
     }
 
-}
+    getAllTestReports() {
+      return this.http.get<TestReports[]>(this.urlForTestReports);
+    }
+    getLinkToReport(patientId: string, fileName: string) {
+      return this.http.get(this.urlForTestReports + `/${patientId}/report/${fileName}/link`, {responseType: 'text'});
+    }
+    getReportofpatient(patientId: string) {
+      return this.http.get<TestReports[]>(this.urlForTestReports + `/${patientId}`);
+    }
+  }
