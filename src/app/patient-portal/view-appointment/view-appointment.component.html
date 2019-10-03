@@ -12,7 +12,7 @@
       <ng-container cdkColumnDef="doctorFirstName">
         <mat-header-cell *cdkHeaderCellDef>Doctor/Diagnosis Center</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">
-          Dr.&nbsp;{{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
+          {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="doctorPhoneNumber">
         <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
