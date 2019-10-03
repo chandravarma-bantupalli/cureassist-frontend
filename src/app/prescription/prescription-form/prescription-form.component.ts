@@ -36,6 +36,7 @@ export class PrescriptionFormComponent implements OnInit {
   doctorPhoneNumber: string;
   imageUrl: string;
   fileToUpload: File = null;
+  filteredMedicine: Observable<string[]>;
 
   // starting of symtoms suggestions
   visible = true;
@@ -48,7 +49,6 @@ export class PrescriptionFormComponent implements OnInit {
   symptoms: string[] = [];
   allSymptoms: Array<string> = [];
   allMedicine: string[] = [];
-  filteredMedicine: Observable<string[]>;
   // myMedicine = new FormControl();
   // filteredMedicine: Observable<string[]>;
 
@@ -85,6 +85,11 @@ export class PrescriptionFormComponent implements OnInit {
     this.filteredSymptoms = this.symptomsCtrl.valueChanges.pipe(
       startWith(null),
       map((symptom: string | null) => symptom ? this._filter(symptom) : this.allSymptoms.slice()));
+    this.filteredMedicine = this.medicineForm.controls.medicineName.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterMedicine(value))
+      );
   }
 
   ngOnInit() {
@@ -144,7 +149,7 @@ export class PrescriptionFormComponent implements OnInit {
 
 
   submitPrescription() {
-    const symptoms = this.prescriptionForm.value.symptoms;
+    // const symptoms = this.prescriptionForm.value.symptoms;
     const date = new Date();
     this.SymptomsByDoctor = this.symptoms;
     this.newPrescription = this.prescriptionForm.value;
@@ -207,6 +212,11 @@ export class PrescriptionFormComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.allSymptoms.filter(symptom => symptom.toLowerCase().indexOf(filterValue) === 0);
+  }
+  private _filterMedicine(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allMedicine.filter(option => option.toLowerCase().includes(filterValue));
   }
   // private _filterMedicine(value: string): string[] {
   //   const filterValue = value.toLowerCase();
