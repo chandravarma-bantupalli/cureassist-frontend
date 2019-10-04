@@ -43,6 +43,7 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
 
   ngOnInit() {
     this.diagnosticCenterId = '45987123-ed2456';
+    // this.diagnosticCenterId = this.onboardingService.userid;
     this.getAllAppointments();
   }
 
