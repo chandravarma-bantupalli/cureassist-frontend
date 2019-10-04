@@ -10,12 +10,12 @@
     <p class="title">Today's Appointments</p>
     <mat-table class="appointments" [dataSource]="today">
       <ng-container cdkColumnDef="doctorFirstName">
-        <mat-header-cell *cdkHeaderCellDef>Doctor/Diagnosis Center</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef>Doctor/DC</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">
           {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="doctorPhoneNumber">
-        <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef>Phone#</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">
           {{appointment.doctorPhoneNumber}}</mat-cell>
       </ng-container>
@@ -50,7 +50,7 @@
           {{appointment.date | date: "MMM d"}}</mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="doctorFirstName">
-        <mat-header-cell *cdkHeaderCellDef>Doctor/Diagnosis Center</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef>Doctor/DC</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">
           {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
       </ng-container>
@@ -85,7 +85,7 @@
               {{appointment.date | date: "MMM d"}}</mat-cell>
           </ng-container>
           <ng-container cdkColumnDef="doctorFirstName">
-            <mat-header-cell *cdkHeaderCellDef>Doctor/Diagnosis Center</mat-header-cell>
+            <mat-header-cell *cdkHeaderCellDef>Doctor/DC</mat-header-cell>
             <mat-cell *cdkCellDef="let appointment">
              {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
           </ng-container>

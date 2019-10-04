@@ -1,11 +1,11 @@
 <div class="search-container">
     <mat-form-field>
-            <select placeholder="ENTER CITY" [(ngModel)]="city" required matNativeControl>
+            <select placeholder="CITY" [(ngModel)]="city" required matNativeControl>
                 <option *ngFor="let city of City">{{city}}</option>
             </select>
         </mat-form-field>
         <mat-form-field class="search-field">
-            <input matInput  name="search" placeholder="Search by doctors,diagnostic and tests..."
+            <input matInput  name="search" placeholder="Search  by doctors,diagnostic and tests..."
                 [(ngModel)]="searchbar" (keyup)="searchDoctorsByName($event.target.value)"
                 (keyup)="searchDoctorBySpecialization($event.target.value)" (keyup)="searchDCByName($event.target.value)"
                 (keyup)="searchDCByTest($event.target.value)" (keyup)="searchDoctorsBySymptoms($event.target.value)">

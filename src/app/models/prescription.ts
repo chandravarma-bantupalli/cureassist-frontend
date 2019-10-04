@@ -8,6 +8,7 @@ export class Prescription {
   doctorphoneNumber: string;
   symptoms: string[];
   remarks: string;
+  suggestedTests: string[];
   allPrescribedMedicines: PrescribedMedicines[];
 }
 

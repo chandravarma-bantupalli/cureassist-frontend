@@ -4,24 +4,22 @@
         <mat-expansion-panel class="panel">
             <mat-expansion-panel-header class="test">
                 <mat-panel-title>
-                 {{prescribed.prescriptionDate | date: 'dd/MM/yyyy'}}
+                 <b>{{prescribed.prescriptionDate | date: 'dd/MM/yyyy'}}</b>
                 </mat-panel-title>
                 <mat-panel-title>
-              {{prescribed.symptoms}}
+                  <b>{{prescribed.doctorName}}</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <div class="mat-listcontainer">
-                <div class="maincontainer">
-                    <div class="lastcontainer">
-                      {{prescribed.doctorName}}
-                    </div>
-                </div>
                 <div class="maincontainer">
                     <div class="firstcontainer">
                         Symptoms: {{prescribed.symptoms}}
                     </div>
                     <div class="lastcontainer">
-                        Remarks:{{prescribed.remarks}}
+                        Remarks: {{prescribed.remarks}}
+                    </div>
+                    <div class="lastcontainer">
+                        Tests: {{prescribed.suggestedTests}}
                     </div>
                 </div>
                 <hr>
@@ -91,15 +89,12 @@
                       <mat-header-row *cdkHeaderRowDef="['Medicine Name','Prescribed Dosage','Prescribed Days','Prescribed Timings']"></mat-header-row>
                       <mat-row *cdkRowDef="let medicine; columns: ['Medicine Name','Prescribed Dosage','Prescribed Days','Prescribed Timings']"></mat-row>
                     </mat-table>
-                    <button mat-raised-button color="primary" (click)="openDialog(prescribed)">Buy
+                    <br>
+                    <div class="buynow">
+                        <button mat-raised-button color="primary" (click)="openDialog(prescribed)">Buy
                         Now</button>
+                    </div>
                   </div>
-                  
-                
-                
-                
-                
-             
         </div>
 
         </mat-expansion-panel>

@@ -1,3 +1,15 @@
+/*  Nav-bar code */
+.logo{
+  font-size: 160%;
+  font-family: 'Product Sans';
+}
+.reg-log{
+  font-size: 70%;
+}
+.reg-log-btn :hover{
+  background-color: white;
+}
+
 .app-toolbar {
   display: flex;
   justify-content: space-between;
