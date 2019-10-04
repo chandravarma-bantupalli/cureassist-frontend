@@ -41,7 +41,7 @@ export class ViewPrescriptionComponent implements OnInit {
     this.healthrecord
       .getPatientPrescriptions(this.onboardservice.userid)
       .subscribe((data) => {
-        this.prescription = data;
+        this.prescription = data; console.log(this.prescription)
         this.prescription = this.prescription.map(e => {
           e.selectedMeds = [];
           return e;

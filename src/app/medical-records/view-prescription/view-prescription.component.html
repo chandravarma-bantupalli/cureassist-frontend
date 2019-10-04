@@ -18,6 +18,9 @@
                     <div class="lastcontainer">
                         Remarks: {{prescribed.remarks}}
                     </div>
+                    <div class="lastcontainer">
+                        Tests: {{prescribed.suggestedTests}}
+                    </div>
                 </div>
                 <hr>
                 <!-- <div class="list-container">
@@ -86,8 +89,11 @@
                       <mat-header-row *cdkHeaderRowDef="['Medicine Name','Prescribed Dosage','Prescribed Days','Prescribed Timings']"></mat-header-row>
                       <mat-row *cdkRowDef="let medicine; columns: ['Medicine Name','Prescribed Dosage','Prescribed Days','Prescribed Timings']"></mat-row>
                     </mat-table>
-                    <button class ="buynow" mat-raised-button color="primary" (click)="openDialog(prescribed)">Buy
+                    <br>
+                    <div class="buynow">
+                        <button mat-raised-button color="primary" (click)="openDialog(prescribed)">Buy
                         Now</button>
+                    </div>
                   </div>
         </div>
 
