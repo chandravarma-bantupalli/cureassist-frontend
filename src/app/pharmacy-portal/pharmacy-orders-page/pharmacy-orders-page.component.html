@@ -1,49 +1,50 @@
 <div class="mat-elevation-z2" >
-<div class="container">
-  <div class="flex-grid">
-    <aside class="col sidebar">
-      <mat-chip-list class="mat-chip-list-stacked" primary="Color selection">
-  <mat-chip (click)="onQuotationRequestSelected(quotationRequest)" *ngFor="let quotationRequest of quotationRequests" selected color="primary">
-    order {{quotationRequest?.prescriptionId}}
-  </mat-chip>
-</mat-chip-list>
-    </aside>
-    <section class="col main">
-      <mat-table [dataSource]="selectedQuotationObject?.prescribedMedicines" class="mat-elevation-z8">
-        
-        <ng-container cdkColumnDef="MedicineName">
-          <mat-header-cell *cdkHeaderCellDef> Medicine Name</mat-header-cell>
-          <mat-cell *cdkCellDef="let prescribedMedicine">
-            {{prescribedMedicine.medicineName}} </mat-cell>
-        </ng-container>
-
-        
-        <ng-container cdkColumnDef="PrescribedDosage">
-          <mat-header-cell *cdkHeaderCellDef> Prescribed Dosage </mat-header-cell>>
-          <mat-cell *cdkCellDef="let prescribedMedicine">
-            {{prescribedMedicine.prescribedDosage}} </mat-cell>
-        </ng-container>
-
-       
-        <ng-container cdkColumnDef="Quantity">
-          <mat-header-cell *cdkHeaderCellDef> Quantity </mat-header-cell>
-          <mat-cell *cdkCellDef="let prescribedMedicine">
-            {{prescribedMedicine.medicineQuantity}} </mat-cell>
-        </ng-container>
-
-        <ng-container cdkColumnDef="MedicinePrice">
-          <mat-header-cell *cdkHeaderCellDef> Medicine Price </mat-header-cell>
-          <mat-cell *cdkCellDef="let prescribedMedicine">
-            <input type='number' matInput (keydown.enter)=totalMedicineCost(prescribedMedicine.medicineName,$event)
-              (keydown.backspace)=finalMedicineCost(prescribedMedicine.medicineName,$event)> </mat-cell>>
-        </ng-container>
-
-        <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table><br>
-      <input matInput placeholder="Total Cost" [(ngModel)]="totalCost" required>&nbsp;&nbsp;
-      <button mat-raised-button color="primary" (click)="pharmacyResponseMethod(totalCost)"> Confirm Order </button>
-    </section>
-  </div>
-</div>
-</div>
+    <div class="container">
+      <div class="flex-grid">
+        <aside class="col sidebar">
+          <mat-chip-list class="mat-chip-list-stacked" primary="Color selection">
+      <mat-chip (click)="onQuotationRequestSelected(quotationRequest)" *ngFor="let quotationRequest of quotationRequests" selected color="primary">
+         order {{quotationRequest?.prescriptionId}}
+      </mat-chip>
+    </mat-chip-list>
+        </aside>
+        <section class="col main">
+          <table mat-table [dataSource]="selectedQuotationObject?.prescribedMedicines" class="mat-elevation-z8">
+            
+            <ng-container matColumnDef="MedicineName">
+              <th mat-header-cell *matHeaderCellDef> Medicine Name </th>
+              <td mat-cell *matCellDef="let prescribedMedicine">
+                {{prescribedMedicine.medicineName}} </td>
+            </ng-container>
+    
+            
+            <ng-container matColumnDef="PrescribedDosage">
+              <th mat-header-cell *matHeaderCellDef> Prescribed Dosage </th>
+              <td mat-cell *matCellDef="let prescribedMedicine">
+                {{prescribedMedicine.prescribedDosage}} </td>
+            </ng-container>
+    
+           
+            <ng-container matColumnDef="Quantity">
+              <th mat-header-cell *matHeaderCellDef> Quantity </th>
+              <td mat-cell *matCellDef="let prescribedMedicine">
+                {{prescribedMedicine.medicineQuantity}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="MedicinePrice">
+              <th mat-header-cell *matHeaderCellDef> Medicine Price </th>
+              <td mat-cell *matCellDef="let prescribedMedicine">
+                <input type='number' matInput (keydown.enter)=totalMedicineCost(prescribedMedicine.medicineName,$event)
+                  (keydown.backspace)=finalMedicineCost(prescribedMedicine.medicineName,$event)> </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table><br>
+          <input matInput placeholder="Total Cost" [(ngModel)]="totalCost" required>&nbsp;&nbsp;
+          <button mat-raised-button color="primary" (click)="pharmacyResponseMethod(totalCost)"> Confirm Order </button>
+        </section>
+      </div>
+    </div>
+    </div>
+    

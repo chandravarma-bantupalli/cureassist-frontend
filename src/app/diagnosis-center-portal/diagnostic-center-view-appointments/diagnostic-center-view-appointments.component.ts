@@ -31,6 +31,7 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
   tomorrowPatients: Patient[] = [];
   laterPatients: Patient[] = [];
   previousPatients: Patient[] = [];
+  isHomePage: boolean;
 
 
   constructor(

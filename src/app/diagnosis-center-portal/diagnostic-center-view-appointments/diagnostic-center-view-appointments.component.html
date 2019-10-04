@@ -51,7 +51,7 @@
             <ng-container cdkColumnDef="firstName">
                 <mat-header-cell *cdkHeaderCellDef>Patient</mat-header-cell>
                 <mat-cell *cdkCellDef="let appointment">
-                    {{patient.firstName | titlecase}}&nbsp;{{patient.lastName | titlecase}}
+                    {{appointment.firstName | titlecase}}&nbsp;{{appointment.lastName | titlecase}}
                 </mat-cell>
             </ng-container>
             <ng-container cdkColumnDef="startTime">
@@ -91,8 +91,8 @@
                 </ng-container>
                 <ng-container cdkColumnDef="Name">
                     <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
-                    <mat-cell *cdkCellDef="let patient">
-                        {{ patient.firstName | titlecase }}&nbsp;{{ patient.lastName | titlecase }}
+                    <mat-cell *cdkCellDef="let appointment">
+                        {{appointment.firstName | titlecase}}&nbsp;{{appointment.lastName | titlecase}}
                     </mat-cell>
                 </ng-container>
                 <ng-container cdkColumnDef="Phone Number">
