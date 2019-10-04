@@ -109,7 +109,7 @@ export class ViewAppointmentDetailsComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
-    alert(`Added Test Report of ${this.testReportForm.value.nameOfTestConducted} Successfully to Patient ${this.attendeeName}`);
+    alert(`Added test report of ${this.testReportForm.value.nameOfTestConducted} successfully to patient ${this.attendeeName}`);
   }
 
 }

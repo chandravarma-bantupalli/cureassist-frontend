@@ -3,27 +3,29 @@
 
   <form [formGroup]="dcProfile">
       <mat-card-subtitle>
+        <h4>
           Basic Details
+        </h4>
         </mat-card-subtitle>
-    <div style="display: flex; flex-flow: row wrap; align-items: center; width:
+    <div style="display: flex; flex-flow: row wrap; align-items: flex-start; width:
       100%;">
       <mat-form-field style="width: 100%;">
         <input matInput formControlName="diagnosticCenterName" placeholder="Diagnostic Center Name">
       </mat-form-field>
 
     </div>
-    <div style="display: flex; flex-flow: row wrap; align-items: center;">
+    <div style="display: flex; flex-flow: row wrap; align-items: flex-start;">
       <mat-form-field>
         <input matInput formControlName="diagnosticCenterPhone" placeholder="Phone
           Number">
       </mat-form-field>
     </div>
-    <div style="display: flex; flex-flow: row wrap; align-items: center;">
+    <div style="display: flex; flex-flow: row wrap; align-items: flex-start;">
       <mat-form-field style="width: 100%;">
         <input matInput formControlName="diagnosticCenterEmail" placeholder="Email">
       </mat-form-field>
     </div>
-    <div style="display: flex; flex-flow: row wrap; align-items: center;">
+    <div style="display: flex; flex-flow: row wrap; align-items: flex-start;">
       <mat-form-field>
         <input matInput formControlName="diagnosticCenterPhone" placeholder="Registration
           Number">
@@ -34,7 +36,9 @@
 
 <div class="profile-details">
   <mat-card-subtitle>
-    Address
+    <h4>
+      Communication Address
+    </h4>
   </mat-card-subtitle>
   <form [formGroup]="dcProfile">
     <div>
