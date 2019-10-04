@@ -2,9 +2,8 @@
 <div class="register-container">
     <div class="register-container-hero-image"></div>
     <form class="register-form-container">
-        <h1>Register</h1>
         <mat-form-field>
-            <input matInput placeholder="Enter your email Id" [(ngModel)]="emailId" name="emailId" required>
+            <input matInput placeholder="username" [(ngModel)]="emailId" name="emailId" required>
         </mat-form-field>
         <div class="error-status" *ngIf="errorStatus==409">
             <p>User Already Exists.Invalid Access</p>
