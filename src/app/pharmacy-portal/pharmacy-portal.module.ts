@@ -12,6 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PharmacyConfirmOrdersComponent } from './pharmacy-confirm-orders/pharmacy-confirm-orders.component';
 import { PharmacyEditProfileDialogComponent } from './pharmacy-edit-profile-dialog/pharmacy-edit-profile-dialog.component';
 import { AvatarModule } from 'ngx-avatar';
+import { CdkTableModule } from '@angular/cdk/table';
 
 
 
@@ -38,7 +39,8 @@ import { AvatarModule } from 'ngx-avatar';
     MatExpansionModule,
     MatChipsModule,
     AvatarModule,
-    MatIconModule
+    MatIconModule,
+    CdkTableModule
   ],
   providers: [
     {provide: MatDialogRef, useValue: {} }
