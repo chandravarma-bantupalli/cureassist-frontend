@@ -5,7 +5,7 @@ import { PharmacyOrdersPageComponent } from './pharmacy-orders-page/pharmacy-ord
 import { PharmacyProfileComponent } from './pharmacy-profile/pharmacy-profile.component';
 import { PharmacyViewProfileComponent } from './pharmacy-view-profile/pharmacy-view-profile.component';
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatCardModule, MatMenuModule, MatCheckboxModule, MatInputModule, MatExpansionModule, MatListModule, MatTableModule, MatSidenavModule, MatChipsModule, MatDialogRef } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatCardModule, MatMenuModule, MatCheckboxModule, MatInputModule, MatExpansionModule, MatListModule, MatTableModule, MatSidenavModule, MatChipsModule, MatDialogRef, MatIconModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,7 +37,8 @@ import { AvatarModule } from 'ngx-avatar';
     MatSidenavModule,
     MatExpansionModule,
     MatChipsModule,
-    AvatarModule
+    AvatarModule,
+    MatIconModule
   ],
   providers: [
     {provide: MatDialogRef, useValue: {} }
