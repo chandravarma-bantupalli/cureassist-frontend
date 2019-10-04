@@ -28,7 +28,7 @@
             <mat-row *cdkRowDef="let doctor; columns: ['firstName','phoneNumber', 'moreDetails']"></mat-row>
         </mat-table>
     </div>
-    <button mat-button (click)="viewAllAppointments()">View All Appointments</button>
+    <button mat-button *ngIf="isHomePage" (click)="viewAllAppointments()">View All Appointments</button>
 </div>
 
 
@@ -51,7 +51,7 @@
             <ng-container cdkColumnDef="firstName">
                 <mat-header-cell *cdkHeaderCellDef>Patient</mat-header-cell>
                 <mat-cell *cdkCellDef="let appointment">
-                    {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}
+                    {{patient.firstName | titlecase}}&nbsp;{{patient.lastName | titlecase}}
                 </mat-cell>
             </ng-container>
             <ng-container cdkColumnDef="startTime">
@@ -82,7 +82,7 @@
         </div>
         <div class="appointments-container" *ngIf="previous.length >= 1">
             <p class="title">Previous Appointments</p>
-            <mat-table class="appointments" [dataSource]="previous">
+            <mat-table class="appointments" [dataSource]="previousPatients">
                 <ng-container cdkColumnDef="date">
                     <mat-header-cell *cdkHeaderCellDef>Date</mat-header-cell>
                     <mat-cell *cdkCellDef="let appointment">
@@ -91,7 +91,7 @@
                 <ng-container cdkColumnDef="firstName">
                     <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
                     <mat-cell *cdkCellDef="let appointment">
-                        {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}
+                        {{patient.firstName | titlecase}}&nbsp;{{patient.lastName | titlecase}}
                     </mat-cell>
                 </ng-container>
                 <ng-container cdkColumnDef="phoneNumber">
