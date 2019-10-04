@@ -4,7 +4,9 @@
   font-family: sans-serif;
   line-height: 1.5;
 }
-
+mat-chip {
+  width: auto;
+}
 .flex-grid {
   display: flex;
   margin: auto -1rem 1rem;

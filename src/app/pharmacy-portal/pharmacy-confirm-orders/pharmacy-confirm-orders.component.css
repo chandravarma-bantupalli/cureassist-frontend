@@ -2,3 +2,6 @@
     display: flex;
   justify-content: center;
 }
+h5 {
+  font-family: 'Product Sans';
+}
