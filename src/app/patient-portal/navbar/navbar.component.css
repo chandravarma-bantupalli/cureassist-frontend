@@ -1,11 +1,21 @@
+.homePage{
+  background-color: #2196f3;
+}
 .gotoend{
   flex: 1 1 auto;
 }
 .Profile{
   padding: 0 14px;
-  font-size: 100%;
-
 }
-.logo {
- font-size : 160%;
+.logo{
+  font-size: 160%;
+  font-family: 'Product Sans' !important ;
+  color: black;
+  font-weight: 500;
+}
+.logout-btn :hover{
+ background-color: white;
+}
+.logout{
+  color: black;
 }

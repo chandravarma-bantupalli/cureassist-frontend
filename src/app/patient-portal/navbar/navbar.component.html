@@ -1,5 +1,9 @@
-<mat-toolbar class="homePage" color="primary">
-  <button class="logo" mat-button (click)=gotohome()> CureAssist </button>
+<mat-toolbar class="homePage">
+  <h3>
+    <button mat-button (click)=gotohome() class="logo"> CureAssist </button>
+  </h3>
   <span class="gotoend"></span>
-<button mat-button class="Profile" (click)=logout()>logout</button>
+  <div class="logout-btn"> 
+    <button mat-button class="Profile" (click)=logout() class="logout">Logout</button>
+  </div>
 </mat-toolbar>
