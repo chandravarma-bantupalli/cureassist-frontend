@@ -4,18 +4,19 @@
   position: fixed;
   z-index: 1;
   width: 100%;
+  background-color: #2196f3;
 }
 button {
   margin: 20px;
   font-size: 4vh;
   text-decoration-style: double;
   justify-content: space-between;
-  color: white;
+  color: black;
   font-family: serif;
 }
 a {
   text-decoration: none;
-  color: white;
+  color: black;
   font-family: serif;
   font-size: 5vh;
 }
