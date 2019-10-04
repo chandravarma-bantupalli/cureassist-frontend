@@ -87,8 +87,10 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
       console.log(todayAttendeesIds, 'Today');
       const laterAttendeesIds = this.getAttendees(this.later);
       console.log(laterAttendeesIds, 'tomo');
+      // console.log(this.previous);
       const previousAttendeesIds = this.getAttendees(this.previous);
       console.log(previousAttendeesIds, 'previous');
+      // this.getAttendeeDetails(previousAttendeesIds);
       // tslint:disable-next-line:max-line-length
       todayAttendeesIds.map(data => {console.log(data.attendeeId, 'attendeeId'); this.patientService.getPatientByUserId(data.attendeeId).subscribe(data => this.todayPatients.push(data) ); });
       console.log(this.todayPatients, 'today patients');
@@ -100,6 +102,7 @@ export class DiagnosticCenterViewAppointmentsComponent implements OnInit {
       console.log(this.previousPatients);
     });
   }
+
 
 
   openPrescriptionDialog(id: string) {
