@@ -36,7 +36,7 @@ export class PrescriptionFormComponent implements OnInit {
   doctorPhoneNumber: string;
   imageUrl: string;
   fileToUpload: File = null;
-
+  // tslint:disable-next-line: max-line-length
   // starting of symtoms suggestions
   visible = true;
   selectable = true;
@@ -48,12 +48,22 @@ export class PrescriptionFormComponent implements OnInit {
   symptoms: string[] = [];
   allSymptoms: Array<string> = [];
   allMedicine: string[] = [];
-  filteredMedicine: Observable<string[]>;
+  // code for suggested test
+  tests: string[] = [];
+  testCtrl = new FormControl();
+  // tslint:disable-next-line: max-line-length
+  allTests: string[] = ['Amniocentesis', 'Biopsy', 'Blood Pressure', 'Blood Tests', 'Breathing', 'CAT Scans', 'Chorionic Prenatal Testing', 'Colonoscopy',
+  'CT Scans', 'Diagnostic Imaging', 'Ultrasound', 'Endoscopy', 'Fetal Ultrasound', 'Genetic Testing', 'Heart Rate' , 'Hemoglobin',
+  'Hepatic Function', 'Hepatitis Testing', 'Kidney Biopsy', 'Kidney Function Tests', 'Kidney Tests', 'Laboratory Tests',
+  'Liver Function Tests', 'MRI', 'Thyroid Tests', 'Ultrasound', 'X-Rays'];
+  filteredTest: Observable<string[]>;
+
   // myMedicine = new FormControl();
   // filteredMedicine: Observable<string[]>;
 
   @ViewChild('symptomInput', { static: false }) symptomInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('testInput', { static: false }) testInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false })@ViewChild('testInput', { static: false }) matAutocomplete: MatAutocomplete;
 
   prescriptionForm = this.formBuilder.group({
     prescriptionId: '',
@@ -65,13 +75,7 @@ export class PrescriptionFormComponent implements OnInit {
     doctorphoneNumber: this.doctorPhoneNumber,
     symptoms: '',
     remarks: '',
-    // allPrescribedMedicines: [{medicineForm: this.formBuilder.group({
-    //   medicineName: '',
-    //   medicineQuantity: '',
-    //   prescribedDosage: '',
-    //   prescribedTimings: [],
-    //   prescribedDays: '',
-    // })}]
+    suggestedTests: '',
      allPrescribedMedicines: []
   });
   constructor(
@@ -85,6 +89,9 @@ export class PrescriptionFormComponent implements OnInit {
     this.filteredSymptoms = this.symptomsCtrl.valueChanges.pipe(
       startWith(null),
       map((symptom: string | null) => symptom ? this._filter(symptom) : this.allSymptoms.slice()));
+    this.filteredTest = this.testCtrl.valueChanges.pipe(
+      startWith(null),
+      map((test: string | null) => test ? this._filterTest(test) : this.allTests.slice()));
   }
 
   ngOnInit() {
@@ -144,7 +151,7 @@ export class PrescriptionFormComponent implements OnInit {
 
 
   submitPrescription() {
-    const symptoms = this.prescriptionForm.value.symptoms;
+    // const symptoms = this.prescriptionForm.value.symptoms;
     const date = new Date();
     this.SymptomsByDoctor = this.symptoms;
     this.newPrescription = this.prescriptionForm.value;
@@ -156,6 +163,7 @@ export class PrescriptionFormComponent implements OnInit {
     this.newPrescription.prescriptionDate = date.toLocaleDateString();
     this.newPrescription.symptoms = this.SymptomsByDoctor;
     this.newPrescription.allPrescribedMedicines = this.ListOfMedicine;
+    this.newPrescription.suggestedTests = this.tests;
     this.prescriptionService.addNewPrescription(this.newPrescription).subscribe((data) => {
       console.log(this.newPrescription);
       console.log(data);
@@ -225,5 +233,44 @@ export class PrescriptionFormComponent implements OnInit {
     //   this.imageUrl = event.target.result;
     // }
     reader.readAsDataURL(this.fileToUpload);
+  }
+  ///////////////////////////////// Suggested test/////////////////////////
+  addTest(event: MatChipInputEvent): void {
+    // Add fruit only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our fruit
+      if ((value || '').trim()) {
+        this.tests.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.prescriptionForm.controls.suggestedTests.setValue(null);
+    }
+  }
+
+  removeTest(test: string): void {
+    const index = this.tests.indexOf(test);
+
+    if (index >= 0) {
+      this.tests.splice(index, 1);
+    }
+  }
+  selectedTest(event: MatAutocompleteSelectedEvent): void {
+    this.tests.push(event.option.viewValue);
+    this.testInput.nativeElement.value = '';
+    this.prescriptionForm.controls.suggestedTests.setValue(null);
+  }
+  private _filterTest(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allTests.filter(test => test.toLowerCase().indexOf(filterValue) === 0);
   }
 }

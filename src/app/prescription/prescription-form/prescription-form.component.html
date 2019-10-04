@@ -9,7 +9,7 @@
         </div>
         <div>
           <label>
-            <h5>Patient Name: {{ patientName }} </h5>
+            <h5>Patient Name: {{ patientName | titlecase }} </h5>
             <h5>Patient Phone Number: {{ patientPhoneNumber }} </h5>
             <h5>Doctor Name: {{ doctorName }} </h5>
             <h5>Doctor Phone Number: {{ doctorPhoneNumber }} </h5>
@@ -61,7 +61,6 @@
     <section class="prescription">
       <mat-card class="Detail">
         <div>
-          <label>remarks: </label>
           <mat-form-field>
             <input formControlName="remarks" matInput placeholder="Give remarks">
           </mat-form-field>
@@ -70,6 +69,55 @@
     </section>
   </form>
 
+  <!--code for suggested Tests-->
+  <!-- <form [formGroup]="prescriptionForm">
+    <section class="prescription">
+      <mat-card class="Detail">
+        <div>
+          <mat-form-field>
+            <input formControlName="suggestedTests" matInput placeholder="Suggest Tests">
+          </mat-form-field>
+        </div>
+      </mat-card>
+    </section>
+  </form> -->
+
+<!----------------------------------------------------------------------------------------->
+
+<form [formGroup]="prescriptionForm">
+  <section class="prescription">
+    <mat-card class="Detail">
+      <mat-form-field class="suggestedTest-chip-list">
+        <mat-chip-list #chipList aria-label="Test selection">
+          <mat-chip *ngFor="let test of tests" [selectable]="selectable" [removable]="removable"
+            (removed)="removeTest(test)">
+            {{test}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Add test .." #testInput [formControl]="testCtrl" [matAutocomplete]="autoTest"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addTest($event)">
+        </mat-chip-list>
+        <mat-autocomplete #autoTest="matAutocomplete" (optionSelected)="selectedTest($event)">
+          <mat-option *ngFor="let test of filteredTest | async" [value]="test">
+            {{test}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </mat-card>
+  </section>
+</form>
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------------------->
   <!-- This is medicine details block  -->
   <section class="prescription">
     <!-- <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()"> -->
@@ -77,31 +125,27 @@
           
       <mat-card class="Detail">
         <div>
-          <label>Medicine Name: </label>
           <mat-form-field>
             <input formControlName="medicineName" matInput placeholder="Medicinename">
           </mat-form-field>
         </div>
 
         <div>
-          <label>Medicine Quantity: </label>
           <mat-form-field>
-            <input formControlName="medicineQuantity" matInput placeholder="Medicine Quantity">
+            <input formControlName="medicineQuantity" matInput placeholder="Medicine quantity">
           </mat-form-field>
         </div>
 
         <div>
-          <label>Prescribed Dosage: </label>
           <mat-form-field>
-            <input formControlName="prescribedDosage" matInput placeholder="Prescribed Dosage">
+            <input formControlName="prescribedDosage" matInput placeholder="Prescribed dosage">
           </mat-form-field>
         </div>
 
 
         <div>
-          <mat-label>prescribed Timings:</mat-label>
           <mat-form-field>
-            <mat-select formControlName="prescribedTimings" multiple>
+            <mat-select formControlName="prescribedTimings" multiple placeholder="Prescribed timings">
               <mat-option *ngFor="let item of TimingArray" [value]="item">{{item}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -109,7 +153,6 @@
 
 
         <div>
-          <label>prescribed Days: </label>
           <mat-form-field>
             <input formControlName="prescribedDays" matInput placeholder="prescribed Days">
           </mat-form-field>
