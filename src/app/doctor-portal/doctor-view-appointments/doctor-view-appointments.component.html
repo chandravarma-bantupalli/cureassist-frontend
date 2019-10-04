@@ -7,7 +7,7 @@
             You don't have any appointments.
         </div>
     </div>
-    <div class="appointments-container" *ngIf="today.length > 0">
+    <div class="appointments-container" *ngIf="today.length > 1">
         <p class="title">Today's Appointments</p>
         <mat-table class="appointments" [dataSource]="today">
             <ng-container cdkColumnDef="firstName">
