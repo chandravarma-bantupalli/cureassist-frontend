@@ -26,7 +26,7 @@ export class DiagnosticsprofileCardComponent implements OnInit {
   openDialog(slotStartTime: Date, slotEndTime: Date, diagnosticCenterId: string) {
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(DCConfirmBooking, {
-      width: '250px',
+      width: '350px',
       data: { Date: this.bookdate, StartTime: slotStartTime, EndTime: slotEndTime, DiagnosticCenterId: diagnosticCenterId }
     });
 

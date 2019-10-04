@@ -4,7 +4,7 @@
       <mat-card class="Detail">
         <div class="header">
           <label>
-            <h3> precsriptionDate: {{today | date:'dd-MM-yyyy'}}</h3>
+            <h4 class="preDate">{{today | date:'dd-MM-yyyy'}}</h4> <!--  precsriptionDate: -->
           </label>
         </div>
         <div>
@@ -44,9 +44,8 @@
       </mat-card>
     </section>
   </form>
-
   <!-- code for image prescription -->
-  <form [formGroup]="prescriptionForm">
+  <!-- <form [formGroup]="prescriptionForm">
     <section class="prescription">
       <mat-card class="Detail">
         <img [src]='imageUrl' style="width: 100px; height: 100px">
@@ -54,7 +53,7 @@
           (change)='handleImage($event.target.files)'>
       </mat-card>
     </section>
-  </form>
+  </form> -->
 
   <!-- Code for Remarks -->
   <form [formGroup]="prescriptionForm">
@@ -129,20 +128,18 @@
             <input formControlName="medicineName" matInput placeholder="Medicinename">
           </mat-form-field>
         </div>
-
         <div>
           <mat-form-field>
             <input formControlName="medicineQuantity" matInput placeholder="Medicine quantity">
           </mat-form-field>
         </div>
-
         <div>
           <mat-form-field>
             <input formControlName="prescribedDosage" matInput placeholder="Prescribed dosage">
           </mat-form-field>
         </div>
-
-
+​
+​
         <div>
           <mat-form-field>
             <mat-select formControlName="prescribedTimings" multiple placeholder="Prescribed timings">
@@ -150,23 +147,23 @@
             </mat-select>
           </mat-form-field>
         </div>
-
-
+​
+​
         <div>
           <mat-form-field>
             <input formControlName="prescribedDays" matInput placeholder="prescribed Days">
           </mat-form-field>
         </div>
-
+​
         <div class="addprescriptioncard">
           <button mat-button class="addmedi" (click)="AddMedicines()" >Add Medicines</button>
         </div>
-
+​
       </mat-card>
-
+​
     </form>
     <div class="Submit">
-      <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
+      <button mat-button class="postform" (click)="submitPrescription()">Submit</button>
     </div>
   </section>
 </div>

@@ -57,7 +57,7 @@ export class PharmacyOrdersPageComponent implements OnInit {
       if (quotation === '') {
         console.log('incoming string is null');
       } else {
-        console.log(quotation);
+        console.log(quotation, 'prescription from patient');
         this.singleQuotation = quotation;
         console.log(this.singleQuotation.prescribedMedicines);
         this.quotationRequests.push(quotation);

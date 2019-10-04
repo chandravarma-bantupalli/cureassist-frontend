@@ -1,11 +1,12 @@
 export class TestReports {
-    nameOfConductedTest: string;
-    dateOfConductedTest: string;
+    testReportId: string;
+    nameOfTestConducted: string;
     patientId: string;
     patientName: string;
     patientPhoneNumber: string;
     diagnosticCenterId: string;
     diagnosticCenterName: string;
     diagnosticCenterPhone: string;
-    fileUrl: string;
+    fileName: string;
+    fileLocation: string;
 }

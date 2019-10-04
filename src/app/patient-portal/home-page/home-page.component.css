@@ -10,7 +10,7 @@
 } */
 .chicklet-container {
   height: 100%;
-  width: 50%;
+  width: 65%;
   margin: auto;
   padding-top: 50px;
   display: flex;
@@ -61,4 +61,10 @@ font-weight: 300 !important;
 }
 /* .Profile{
   padding: 0 14px;
+} */
+.gotofirstend{
+  flex: 1 1 auto;
+}
+/* .gotosecondend{
+  flex: 1 1 auto;
 } */

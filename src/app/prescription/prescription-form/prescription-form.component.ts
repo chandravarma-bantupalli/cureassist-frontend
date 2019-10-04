@@ -36,7 +36,12 @@ export class PrescriptionFormComponent implements OnInit {
   doctorPhoneNumber: string;
   imageUrl: string;
   fileToUpload: File = null;
+<<<<<<< HEAD
   // tslint:disable-next-line: max-line-length
+=======
+  filteredMedicine: Observable<string[]>;
+
+>>>>>>> 0178e612bfaaef2b985f7496671fa97c8a79da68
   // starting of symtoms suggestions
   visible = true;
   selectable = true;
@@ -48,6 +53,7 @@ export class PrescriptionFormComponent implements OnInit {
   symptoms: string[] = [];
   allSymptoms: Array<string> = [];
   allMedicine: string[] = [];
+<<<<<<< HEAD
   // code for suggested test
   tests: string[] = [];
   testCtrl = new FormControl();
@@ -58,6 +64,8 @@ export class PrescriptionFormComponent implements OnInit {
   'Liver Function Tests', 'MRI', 'Thyroid Tests', 'Ultrasound', 'X-Rays'];
   filteredTest: Observable<string[]>;
 
+=======
+>>>>>>> 0178e612bfaaef2b985f7496671fa97c8a79da68
   // myMedicine = new FormControl();
   // filteredMedicine: Observable<string[]>;
 
@@ -215,6 +223,11 @@ export class PrescriptionFormComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.allSymptoms.filter(symptom => symptom.toLowerCase().indexOf(filterValue) === 0);
+  }
+  private _filterMedicine(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allMedicine.filter(option => option.toLowerCase().includes(filterValue));
   }
   // private _filterMedicine(value: string): string[] {
   //   const filterValue = value.toLowerCase();

@@ -24,6 +24,8 @@ export class DiagnosticCenterHomeComponent implements OnInit {
   appointmentDayCalendar: AppointmentDayCalendar;
   todaySlots: AppointmentSlot[];
   appointmentsExist: boolean;
+  isHomePage = true;
+  appointmentHistoryPage = false;
 
   constructor(
     private timeSlotService: TimeSlotService,
@@ -83,8 +85,16 @@ export class DiagnosticCenterHomeComponent implements OnInit {
     this.router.navigate(['/diagnosisCenter/update']);
   }
 
+  goToHome() {
+    this.router.navigate(['/diagnosisCenter/home']);
+  }
+
   manageTimeSlots() {
     this.router.navigate(['/diagnosisCenter/manage/timeslots']);
+  }
+
+  viewAllAppointments() {
+    this.router.navigate(['/diagnosisCenter/appointments/history']);
   }
 
   resetpassword() {

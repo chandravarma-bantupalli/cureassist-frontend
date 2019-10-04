@@ -1,0 +1,20 @@
+<div class="home-container">
+    <div class="title">
+        <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Cure Assist | <span class="lead">Diagnosis Center Portal</span></h3>
+        <div>
+            <a style="color: crimson; text-decoration: underline; cursor: pointer;"><h5 [matMenuTriggerFor]="options"> <mat-icon>person_outline</mat-icon> </h5></a>
+            <mat-menu #options="matMenu">
+                <button class="Profile" *ngIf="isHomePage" mat-menu-item (click)="viewAllAppointments()">View Appointment History</button>
+                <button class="Profile" *ngIf="appointmentHistoryPage" mat-menu-item (click)="goToHome()">Home</button>                
+                <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
+                <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
+        </div>
+    </div>
+</div>
+
+<app-diagnostic-center-view-appointments when="today"></app-diagnostic-center-view-appointments>
+
+<app-diagnostic-center-view-appointments when="upcoming"></app-diagnostic-center-view-appointments>
+
+<app-diagnostic-center-view-appointments when="previous"></app-diagnostic-center-view-appointments>

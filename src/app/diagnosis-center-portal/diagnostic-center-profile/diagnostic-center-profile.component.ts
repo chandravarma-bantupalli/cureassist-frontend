@@ -19,6 +19,7 @@ export class DiagnosticCenterProfileComponent implements OnInit {
   diagnosticCenterSlots: TimeSlot[];
   testsConducted: string[];
   dcId: string;
+  rating: Float32Array;
 
   constructor(
     private router: Router,
@@ -31,6 +32,7 @@ export class DiagnosticCenterProfileComponent implements OnInit {
     this.dcId = '45987123-ed2456';
     // this.dcId = this.onboardingService.userid;
     this.getDiagnosticCenterProfile();
+    this.dcService.getRating().subscribe( (data) => this.rating = data);
   }
 
   getDiagnosticCenterProfile() {
