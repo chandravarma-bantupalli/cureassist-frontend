@@ -1,25 +1,14 @@
-<!-- <mat-toolbar class="patient-header" color="primary" style="margin-top: -10px">
-    <button mat-button (click)="homebutton()">CureAssist</button>
-    <button mat-button (click)="viewprescription()">ViewPrescription</button>
-    <button mat-button (click)="viewtestreport()">ViewTestReports</button>
-    <button class="Profile" mat-button [matMenuTriggerFor]="profile">Profile</button>
-    <mat-menu #profile="matMenu">
-        <button class="Profile" mat-menu-item (click)="viewProfile()">View Profile</button>
-        <button class="Profile" mat-menu-item (click)="editProfile()">Edit profile</button>
-        <button class="Profile" mat-menu-item (click)="resetpassword()">Change Password</button>
-        <button class="Profile" mat-menu-item (click)="logout()">Logout</button>
-    </mat-menu>
-</mat-toolbar>
-<router-outlet></router-outlet> -->
 
 <div class="home-container">
   <div class="title">
     <h3>Cure Assist | <span class="lead">Patient Portal</span></h3>
     <span class="gotofirstend"></span>
-    <button mat-button (click)="viewprescription()">ViewPrescription</button>
-    <span class="gotofirstend"></span>
-    <button mat-button (click)="viewtestreport()">ViewTestReports</button>
-    <span class="gotoend"></span>
+    <div class="nav-links">
+      <button mat-button (click)="viewprescription()">ViewPrescription</button>
+      <span class="gotofirstend"></span>
+      <button mat-button (click)="viewtestreport()">ViewTestReports</button>
+      <span class="gotoend"></span>
+    </div>
     <button class="Profile" mat-button [matMenuTriggerFor]="profile">
        <img src="../../../assets/images/profile.jpg" alt="profile">
     </button>
