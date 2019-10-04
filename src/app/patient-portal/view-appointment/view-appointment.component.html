@@ -6,13 +6,13 @@
       You don't have any appointments.
     </div>
   </div>
-  <div class="appointments-container" *ngIf="today.length > 1">
+  <div class="appointments-container" *ngIf="today.length >= 1">
     <p class="title">Today's Appointments</p>
     <mat-table class="appointments" [dataSource]="today">
       <ng-container cdkColumnDef="doctorFirstName">
         <mat-header-cell *cdkHeaderCellDef>Doctor/Diagnosis Center</mat-header-cell>
         <mat-cell *cdkCellDef="let appointment">
-          Dr.&nbsp;{{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
+          {{appointment.doctorFirstName | titlecase}}&nbsp;{{appointment.doctorLastName | titlecase}}</mat-cell>
       </ng-container>
       <ng-container cdkColumnDef="doctorPhoneNumber">
         <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
@@ -41,7 +41,7 @@
       You don't have any upcoming appointments.
     </div>
   </div>
-  <div class="appointments-container" *ngIf="later.length > 1">
+  <div class="appointments-container" *ngIf="later.length >= 1">
     <p class="title">Upcoming Appointments</p>
     <mat-table class="appointments" [dataSource]="later">
       <ng-container cdkColumnDef="date">
@@ -76,7 +76,7 @@
       You don't have any previous appointments.
     </div>
   </div>
-  <div class="appointments-container" *ngIf="previous.length > 1">
+  <div class="appointments-container" *ngIf="previous.length >= 1">
     <p class="title">Previous Appointments</p>
     <mat-table class="appointments" [dataSource]="previous">
         <ng-container cdkColumnDef="date">

@@ -155,7 +155,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
             appointment.doctorPhoneNumber = data.phoneNumber.toString();
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-            appointment.symptom = appointment.slots[0].attendees[0].symptom;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
           });
       });
       console.log(this.today, 'todayPatients');
@@ -168,7 +168,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
             appointment.doctorPhoneNumber = data.phoneNumber.toString();
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-            appointment.symptom = appointment.slots[0].attendees[0].symptom;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
           });
       });
       console.log(this.later, 'laterPatients');
@@ -183,7 +183,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
             appointment.doctorPhoneNumber = data.phoneNumber.toString();
             appointment.startTime = appointment.slots[0].timeSlot.startTime;
             appointment.endTime = appointment.slots[0].timeSlot.endTime;
-            appointment.symptom = appointment.slots[0].attendees[0].symptom;
+            appointment.symptoms = appointment.slots[0].attendees[0].symptoms;
           });
       });
       console.log(this.previous, 'previousPatients');
@@ -196,7 +196,7 @@ export class DoctorViewAppointmentsComponent implements OnInit {
     this.prescriptionService.doctorId = this.doctorId;
     const dialogRef = this.dialog.open(PrescriptionFormComponent, {
       // width: '50%',
-      // height: '100vh'
+      height: '90vh'
     });
 
     dialogRef.afterClosed().subscribe((result) => {

@@ -4,16 +4,18 @@
       <mat-card class="Detail">
         <div class="header">
           <label>
-            <h3> precsriptionDate: {{today | date:'dd-MM-yyyy'}}</h3>
+            <h4 class="preDate">{{today | date:'dd-MM-yyyy'}}</h4> <!--  precsriptionDate: -->
           </label>
         </div>
-        <div>
-          <label>
-            <h5>Patient Name: {{ patientName }} </h5>
-            <h5>Patient Phone Number: {{ patientPhoneNumber }} </h5>
-            <h5>Doctor Name: {{ doctorName }} </h5>
-            <h5>Doctor Phone Number: {{ doctorPhoneNumber }} </h5>
-          </label>
+        <div class="doc-pat-details">
+            <div class="ptsdetails">
+              <h5>{{ patientName }} </h5> <!--Patient Name:--> 
+              <h5>{{ patientPhoneNumber }} </h5> <!--Patient Phone Number:--> 
+            </div>
+            <div class="docdetails">
+              <h5>{{ doctorName }} </h5> <!-- Doctor Name: -->
+              <h5>{{ doctorPhoneNumber }} </h5>  <!-- Doctor Phone Number: -->
+            </div>
         </div>
       </mat-card>
     </section>
@@ -45,7 +47,7 @@
     </section>
   </form>
   <!-- code for image prescription -->
-  <form [formGroup]="prescriptionForm">
+  <!-- <form [formGroup]="prescriptionForm">
     <section class="prescription">
       <mat-card class="Detail">
         <img [src]='imageUrl' style="width: 100px; height: 100px">
@@ -53,7 +55,8 @@
           (change)='handleImage($event.target.files)'>
       </mat-card>
     </section>
-  </form>
+  </form> -->
+
   <!-- Code for Remarks -->
   <form [formGroup]="prescriptionForm">
     <section class="prescription">
@@ -118,7 +121,7 @@
 ​
     </form>
     <div class="Submit">
-      <button mat-button class="postform" (click)="submitPrescription()">Submit!</button>
+      <button mat-button class="postform" (click)="submitPrescription()">Submit</button>
     </div>
   </section>
 </div>

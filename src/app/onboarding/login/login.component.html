@@ -2,12 +2,11 @@
 <div class="login-container">
   <div class="login-container-hero-image"></div>
   <form class="login-form-container">
-    <h1>Login</h1>
     <mat-form-field>
-      <input matInput placeholder="Enter your email Id" [(ngModel)]="emailId" name="emailId" required>
+      <input matInput placeholder="username" [(ngModel)]="emailId" name="emailId" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Enter Password" [(ngModel)]="password" type="password" name="password" required>
+      <input matInput placeholder="password" [(ngModel)]="password" type="password" name="password" required>
     </mat-form-field>
     <p class="error-status" *ngIf="errorStatus==403">
       Please Enter Correct Email and Password
@@ -15,6 +14,6 @@
     <p class="error-status" *ngIf="errorStatus==500">
       Please Login from your respective site
     </p>
-    <button mat-raised-button color="primary" (click)="LoginUser()">LogIn</button>
+    <button mat-raised-button class="login" (click)="LoginUser()">LogIn</button>
   </form>
 </div>

@@ -11,14 +11,14 @@
       <p class="title">Test Reports</p>
       <mat-table class="appointments" [dataSource]="allTestReports">
         <ng-container cdkColumnDef="doctorFirstName">
-          <mat-header-cell *cdkHeaderCellDef>Diagnosis Center </mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef> Test Name </mat-header-cell>
           <mat-cell *cdkCellDef="let appointment">
-           {{appointment.diagnosticCenterName | titlecase}}</mat-cell>
+           {{appointment.nameOfTestConducted | titlecase}}</mat-cell>
         </ng-container>
         <ng-container cdkColumnDef="doctorPhoneNumber">
-          <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
+          <mat-header-cell *cdkHeaderCellDef>File Name</mat-header-cell>
           <mat-cell *cdkCellDef="let appointment">
-            {{appointment.diagnosticCenterPhone | titlecase}}</mat-cell>
+            {{appointment.fileName | titlecase}}</mat-cell>
         </ng-container>
         <ng-container cdkColumnDef="startTime">
           <mat-header-cell *cdkHeaderCellDef>Report</mat-header-cell>

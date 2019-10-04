@@ -7,7 +7,7 @@
             You don't have any appointments.
         </div>
     </div>
-    <div class="appointments-container" *ngIf="today.length > 1">
+    <div class="appointments-container" *ngIf="today.length >= 1">
         <p class="title">Today's Appointments</p>
         <mat-table class="appointments" [dataSource]="today">
             <ng-container cdkColumnDef="firstName">
@@ -18,7 +18,7 @@
             </ng-container>
             <ng-container cdkColumnDef="symptoms">
                 <mat-header-cell *cdkHeaderCellDef>Symptoms</mat-header-cell>
-                <mat-cell *cdkCellDef="let appointment">{{appointment.symptom}}</mat-cell>
+                <mat-cell *cdkCellDef="let appointment">{{appointment.symptoms}}</mat-cell>
             </ng-container>
             <ng-container cdkColumnDef="startTime">
                 <mat-header-cell *cdkHeaderCellDef>Time</mat-header-cell>
@@ -46,7 +46,7 @@
             You don't have any upcoming appointments.
         </div>
     </div>
-    <div class="appointments-container" *ngIf="later.length > 1">
+    <div class="appointments-container" *ngIf="later.length >= 1">
         <p class="title">Upcoming Appointments</p>
         <mat-table class="appointments" [dataSource]="later">
             <ng-container cdkColumnDef="date">
@@ -62,7 +62,7 @@
             </ng-container>
             <ng-container cdkColumnDef="symptoms">
                 <mat-header-cell *cdkHeaderCellDef>Symptoms</mat-header-cell>
-                <mat-cell *cdkCellDef="let appointment">{{appointment.symptom}}</mat-cell>
+                <mat-cell *cdkCellDef="let appointment">{{appointment.symptoms}}</mat-cell>
             </ng-container>
             <ng-container cdkColumnDef="startTime">
                 <mat-header-cell *cdkHeaderCellDef>Time</mat-header-cell>
@@ -90,8 +90,8 @@
                 You don't have any previous appointments.
             </div>
         </div>
-        <div class="appointments-container" *ngIf="previous.length > 1">
-            <p class="title">Previous Appointments</p>
+        <div class="appointments-container" *ngIf="previous.length >= 1">
+            <h4>Previous Appointments</h4>
             <mat-table class="appointments" [dataSource]="previous">
                 <ng-container cdkColumnDef="date">
                     <mat-header-cell *cdkHeaderCellDef>Date</mat-header-cell>

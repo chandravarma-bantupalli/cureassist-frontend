@@ -85,11 +85,6 @@ export class PrescriptionFormComponent implements OnInit {
     this.filteredSymptoms = this.symptomsCtrl.valueChanges.pipe(
       startWith(null),
       map((symptom: string | null) => symptom ? this._filter(symptom) : this.allSymptoms.slice()));
-    this.filteredMedicine = this.medicineForm.controls.medicineName.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filterMedicine(value))
-      );
   }
 
   ngOnInit() {
