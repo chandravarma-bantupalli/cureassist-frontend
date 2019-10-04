@@ -27,7 +27,7 @@
             <ng-container cdkColumnDef="prescription">
                 <mat-header-cell *cdkHeaderCellDef>Add Prescription</mat-header-cell>
                 <mat-cell *cdkCellDef="let appointment">
-                    <button color="primary" (click)=openPrescriptionDialog(appointment.slots[0].attendees[0].attendeeId)>Prescription</button>
+                    <button mat-raised-button color="primary" (click)=openPrescriptionDialog(appointment.slots[0].attendees[0].attendeeId)>Prescription</button>
                 </mat-cell>
             </ng-container>
             <mat-header-row *cdkHeaderRowDef="['firstName','symptoms','startTime','prescription']">
