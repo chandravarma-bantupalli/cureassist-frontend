@@ -81,7 +81,7 @@ export class CardComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.symptoms.push(event.option.viewValue);
     this.symptomInput.nativeElement.value = '';
-    
+
   }
 
   private _filter(value: string): string[] {
