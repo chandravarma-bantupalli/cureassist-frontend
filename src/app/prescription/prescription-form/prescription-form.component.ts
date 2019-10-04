@@ -49,21 +49,22 @@ export class PrescriptionFormComponent implements OnInit {
   allSymptoms: Array<string> = [];
   allMedicine: string[] = [];
   // code for suggested test
-  tests: string[] = [];
+  // tests: string[] = [];
   testCtrl = new FormControl();
   // tslint:disable-next-line: max-line-length
-  allTests: string[] = ['Amniocentesis', 'Biopsy', 'Blood Pressure', 'Blood Tests', 'Breathing', 'CAT Scans', 'Chorionic Prenatal Testing', 'Colonoscopy',
-  'CT Scans', 'Diagnostic Imaging', 'Ultrasound', 'Endoscopy', 'Fetal Ultrasound', 'Genetic Testing', 'Heart Rate' , 'Hemoglobin',
-  'Hepatic Function', 'Hepatitis Testing', 'Kidney Biopsy', 'Kidney Function Tests', 'Kidney Tests', 'Laboratory Tests',
-  'Liver Function Tests', 'MRI', 'Thyroid Tests', 'Ultrasound', 'X-Rays'];
-  filteredTest: Observable<string[]>;
+ // allTests: string[] = ['Amniocentesis', 'Biopsy', 'Blood Pressure', 'Blood Tests', 'Breathing', 'CAT Scans', 'Chorionic Prenatal Testing', 'Colonoscopy',
+  // 'CT Scans', 'Diagnostic Imaging', 'Ultrasound', 'Endoscopy', 'Fetal Ultrasound', 'Genetic Testing', 'Heart Rate' , 'Hemoglobin',
+  // 'Hepatic Function', 'Hepatitis Testing', 'Kidney Biopsy', 'Kidney Function Tests', 'Kidney Tests', 'Laboratory Tests',
+  // 'Liver Function Tests', 'MRI', 'Thyroid Tests', 'Ultrasound', 'X-Rays'];
+  // filteredTest: Observable<string[]>;
 
   // myMedicine = new FormControl();
   // filteredMedicine: Observable<string[]>;
 
   @ViewChild('symptomInput', { static: false }) symptomInput: ElementRef<HTMLInputElement>;
-  @ViewChild('testInput', { static: false }) testInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', { static: false })@ViewChild('testInput', { static: false }) matAutocomplete: MatAutocomplete;
+  // @ViewChild('testInput', { static: false }) testInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('testInput', { static: false })
 
   prescriptionForm = this.formBuilder.group({
     prescriptionId: '',
@@ -75,7 +76,7 @@ export class PrescriptionFormComponent implements OnInit {
     doctorphoneNumber: this.doctorPhoneNumber,
     symptoms: '',
     remarks: '',
-    suggestedTests: '',
+   // suggestedTests: '',
      allPrescribedMedicines: []
   });
   constructor(
@@ -89,9 +90,9 @@ export class PrescriptionFormComponent implements OnInit {
     this.filteredSymptoms = this.symptomsCtrl.valueChanges.pipe(
       startWith(null),
       map((symptom: string | null) => symptom ? this._filter(symptom) : this.allSymptoms.slice()));
-    this.filteredTest = this.testCtrl.valueChanges.pipe(
-      startWith(null),
-      map((test: string | null) => test ? this._filterTest(test) : this.allTests.slice()));
+    // this.filteredTest = this.testCtrl.valueChanges.pipe(
+    //   startWith(null),
+    //   map((test: string | null) => test ? this._filterTest(test) : this.allTests.slice()));
   }
 
   ngOnInit() {
@@ -163,7 +164,7 @@ export class PrescriptionFormComponent implements OnInit {
     this.newPrescription.prescriptionDate = date.toLocaleDateString();
     this.newPrescription.symptoms = this.SymptomsByDoctor;
     this.newPrescription.allPrescribedMedicines = this.ListOfMedicine;
-    this.newPrescription.suggestedTests = this.tests;
+   // this.newPrescription.suggestedTests = this.tests;
     this.prescriptionService.addNewPrescription(this.newPrescription).subscribe((data) => {
       console.log(this.newPrescription);
       console.log(data);
@@ -240,42 +241,42 @@ export class PrescriptionFormComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
   ///////////////////////////////// Suggested test/////////////////////////
-  addTest(event: MatChipInputEvent): void {
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
+  // addTest(event: MatChipInputEvent): void {
+  //   // Add fruit only when MatAutocomplete is not open
+  //   // To make sure this does not conflict with OptionSelected Event
+  //   if (!this.matAutocomplete.isOpen) {
+  //     const input = event.input;
+  //     const value = event.value;
 
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.tests.push(value.trim());
-      }
+  //     // Add our fruit
+  //     if ((value || '').trim()) {
+  //       this.tests.push(value.trim());
+  //     }
 
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
+  //     // Reset the input value
+  //     if (input) {
+  //       input.value = '';
+  //     }
 
-      this.prescriptionForm.controls.suggestedTests.setValue(null);
-    }
-  }
+  //     this.prescriptionForm.controls.suggestedTests.setValue(null);
+  //   }
+  // }
 
-  removeTest(test: string): void {
-    const index = this.tests.indexOf(test);
+  // removeTest(test: string): void {
+  //   const index = this.tests.indexOf(test);
 
-    if (index >= 0) {
-      this.tests.splice(index, 1);
-    }
-  }
-  selectedTest(event: MatAutocompleteSelectedEvent): void {
-    this.tests.push(event.option.viewValue);
-    this.testInput.nativeElement.value = '';
-    this.prescriptionForm.controls.suggestedTests.setValue(null);
-  }
-  private _filterTest(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  //   if (index >= 0) {
+  //     this.tests.splice(index, 1);
+  //   }
+  // }
+  // selectedTest(event: MatAutocompleteSelectedEvent): void {
+  //   this.tests.push(event.option.viewValue);
+  //   this.testInput.nativeElement.value = '';
+  //   this.prescriptionForm.controls.suggestedTests.setValue(null);
+  // }
+  // private _filterTest(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
 
-    return this.allTests.filter(test => test.toLowerCase().indexOf(filterValue) === 0);
-  }
+  //   return this.allTests.filter(test => test.toLowerCase().indexOf(filterValue) === 0);
+  // }
 }
