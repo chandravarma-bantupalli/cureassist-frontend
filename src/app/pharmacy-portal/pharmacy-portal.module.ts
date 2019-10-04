@@ -39,8 +39,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatExpansionModule,
     MatChipsModule,
     AvatarModule,
-    MatIconModule,
-    CdkTableModule
+    MatIconModule
   ],
   providers: [
     {provide: MatDialogRef, useValue: {} }

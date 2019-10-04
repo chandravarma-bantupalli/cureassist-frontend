@@ -24,8 +24,7 @@
     padding-left:20vh;
   }
   .buynow {
-    display: flex;
-     justify-content: center;
+    padding-left: 40%;
   }
   .flexcontent{
     display:flex;
